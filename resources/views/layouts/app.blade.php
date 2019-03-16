@@ -19,49 +19,54 @@
     {{--section del navbar(menu)--}}
     @section('menu')
         {{--Menu--}}
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-            {{-- navbar-brand xs que solo se vera en celulares o tablets--}}
-            <a href="#" class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde">MISVHA</a>
-            {{-- menu xs que se vera solo en tablets o celulares--}}
-            <div class="menu-xs d-xs-blockd-flex d-lg-none">
-                    <i class="material-icons" id="i-xs-buscar">search</i>
-                    <i class="material-icons" id="i-xs-carrito">shopping_cart</i>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-            </div>
-            {{--items del menu--}}
-            <div class="collapse navbar-collapse" id="navbarMenu">
-                {{--Menu del lado izquierdo--}}
-                <div class="nav navbar-nav mr-auto px-5">
-                    <a href="home.html" class="nav-item nav-link xs-link">INICIO</a>
-                    <a href="#" class="nav-item  nav-link xs-link">TIENDA</a>
-                    <a href="#" class="nav-item  nav-link xs-link">CONTACTO</a>
-                    <a href="Acceder.html" class="nav-item  nav-link xs-link d-xs-block d-lg-none">ACCEDER</a>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top">
+                {{-- navbar-brand xs que solo se vera en celulares o tablets--}}
+                <a href="#" class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde">MISVHA</a>
+                {{-- menu xs que se vera solo en tablets o celulares--}}
+                <div class="menu-xs d-xs-blockd-flex d-lg-none">
+                        <i class="material-icons" id="i-xs-buscar">search</i>
+                        <i class="material-icons" id="i-xs-carrito">shopping_cart</i>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
                 </div>
-                {{--Menu del centro--}}
-                <div class="mx-auto d-lg-flex d-none borde px-1">
-                    <a href="#" class="navbar-brand mx-auto">MISVHA</a>
+                {{--items del menu--}}
+                <div class="collapse navbar-collapse mx-auto" id="navbarMenu">
+                    {{--Menu del lado izquierdo--}}
+                    <div class="nav navbar-nav mr-auto ">
+                        <a href="home.html" class="nav-item nav-link xs-link">INICIO</a>
+                        <a href="#" class="nav-item  nav-link xs-link">TIENDA</a>
+                        <a href="#" class="nav-item  nav-link xs-link">CONTACTO</a>
+                        <a href="Acceder.html" class="nav-item  nav-link xs-link d-xs-block d-lg-none">ACCEDER</a>
+                    </div>
+                    {{--Menu del centro--}}
+                    <div class="mx-auto d-lg-flex d-none borde ">
+                        <a href="#" class="navbar-brand mx-auto">MISVHA</a>
+                    </div>
+                    {{--Menu del lado derecho--}}
+                    <div class="nav navbar-nav ml-auto d-lg-flex d-none ">
+                        <i class="material-icons nav-item nav-link xs-link " id="i-carrito">search</i>
+                        <i class="material-icons nav-item nav-link ">shopping_cart</i>
+                        <a href="Acceder.html" class="nav-item nav-link xs-link ">ACCEDER</a>
+                    </div>
                 </div>
-                {{--Menu del lado derecho--}}
-                <div class="nav navbar-nav ml-auto d-lg-flex d-none px-5">
-                    <i class="material-icons nav-item nav-link xs-link px-2" id="i-carrito">search</i>
-                    <i class="material-icons nav-item nav-link px-2">shopping_cart</i>
-                    <a href="Acceder.html" class="nav-item nav-link xs-link px-2">ACCEDER</a>
-                </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     @show
     @section('fondo')
         
     @show
+    {{--contenedor vacio(se llena segun la page)--}}
     @section('Container')
         
     @show
+    {{--pie de pagina--}}
     @section('footer')
         <footer class="f-foot">
             <div class="container">
                 <div class="row">
+                    {{--area de horarios--}}
                     <div class="f-horarios col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
                         <div class="f-contenido">
                             <h1>HORARIOS</h1>
@@ -99,15 +104,29 @@
                             </div>
                         </div>
                     </div>
+                    {{--area de redes sociales--}}
                     <div class="f-redes col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                            <div class="f-contenido">
-                                <h1>Redes Sociales</h1>
-                                <div class="mx-auto iconos">
-                                    <i class="fab fa-facebook"></i>
-                                    <i></i>
-                                    <i></i>
-                                </div>
+                        <div class="f-contenido">
+                            <h1>NUESTRAS REDES</h1>
+                            <div class="mx-auto iconos">
+                                <i class="fab fa-facebook f-icon"></i>
+                                <i class="fab fa-instagram f-icon"></i>
+                                <i class="fas fa-envelope f-icon"></i>
                             </div>
+                        </div>
+                    </div>
+                    <div class="f-enlaces col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                        <div class="f-contenido mx-auto">
+                            <h1>ENLACES</h1>
+                            <div class="mx-auto">
+                                <table class="mx-auto">
+                                    <tr><td><a href="">Inicio</a></td></tr>
+                                    <tr><td><a href="">Tienda</a></td></tr>
+                                    <tr><td><a href="">Contacto</a></td></tr>
+                                    <tr><td><a href="">¿Como llegar?</a></td></tr> 
+                                </table>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>

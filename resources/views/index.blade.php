@@ -42,12 +42,25 @@
         <div class="d-destacados">
             <div class="Titulo-destacados">DESTACADOS</div>
             <div class="row">
+                @for ($i = 0; $i < 4; $i++)
+                    <div class="card card-destacados col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                        <div class="card-img-destacados">
+    
+                        </div>
+                        <div class="btn">NOMBRE DES</div>
+                    </div>
+                @endfor
+            </div>
+        </div>
+        <div class="d-instagram">
+            <div class="Titulo-instagram">INSTAGRAM</div>
+            <div class="usuario-intagram"><a href="">@Misvah-moda</a></div>
+            <div class="row">
                     @for ($i = 0; $i < 4; $i++)
-                        <div class="card card-destacados col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
-                            <div class="card-img-destacados">
-        
+                        <div class="card card-insta col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                            <div class="card-img-insta">
+                                <div class="descrip-insta"><a href="">@Misvah-moda</a></div>
                             </div>
-                            <div class="btn">NOMBRE DES</div>
                         </div>
                     @endfor
                 </div>
