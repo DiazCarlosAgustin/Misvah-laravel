@@ -96,8 +96,7 @@ body{
 /*estilo de la seccion de categoria*/
 .d-categoria{
     position: relative;
-    height: 100%;
-    z-index: 100;
+
 }
 .d-categoria .Titulo-categoria{
     padding: 35px 0 25px 0;
@@ -123,12 +122,16 @@ body{
     -moz-box-shadow: 14px 17px 17px -12px rgba(156,154,156,0.75);
     box-shadow: 14px 17px 17px -12px rgba(156,154,156,0.75);
 }
+.btn-rosa{
+    background-color: #FF3B3BCC;
+    color: white;
+    border:none !important;
+}
 
 /*estilo de d-destacados*/
 
 .d-destacados{
     position: relative;
-    margin: 20px 0; 
 }
 .Titulo-destacados{
     padding: 35px 0 25px 0;
@@ -136,6 +139,7 @@ body{
     font-size: 45px;
     text-align: center;
 }
+
 .card-img-destacados{
     height: 380px;
     background-color: #707070;
@@ -152,7 +156,11 @@ body{
     -moz-box-shadow: 14px 17px 17px -12px rgba(156,154,156,0.75);
     box-shadow: 14px 17px 17px -12px rgba(156,154,156,0.75);
 }
+ 
 /*div instagram*/
+.d-instagram{
+    position: relative;
+}
 .Titulo-instagram{
     padding: 35px 0 0px 0;
     font-family: Impact, Charcoal, sans-serif !important;
@@ -198,7 +206,7 @@ body{
 .f-foot{
     position: relative;
     bottom: 0;
-    background-color: #FE4141;
+    background-color: #FF3B3BCC;
     padding: 20px;
     margin-top: 100px;
 }

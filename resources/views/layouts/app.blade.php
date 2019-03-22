@@ -35,7 +35,7 @@
                 <div class="collapse navbar-collapse mx-auto" id="navbarMenu">
                     {{--Menu del lado izquierdo--}}
                     <div class="nav navbar-nav mr-auto ">
-                        <a href="home.html" class="nav-item nav-link xs-link">INICIO</a>
+                        <a href="{{url("/")}}" class="nav-item nav-link xs-link">INICIO</a>
                         <a href="#" class="nav-item  nav-link xs-link">TIENDA</a>
                         <a href="#" class="nav-item  nav-link xs-link">CONTACTO</a>
                         <a href="Acceder.html" class="nav-item  nav-link xs-link d-xs-block d-lg-none">ACCEDER</a>
@@ -120,7 +120,7 @@
                             <h1>ENLACES</h1>
                             <div class="mx-auto">
                                 <table class="mx-auto">
-                                    <tr><td><a href="">Inicio</a></td></tr>
+                                    <tr><td><a href="/">Inicio</a></td></tr>
                                     <tr><td><a href="">Tienda</a></td></tr>
                                     <tr><td><a href="">Contacto</a></td></tr>
                                     <tr><td><a href="">¿Como llegar?</a></td></tr> 
