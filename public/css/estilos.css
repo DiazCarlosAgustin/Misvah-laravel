@@ -94,6 +94,9 @@ body{
 }
 
 /*estilo de la seccion de categoria*/
+.card-body{
+    width: 100%;
+}
 .d-categoria{
     position: relative;
 
@@ -126,8 +129,8 @@ body{
     background-color: #FF3B3BCC;
     color: white;
     border:none !important;
+    align-items: center;
 }
-
 /*estilo de d-destacados*/
 
 .d-destacados{

@@ -34,14 +34,14 @@
                 {{--items del menu--}}
                 <div class="collapse navbar-collapse mx-auto" id="navbarMenu">
                     {{--Menu del lado izquierdo--}}
-                    <div class="nav navbar-nav mr-auto ">
+                    <div class="nav navbar-nav mr-auto text-center">
                         <a href="{{url("/")}}" class="nav-item nav-link xs-link">INICIO</a>
                         <a href="#" class="nav-item  nav-link xs-link">TIENDA</a>
                         <a href="#" class="nav-item  nav-link xs-link">CONTACTO</a>
                         <a href="Acceder.html" class="nav-item  nav-link xs-link d-xs-block d-lg-none">ACCEDER</a>
                     </div>
                     {{--Menu del centro--}}
-                    <div class="mx-auto d-lg-flex d-none borde ">
+                    <div class="mx-auto d-lg-flex d-none borde text-center ">
                         <a href="#" class="navbar-brand mx-auto">MISVHA</a>
                     </div>
                     {{--Menu del lado derecho--}}

@@ -28,16 +28,15 @@
     <div class="container ">
         <div class="d-categoria">
             <div class="Titulo-categoria">Categorias</div>
-            <div class="row mx-auto">
+            <div class="row justify-content-center align-items-center">
                 @for ($i = 0; $i < 6; $i++)
-                    <div class="col col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="col col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mt-3">
                         <div  class="card  card-categoria ">
                             <img src="" class="card-img-top card-img" alt="">
-                            <div class="card-body mx-auto">
-                                <h5 class="card-title text-center">
+                            <div class="card-body ">
+                                <h4 class="card-title text-center">
                                     Title category
-                                </h5>
-                                <button class="btn btn-rosa btn-block">Ver</button>
+                                </h4>
                             </div>
                         </div>
                     </div>
@@ -48,11 +47,14 @@
             <div class="Titulo-destacados">Destacados</div>
             <div class="row">
                 @for ($i = 0; $i < 4; $i++)
-                    <div class="card card-destacados col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
-                        <div class="card-img-destacados">
-    
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                        <div class="card card-destacados ">
+                            <img src="" class="card-img-top card-img-destacados" alt="">
+                            <div class="card-body text-center">
+                                <h4>Nombre Producto</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Precio</h6>
+                            </div>
                         </div>
-                        <div class="btn">NOMBRE DES</div>
                     </div>
                 @endfor
             </div>
