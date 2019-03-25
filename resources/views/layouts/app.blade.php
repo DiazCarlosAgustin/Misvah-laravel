@@ -13,54 +13,55 @@
     {{--Fonts--}}
     <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+   
     <title>Misvah - @yield('title')</title>
 </head>
 <body>
-    {{--section del navbar(menu)--}}
-    @section('menu')
+    <div id="app">
+        {{--section del navbar(menu)--}}
+        @section('menu')
         {{--Menu--}}
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top">
-                {{-- navbar-brand xs que solo se vera en celulares o tablets--}}
-                <a href="#" class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde">MISVHA</a>
-                {{-- menu xs que se vera solo en tablets o celulares--}}
-                <div class="menu-xs d-xs-blockd-flex d-lg-none">
-                        <i class="material-icons" id="i-xs-buscar">search</i>
-                        <i class="material-icons" id="i-xs-carrito">shopping_cart</i>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                </div>
-                {{--items del menu--}}
-                <div class="collapse navbar-collapse mx-auto" id="navbarMenu">
-                    {{--Menu del lado izquierdo--}}
-                    <div class="nav navbar-nav mr-auto text-center">
-                        <a href="{{url("/")}}" class="nav-item nav-link xs-link">INICIO</a>
-                        <a href="#" class="nav-item  nav-link xs-link">TIENDA</a>
-                        <a href="#" class="nav-item  nav-link xs-link">CONTACTO</a>
-                        <a href="Acceder.html" class="nav-item  nav-link xs-link d-xs-block d-lg-none">ACCEDER</a>
+                <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top col-12">
+                    {{-- navbar-brand xs que solo se vera en celulares o tablets--}}
+                    <a href="#" class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde">MISVHA</a>
+                    {{-- menu xs que se vera solo en tablets o celulares--}}
+                    <div class="menu-xs d-xs-blockd-flex d-lg-none">
+                            <i class="material-icons" id="i-xs-buscar">search</i>
+                            <i class="material-icons" id="i-xs-carrito">shopping_cart</i>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
                     </div>
-                    {{--Menu del centro--}}
-                    <div class="mx-auto d-lg-flex d-none borde text-center ">
-                        <a href="#" class="navbar-brand mx-auto">MISVHA</a>
+                    {{--items del menu--}}
+                    <div class="collapse navbar-collapse mx-auto" id="navbarMenu">
+                        {{--Menu del lado izquierdo--}}
+                        <div class="nav navbar-nav mr-auto text-center">
+                            <a href="{{url("/")}}" class="nav-item nav-link xs-link">INICIO</a>
+                            <a href="#" class="nav-item  nav-link xs-link">TIENDA</a>
+                            <a href="#" class="nav-item  nav-link xs-link">CONTACTO</a>
+                            <a href="Acceder.html" class="nav-item  nav-link xs-link d-xs-block d-lg-none">ACCEDER</a>
+                        </div>
+                        {{--Menu del centro--}}
+                        <div class="mx-auto d-lg-flex d-none borde text-center ">
+                            <a href="#" class="navbar-brand mx-auto">MISVHA</a>
+                        </div>
+                        {{--Menu del lado derecho--}}
+                        <div class="nav navbar-nav ml-auto d-lg-flex d-none ">
+                            <i class="material-icons nav-item nav-link xs-link " id="i-carrito">search</i>
+                            <i class="material-icons nav-item nav-link ">shopping_cart</i>
+                            <a href="Acceder.html" class="nav-item nav-link xs-link ">ACCEDER</a>
+                        </div>
                     </div>
-                    {{--Menu del lado derecho--}}
-                    <div class="nav navbar-nav ml-auto d-lg-flex d-none ">
-                        <i class="material-icons nav-item nav-link xs-link " id="i-carrito">search</i>
-                        <i class="material-icons nav-item nav-link ">shopping_cart</i>
-                        <a href="Acceder.html" class="nav-item nav-link xs-link ">ACCEDER</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    @show
-    @section('fondo')
-        
-    @show
-    {{--contenedor vacio(se llena segun la page)--}}
-    @section('Container')
-        
-    @show
+                </nav>
+        @show
+        @section('fondo')
+            
+        @show
+        {{--contenedor vacio(se llena segun la page)--}}
+        @section('Container')
+            
+        @show
+    </div>
     {{--pie de pagina--}}
     @section('footer')
         <footer class="f-foot">
@@ -133,6 +134,9 @@
         </footer>
     @show
     {{--librerias usadas--}}
+    @section('scripts')
+        
+    @show
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

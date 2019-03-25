@@ -20,7 +20,15 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('fondo-component', require('./components/FondoComponent.vue').default);
+Vue.component('categorias-component', require('./components/CategoriasComponent.vue').default);
+Vue.component('categoria-component', require('./components/CategoriaComponent.vue').default);
+Vue.component('destacados-component', require('./components/DestacadosComponent.vue').default);
+Vue.component('destacado-component', require('./components/DestacadoComponent.vue').default);
+Vue.component('instagram-component', require('./components/instagramComponent.vue').default);
+Vue.component('foto-instagram', require('./components/FotoInstagram.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

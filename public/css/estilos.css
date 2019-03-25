@@ -47,7 +47,7 @@ body{
 }
 
 /*imagen de fondo de inicio*/
-#fondo{
+.fondo{
     background-image:url('../img/Fondo-2.jpg');
     background-position: center;
     background-size: cover;
@@ -58,23 +58,23 @@ body{
     z-index: -10;
 }
 /*contenido que va dentro de la imagen*/
-#fondo{
+.fondo{
     position: relative;
 }
-#fondo .d-centro{
+.fondo .d-centro{
     position:absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
-#fondo .d-centro .Titulo{
+.fondo .d-centro .Titulo{
     font-family: Impact, Charcoal, sans-serif !important;
     font-size: 80px;
     color:white;
     padding: 0;
     margin: 0;
 }
-#fondo .d-centro .sub-titulo{
+.fondo .d-centro .sub-titulo{
     text-align: center;
     font-family: 'Gabriela', serif;
     font-size: 40px;
@@ -82,12 +82,12 @@ body{
     padding: 0 0 10px 0;
     margin-top: -20px;
 }
-#fondo .d-centro .botones{
+.fondo .d-centro .botones{
     position: absolute;
     left: 0;
     transform: translateX(2%);
 }
-#fondo .d-centro .botones .btn{
+.fondo .d-centro .botones .btn{
     margin: 0 2px;
     background-color: white;
     border-radius: 50px;
@@ -135,6 +135,7 @@ body{
 
 .d-destacados{
     position: relative;
+    width: 100%;
 }
 .Titulo-destacados{
     padding: 35px 0 25px 0;
