@@ -38,8 +38,9 @@
                         <div class="nav navbar-nav mr-auto text-center">
                             <a href="{{url("/")}}" class="nav-item nav-link xs-link">INICIO</a>
                             <a href="#" class="nav-item  nav-link xs-link">TIENDA</a>
-                            <a href="#" class="nav-item  nav-link xs-link">CONTACTO</a>
-                            <a href="Acceder.html" class="nav-item  nav-link xs-link d-xs-block d-lg-none">ACCEDER</a>
+                            <a href="{{url('/contacto')}}" class="nav-item  nav-link xs-link">CONTACTO</a>
+                            {{--este item solo se muestra en pantallas mobiles--}}
+                            <a href="{{url('/acceder')}}" class="nav-item  nav-link xs-link d-xs-block d-lg-none">ACCEDER</a>
                         </div>
                         {{--Menu del centro--}}
                         <div class="mx-auto d-lg-flex d-none borde text-center ">
@@ -49,7 +50,7 @@
                         <div class="nav navbar-nav ml-auto d-lg-flex d-none ">
                             <i class="material-icons nav-item nav-link xs-link " id="i-carrito">search</i>
                             <i class="material-icons nav-item nav-link ">shopping_cart</i>
-                            <a href="Acceder.html" class="nav-item nav-link xs-link ">ACCEDER</a>
+                            <a href="{{url('/acceder')}}" class="nav-item nav-link xs-link ">ACCEDER</a>
                         </div>
                     </div>
                 </nav>
@@ -121,10 +122,10 @@
                             <h1>ENLACES</h1>
                             <div class="mx-auto">
                                 <table class="mx-auto">
-                                    <tr><td><a href="/">Inicio</a></td></tr>
+                                    <tr><td><a href="{{url('/')}}">Inicio</a></td></tr>
                                     <tr><td><a href="">Tienda</a></td></tr>
                                     <tr><td><a href="">Contacto</a></td></tr>
-                                    <tr><td><a href="">¿Como llegar?</a></td></tr> 
+                                    <tr><td><a href="{{url('/como_llegar')}}">¿Como llegar?</a></td></tr> 
                                 </table>
                                 </div>
                         </div>
