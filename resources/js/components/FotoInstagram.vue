@@ -1,7 +1,8 @@
 <template>
-    <div class="card card-insta col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
-        <div class="card-img-insta">
-            <div class="descrip-insta"><a href="">@Misvah-moda</a></div>
-        </div>
-    </div>
+    <div class="swiper-slide"><img src="https://via.placeholder.com/300x300.png" alt=""></div>
 </template>
+<script>
+export default {
+    name: 'foto-insta'
+}
+</script>

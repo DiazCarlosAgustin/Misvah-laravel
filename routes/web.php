@@ -30,3 +30,12 @@ Route::get('/registrarse',function(){
 Route::get('/como_llegar',function(){
    return view('como-llegar');
 });
+
+Route::get('/tienda',function(){
+   return view('tienda');
+});
+Route::get('/producto/{id}',function(){
+   return view('producto');
+});
+
+

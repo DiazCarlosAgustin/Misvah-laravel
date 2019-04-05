@@ -4,6 +4,31 @@ body{
     width: 100%;
     height: 100%;
 }
+/*Estilo del swiper*/
+.swiper-container {
+    width:auto;
+    height: 100%;
+    width: 100%;
+  }
+.swiper-slide {
+    height: 380px !important;
+    text-align: center;
+    background-color: white !important;
+    font-size: 18px;
+   /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+  }
 /*estilo de los links del menu*/
 .nav{width: auto;}
 .navbar #navbarMenu a{
@@ -48,7 +73,7 @@ body{
 
 /*imagen de fondo de inicio*/
 .fondo{
-    background-image:url('../img/Fondo-2.jpg');
+    background-image:url('../img/Fondo-3.jpg');
     background-position: center;
     background-size: cover;
     width: 100%;
@@ -135,7 +160,6 @@ body{
 
 .d-destacados{
     position: relative;
-    width: 100%;
 }
 .Titulo-destacados{
     padding: 35px 0 25px 0;
@@ -160,7 +184,27 @@ body{
     -moz-box-shadow: 14px 17px 17px -12px rgba(156,154,156,0.75);
     box-shadow: 14px 17px 17px -12px rgba(156,154,156,0.75);
 }
- 
+.destacado-img img{
+    position: relative;   
+}
+.destacado-img .s-descuento{
+    position: absolute;
+    right: 0;
+    top: 40px;
+}
+.destacado-img .s-stock{
+    position: absolute;
+    left: 0;
+    top: 40px;
+}
+.card-body i {
+    cursor: pointer;
+}
+.card-body i:hover {
+    cursor: pointer;
+}
+
+
 /*div instagram*/
 .d-instagram{
     position: relative;
@@ -242,10 +286,10 @@ body{
 
 
 /*Estilo de la pagina Contacto*/
-.d-contacto{
+.d-contacto,.d-tienda,.d-productos{
     position: relative;
 }   
-.d-titulo-contacto,.d-titulo-acceder,.d-titulo-registrarse,.d-titulo-como-llegar{
+.d-titulo-contacto,.d-titulo-tienda,.d-titulo-acceder,.d-titulo-registrarse,.d-titulo-como-llegar,.d-titulo-producto{
     font-family: Impact, Charcoal, sans-serif !important;
     font-size: 45px;
     text-align: center;
@@ -281,3 +325,57 @@ body{
     height: 55vh
 
 }
+
+/*estilo de la pagina de tienda o cualquiera que use paginacion*/
+div nav ul .active a{
+    background-color:  #FF3B3BCC !important;
+    color: white;
+    border-color: #dee2e6 !important ;
+}
+div nav ul li .page-link {
+    color:rgba(0,0,0,1);
+}
+
+
+/*pagina de producto*/
+.nombre-producto,.precio-producto,.stock-producto{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+#form {
+    margin: 0;
+    height: 60px;
+  }
+  
+  form p {
+    text-align: left;
+  }
+  
+  form label {
+    font-size: 25px;
+  }
+  
+  input[type="radio"] {
+    display: none;
+  }
+  
+  label {
+    color: grey;
+  }
+  
+  .clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
+  
+  label:hover,
+  label:hover ~ label {
+    color: #FF3B3BCC;
+  }
+  
+  input[type="radio"]:checked ~ label {
+    color: #FF3B3BCC;
+  }
+  
+  .cantidad-producto .cantidad{
+      width: 100px;
+  }

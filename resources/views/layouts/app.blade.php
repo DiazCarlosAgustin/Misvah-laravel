@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {{--Estilos externos--}}
-    <link rel="stylesheet" href="..\public\css\estilos.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     {{--Fonts--}}
     <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-   
+    @yield('style')
     <title>Misvah - @yield('title')</title>
 </head>
 <body>
@@ -37,7 +38,7 @@
                         {{--Menu del lado izquierdo--}}
                         <div class="nav navbar-nav mr-auto text-center">
                             <a href="{{url("/")}}" class="nav-item nav-link xs-link">INICIO</a>
-                            <a href="#" class="nav-item  nav-link xs-link">TIENDA</a>
+                            <a href="{{url('/tienda')}}" class="nav-item  nav-link xs-link">TIENDA</a>
                             <a href="{{url('/contacto')}}" class="nav-item  nav-link xs-link">CONTACTO</a>
                             {{--este item solo se muestra en pantallas mobiles--}}
                             <a href="{{url('/acceder')}}" class="nav-item  nav-link xs-link d-xs-block d-lg-none">ACCEDER</a>
@@ -55,13 +56,10 @@
                     </div>
                 </nav>
         @show
-        @section('fondo')
+        @yield('fondo')
             
-        @show
         {{--contenedor vacio(se llena segun la page)--}}
-        @section('Container')
-            
-        @show
+        @yield('Container')
     </div>
     {{--pie de pagina--}}
     @section('footer')
@@ -123,8 +121,8 @@
                             <div class="mx-auto">
                                 <table class="mx-auto">
                                     <tr><td><a href="{{url('/')}}">Inicio</a></td></tr>
-                                    <tr><td><a href="">Tienda</a></td></tr>
-                                    <tr><td><a href="">Contacto</a></td></tr>
+                                    <tr><td><a href="{{url('/tienda')}}">Tienda</a></td></tr>
+                                    <tr><td><a href="{{url('/contacto')}}">Contacto</a></td></tr>
                                     <tr><td><a href="{{url('/como_llegar')}}">¿Como llegar?</a></td></tr> 
                                 </table>
                                 </div>
@@ -135,11 +133,10 @@
         </footer>
     @show
     {{--librerias usadas--}}
-    @section('scripts')
-        
-    @show
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    @yield('script')
 </body>
 </html>
