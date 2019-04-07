@@ -77,8 +77,8 @@
         <div class="row mt-3">
             <div class="col-12">
                 <div class="card ">
-                    <div class="card-header text-center">
-                       <h4>Descripción del producto</h4>
+                    <div class="card-header">
+                       <h4>Información del producto</h4>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Especificación</h5>
@@ -93,6 +93,65 @@
                         <p class="card-text">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit esse obcaecati soluta debitis dolores optio excepturi quam rerum repudiandae cum minima quaerat nisi facilis, expedita nulla id ex voluptatibus maxime?
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3>Productos relacionados</h3>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                <div class="card card-destacados ">
+                    <div class="card-img-top card-img-destacados justify-content-right">
+                        <span class="bg-danger text-right  text-white s-descuento p-1 mr-auto">25% OFF</span>
+                    </div>
+                    <div class="card-body d-flex">
+                        <div class="text-left ">
+                            <h4>Nombre Producto</h4>
+                            <p class="card-subtitle mb-2 text-muted color-danger"><strike>$3000.50</strike> - $2900.50</p>
+                        </div>
+                        <div class="text-right align-self-center fav ml-auto">
+                            <i class="material-icons fav-xs" style="font-size: 30px">favorite_border</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                <div class="card card-destacados ">
+                    <div class="card-img-top card-img-destacados justify-content-right">
+                       {{-- <span class="bg-danger text-right  text-white s-descuento p-1 mr-auto">25% OFF</span>--}}
+                       <div class="s-stock text-left">
+                        <span class="bg-danger text-white  p-1">Sin stock</span>
+
+                        </div>
+                    </div>
+                    <div class="card-body d-flex">
+                        <div class="text-left ">
+                            <h4>Nombre Producto</h4>
+                            <p class="card-subtitle mb-2 text-muted color-danger">{{--<strike>$3000.50</strike> - --}}$2900.50</p>
+                        </div>
+                        <div class="text-right align-self-center fav ml-auto">
+                            <i class="material-icons fav-xs" style="font-size: 30px">favorite_border</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                <div class="card card-destacados ">
+                    <div class="card-img-top card-img-destacados justify-content-right">
+                        <span class="bg-danger text-right  text-white s-descuento p-1 mr-auto">25% OFF</span>
+                    </div>
+                    <div class="card-body d-flex">
+                        <div class="text-left ">
+                            <h4>Nombre Producto</h4>
+                            <p class="card-subtitle mb-2 text-muted color-danger"><strike>$3000.50</strike> - $2900.50</p>
+                        </div>
+                        <div class="text-right align-self-center fav ml-auto">
+                            <i class="material-icons fav-xs" style="font-size: 30px">favorite_border</i>
+                        </div>
                     </div>
                 </div>
             </div>

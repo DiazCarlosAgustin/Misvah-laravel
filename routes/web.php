@@ -38,4 +38,15 @@ Route::get('/producto/{id}',function(){
    return view('producto');
 });
 
+//rutas de administrador
+
+Route::get('/admin/index',function(){
+   return view('admin\adminIndex');
+});
+Route::get('/admin/categorias',function(){
+   return view('admin\categorias');
+});
+Route::get('/admin/nueva_categoria',function(){
+   return view('admin\nueva_categoria');
+});
 

@@ -16,7 +16,7 @@
                 <h4 class="my-3">Ajustes</h4>
                 <form action="">
                     <div class="col-12 d-sm-block d-md-flex justify-content-center">
-                            <div class="input-group  col-md-5 col-xs-12 mb-2 align-middle">
+                            <div class="input-group  col-md-3 col-xs-12 mb-2 align-middle">
                                     <div class="input-group-prepend">
                                         <label for="cbCategorias" class="input-group-text">Categorias: </label>
                                     </div>
@@ -28,7 +28,20 @@
                                         <option value="5">Categorias 5</option>
                                     </select>
                                 </div>
-                                <div class="input-group col-md-5 col-xs-12 mb-2 align-middle">
+                                <div class="input-group  col-md-3 col-xs-12 mb-2 align-middle">
+                                    <div class="input-group-prepend">
+                                        <label for="cbMarcas" class="input-group-text">Marcas: </label>
+                                    </div>
+                                    <select name="cbMarcas"  class="custom-select form-control  " id="cbMarcas">
+                                        <option value="1">Marca 1</option>
+                                        <option value="2">Marca 2</option>
+                                        <option value="3">Marca 3</option>
+                                        <option value="4">Marca 4</option>
+                                        <option value="5">Marca 5</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="input-group col-md-3 col-xs-12 mb-2 align-middle">
                                     <div class="input-group-prepend">
                                         <label for="cbOrder" class="input-group-text">Ordenar por: </label>
                                     </div>

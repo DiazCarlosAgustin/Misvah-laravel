@@ -156,6 +156,13 @@ body{
     border:none !important;
     align-items: center;
 }
+.btn-rosa-menu{
+    background-color: #FF3B3BCC;
+    color: white;
+    border:none !important;
+    align-items: center;
+    border-radius: 0;
+}
 /*estilo de d-destacados*/
 
 .d-destacados{
@@ -336,9 +343,11 @@ div nav ul li .page-link {
     color:rgba(0,0,0,1);
 }
 
-
+.card-destacados{
+    font-family: 'Roboto Condensed', sans-serif;
+}
 /*pagina de producto*/
-.nombre-producto,.precio-producto,.stock-producto{
+.d-productos{
     font-family: 'Roboto Condensed', sans-serif;
 }
 #form {
