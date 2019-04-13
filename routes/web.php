@@ -47,6 +47,17 @@ Route::get('/admin/categorias',function(){
    return view('admin\categorias');
 });
 Route::get('/admin/nueva_categoria',function(){
-   return view('admin\nueva_categoria');
+   return view('admin\nuevaCategoria');
 });
-
+Route::get('/admin/productos',function(){
+   return view('admin\productos');
+});
+Route::get('/admin/nuevo_producto',function(){
+   return view('admin\nuevoProducto');
+});
+Route::get('/admin/pedidos',function(){
+   return view('admin\pedidos');
+});
+Route::get('/admin/ventas',function(){
+   return view('admin.ventas');
+});

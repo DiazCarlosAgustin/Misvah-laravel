@@ -45,7 +45,7 @@
                         </div>
                         {{--Menu del centro--}}
                         <div class="mx-auto d-lg-flex d-none borde text-center ">
-                            <a href="#" class="navbar-brand mx-auto">MISVHA</a>
+                            <a href="#" class="navbar-brand mx-auto">MISVAH</a>
                         </div>
                         {{--Menu del lado derecho--}}
                         <div class="nav navbar-nav ml-auto d-lg-flex d-none ">

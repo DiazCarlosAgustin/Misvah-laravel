@@ -1838,11 +1838,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'destacado'
 });
 $(document).ready(function () {
-  console.log(1);
   $('.fav').hover(function () {
     if ($(this).find('i').text() === 'favorite_border') {
       $(this).find('i').text('favorite');
@@ -6486,7 +6499,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*estilo de swiper.js*/\n.swiper-container {\r\n    width: 100%;\r\n    height: 100%;\n}\n.swiper-slide {\r\n    height:100% + 20px !important;\r\n    text-align: center;\r\n    font-size: 18px;\r\n    background: #f2f2;\r\n    /* Center slide text vertically */\r\n      display: flex;\r\n      justify-content: center;\r\n      align-items: center;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*estilo de swiper.js*/\n.swiper-container {\r\n    width: 100%;\r\n    height: 100% ;\n}\n.mt-6{\r\n      margin-top: 6rem;\n}\n.swiper-slide {\r\n    height:100% + 20px !important;\r\n    text-align: center;\r\n    font-size: 18px;\r\n    background: #f2f2;\r\n    /* Center slide text vertically */\r\n      display: flex;\r\n      justify-content: center;\r\n      align-items: center;\n}\r\n", ""]);
 
 // exports
 
@@ -37781,8 +37794,8 @@ var staticRenderFns = [
       [
         _c("div", { staticClass: "card  card-categoria " }, [
           _c("img", {
-            staticClass: "card-img-top card-img",
-            attrs: { src: "", alt: "" }
+            staticClass: "aling-center",
+            attrs: { src: "https://via.placeholder.com/300x350.png", alt: "" }
           }),
           _vm._v(" "),
           _c("div", { staticClass: "card-body " }, [
@@ -37862,7 +37875,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "swiper-slide" }, [
-    _c("div", { staticClass: " card border" }, [
+    _c("div", { staticClass: " card border my-2" }, [
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "card-body d-flex" }, [
@@ -37878,7 +37891,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _vm._m(1)
-      ])
+      ]),
+      _vm._v(" "),
+      _vm._m(2)
     ])
   ])
 }
@@ -37897,13 +37912,13 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "span",
-        { staticClass: "bg-danger text-left  text-white s-descuento p-1" },
+        { staticClass: "bg-danger text-left  mt-4 text-white s-descuento p-1" },
         [_vm._v("25% OFF")]
       ),
       _vm._v(" "),
       _c(
         "span",
-        { staticClass: "bg-danger text-left  text-white s-stock p-1" },
+        { staticClass: "bg-danger text-left mt-4  text-white s-stock p-1" },
         [_vm._v("SIN STOCK")]
       )
     ])
@@ -37926,6 +37941,35 @@ var staticRenderFns = [
         )
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-0 justify-content-center" }, [
+      _c("form", { staticClass: "d-inline align-middle" }, [
+        _c("div", { staticClass: "form-group w-100 h-100 align-midle" }, [
+          _c("button", { staticClass: "btn align-middle btn-info" }, [
+            _c("i", { staticClass: "far fa-eye" }),
+            _vm._v("\n                        Ver\n                    ")
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-rosa align-middle",
+              attrs: { type: "submit" }
+            },
+            [
+              _c("i", { staticClass: "fas fa-cart-plus" }),
+              _vm._v(
+                "\n                        Añadir al carrito\n                    "
+              )
+            ]
+          )
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -37975,7 +38019,8 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", {
-          staticClass: "pagination-pagination pagination-destacados text-center"
+          staticClass:
+            "pagination-pagination pagination-destacados text-center mt-6"
         })
       ]
     )

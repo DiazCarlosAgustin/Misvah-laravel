@@ -69,9 +69,10 @@
                     <h4 class="d-inline">Cantidad: </h4>
                     <input type="number" name="" id="" class="form-control d-inline cantidad" min="1" value="1">
                 </div>
-                <div class="boton py-1">
-                    <button type="" class="btn-rosa btn btn-lg">Agregar al carrito </button>
-                </div>
+                <button type="submit" class="btn btn-rosa  align-middle">
+                    <i class="fas fa-cart-plus"></i>
+                    Añadir al carrito
+                </button>
             </div>
         </div>
         <div class="row mt-3">
@@ -103,55 +104,99 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
-                <div class="card card-destacados ">
-                    <div class="card-img-top card-img-destacados justify-content-right">
-                        <span class="bg-danger text-right  text-white s-descuento p-1 mr-auto">25% OFF</span>
+            <div class="col-12 col-xs-12 col-md-4">
+                <div class="card border my-3 w-auto">
+                    <div class="destacado-img align-self-center">
+                        <div class="card-img-top">
+                            <img src="https://via.placeholder.com/300x350.png" alt="" class="aling-center  ">
+                        </div>
+                        <span class="bg-danger text-left mt-0 text-white s-descuento p-1">25% OFF</span>
                     </div>
                     <div class="card-body d-flex">
                         <div class="text-left ">
-                            <h4>Nombre Producto</h4>
+                            <h4 class="card-title">Nombre Producto</h4>
                             <p class="card-subtitle mb-2 text-muted color-danger"><strike>$3000.50</strike> - $2900.50</p>
                         </div>
                         <div class="text-right align-self-center fav ml-auto">
                             <i class="material-icons fav-xs" style="font-size: 30px">favorite_border</i>
                         </div>
                     </div>
+                    <div class="p-0 justify-content-center d-flex">
+                        <form class="d-inline align-middle">
+                            <div class="form-group w-100  align-midle">
+                                <button class="btn align-middle btn-info">
+                                    <i class="far fa-eye"></i>
+                                    Ver
+                                </button>
+                                <button type="submit" class="btn btn-rosa align-middle">
+                                    <i class="fas fa-cart-plus"></i>
+                                    Añadir al carrito
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
-                <div class="card card-destacados ">
-                    <div class="card-img-top card-img-destacados justify-content-right">
-                       {{-- <span class="bg-danger text-right  text-white s-descuento p-1 mr-auto">25% OFF</span>--}}
-                       <div class="s-stock text-left">
-                        <span class="bg-danger text-white  p-1">Sin stock</span>
-
+            </div>        <div class="col-12 col-xs-12 col-md-4">
+                <div class="card border my-3 w-auto">
+                    <div class="destacado-img align-self-center">
+                        <div class="card-img-top">
+                            <img src="https://via.placeholder.com/300x350.png" alt="" class="aling-center  ">
                         </div>
+                        <span class="bg-danger text-left mt-0 text-white s-descuento p-1">25% OFF</span>
                     </div>
                     <div class="card-body d-flex">
                         <div class="text-left ">
-                            <h4>Nombre Producto</h4>
-                            <p class="card-subtitle mb-2 text-muted color-danger">{{--<strike>$3000.50</strike> - --}}$2900.50</p>
-                        </div>
-                        <div class="text-right align-self-center fav ml-auto">
-                            <i class="material-icons fav-xs" style="font-size: 30px">favorite_border</i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
-                <div class="card card-destacados ">
-                    <div class="card-img-top card-img-destacados justify-content-right">
-                        <span class="bg-danger text-right  text-white s-descuento p-1 mr-auto">25% OFF</span>
-                    </div>
-                    <div class="card-body d-flex">
-                        <div class="text-left ">
-                            <h4>Nombre Producto</h4>
+                            <h4 class="card-title">Nombre Producto</h4>
                             <p class="card-subtitle mb-2 text-muted color-danger"><strike>$3000.50</strike> - $2900.50</p>
                         </div>
                         <div class="text-right align-self-center fav ml-auto">
                             <i class="material-icons fav-xs" style="font-size: 30px">favorite_border</i>
                         </div>
+                    </div>
+                    <div class="p-0 justify-content-center d-flex">
+                        <form class="d-inline align-middle">
+                            <div class="form-group w-100  align-midle">
+                                <button class="btn align-middle btn-info">
+                                    <i class="far fa-eye"></i>
+                                    Ver
+                                </button>
+                                <button type="submit" class="btn btn-rosa align-middle">
+                                    <i class="fas fa-cart-plus"></i>
+                                    Añadir al carrito
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>        <div class="col-12 col-xs-12 col-md-4">
+                <div class="card border my-3 w-auto">
+                    <div class="destacado-img align-self-center">
+                        <div class="card-img-top">
+                            <img src="https://via.placeholder.com/300x350.png" alt="" class="aling-center  ">
+                        </div>
+                    </div>
+                    <div class="card-body d-flex">
+                        <div class="text-left ">
+                            <h4 class="card-title">Nombre Producto</h4>
+                            <p class="card-subtitle mb-2 text-muted color-danger"> $2900.50</p>
+                        </div>
+                        <div class="text-right align-self-center fav ml-auto">
+                            <i class="material-icons fav-xs" style="font-size: 30px">favorite_border</i>
+                        </div>
+                    </div>
+                    <div class="p-0 justify-content-center d-flex">
+                        <form class="d-inline align-middle">
+                            <div class="form-group w-100  align-midle">
+                                <button class="btn align-middle btn-info">
+                                    <i class="far fa-eye"></i>
+                                    Ver
+                                </button>
+                                <button type="submit" class="btn btn-rosa align-middle">
+                                    <i class="fas fa-cart-plus"></i>
+                                    Añadir al carrito
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

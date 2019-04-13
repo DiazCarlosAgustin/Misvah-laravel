@@ -24,7 +24,7 @@
             <i class="fas fa-bars" id="i-menu"></i>
         </button>
     </div>
-      <div class="col h-100 d-blcok" id="sidebar">
+      <div class="col h-100 d-blcok text-black" id="sidebar">
         <ul >
           <li>
             <h1 class="text-center">Panel de adminstración</h1>
@@ -35,28 +35,37 @@
           </li>
           <hr>
           <li>
-            <button type="button" class="btn btn-transparent dropdown-toggle" data-toggle="dropdown">
-                Categoria
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{asset('/admin/categorias')}}">Ver</a>
-                <a class="dropdown-item" href="{{asset('/admin/nueva_categoria')}}">Agregar</a>
+            <div class="btn-group">
+                <button class="btn btn-transparent text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Categoria
+                </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{asset('/admin/nueva_categoria')}}">Agregar nueva categoria</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{asset('/admin/categorias')}}">Listar las categorias</a>
+              </div>
             </div>
           </li>
           <hr>
           <li>
-              <button type="button" class="btn btn-transparent dropdown-toggle" data-toggle="dropdown">
-                  Productos
-              </button>
-              <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Ver</a>
-                  <a class="dropdown-item" href="#">Agregar</a>
-                  <a class="dropdown-item" href="#">Nueva oferta</a>
-              </div>
+              <div class="btn-group">
+                  <button class="btn btn-transparent text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Producto
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{asset('/admin/nuevo_producto')}}">Agregar nuevo producto</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{asset('/admin/productos')}}">Listar los productos</a>
+                  </div>
+                </div>
           </li>
           <hr>
           <li>
               <a href="" class="align-middle">Graficos</a>
+          </li>
+          <hr>
+          <li>
+              <a href="{{asset('/admin/ventas')}}" class="align-middle">Ventas</a>
           </li>
           <hr>
           <li>
@@ -78,7 +87,7 @@
           $('.navbar-toggler').on('click',function(){
             $('#sidebar').toggleClass('active');
             $('#menu').toggleClass('active');
-            $('.navbar-toggler').toggleClass('btn-rosa-menu');
+            $('.navbar-toggler').toggleClass('btn-rosa');
             if($('#i-menu').hasClass('fa-bars')){
                 $('#i-menu').removeClass('fa-bars');
                 $('#i-menu').addClass('fa-times');  

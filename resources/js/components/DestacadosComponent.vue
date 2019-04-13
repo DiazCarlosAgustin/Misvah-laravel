@@ -9,7 +9,7 @@
                 <destacado-component></destacado-component>
             </div>
             <!-- Add Pagination -->
-            <div class="pagination-pagination pagination-destacados text-center"></div>
+            <div class="pagination-pagination pagination-destacados text-center mt-6"></div>
         </div>
     </div>
 </template>
@@ -22,7 +22,10 @@ export default {
 /*estilo de swiper.js*/
 .swiper-container {
     width: 100%;
-    height: 100%;
+    height: 100% ;
+  }
+  .mt-6{
+      margin-top: 6rem;
   }
   .swiper-slide {
     height:100% + 20px !important;

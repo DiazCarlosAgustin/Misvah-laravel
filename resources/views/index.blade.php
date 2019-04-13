@@ -49,7 +49,6 @@
                 }
                 var swiperDestacados = new Swiper('.swiper-destacados', {
                 slidesPerView: cantidad,
-                spaceBetween: 30,
                 pagination: {
                 el: '.pagination-destacados',
                 clickable: true,
