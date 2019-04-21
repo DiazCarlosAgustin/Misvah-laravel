@@ -2,15 +2,18 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
     {{--Estilos externos--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     {{--Fonts--}}
     <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
@@ -22,19 +25,22 @@
         {{--section del navbar(menu)--}}
         @section('menu')
         {{--Menu--}}
-                <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top col-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white text-white fixed-top col-12 scrolling-navbar">
                     {{-- navbar-brand xs que solo se vera en celulares o tablets--}}
                     <a href="#" class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde">MISVHA</a>
                     {{-- menu xs que se vera solo en tablets o celulares--}}
                     <div class="menu-xs d-xs-blockd-flex d-lg-none">
                             <i class="material-icons" id="i-xs-buscar">search</i>
                             <i class="material-icons" id="i-xs-carrito">shopping_cart</i>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
+                             aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="dark-blue-text">
+                                    <i class="fas fa-bars fa-1x"></i>
+                                </span>
                             </button>
                     </div>
                     {{--items del menu--}}
-                    <div class="collapse navbar-collapse mx-auto" id="navbarMenu">
+                    <div class="navbar-collapse collapse" id="navbarMenu">
                         {{--Menu del lado izquierdo--}}
                         <div class="nav navbar-nav mr-auto text-center">
                             <a href="{{url("/")}}" class="nav-item nav-link xs-link">INICIO</a>
@@ -45,7 +51,7 @@
                         </div>
                         {{--Menu del centro--}}
                         <div class="mx-auto d-lg-flex d-none borde text-center ">
-                            <a href="#" class="navbar-brand mx-auto">MISVAH</a>
+                            <a href="{{url("/")}}" class="navbar-brand mx-auto">MISVAH</a>
                         </div>
                         {{--Menu del lado derecho--}}
                         <div class="nav navbar-nav ml-auto d-lg-flex d-none ">
@@ -63,7 +69,7 @@
     </div>
     {{--pie de pagina--}}
     @section('footer')
-        <footer class="f-foot">
+        <footer class="f-foot  animated fadeIn">
             <div class="container">
                 <div class="row">
                     {{--area de horarios--}}
@@ -133,10 +139,12 @@
         </footer>
     @show
     {{--librerias usadas--}}
-    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
     @yield('script')
 </body>
 </html>

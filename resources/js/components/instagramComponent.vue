@@ -4,21 +4,13 @@
         <div class="usuario-intagram"><a href="">@Misvah-moda</a></div>
         <div class="swiper-container mt-3">
             <div class="swiper-wrapper">
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
-                <foto-instagram></foto-instagram>
+                <foto-instagram class=" animated fadeIn"></foto-instagram>
+                <foto-instagram class=" animated fadeIn"></foto-instagram>
+                <foto-instagram class=" animated fadeIn"></foto-instagram>
+                <foto-instagram class=" animated fadeIn"></foto-instagram>
             </div>
             <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination mt-2"></div>
         </div>
     </div>
 </template>
@@ -27,18 +19,17 @@ export default {
     name:'instagram'
 }
 </script>   
-<style>
+<style scoped>
 /*estilo de swiper.js*/
 .swiper-container {
     width: 100%;
-    height: 100%;
+    height: 350px;
   }
   .swiper-slide {
-    widows:350px !important;
-    height: 380px !important;
+    height:350px !important;
     text-align: center;
     font-size: 18px;
-    background: #f2f2;
+    background:white !important;
     /* Center slide text vertically */
       display: -webkit-box;
       display: -ms-flexbox;

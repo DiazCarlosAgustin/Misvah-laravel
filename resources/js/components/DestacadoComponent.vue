@@ -1,12 +1,12 @@
 <template>
-    <div class="swiper-slide">
-        <div class=" card border my-2">
+    <div class="swiper-slide animated fadeIn" style="height:550px !important;">
+        <div class=" card border">
             <div class="destacado-img align-self-center">
                 <div class="card-img-top">
-                    <img src="https://via.placeholder.com/300x350.png" alt="" class="aling-center">
+                    <img src="https://via.placeholder.com/300x350.png" alt="" class="aling-center card-img-top">
                 </div>
-                <span class="bg-danger text-left  mt-4 text-white s-descuento p-1">25% OFF</span>
-                <span class="bg-danger text-left mt-4  text-white s-stock p-1">SIN STOCK</span>
+                <span class="bg-danger text-left m-0  text-white s-descuento p-1">25% OFF</span>
+                <span class="bg-danger text-left m-0  text-white s-stock p-1">SIN STOCK</span>
             </div>
             <div class="card-body d-flex">
                 <div class="text-left ">
@@ -24,9 +24,12 @@
                             <i class="far fa-eye"></i>
                             Ver
                         </button>
-                        <button type="submit" class="btn btn-rosa align-middle">
+                        <button type="submit" class="btn btn-rosa align-middle d-none d-md-inline">
                             <i class="fas fa-cart-plus"></i>
                             Añadir al carrito
+                        </button>
+                        <button type="submit" class="btn btn-rosa align-middle d-md-none">
+                            <i class="fas fa-cart-plus " ></i>
                         </button>
                     </div>
                 </form>
@@ -83,3 +86,26 @@ $(document).ready(function(){
     });
 });
 </script>
+<style scoped>
+.swiper-container{
+    width: 320px;
+}
+ .swiper-slide {
+    text-align: center;
+    height: 550px !important;
+    font-size: 18px;
+    /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+  }
+</style>

@@ -24,7 +24,7 @@
                            <a href="#" >Olvide mi contraseña</a>
                         </div>
                         <div class="button-grup py-2 float-right">
-                            <button class="btn btn-default btn-lg "><a href="{{url('/registrarse')}}">Crear cuenta</a></button> 
+                            <button class="btn btn-lg "><a href="{{url('/registrarse')}}">Crear cuenta</a></button> 
                             <input type="submit" value="Acceptar" class="btn btn-lg btn-rosa mx-1">
                         </div>
                     </form>
