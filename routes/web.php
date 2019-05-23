@@ -34,9 +34,12 @@ Route::get('/como_llegar',function(){
 Route::get('/tienda',function(){
    return view('tienda');
 });
+<<<<<<< HEAD
 Route::get('/carrito',function(){
    return view('carrito');
 });
+=======
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
 Route::get('/producto/{id}',function(){
    return view('producto');
 });
@@ -55,9 +58,12 @@ Route::get('/admin/nueva_categoria',function(){
 Route::get('/admin/productos',function(){
    return view('admin\productos');
 });
+<<<<<<< HEAD
 Route::get('/admin/editar_producto',function(){
    return view('admin\editarProducto');
 });
+=======
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
 Route::get('/admin/nuevo_producto',function(){
    return view('admin\nuevoProducto');
 });

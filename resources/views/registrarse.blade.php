@@ -43,8 +43,11 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 @endsection
 
 @section('script')
     <script src="{{asset('js/app.js')}}" defer></script>
+=======
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
 @endsection

@@ -1,9 +1,20 @@
 /*colores*/
 body {
+<<<<<<< HEAD
     background: #fafafa;
     padding: 0;
     margin: 0;
     font-family: 'Roboto Condensed', sans-serif;
+=======
+    font-family: "Montserrat", "Helvetica Neue"
+    background: #fafafa;
+    padding: 0;
+    margin: 0;
+}
+.navbar-brand{
+    position: absolute;
+    right: 0;
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
 }
 .navbar-toggler i{
     font-size: 30px;
@@ -14,6 +25,7 @@ body {
 .Brown-darken-4{
     color: #3e2723;
 }
+<<<<<<< HEAD
 .navbar{
     position: relative;
 }
@@ -29,12 +41,35 @@ body {
     color: white;
 }
 #sidebar{
+=======
+@media (max-width: 960px) {
+    #sidebar{
+        margin-top: 0px;
+        padding-top: 0;
+        min-width: 240px;
+        max-width: 240px;
+        height: 100vh !important;
+        margin-left:-240px;
+        background-color:  white;
+        color: black;
+        border-color: #dee2e6 !important ;
+        transition: margin 1s;
+        transition-duration:.5s ;  
+        position: absolute;
+        z-index: 100;  
+    }
+  }
+  #sidebar{
+        margin-top: 0px;
+        padding-top: 0;
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
         min-width: 240px;
         max-width: 240px;
         height: 100vh !important;
         margin-left:0;
         background-color:  white;
         color: black;
+<<<<<<< HEAD
         transition: margin 1s;
         transition-duration:.5s ;   
         position: absolute;
@@ -67,3 +102,30 @@ body {
     table.dataTable thead .sorting_desc_disabled:before {
     bottom: .5em;
     }
+=======
+        border-color: #dee2e6 !important ;
+        transition: margin 1s;
+        transition-duration:.5s ;   
+        position: absolute;
+        z-index: 100;  
+  }
+  #sidebar.desactive{
+    margin-left: -240px;
+    transition: margin 1s;
+    transition-duration:.5s ;    
+}
+  #sidebar.active{
+    margin-left: 0;
+    transition: margin 1s;
+    transition-duration:1s ;    
+}
+.navbar.active{
+    margin-left: 240px !important;
+    transition: margin 1s;
+    transition-duration:.5s ;    
+}
+.panel{
+ min-width: 240px;
+ max-width: 270px;
+}
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9

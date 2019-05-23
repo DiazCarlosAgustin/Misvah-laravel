@@ -24,6 +24,7 @@
 <body>
     <div id="app">
         @section('menu')
+<<<<<<< HEAD
             <div class="pos-f-t">
                 <nav class="navbar navbar-dark pink darken-1 fixed-top">
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -71,20 +72,49 @@
                     </div>
                 </nav>
             </div>
+=======
+        <div class="collapse col-12 red lighten-5 text-white d-lg-block active" id="sidebar">
+            <div class="head ">
+                <div class="row align-center mt-2">
+                    <div class="col-lg-12 col-10 text-center">
+                        <h1 class="font-weight-bold Brown-darken-4">Titulo</h1>
+                    </div>
+                    <div class="col-2 d-lg-none text-center mt-2 mx-auto">
+                        <i class="fas fa-times fa-2x  Brown-darken-4" id="close-menu"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pos-f-t">
+            <nav class="navbar navbar-dark red lighten-4 ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+            
+        </div>
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
         @show
         @section('container')
             
         @show
     </div>
     {{--librerias usadas--}}
+<<<<<<< HEAD
      
+=======
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
+<<<<<<< HEAD
     <script type="text/javascript" src="{{asset('js/admin.js')}}"></script>
+=======
+    <script src="{{asset('js/admin.js')}}"></script>
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
     @yield('script')
 </body>
 </html>

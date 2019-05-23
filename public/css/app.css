@@ -510,8 +510,12 @@ mark,
   content: "\2014\A0";
 }
 
+<<<<<<< HEAD
 .img-fluid,
 .modal-dialog.cascading-modal.modal-avatar .modal-header {
+=======
+.img-fluid {
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
   max-width: 100%;
   height: auto;
 }
@@ -10656,6 +10660,7 @@ a.text-dark:focus {
   }
 }
 
+<<<<<<< HEAD
 /*!
  * Material Design for Bootstrap 4
  * Version: MDB FREE 4.5.13
@@ -21793,6 +21798,8 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item .page-li
   display: inline-block !important;
 }
 
+=======
+>>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
