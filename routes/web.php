@@ -34,6 +34,9 @@ Route::get('/como_llegar',function(){
 Route::get('/tienda',function(){
    return view('tienda');
 });
+Route::get('/carrito',function(){
+   return view('carrito');
+});
 Route::get('/producto/{id}',function(){
    return view('producto');
 });
@@ -51,6 +54,9 @@ Route::get('/admin/nueva_categoria',function(){
 });
 Route::get('/admin/productos',function(){
    return view('admin\productos');
+});
+Route::get('/admin/editar_producto',function(){
+   return view('admin\editarProducto');
 });
 Route::get('/admin/nuevo_producto',function(){
    return view('admin\nuevoProducto');

@@ -1,104 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
+    {{--Estilos externos--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/adminEstilos.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('css/adminEstilos.css')}}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     {{--Fonts--}}
     <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     @yield('style')
-    <title>Admin Misvah - @yield('title')</title>
+    <title>Misvah - @yield('title')</title>
 </head>
 <body>
-    @section('Menu')
-    <div id="menu" class="d-inline p-0">
-        <button class="navbar-toggler border " type="button" >
-            <i class="fas fa-bars" id="i-menu"></i>
-        </button>
-    </div>
-      <div class="col h-100 d-blcok text-black" id="sidebar">
-        <ul >
-          <li>
-            <h1 class="text-center">Panel de adminstración</h1>
-          </li>
-          <hr>
-          <li>
-            <a href="{{asset('/admin/index')}}" class="align-middle">Inicio</a>
-          </li>
-          <hr>
-          <li>
-            <div class="btn-group">
-                <button class="btn btn-transparent text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Categoria
-                </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{asset('/admin/nueva_categoria')}}">Agregar nueva categoria</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{asset('/admin/categorias')}}">Listar las categorias</a>
-              </div>
+    <div id="app">
+        @section('menu')
+            <div class="pos-f-t">
+                <nav class="navbar navbar-dark pink darken-1 fixed-top">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#sidebar" aria-controls="sidebar"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="d-flex ml-auto nav-flex-icon">
+                        <i class="fas fa-envelope text-white nav-link nav-item px-1"></i>
+                        <i class="fas fa-bell text-white nav-link nav-item"></i>
+                        <img src="https://via.placeholder.com/30x30.png" class="rounded-circle z-depth-0 w-100" alt="">
+                    </div>
+                    <div class="collapse navbar-collapse text-white pink darken-1" id="sidebar">
+                        <div class="navbar-brand nav-link nav-item text-center w-100">
+                            <h3>Mishvah</h3>
+                            <h4>Admin</h4>
+                        </div>
+                        <div class="flex-column">
+                            <a href="{{asset('/admin/index')}}" class="nav-item nav-link">Inicio</a>
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Productos
+                                </a>
+                                <div class="dropdown-menu w-100 text-center" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="{{asset('/admin/nuevo_producto')}}">Agregar</a>
+                                    <a class="dropdown-item" href="{{asset('/admin/productos')}}">Listar</a>
+                                  <a class="dropdown-item" href="{{asset('/admin/editar_producto')}}">Editar</a>
+                                </div>
+                            </div>
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Categoria
+                                </a>
+                                <div class="dropdown-menu w-100 text-center" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href={{asset('/admin/nueva_categoria')}}>Agregar</a>
+                                  <a class="dropdown-item" href="{{asset('/admin/categorias')}}">Listar</a>
+                                  <a class="dropdown-item" href="">Editar</a>
+                                </div>
+                            </div>
+                            <a href="" class="nav-link nav-item">Elementos del UI</a>
+                            <a href="" class="nav-link nav-item">Pedidos</a>
+                            <a href="" class="nav-link nav-item">Ventas</a>
+                            <a href="" class="nav-link nav-item">Estadisticas</a>
+                        </div>
+                    </div>
+                </nav>
             </div>
-          </li>
-          <hr>
-          <li>
-              <div class="btn-group">
-                  <button class="btn btn-transparent text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Producto
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{asset('/admin/nuevo_producto')}}">Agregar nuevo producto</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{asset('/admin/productos')}}">Listar los productos</a>
-                  </div>
-                </div>
-          </li>
-          <hr>
-          <li>
-              <a href="" class="align-middle">Graficos</a>
-          </li>
-          <hr>
-          <li>
-              <a href="{{asset('/admin/ventas')}}" class="align-middle">Ventas</a>
-          </li>
-          <hr>
-          <li>
-              <a href="" class="align-middle">Pedidos</a>
-          </li>
-          <hr>
-          <li>
-              <a href="" class="align-middle">Mensajes</a>
-          </li>
-        </ul>
-      </div>
-    @show
-    @yield('container')
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function(){
-          $('.navbar-toggler').on('click',function(){
-            $('#sidebar').toggleClass('active');
-            $('#menu').toggleClass('active');
-            $('.navbar-toggler').toggleClass('btn-rosa');
-            if($('#i-menu').hasClass('fa-bars')){
-                $('#i-menu').removeClass('fa-bars');
-                $('#i-menu').addClass('fa-times');  
-            }
-            else{
-                $('#i-menu').addClass('fa-bars');
-                $('#i-menu').removeClass('fa-times');  
-            }
-          });
-        });  
-    </script>
+        @show
+        @section('container')
+            
+        @show
+    </div>
+    {{--librerias usadas--}}
+     
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/admin.js')}}"></script>
     @yield('script')
 </body>
 </html>

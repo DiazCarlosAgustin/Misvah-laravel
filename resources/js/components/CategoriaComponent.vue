@@ -1,12 +1,17 @@
 <template>
-    <div class="col col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mt-3">
-        <div  class="card  card-categoria ">
-            <img src="https://via.placeholder.com/300x350.png" alt="" class="aling-center">
-            <div class="card-body ">
-                <h4 class="card-title text-center">
-                    Title category
-                </h4>
+    <div class="d-flex justify-content-center my-2">
+        <div class="card collection-card">
+            <!--Card image-->
+            <div class="view zoom">
+                <img class="img-fluid" src="https://via.placeholder.com/300x380.png"
+                alt="">
+                <div class="stripe light">
+                <a>
+                    <h4 class="text-muted text-center">Categoria</h4>
+                </a>
+                </div>
             </div>
+        <!--/.Card image-->
         </div>
     </div>
 </template>

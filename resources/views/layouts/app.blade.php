@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    {{--Estilos externos--}}
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    {{--Fonts--}}
-    <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-    @yield('style')
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
+        {{--Estilos externos--}}
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
+        {{--Iconos de google--}}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        {{--Fonts--}}
+        <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+        @yield('style')
     <title>Misvah - @yield('title')</title>
 </head>
 <body>
@@ -22,19 +26,25 @@
         {{--section del navbar(menu)--}}
         @section('menu')
         {{--Menu--}}
-                <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top col-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white text-white fixed-top col-12 scrolling-navbar">
                     {{-- navbar-brand xs que solo se vera en celulares o tablets--}}
                     <a href="#" class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde">MISVHA</a>
                     {{-- menu xs que se vera solo en tablets o celulares--}}
-                    <div class="menu-xs d-xs-blockd-flex d-lg-none">
-                            <i class="material-icons" id="i-xs-buscar">search</i>
+                    <div class="menu-xs d-xs-flex d-lg-none" >
+                        <i class="material-icons" id="i-xs-buscar">search</i>
+                        <a href="{{url('/carrito')}}">
+                            <span class="s-carrito bg-danger"></span>
                             <i class="material-icons" id="i-xs-carrito">shopping_cart</i>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
+                            aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="dark-blue-text">
+                                <i class="fas fa-bars fa-1x"></i>
+                            </span>
+                        </button>
                     </div>
                     {{--items del menu--}}
-                    <div class="collapse navbar-collapse mx-auto" id="navbarMenu">
+                    <div class="navbar-collapse collapse" id="navbarMenu">
                         {{--Menu del lado izquierdo--}}
                         <div class="nav navbar-nav mr-auto text-center">
                             <a href="{{url("/")}}" class="nav-item nav-link xs-link">INICIO</a>
@@ -45,14 +55,120 @@
                         </div>
                         {{--Menu del centro--}}
                         <div class="mx-auto d-lg-flex d-none borde text-center ">
-                            <a href="#" class="navbar-brand mx-auto">MISVAH</a>
+                            <a href="{{url("/")}}" class="navbar-brand mx-auto">MISVAH</a>
                         </div>
                         {{--Menu del lado derecho--}}
-                        <div class="nav navbar-nav ml-auto d-lg-flex d-none ">
-                            <i class="material-icons nav-item nav-link xs-link " id="i-carrito">search</i>
-                            <i class="material-icons nav-item nav-link ">shopping_cart</i>
+                        <div class="nav navbar-nav ml-auto d-md-flex d-none ">
+                            <i class="material-icons nav-item nav-link xs-link " id="i-buscar">search</i>
+
+                            <div class="nav-item">
+                                <div>
+                                    <span class="s-carrito bg-danger ml-4 mt-1"></span>
+                                    <i class="material-icons nav-item nav-link " id="i-lg-carrito">shopping_cart</i>
+                                </div>
+                                <div class="cart mt-2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class=" text-dark card-title text-center">
+                                                <h5>Mi carrito</h5>
+                                            </div>
+                                            <ul class="list-group  text-dark list-group-flush">
+                                                <li class="list-group-item px-0">
+                                                    <div class="card-product">
+                                                        <div class="row">
+                                                            <div class="col-12 w-100 d-flex h-100">
+                                                                <div class="col-4">
+                                                                    <img src="https://via.placeholder.com/75x75.png" alt="">
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <div class="d-flex">
+                                                                        <div class="name-producto d-block text-center">
+                                                                            <h5>Nombre del producto</h5>
+                                                                        </div>
+                                                                        <span class="ml-auto">
+                                                                            <i class="fas fa-trash-alt"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    
+                                                                    <div class="detalles w-100 d-flex my-1">
+                                                                            <div class="d-flex mr-auto">
+                                                                                <form action="">
+                                                                                    <div class="form-group d-flex mr-auto">
+                                                                                        <h6 class="align-middle pt-2 pr-1">Cantidad:</h6>
+                                                                                        <input type="number" name="numCantidad" id="numCantidad" class="align-middle p-0" min="1" value="1">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                            <div class="d-flex ml-auto">
+                                                                                <h6 class="pt-2">Precio: <h6 class="align-middle p-2">$350</h6></h6>
+                                                                                
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item px-0">
+                                                    <div class="card-product">
+                                                        <div class="row">
+                                                            <div class="col-12 w-100 d-flex h-100">
+                                                                <div class="col-4">
+                                                                    <img src="https://via.placeholder.com/75x75.png" alt="">
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <div class="d-flex">
+                                                                        <div class="name-producto d-block text-center">
+                                                                            <h5>Nombre del producto</h5>
+                                                                        </div>
+                                                                        <span class="ml-auto">
+                                                                            <i class="fas fa-trash-alt"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    
+                                                                    <div class="detalles w-100 d-flex my-1">
+                                                                            <div class="d-flex mr-auto">
+                                                                                <form action="">
+                                                                                    <div class="form-group d-flex mr-auto">
+                                                                                        <h6 class="align-middle pt-2 pr-1">Cantidad:</h6>
+                                                                                        <input type="number" name="numCantidad" id="numCantidad" class="align-middle p-0" min="1" value="1">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                            <div class="d-flex ml-auto">
+                                                                                <h6 class="pt-2">Precio: <h6 class="align-middle p-2">$350</h6></h6>
+                                                                                
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                
+                                            </ul>
+                                            <div class="card-body d-flex justify-content-center">
+                                                <a href="{{url('/carrito')}}" class="btn btn-white text-black">Ver</a>
+                                                <a href="{{url('/carrito')}}" class="btn btn-rosa text-white">Comprar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <a href="{{url('/acceder')}}" class="nav-item nav-link xs-link ">ACCEDER</a>
                         </div>
+                    </div>
+                    <div class="d-buscar">
+                        <form action="">
+                            <div class="input-group w-100 mt-2">
+                                <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="basic-addon1">
+                                <div class="input-group-prepend">
+                                    <button class="input-group-text" id="basic-addon1">
+                                        <i class="material-icons">search</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </nav>
         @show
@@ -63,7 +179,7 @@
     </div>
     {{--pie de pagina--}}
     @section('footer')
-        <footer class="f-foot">
+        <footer class="f-foot  animated fadeIn">
             <div class="container">
                 <div class="row">
                     {{--area de horarios--}}
@@ -134,9 +250,13 @@
     @show
     {{--librerias usadas--}}
     
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
+    <script src="{{asset('js/main.js')}}"></script>
     @yield('script')
 </body>
 </html>

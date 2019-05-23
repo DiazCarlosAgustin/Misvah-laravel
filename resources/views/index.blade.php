@@ -22,7 +22,7 @@
                 <categorias-component></categorias-component>
             </div>
             <div class="d-destacados container">
-                <destacados-component></destacados-component>
+                <destacados-component></destacados-component>   
             </div>
             <div class="d-instagram container">
                 <instagram-component></instagram-component>
@@ -56,7 +56,6 @@
                 });
                 var swiper = new Swiper('.swiper-container', {
                 slidesPerView: cantidad,
-                spaceBetween: 30,
                 pagination: {
                 el: '.swiper-pagination',
                 clickable: true,

@@ -1,110 +1,117 @@
 @extends('layouts.admin')
 
 @section('title', 'Inicio')
-    
+
 @section('container')
-    <div class="container">
-       <div class="row f-flex justify-content-center">
-           <div class="col-12 text-center">
-               <h1>Panel administrativo "Misvah"</h1>
-           </div>
-       </div>
-       <div class="row d-flex justify-content-center">
-           <div class="row">
-               <div class="col-12 col-xs-12  col-md-4 ">
-                   <a href="{{asset('admin/categorias')}}" class="text-black">
-                       <div class="card text-white text-center bg-info">
-                           <div class="card-body">
-                               <div class="card-title">
-                                    <h3>Categoria</h3>
-                               </div>
-                               <div class="card-text">
-                                    <h6>Agregar, eliminar, modificar o ver categorias</h6>
-                               </div>
-                           </div>
-                           
-                       </div>
-                   </a>
-               </div>
-               <div class="col-12 col-xs-12 col-md-4">
-                   <a href="{{asset('admin/productos')}}" class="text-black">
-                       <div class="card text-dark bg-light text-center">
-                           <div class="card-body">
-                               <div class="card-title">
-                                    <h3>Productos</h3>
-                               </div>
-                               <div class="card-text">
-                                    <h6>Agregar, eliminar, modificar o ver productos</h6>
-                               </div>
-                           </div>
-                           
-                       </div>
-                   </a>
-               </div>
-               <div class="col-12 col-xs-12 col-md-4">
-                   <a href="{{asset('/admin/ventas')}}" class="text-black">
-                       <div class="card text-white bg-info text-center">
-                           <div class="card-body">
-                               <div class="card-title">
-                                    <h3>Ventas</h3>
-                               </div>
-                               <div class="card-text">
-                                    <h6>Ver las ventas realizadas</h6>
-                               </div>
-                           </div>
-                           
-                       </div>
-                   </a>
-               </div>
-               <div class="col-12 col-xs-12 col-md-4">
-                   <a href="{{asset('admin/productos')}}" class="text-black">
-                       <div class="card text-dark bg-light text-center">
-                           <div class="card-body">
-                               <div class="card-title">
-                                    <h3>Estadisticas</h3>
-                               </div>
-                               <div class="card-text">
-                                    <h6>Genera graficos con los datos obtenidos</h6>
-                               </div>
-                           </div>
-                           
-                       </div>
-                   </a>
-               </div>
-               <div class="col-12 col-xs-12 col-md-4">
-                   <a href="{{asset('admin/pedidos')}}" class="text-black">
-                       <div class="card text-white bg-info text-center">
-                           <div class="card-body">
-                               <div class="card-title">
-                                    <h3>Pedidos</h3>
-                               </div>
-                               <div class="card-text">
-                                    <h6>Ver detalles de los pedidos</h6>
-                               </div>
-                           </div>
-                           
-                       </div>
-                   </a>
-               </div>
-               <div class="col-12 col-xs-12 col-md-4">
-                   <a href="{{asset('admin/productos')}}" class="text-black">
-                       <div class="card text-dark bg-light text-center">
-                           <div class="card-body">
-                               <div class="card-title">
-                                    <h3>Mensajes</h3>
-                               </div>
-                               <div class="card-text">
-                                    <h6>Mensajes de contacto u otros </h6>
-                               </div>
-                           </div>
-                           
-                       </div>
-                   </a>
-               </div>
+    <div class="container" >
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="  col-sm-12 col-md-6 col-lg-3 ">
+                <div class="col-12 d-flex text-white border pink accent-4 w-100 h-100 rounded ">
+                    <div class="col-4 my-auto mx-auto">
+                        <i class="fas fa-shopping-cart fa-3x"></i>
+                    </div>
+                    <div class="col-8 align-right align-center my-auto  ">
+                        <div class="text-center ">
+                            <h3>2</h3>
+                            <h4> Nuevas ordenes</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="   col-sm-12 col-md-6 col-lg-3 ">
+                <div class="col-12 d-flex text-white border pink accent-4 w-100 h-100 rounded">
+                    <div class="col-4 my-auto mx-auto">
+                        <i class="fas fa-user fa-3x"></i>
+                    </div>
+                    <div class="col-8 align-right align-center my-auto  ">
+                        <div class="text-center ">
+                            <h3>12</h3>
+                            <h4>Nuevos usuarios</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="   col-sm-12 col-md-6 col-lg-3 ">
+                <div class="col-12 d-flex text-white border pink accent-4  w-100 h-100 rounded ">
+                    <div class="col-4 my-auto mx-auto">
+                            <i class="fas fa-cash-register fa-3x"></i>
+                    </div>
+                    <div class="col-8 align-right align-center my-auto  ">
+                        <div class="text-center ">
+                            <h3>12</h3>
+                            <h4>Ventas Totales</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="   col-sm-12 col-md-6 col-lg-3 ">
+                <div class="col-12 d-flex text-white border pink accent-4 w-100 h-100 rounded">
+                    <div class="col-4 my-auto mx-auto">
+                        <i class="fas fa-tshirt fa-3x"></i>
+                    </div>
+                    <div class="col-8 align-right align-center my-auto  ">
+                        <div class="text-center ">
+                            <h3>22</h3>
+                            <h4>Productos vendidos</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-       </div>
+        <div class="row d-tabla-ordenes mt-5">
+            <div class="col-12">
+                <table id="dtHorizontalExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+                    width="100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Piso</th>
+                            <th>Telefono</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Total</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="align-middle">Diaz Agustin</td>
+                            <td class="align-middle">Independencia 715</td>
+                            <td class="align-middle">5</td>
+                            <td class="align-middle">3521-407811</td>
+                            <td class="align-middle">01-05-2019</td>
+                            <td class="align-middle">Pendiente</td>
+                            <td class="align-middle">$3050</td>
+                            <td><button class="btn btn-info btn-sm">Detalles</button></td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">Diaz Agustin</td>
+                            <td class="align-middle">Independencia 715</td>
+                            <td class="align-middle">5</td>
+                            <td class="align-middle">3521-407811</td>
+                            <td class="align-middle">01-05-2019</td>
+                            <td class="align-middle">Pendiente</td>
+                            <td class="align-middle">$3050</td>
+                            <td><button class="btn btn-info btn-sm">Detalles</button></td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">Diaz Agustin</td>
+                            <td class="align-middle">Independencia 715</td>
+                            <td class="align-middle">5</td>
+                            <td class="align-middle">3521-407811</td>
+                            <td class="align-middle">01-05-2019</td>
+                            <td class="align-middle">Entregado</td>
+                            <td class="align-middle">$3050</td>
+                            <td><button class="btn btn-info btn-sm">Detalles</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 @endsection
 
 @section('script')
+    <script src="{{asset('js/app.js')}}" defer></script>
 @endsection

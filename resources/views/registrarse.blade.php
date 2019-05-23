@@ -32,10 +32,10 @@
                             <input class="form-control" type="password" name="txttRegistrarsePassword" id="txttRegistrarsePassword" placeholder="Contraseña">
                         </div>
                         <div class="d-form-enlaces float-left py-1">
-                           <a href="#" >Ya tengo cuenta</a>
+                           <a href="{{asset('/acceder')}}" >Ya tengo cuenta</a>
                         </div>
                         <div class="button-grup py-2 float-right">
-                            <input type="reset" value="Cancelar" class="btn btn-lg btn-default mx-1">
+                            <input type="reset" value="Cancelar" class="btn btn-lg mx-1">
                             <input type="submit" value="Acceptar" class="btn btn-lg btn-rosa mx-1">
                         </div>
                     </form>
@@ -43,4 +43,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{asset('js/app.js')}}" defer></script>
 @endsection
