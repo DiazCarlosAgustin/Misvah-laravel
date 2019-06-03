@@ -14,17 +14,10 @@
             </div>
             
         </div>
-<<<<<<< HEAD
         <div class="row d-flex justify-content-center mx-auto">
             <div class="col-12 col-xs-12 col-lg-6 text-center">
                 <div class="swiper-container h-100">
                     <div class="swiper-wrapper mb-3 mx-auto">
-=======
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 col-xs-12 col-lg-6">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper mb-3">
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
                         <div class="swiper-slide"><img src="https://via.placeholder.com/350x350.png" alt=""></div>
                         <div class="swiper-slide"><img src="https://via.placeholder.com/350x350.png" alt=""></div>
                         <div class="swiper-slide"><img src="https://via.placeholder.com/350x350.png" alt=""></div>
@@ -64,7 +57,6 @@
                             </p>
                         </form>
                 </div>
-<<<<<<< HEAD
                 <div class="color-producto py-1 d-block">
                     <h4 class="d-inline">Color:  </h4>
                     <select name="cbColorProducto" id="cbColorProducto" class=" custom-select mr-sm-2 d">
@@ -72,8 +64,6 @@
                         <option value="2">Negro</option>
                     </select>
                 </div>
-=======
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
                 <div class="precio-producto py-1">
                     <h4 class="d-inline">Precio: </h4>
                     <h5 class="d-inline text-muted">$262.56</h5>
@@ -87,18 +77,12 @@
                     <input type="number" name="" id="" class="form-control d-inline cantidad" min="1" value="1">
                 </div>
                 <button type="submit" class="btn btn-rosa  align-middle">
-<<<<<<< HEAD
                     <i class="fas fa-cart-plus pr-1"></i>
                     Añadir al carrito
                 </button>
                 <div class="lista-deseo">
                     <a href="" class="text-mutted">Agregar a tu lista de deseos</a>
                 </div>
-=======
-                    <i class="fas fa-cart-plus"></i>
-                    Añadir al carrito
-                </button>
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
             </div>
         </div>
         <div class="row mt-3">

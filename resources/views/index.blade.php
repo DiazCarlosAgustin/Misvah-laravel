@@ -14,7 +14,7 @@
             <fondo-component></fondo-component>
         </div>
     @endsection
-
+z
 {{--contenido de la pagina--}}
     @section('Container')
         <div class="">
@@ -35,18 +35,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
         <script>
             $(document).ready(function(){
-<<<<<<< HEAD
-
-=======
-                wow = new WOW({
-                    boxClass: 'wow', // default
-                    animateClass: 'animated', // default
-                    offset: 0, // default
-                    mobile: true, // default
-                    live: true // default
-                })
-                new WOW().init();
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
                 var cantidad = 0;
                 if($( window ).width() >= 360  && $( window ).width() < 800){
                     cantidad = 1;

@@ -7,7 +7,6 @@ body{
 /*Estilo del swiper*/
 /*estilo de los links del menu*/
 .nav{width: auto;}
-<<<<<<< HEAD
 .navbar #navbarMenu a,.nav-link > i {
     color:#707070;
     font-family: 'Roboto Condensed', sans-serif;
@@ -21,12 +20,6 @@ body{
     border-radius: 50%;
     position: absolute;
 }
-=======
-.navbar #navbarMenu a{
-    color:#707070 !important;
-    font-family: 'Roboto Condensed', sans-serif;
-}
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
 /*pointer en los ico*/
 .navbar #navbarMenu i{
     cursor: pointer;
@@ -140,11 +133,7 @@ body{
 }
 .btn-rosa{
     background-color: #FF3B3BCC;
-<<<<<<< HEAD
     color: white !important;
-=======
-    color: white;
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
     border-color:#FF3B3BCC;
     align-items: center;
 }
@@ -289,11 +278,7 @@ body{
 .d-contacto,.d-tienda,.d-productos{
     position: relative;
 }   
-<<<<<<< HEAD
 .d-titulo-contacto,.d-titulo-tienda,.d-titulo-acceder,.d-titulo-registrarse,.d-titulo-como-llegar,.d-titulo-producto,.titulo-carrito{
-=======
-.d-titulo-contacto,.d-titulo-tienda,.d-titulo-acceder,.d-titulo-registrarse,.d-titulo-como-llegar,.d-titulo-producto{
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
     font-family: Impact, Charcoal, sans-serif !important;
     font-size: 45px;
     text-align: center;
@@ -385,7 +370,6 @@ div nav ul li .page-link {
   .cantidad-producto .cantidad{
       width: 100px;
   }
-<<<<<<< HEAD
 
 .d-produc-carrito{
     font-family: 'Roboto Condensed', sans-serif;
@@ -443,5 +427,3 @@ tbody{
     transition: 1.5s;
     transition-duration:1s ; 
 }
-=======
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9

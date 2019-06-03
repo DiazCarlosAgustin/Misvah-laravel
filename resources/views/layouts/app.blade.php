@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<<<<<<< HEAD
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -20,25 +19,6 @@
         <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
         @yield('style')
-=======
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
-    {{--Estilos externos--}}
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-    {{--Fonts--}}
-    <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-    @yield('style')
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
     <title>Misvah - @yield('title')</title>
 </head>
 <body>
@@ -50,7 +30,6 @@
                     {{-- navbar-brand xs que solo se vera en celulares o tablets--}}
                     <a href="#" class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde">MISVHA</a>
                     {{-- menu xs que se vera solo en tablets o celulares--}}
-<<<<<<< HEAD
                     <div class="menu-xs d-xs-flex d-lg-none" >
                         <i class="material-icons" id="i-xs-buscar">search</i>
                         <a href="{{url('/carrito')}}">
@@ -63,17 +42,6 @@
                                 <i class="fas fa-bars fa-1x"></i>
                             </span>
                         </button>
-=======
-                    <div class="menu-xs d-xs-blockd-flex d-lg-none">
-                            <i class="material-icons" id="i-xs-buscar">search</i>
-                            <i class="material-icons" id="i-xs-carrito">shopping_cart</i>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
-                             aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="dark-blue-text">
-                                    <i class="fas fa-bars fa-1x"></i>
-                                </span>
-                            </button>
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
                     </div>
                     {{--items del menu--}}
                     <div class="navbar-collapse collapse" id="navbarMenu">
@@ -90,7 +58,6 @@
                             <a href="{{url("/")}}" class="navbar-brand mx-auto">MISVAH</a>
                         </div>
                         {{--Menu del lado derecho--}}
-<<<<<<< HEAD
                         <div class="nav navbar-nav ml-auto d-md-flex d-none ">
                             <i class="material-icons nav-item nav-link xs-link " id="i-buscar">search</i>
 
@@ -203,14 +170,6 @@
                             </div>
                         </form>
                     </div>
-=======
-                        <div class="nav navbar-nav ml-auto d-lg-flex d-none ">
-                            <i class="material-icons nav-item nav-link xs-link " id="i-carrito">search</i>
-                            <i class="material-icons nav-item nav-link ">shopping_cart</i>
-                            <a href="{{url('/acceder')}}" class="nav-item nav-link xs-link ">ACCEDER</a>
-                        </div>
-                    </div>
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
                 </nav>
         @show
         @yield('fondo')
@@ -227,8 +186,8 @@
                     <div class="f-horarios col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
                         <div class="f-contenido">
                             <h1>HORARIOS</h1>
-                            <div class="mx-auto">
-                                <table class="mx-auto">
+                            <div class="mx-auto ">
+                                <table class="mx-auto text-white">
                                     <tr>
                                         <td>lun.:</td>
                                         <td>8:30 - 20:00</td>
@@ -290,20 +249,14 @@
         </footer>
     @show
     {{--librerias usadas--}}
-<<<<<<< HEAD
     
-=======
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
-<<<<<<< HEAD
     <script src="{{asset('js/main.js')}}"></script>
-=======
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
     @yield('script')
 </body>
 </html>

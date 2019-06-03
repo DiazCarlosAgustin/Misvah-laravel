@@ -9,76 +9,188 @@
                 <h2 class="text-center">Editar producto</h2>
             </div>
         </div>
-        <div class="row d-flex justify-content-center mt-2">
-            <div class="col-12 col-md-6 col-xs-12">
-                <form action="" class="h-100">
-                    <div class="input-group">
-                        <input type="text" name="txtBuscarProducto" id="txtBuscarProducto" class="form-control my-auto" placeholder="Cod producto">
-                        <input type="submit" value="Buscar" class="btn btn-rosa">
+        <div class="row mt-2">
+            <div class="col-12 col-xs-12 col-md-12 col-lg-8 border-right">
+                <form action="" >
+                    <div class="form-group">
+                        <label for="txtCodProducto">Codigo:</label>
+                        <input type="text" class="form-control" name="txtCodProducto" id="txtCodProducto">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtNombreProducto">Nombre:</label>
+                        <input type="text" class="form-control" name="txtNombreProducto" id="txtNombreProducto">
+                    </div>
+                    <div class="form-group">
+                        <label for="cbCategoriaProducto">Categoria:</label>
+                        <select name="" id="" class="custom-select">
+                            <option value="0">Seleccione una categoria</option>
+                            <option value="1" selected>Categoria 1</option>
+                            <option value="2">Categoria 2</option>
+                            <option value="3">Categoria 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPrecioProducto">Precio:</label>
+                        <input type="number" name="txtPrecioProducto" id="txtPrecioProducto" min="0" value="1234" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtColoresProducto">Colores:</label>
+                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                            <table class="table  mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="align-center text-center align-middle">Color</th>
+                                        <th class="align-center text-center align-middle">Stock</th>
+                                        <th class="align-center text-center align-middle">Accion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="align-center align-middle">
+                                            <div class="colores">
+                                                <input type="radio" name="radioColor" id="radioColor">
+                                                <label for="radioColor" class="form-check-label disabled"><span style="background-color:red;"></span></label>
+                                            </div>
+                                        </td>
+                                        <td class="align-center align-middle">
+                                            <h5>10</h5>
+                                        </td>
+                                        <td class="align-center align-middle text-center">
+                                            <button type="button" class="btn btn-success py-2 px-3 text-center"><i class="fas fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger py-2 px-3 text-center"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-center align-middle">
+                                            <div class="colores">
+                                                <input type="radio" name="radioColor" id="radioColor">
+                                                <label for="radioColor" class="form-check-label disabled"><span style="background-color:yellow;"></span></label>
+                                            </div>
+                                        </td>
+                                        <td class="align-center align-middle">
+                                            <h5>10</h5>
+                                        </td>
+                                        <td class="align-center align-middle text-center">
+                                            <button type="button" class="btn btn-success py-2 px-3 text-center"><i class="fas fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger py-2 px-3 text-center"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-center align-middle">
+                                            <div class="colores">
+                                                <input type="radio" name="radioColor" id="radioColor">
+                                                <label for="radioColor" class="form-check-label disabled"><span style="background-color:green;"></span></label>
+                                            </div>
+                                        </td>
+                                        <td class="align-center align-middle">
+                                            <h5>10</h5>
+                                        </td>
+                                        <td class="align-center align-middle text-center">
+                                            <button type="button" class="btn btn-success py-2 px-3 text-center"><i class="fas fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger py-2 px-3 text-center"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-center align-middle">
+                                            <div class="colores">
+                                                <input type="radio" name="radioColor" id="radioColor">
+                                                <label for="radioColor" class="form-check-label disabled"><span style="background-color:black;"></span></label>
+                                            </div>
+                                        </td>
+                                        <td class="align-center align-middle">
+                                            <h5>10</h5>
+                                        </td>
+                                        <td class="align-center align-middle text-center">
+                                            <button type="button" class="btn btn-success py-2 px-3 text-center"><i class="fas fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger py-2 px-3 text-center"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPrecioProducto">Imagenes:</label>
+                        <div class="imagenesProducto">
+                            <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
+                            <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
+                            <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
+                            <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
+                            <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
+                            <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
+                            <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
+                            <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
+                        </div>
+                        <button type="button" class="btn btn-success ml-auto"><i class="fas fa-edit"></i> Editar imagenes</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtDescripcionProducto">Descripcion:</label>
+                        <textarea name="txtDescripcionProducto" id="txtDescripcionProducto" class="form-control w-100" cols="30" rows="10" ></textarea>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 table-responsive">
-                <table class="text-center table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Cod</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Imagen</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="align-middle">A-12</td>
-                            <td class="align-middle">Nombre producto</td>
-                            <td class="align-middle">
-                                <img src="https://via.placeholder.com/75x75.png" alt="">
-                            </td>
-                            <td class="align-middle"> <div class="color bg-danger mx-auto" style="width:30px; height:30px;"></div></td>
-                            <td class="align-middle">12</td>
-                            <td class="align-middle px-0">
-                                <button type="button" class="btn btn-primary btn-md p-3"><i class="far fa-eye"></i></i></button>
-                                <button type="button" class="btn btn-success btn-md p-3"><i class="far fa-edit"></i></button>
-                                <button type="button" class="btn btn-danger btn-md p-3"><i class="fas fa-times"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-12 col-xs-12 col-md-12 col-lg-4">
+                <div class="col-12 col-xs-12 col-md-12 col-lg-12  border-bottom pb-4">
+                    <h3 class="text-center text-muted">Agregar nuevo color</h3>
+                    <form action="" >
+                        <div class="form-group">
+                            <label for="txtColor">Color:</label>
+                            <input type="color" name="txtColor" id="txtColor" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtStock">Stock:</label>
+                            <input type="number" name="txtStock" id="txtStock" class="form-control" value="1" min="0">
+                        </div>
+                        <div class="text-center">
+                            <button type="reset" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                            <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 col-xs-12 col-md-12 col-lg-12 mt-4">
+                        <h3 class="text-center text-muted">Agregar nueva imagen</h3>
+                        <form action="" >
+                            <div class="form-group">
+                                <label for="txtimagen">imagen:</label>
+                                <input type="file" name="txtimagen" id="txtimagen" class="">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtStock">Colores:</label>
+                                <div class="colores">
+                                    <div>
+                                        <input type="radio" name="radioColor1" id="radioColor1">
+                                        <label for="radioColor1" ><span style="background-color:red;" class="text-center"><i class="fas fa-check"></i></span></label>
+                                        <input type="radio" name="radioColor1" id="radioColor2">
+                                        <label for="radioColor2" ><span style="background-color:yellow;" class="text-center"><i class="fas fa-check"></i></span></label>
+                                        <input type="radio" name="radioColor1" id="radioColor3">
+                                        <label for="radioColor3" ><span style="background-color:green;" class="text-center"><i class="fas fa-check"></i></span></label>
+                                        <input type="radio" name="radioColor1" id="radioColor4">
+                                        <label for="radioColor4" ><span style="background-color:black;" class="text-center"><i class="fas fa-check"></i></span></label>
+                                    </div>
+                                </div>                  
+                            </div>
+                            <div class="text-center">
+                                <button type="reset" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                                <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
+                            </div>
+                        </form>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row d-flex justify-content-center mt-2 w-100">
-        <div class="col-12 col-xs-12 col-md-6 col-lg-4">
-            <h3 class="text-center py-3">Agregar color a un producto</h3>
-            <form action="" class="text-center">
-                <div class="input-gorup d-flex text-muted py-1">
-                    <h4 class="my-auto">Producto: <div class="d-inline">Nombre producto <div class="d-inline"> (codigo)</div></div></h4>
-                </div>
-                <div class="input-group py-1 ">
-                    <label for="fileFotoProduc" class="form-label pr-1">Imagen:</label>
-                    <input type="file" name="fileFotoProduc" id="fileFotoProduc" class="form-control">
-                </div>
-                <div class="input-group py-1 ">
-                    <label for="fileColorProduc" class="form-label pr-1">Color:</label>
-                    <input type="color" name="fileColorProduc" id="fileColorProduc" class="form-control">
-                </div>
-                <div class="input-group py-1 ">
-                    <label for="txtStockProdc" class="pr-1 form-label">Stock:</label>
-                    <input type="number" name="txtStockProdc" id="txtStockProdc" class="form-control" value="1" min="1" max="">
-                </div>
-                <div class="input-group  py-1 d-flex justify-content-center">
-                    <button type="reset" class="btn btn-danger">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Aceptar</button>
-                </div>
-            </form>
         </div>
     </div>
 @endsection
 @section('script')
 <script src="{{asset('js/app.js')}}" defer></script>
+<script>
+    $(document).ready(function(){
+        var editor = new Jodit('#txtDescripcionProducto',{
+            height: 200
+        });
+    });
+</script>
 @endsection
