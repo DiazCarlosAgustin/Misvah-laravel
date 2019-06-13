@@ -28,7 +28,7 @@
     <div id="app">
         @section('menu')
             <div class="pos-f-t">
-                <nav class="navbar navbar-dark pink darken-1 fixed-top">
+                <nav class="navbar navbar-dark  deep-purple darken-4 fixed-top">
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#sidebar" aria-controls="sidebar"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
                         <i class="fas fa-bell text-white nav-link nav-item"></i>
                         <img src="https://via.placeholder.com/30x30.png" class="rounded-circle z-depth-0 w-100" alt="">
                     </div>
-                    <div class="collapse navbar-collapse text-white pink darken-1" id="sidebar">
+                    <div class="collapse navbar-collapse text-white deep-purple darken-4 " id="sidebar">
                         <div class="navbar-brand nav-link nav-item text-center w-100">
                             <h3>Mishvah</h3>
                             <h4>Admin</h4>

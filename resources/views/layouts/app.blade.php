@@ -18,7 +18,7 @@
         {{--Fonts--}}
         <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-        @yield('style')
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
     <title>Misvah - @yield('title')</title>
 </head>
 <body>

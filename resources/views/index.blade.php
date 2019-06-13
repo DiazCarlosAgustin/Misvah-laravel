@@ -4,17 +4,12 @@
 {{--cambia el titulo de la pagina--}}
     @section('title', 'Inicio')
 
-    @section('style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-    @endsection
-
 {{--le paso la imagen de fondo y lo que contiene la imagen al centro--}}
     @section('fondo')
         <div class="fondo">
             <fondo-component></fondo-component>
         </div>
     @endsection
-z
 {{--contenido de la pagina--}}
     @section('Container')
         <div class="">

@@ -4,15 +4,19 @@
     
 @section('container')
     <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 col-xs-12 col-md-6 col-lg-6 mt-5">
+        <div class="row d-flex justify-content-center mt-4">
+            <div class="col-12">
                 <h3 class="text-center">Producto</h3>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-xs-12 col-md-6 col-lg-6 ">
                 <div class="product-detail ">
-                    <h4 class="text-muted">Codigo: <span class="text-dark">Codigo del producto</span></h4>
-                    <h4 class="text-muted">Nombre: <span class="text-dark">Nombre del producto</span></h4>
-                    <h4 class="text-muted">Categoria: <span class="text-dark">Categoria del producto</span></h4>
-                    <h4 class="text-muted">Precio: <span class="text-dark">Precio del producto</span></h4>
-                    <h4 class="text-muted">Colores:</h4>
+                    <h4 >Codigo: <span class="text-muted">Codigo del producto</span></h4>
+                    <h4 >Nombre: <span class="text-muted">Nombre del producto</span></h4>
+                    <h4 >Categoria: <span class="text-muted">Categoria del producto</span></h4>
+                    <h4 >Precio: <span class="text-muted">Precio del producto</span></h4>
+                    <h4 >Colores:</h4>
                     <div class="table-wrapper-scroll-y my-custom-scrollbar mb-3 pl-1 ">
                         <table class="table  mb-0">
                             <thead>
@@ -72,14 +76,14 @@
                     </div>
                     <h4 class="text-muted">Imagenes:</h4>
                     <div class="imagenesProducto mb-3 border pl-1">
-                        <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
-                        <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
-                        <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
-                        <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
-                        <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
-                        <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
-                        <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
-                        <img src="https://via.placeholder.com/75x75.png" alt="" class="my-1">
+                        <img src="https://via.placeholder.com/100x100.png" alt="" class="my-1">
+                        <img src="https://via.placeholder.com/100x100.png" alt="" class="my-1">
+                        <img src="https://via.placeholder.com/100x100.png" alt="" class="my-1">
+                        <img src="https://via.placeholder.com/100x100.png" alt="" class="my-1">
+                        <img src="https://via.placeholder.com/100x100.png" alt="" class="my-1">
+                        <img src="https://via.placeholder.com/100x100.png" alt="" class="my-1">
+                        <img src="https://via.placeholder.com/100x100.png" alt="" class="my-1">
+                        <img src="https://via.placeholder.com/100x100.png" alt="" class="my-1">
                     </div>
                     <h4 class="text-muted">Descripcion:</h4>
                     <textarea name="" id="" cols="30" rows="10" class="w-100 mb-2" disabled>

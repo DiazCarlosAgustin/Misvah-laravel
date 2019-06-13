@@ -6,9 +6,9 @@
     <div class="container" >
         <div class="row mt-4 d-flex justify-content-center">
             <div class="  col-sm-12 col-md-6 col-lg-3 ">
-                <div class="col-12 d-flex text-white border pink accent-4 w-100 h-100 rounded ">
-                    <div class="col-4 my-auto mx-auto">
-                        <i class="fas fa-shopping-cart fa-3x"></i>
+                <div class="col-12 d-flex text-white border border-dark deep-purple accent-4 w-100 h-100 rounded z-depth-4">
+                    <div class="col-4  my-auto  ">
+                        <i class="fas fa-shopping-cart fa-3x align-middle"></i>
                     </div>
                     <div class="col-8 align-right align-center my-auto  ">
                         <div class="text-center ">
@@ -19,9 +19,9 @@
                 </div>
             </div>
             <div class="   col-sm-12 col-md-6 col-lg-3 ">
-                <div class="col-12 d-flex text-white border pink accent-4 w-100 h-100 rounded">
-                    <div class="col-4 my-auto mx-auto">
-                        <i class="fas fa-user fa-3x"></i>
+                <div class="col-12 d-flex text-white border border-dark deep-purple accent-4 w-100 h-100 rounded z-depth-4">
+                    <div class="col-4  my-auto  ">
+                        <i class="fas fa-user fa-3x align-middle"></i>
                     </div>
                     <div class="col-8 align-right align-center my-auto  ">
                         <div class="text-center ">
@@ -32,9 +32,9 @@
                 </div>
             </div>
             <div class="   col-sm-12 col-md-6 col-lg-3 ">
-                <div class="col-12 d-flex text-white border pink accent-4  w-100 h-100 rounded ">
-                    <div class="col-4 my-auto mx-auto">
-                            <i class="fas fa-cash-register fa-3x"></i>
+                <div class="col-12 d-flex text-white border border-dark deep-purple accent-4  w-100 h-100 rounded z-depth-4 ">
+                    <div class="col-4 my-auto   ">
+                            <i class="fas fa-cash-register fa-3x align-middle"></i>
                     </div>
                     <div class="col-8 align-right align-center my-auto  ">
                         <div class="text-center ">
@@ -45,9 +45,9 @@
                 </div>
             </div>
             <div class="   col-sm-12 col-md-6 col-lg-3 ">
-                <div class="col-12 d-flex text-white border pink accent-4 w-100 h-100 rounded">
-                    <div class="col-4 my-auto mx-auto">
-                        <i class="fas fa-tshirt fa-3x"></i>
+                <div class="col-12 d-flex text-white border border-dark deep-purple accent-4 w-100 h-100 rounded z-depth-4">
+                    <div class="col-4  my-auto  ">
+                        <i class="fas fa-tshirt fa-3x align-middle"></i>
                     </div>
                     <div class="col-8 align-right align-center my-auto  ">
                         <div class="text-center ">

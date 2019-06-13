@@ -64,6 +64,9 @@ Route::get('/admin/ver_producto/{id}',function(){
 Route::get('/admin/nuevo_producto',function(){
    return view('admin\nuevoProducto');
 });
+Route::get('/admin/nuevo_color',function(){
+   return view('admin\nuevoColor');
+});
 Route::get('/admin/pedidos',function(){
    return view('admin\pedidos');
 });

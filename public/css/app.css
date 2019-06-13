@@ -510,12 +510,8 @@ mark,
   content: "\2014\A0";
 }
 
-<<<<<<< HEAD
 .img-fluid,
 .modal-dialog.cascading-modal.modal-avatar .modal-header {
-=======
-.img-fluid {
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
   max-width: 100%;
   height: auto;
 }
@@ -2005,6 +2001,11 @@ pre code {
 }
 
 .form-control::-webkit-input-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+.form-control::-moz-placeholder {
   color: #6c757d;
   opacity: 1;
 }
@@ -4945,8 +4946,10 @@ input[type=button].btn-block {
 @media (min-width: 576px) {
   .card-columns {
     -webkit-column-count: 3;
+       -moz-column-count: 3;
             column-count: 3;
     -webkit-column-gap: 1.25rem;
+       -moz-column-gap: 1.25rem;
             column-gap: 1.25rem;
     orphans: 1;
     widows: 1;
@@ -10660,7 +10663,6 @@ a.text-dark:focus {
   }
 }
 
-<<<<<<< HEAD
 /*!
  * Material Design for Bootstrap 4
  * Version: MDB FREE 4.5.13
@@ -19777,6 +19779,11 @@ a.waves-light {
   font-weight: 300;
 }
 
+.navbar.navbar-light form .md-form .form-control::-moz-placeholder {
+  color: #000;
+  font-weight: 300;
+}
+
 .navbar.navbar-light form .md-form .form-control:-ms-input-placeholder {
   color: #000;
   font-weight: 300;
@@ -19843,6 +19850,11 @@ a.waves-light {
 }
 
 .navbar.navbar-dark form .md-form .form-control::-webkit-input-placeholder {
+  color: #fff;
+  font-weight: 300;
+}
+
+.navbar.navbar-dark form .md-form .form-control::-moz-placeholder {
   color: #fff;
   font-weight: 300;
 }
@@ -21798,8 +21810,6 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item .page-li
   display: inline-block !important;
 }
 
-=======
->>>>>>> db0e47929f93d640a292cd3f500139503ce596f9
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

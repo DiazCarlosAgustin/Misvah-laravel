@@ -1,6 +1,6 @@
 <template>
-    <div class="swiper-slide animated fadeIn" style="height:550px !important;">
-        <div class=" card border">
+    <div class="swiper-slide animated fadeIn h-100" style="height:550px !important;">
+        <div class="card">
             <div class="destacado-img align-self-center">
                 <div class="card-img-top">
                     <img src="https://via.placeholder.com/300x350.png" alt="" class="aling-center card-img-top">
