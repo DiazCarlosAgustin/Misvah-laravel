@@ -16,6 +16,7 @@
                     <h4 >Nombre: <span class="text-muted">Nombre del producto</span></h4>
                     <h4 >Categoria: <span class="text-muted">Categoria del producto</span></h4>
                     <h4 >Precio: <span class="text-muted">Precio del producto</span></h4>
+                    <h4 >Estado:<span class="text-muted">Visible</span></h4>
                     <h4 >Colores:</h4>
                     <div class="table-wrapper-scroll-y my-custom-scrollbar mb-3 pl-1 ">
                         <table class="table  mb-0">

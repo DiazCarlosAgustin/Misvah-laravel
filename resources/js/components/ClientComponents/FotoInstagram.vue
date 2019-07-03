@@ -1,5 +1,5 @@
 <template>
-    <div class="swiper-slide" style="height:300px !important;">
+    <div class="swiper-slide" >
         <img src="https://via.placeholder.com/300x300.png" alt="" class="aling-center">
     </div>
 </template>

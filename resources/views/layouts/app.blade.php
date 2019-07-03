@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-        <!-- Bootstrap core CSS -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Material Design Bootstrap -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
-        {{--Estilos externos--}}
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
-        {{--Iconos de google--}}
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-        {{--Fonts--}}
-        <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
+    {{--Estilos externos--}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
+    {{--Iconos de google--}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    {{--Fonts--}}
+    <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
     <title>Misvah - @yield('title')</title>
+    @yield('script-head')
 </head>
 <body>
     <div id="app">
         {{--section del navbar(menu)--}}
         @section('menu')
         {{--Menu--}}
-                <nav class="navbar navbar-expand-lg navbar-light bg-white text-white fixed-top col-12 scrolling-navbar">
+                <nav class="navbar navbar-expand-lg navbar-light fixed-top col-12 scrolling-navbar ">
                     {{-- navbar-brand xs que solo se vera en celulares o tablets--}}
                     <a href="#" class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde">MISVHA</a>
                     {{-- menu xs que se vera solo en tablets o celulares--}}
@@ -69,8 +70,11 @@
                                 <div class="cart mt-2">
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class=" text-dark card-title text-center">
+                                            <div class="d-flex text-dark card-title w-100">
                                                 <h5>Mi carrito</h5>
+                                                <div class="ml-auto">
+                                                    <i class="fas fa-times"></i>
+                                                </div>
                                             </div>
                                             <ul class="list-group  text-dark list-group-flush">
                                                 <li class="list-group-item px-0">
@@ -179,7 +183,7 @@
     </div>
     {{--pie de pagina--}}
     @section('footer')
-        <footer class="f-foot  animated fadeIn">
+        <footer class="f-foot  animated fadeIn pink">
             <div class="container">
                 <div class="row">
                     {{--area de horarios--}}
@@ -239,7 +243,6 @@
                                     <tr><td><a href="{{url('/')}}">Inicio</a></td></tr>
                                     <tr><td><a href="{{url('/tienda')}}">Tienda</a></td></tr>
                                     <tr><td><a href="{{url('/contacto')}}">Contacto</a></td></tr>
-                                    <tr><td><a href="{{url('/como_llegar')}}">¿Como llegar?</a></td></tr> 
                                 </table>
                                 </div>
                         </div>

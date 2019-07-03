@@ -3,26 +3,10 @@
 @section('title', 'Categorias')
     
 @section('container')
-    <div class="container">
+    <div class="container mt-5">
        <div class="row d-flex justify-content-center">
-           <div class="col-12 text-center">
-               <h2>Categorias</h2>
-           </div>
-       </div>
-       <div class="row d-flex justify-content-center">
-           <div class="col-12 col-xs-12 col-md-6">
-               <form action="">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-rosa" type="button">
-                                <i class="material-icons align-middle">
-                                    search
-                                </i>
-                            </button>
-                        </div>
-                    </div>
-               </form>
+           <div class="col-12 text-center mt-4">
+               <h4>Categorias</h4>
            </div>
        </div>
        <div class="row d-flex justify-content-center">
@@ -31,8 +15,8 @@
                             <thead class="">
                               <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Imagen </th>
                                 <th scope="col">Nombre</th>
+                                <th scope="col">Imagen </th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Editar</th>
                                 <th scope="col">editar</th>
@@ -49,7 +33,7 @@
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                                     </td>
                                     <td class="align-middle text-center">
-                                        <button type="button" class="btn btn-success"><i class="far fa-edit"></i></button>
+                                        <a href={{asset('admin/editar_categoria/1')}} class="btn btn-success text-white"><i class="far fa-edit"></i></a>
                                     </td>
                                     <td class="align-middle text-center">
                                         <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
@@ -127,4 +111,5 @@
 @endsection
 
 @section('script')
+    <script src="{{asset('js/app.js')}}" defer></script>
 @endsection

@@ -14,19 +14,19 @@
                 <div class="col-12 col-xs-12 col-md-8 text-center">
                     <form action="">
                             <div class="form-group row">
-                                <label for="txtNombreCategoria" class="col-sm-2 col-form-label">Nombre</label>
+                                <label for="txtNombreCategoria" class="col-sm-2 col-form-label">Nombre:</label>
                                 <div class="col-sm-10">
                                     <input type="text"  class="form-control" id="txtNombreCategoria" placeholder="Nombre">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="txtNombreCategoria" class="col-sm-2 col-form-label">Imagen</label>
+                                <label for="txtNombreCategoria" class="col-sm-2 col-form-label">Imagen:</label>
                                 <div class="col-sm-10">
                                     <input type="file"  class="form-control" id="txtFotoCategoria" >
                                 </div>
                             </div>
                             <div class="form-group row">
-                                    <label for="txtDescripcionCategoria" class="col-sm-2 col-form-label">Descripcion</label>
+                                    <label for="txtDescripcionCategoria" class="col-sm-2 col-form-label">Descripcion:</label>
                                     <div class="col-sm-10">
                                         <textarea name="txtDescripcionCategoria" id="txtDescripcionCategoria" class="form-control" placeholder="Descripcion" cols="30" rows="10"></textarea>
                                     </div>
@@ -40,3 +40,7 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+    <script src="{{asset('js/app.js')}}" defer></script>
+@endsection:

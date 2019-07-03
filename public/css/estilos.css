@@ -5,10 +5,22 @@ body{
     height: 100%;
 }
 /*Estilo del swiper*/
+.top-nav-collapse {
+    background-color: white;
+  }
+  @media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+      background-color: white;
+    }
+  }
+  @media (min-width: 800px) and (max-width: 850px) {
+    .navbar:not(.top-nav-collapse) {
+      background-color: white;
+    }
+  }
 /*estilo de los links del menu*/
 .nav{width: auto;}
 .navbar #navbarMenu a,.nav-link > i {
-    color:#707070;
     font-family: 'Roboto Condensed', sans-serif;
 }
 .nav .material-icons{
@@ -28,6 +40,9 @@ body{
 .navbar #navbarMenu .nav-link:hover,.navbar #navbarMenu .navbar-brand:hover{
     color: black !important;
     transition-delay: .2s;
+}
+.bg-navbar{
+    background-color: white;
 }
 /*estilo del navbar brand logo*/
 #navbarMenu .navbar-brand{
@@ -57,187 +72,12 @@ body{
 }
 
 /*imagen de fondo de inicio*/
-.fondo{
-    background-image:url('../img/Fondo-3.jpg');
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    z-index: -10;
-}
-/*contenido que va dentro de la imagen*/
-.fondo{
-    position: relative;
-}
-.fondo .d-centro{
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-.fondo .d-centro .Titulo{
-    font-family: Impact, Charcoal, sans-serif !important;
-    font-size: 80px;
-    color:white;
-    padding: 0;
-    margin: 0;
-}
-.fondo .d-centro .sub-titulo{
-    text-align: center;
-    font-family: 'Gabriela', serif;
-    font-size: 40px;
-    color:white;
-    padding: 0 0 10px 0;
-    margin-top: -20px;
-}
-.fondo .d-centro .botones{
-    position: absolute;
-    left: 0;
-    transform: translateX(2%);
-}
-.fondo .d-centro .botones .btn{
-    margin: 0 2px;
-    background-color: white;
-    border-radius: 50px;
-}
-.fondo .d-centro .botones {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
 
-/*estilo de la seccion de categoria*/
-.card-body{
-    width: 100%;
-}
-.d-categoria{
-    position: relative;
-
-}
-.d-categoria .Titulo-categoria{
-    padding: 35px 0 25px 0;
-    font-family: Impact, Charcoal, sans-serif !important;
-    font-size: 45px;
-    text-align: center;
-}
-.card-categoria{
-    margin: 20px 0;
-    border: none;
-}
-.card-img{
-    padding: 15px 10;
-    height: 380px;
-    background-color: #707070;
-}
-.btn-rosa{
-    background-color: #FF3B3BCC;
-    color: white !important;
-    border-color:#FF3B3BCC;
-    align-items: center;
-}
-.btn-rosa-menu{
-    background-color: #FF3B3BCC;
-    color: white;
-    border:none !important;
-    align-items: center;
-    border-radius: 0;
-}
-/*estilo de d-destacados*/
-
-.d-destacados{
-    position: relative;
-    height: 100%;
-}
-.Titulo-destacados{
-    padding: 35px 0 25px 0;
-    font-family: Impact, Charcoal, sans-serif !important;
-    font-size: 45px;
-    text-align: center;
-}
-
-.card-img-destacados{
-    height: 380px;
-    background-color: #707070;
-}
-.card-destacados, .card-insta{
-    border: none;
-}
-.card-destacados .btn{
-    border: solid 1px #707070;
-    margin: 0;
-    padding: 10px;
-    font-family: 'Roboto Condensed', sans-serif;
-    --webkit-box-shadow: 14px 17px 17px -12px rgba(156,154,156,0.75);
-    -moz-box-shadow: 14px 17px 17px -12px rgba(156,154,156,0.75);
-    box-shadow: 14px 17px 17px -12px rgba(156,154,156,0.75);
-}
-.destacado-img img{
-    position: relative;   
-}
-.destacado-img .s-descuento{
-    position: absolute;
-    right: 0;
-    top: 40px;
-}
-.destacado-img .s-stock{
-    position: absolute;
-    left: 0;
-    top: 40px;
-}
-.card-body i {
-    cursor: pointer;
-}
-.card-body i:hover {
+i{
     cursor: pointer;
 }
 
 
-/*div instagram*/
-.d-instagram{
-    position: relative;
-}
-.Titulo-instagram{
-    padding: 35px 0 0px 0;
-    font-family: Impact, Charcoal, sans-serif !important;
-    font-size: 45px;
-    text-align: center;
-}
-.usuario-intagram{
-    font-size: 20px;
-    text-align: center;
-
-}
-.usuario-intagram a{
-    text-decoration: none;
-    color:  #353535;
-}
-.card-img-insta{
-    height: 240px;
-    background-color: #707070;
-}
-.d-instagram .row{
-    margin: 25px 0 0 0;
-}
-.card-img-insta .descrip-insta{
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    display: none;
-}
-.card-img-insta .descrip-insta a{
-    text-decoration: none;
-    color: white;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 18px;
-}
-.card-img-insta:hover .descrip-insta{
-    opacity: 70%;
-    display: flex;
-    transition-delay: .3s;
-}
 
 /*footer*/
 .f-foot{
@@ -274,110 +114,12 @@ body{
 }
 
 
-/*Estilo de la pagina Contacto*/
-.d-contacto,.d-tienda,.d-productos{
-    position: relative;
-}   
-.d-titulo-contacto,.d-titulo-tienda,.d-titulo-acceder,.d-titulo-registrarse,.d-titulo-como-llegar,.d-titulo-producto,.titulo-carrito{
-    font-family: Impact, Charcoal, sans-serif !important;
-    font-size: 45px;
-    text-align: center;
-    top:0;
-}
-.form-contacto{
-    width: 100%;
-}
-.d-campos h4, a h4{
-    font-family: 'Roboto Condensed', sans-serif;
-}
-.d-campos .btn-rosa{
-    width: 150px;
-}
 
-/*Estilo de la pagina Acceder*/
-.d-titulo-acceder{
-    position: relative;
-}
-.d-form-enlaces{
-    width: 100%;
-    text-align: left
-}
-.btn a {
-    text-decoration: none;
-    color:black;
-}
 
-/*Estilo de la pagina de como llegar*/
 
-.d-mapa iframe{
-    width: 100%;
-    height: 55vh
-
-}
 
 /*estilo de la pagina de tienda o cualquiera que use paginacion*/
-div nav ul .active a{
-    background-color:  #FF3B3BCC !important;
-    color: white;
-    border-color: #dee2e6 !important ;
-}
-div nav ul li .page-link {
-    color:rgba(0,0,0,1);
-}
 
-.card-destacados{
-    font-family: 'Roboto Condensed', sans-serif;
-}
-/*pagina de producto*/
-.d-productos{
-    font-family: 'Roboto Condensed', sans-serif;
-}
-#form {
-    margin: 0;
-    height: 60px;
-  }
-  
-  form p {
-    text-align: left;
-  }
-  
-  form label {
-    font-size: 25px;
-  }
-  
-  input[type="radio"] {
-    display: none;
-  }
-  
-  label {
-    color: grey;
-  }
-  
-  .clasificacion {
-    direction: rtl;
-    unicode-bidi: bidi-override;
-  }
-  
-  label:hover,
-  label:hover ~ label {
-    color: #FF3B3BCC;
-  }
-  
-  input[type="radio"]:checked ~ label {
-    color: #FF3B3BCC;
-  }
-  
-  .cantidad-producto .cantidad{
-      width: 100px;
-  }
-
-.d-produc-carrito{
-    font-family: 'Roboto Condensed', sans-serif;
-    background-color: rgba(0,0,0,.05)
-}
-#cbColorProducto{
-    width: auto;
-}
   /*Carrito de compras*/
 .cart{
     position: absolute;

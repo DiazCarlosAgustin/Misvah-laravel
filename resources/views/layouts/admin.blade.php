@@ -12,7 +12,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
     {{--Estilos externos--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
     <link rel="stylesheet" href="{{asset('css/adminEstilos.css')}}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     {{--Fonts--}}
@@ -27,8 +26,8 @@
 <body>
     <div id="app">
         @section('menu')
-            <div class="pos-f-t">
-                <nav class="navbar navbar-dark  deep-purple darken-4 fixed-top">
+            <div class="fixed-top">
+                <nav class="navbar navbar-dark  bg-purple fixed-top col-12 scrolling-navbar">
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#sidebar" aria-controls="sidebar"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +38,7 @@
                         <i class="fas fa-bell text-white nav-link nav-item"></i>
                         <img src="https://via.placeholder.com/30x30.png" class="rounded-circle z-depth-0 w-100" alt="">
                     </div>
-                    <div class="collapse navbar-collapse text-white deep-purple darken-4 " id="sidebar">
+                    <div class="collapse navbar-collapse text-white bg-purple" id="sidebar">
                         <div class="navbar-brand nav-link nav-item text-center w-100">
                             <h3>Mishvah</h3>
                             <h4>Admin</h4>
@@ -72,6 +71,78 @@
                         </div>
                     </div>
                 </nav>
+                <div class="col-12 col-xs-12 col-md-4 w-100 content d-none">
+                    <div class="notification">
+                        <div class="card border">
+                            <div class="card-header bg-purple">
+                                <div class="card-title text-white d-flex font-weight-bold">
+                                    Notificaciones
+                                    <div class="icon-close-notification ml-auto">
+                                        <i class="fas fa-times " id="close-noti"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-1">
+                                <div class="notification-info border-bottom w-100 m-0 p-1">
+                                    <div class="title-notification-info p-1 font-weight-bold d-flex">
+                                        Aviso de Stock bajo/ no disponible
+                                        <div class="icon-close-notification ml-auto">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="description-notification pl-2">
+                                        El producto 'Nombre del producto' con codigo '123-Cod' se encuentra con un stock de X en el color X
+                                    </div>
+                                    <div class="time-notification p-1 text-muted text-right">
+                                        Hace 2 horas
+                                    </div>
+                                </div>
+                                <div class="notification-info border-bottom w-100 m-0 p-1">
+                                    <div class="title-notification-info p-1 font-weight-bold d-flex">
+                                        Aviso de Stock bajo/ no disponible
+                                        <div class="icon-close-notification ml-auto">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="description-notification pl-2">
+                                        El producto 'Nombre del producto' con codigo '123-Cod' se encuentra con un stock de X en el color X
+                                    </div>
+                                    <div class="time-notification p-1 text-muted text-right">
+                                        Hace 2 horas
+                                    </div>
+                                </div>
+                                <div class="notification-info border-bottom w-100 m-0 p-1">
+                                    <div class="title-notification-info p-1 font-weight-bold d-flex">
+                                        Aviso de Stock bajo/ no disponible
+                                        <div class="icon-close-notification ml-auto">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="description-notification pl-2">
+                                        El producto 'Nombre del producto' con codigo '123-Cod' se encuentra con un stock de X en el color X
+                                    </div>
+                                    <div class="time-notification p-1 text-muted text-right">
+                                        Hace 2 horas
+                                    </div>
+                                </div>
+                                <div class="notification-info border-bottom w-100 m-0 p-1">
+                                    <div class="title-notification-info p-1 font-weight-bold d-flex">
+                                        Aviso de Stock bajo/ no disponible
+                                        <div class="icon-close-notification ml-auto">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="description-notification pl-2">
+                                        El producto 'Nombre del producto' con codigo '123-Cod' se encuentra con un stock de X en el color X
+                                    </div>
+                                    <div class="time-notification p-1 text-muted text-right">
+                                        Hace 2 horas
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         @show
         @section('container')

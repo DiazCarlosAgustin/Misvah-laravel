@@ -1,9 +1,9 @@
 /*colores*/
-body {
-    background: #fafafa;
-    padding: 0;
-    margin: 0;
-    font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+body , *{
+    font-family: arial, helvetica, 'arial unicode ms', sans-serif;
+}
+.bg-purple{
+    background-color: #CE0075;
 }
 .navbar-toggler i{
     font-size: 30px;
@@ -33,12 +33,11 @@ body {
         max-width: 240px;
         height: 100vh !important;
         margin-left:0;
-        background-color:  white;
         color: black;
         transition: margin 1s;
         transition-duration:.5s ;   
         position: absolute;
-        top: 54px;
+        top: 44px;
         left: 0;
         z-index: 100;  
   }
@@ -96,4 +95,54 @@ span .fa-check{
 }
 .dash{
     color: #b388ff;
+}
+.card{
+    border-radius: 10px; 
+    height: 100%;
+    position: relative;
+}
+.card-icon{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -25px;
+    background-color: white;
+    left: 5px;
+    background-color:  #D8007A;
+    border-radius: 10px; 
+}
+.card-icon i {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+}
+.card-subtitle h3  {
+    font-weight: bolder;
+}
+.card-footer{
+    background-color: white;
+    height: 35px !important;
+}
+.card-footer i .i-time{
+    font-family: arial, helvetica, 'arial unicode ms', sans-serif;
+}
+.content{
+    position: absolute;
+    z-index: 10;
+    right: 0;
+}
+.notification{
+    max-height: 400px;
+}
+ .notification .card-body{
+    max-height: 360px;
+    overflow: auto;
+}
+
+.tabla-editar-imagenes{
+    overflow: scroll;
+    max-height: 300px !important;
+    width: 100%;
 }

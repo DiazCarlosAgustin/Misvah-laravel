@@ -27,10 +27,6 @@ Route::get('/registrarse',function(){
    return view('registrarse');
 });
 
-Route::get('/como_llegar',function(){
-   return view('como-llegar');
-});
-
 Route::get('/tienda',function(){
    return view('tienda');
 });
@@ -52,6 +48,9 @@ Route::get('/admin/categorias',function(){
 Route::get('/admin/nueva_categoria',function(){
    return view('admin\nuevaCategoria');
 });
+Route::get('/admin/editar_categoria/{id}',function(){
+   return view('admin\editar_categoria');
+});
 Route::get('/admin/productos',function(){
    return view('admin\productos');
 });
@@ -72,4 +71,7 @@ Route::get('/admin/pedidos',function(){
 });
 Route::get('/admin/ventas',function(){
    return view('admin.ventas');
+});
+Route::get('/admin/editElementos',function(){
+   return view('admin.ElementsUI');
 });

@@ -19,7 +19,7 @@
                             <input type="file" name="archivoProducto" id="archivoProducto" class="form-control">
                         </div>
                         <div class="group-form text-right mt-2 mb-3">
-                            <input type="submit" value="Aceptar" class="btn btn-lg btn-rosa">
+                            <input type="submit" value="Aceptar" class="btn btn-lg btn-primary">
                         </div>
                     </form>
                 </div>

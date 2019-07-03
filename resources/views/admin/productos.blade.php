@@ -3,41 +3,25 @@
 @section('title', 'productos')
     
 @section('container')
-    <div class="container">
+    <div class="container mt-5">
         <div class="row d-flex justify-content-center">
-            <div class="col-12 col-xs-12 col-md-10">
+            <div class="col-12 col-xs-12 col-md-10 mt-4">
                 <div class="text-center">
-                    <h2>Productos</h2>
+                    <h4>Productos</h4>
                 </div>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 col-xs-12 col-md-6">
-                <form action="">
-                     <div class="input-group mb-3">
-                         <input type="text" class="form-control my-auto" placeholder="Buscar  producto" aria-label="Buscar" aria-describedby="basic-addon2">
-                         <div class="input-group-append">
-                             <button class="btn btn-rosa" type="button">
-                                 <i class="material-icons align-middle">
-                                     search
-                                 </i>
-                             </button>
-                         </div>
-                     </div>
-                </form>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-xs-12 col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="tablaProductos">
                         <thead>
                             <tr class="text-center">
                                 <th scope="col">Codigo</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Categoria</th>
-                                <th scope="col">Stock</th>
                                 <th scope="col">Precio</th>
+                                <th scope="col">Estado</th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Ver</th>
                                 <th scope="col">Editar</th>
@@ -49,8 +33,8 @@
                                 <th class="align-middle" scope="row">1</th>
                                 <td class="align-middle">Nombre</td>
                                 <td class="align-middle">Categoria</td>
-                                <td class="align-middle">10</td>
                                 <td class="align-middle">$1230</td>
+                                <td class="align-middle">Visible</td>
                                 <td class="align-middle">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</td>
                                 <td class="align-middle text-center">
                                     <a href="{{asset('/admin/ver_producto/1')}}" class="btn btn-primary text-white"><i class="far fa-eye"></i></i></a>
@@ -66,8 +50,8 @@
                                 <th class="align-middle" scope="row">2</th>
                                 <td class="align-middle">Nombre</td>
                                 <td class="align-middle">Categoria</td>
-                                <td class="align-middle">10</td>
                                 <td class="align-middle">$2310</td>
+                                <td class="align-middle">Visible</td>
                                 <td class="align-middle">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</td>
                                 <td class="align-middle text-center">
                                         <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></i></button>
@@ -83,8 +67,8 @@
                                 <th class="align-middle" scope="row">3</th>
                                 <td class="align-middle">Nombre</td>
                                 <td class="align-middle">Categoria</td>
-                                <td class="align-middle">10</td>
                                 <td class="align-middle">$2133</td>
+                                <td class="align-middle">Visible</td>
                                 <td class="align-middle">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</td>
                                 <td class="align-middle text-center">
                                     <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></i></button>

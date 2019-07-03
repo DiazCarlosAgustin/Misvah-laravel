@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 ">
-                    <table id="dtHorizontalExample" class="table text-center table-sm table-responsive" cellspacing="0"
+            <div class="col-12 table-responsive">
+                    <table id="dtHorizontalExample" class="table text-center" cellspacing="0"
                     width="100%">
                         <thead>
                             <tr>
