@@ -1823,8 +1823,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'fondo'
+  name: 'fondo',
+  data: function data() {
+    return {
+      img: '/img/Fondo-3.jpg'
+    };
+  }
 });
 
 /***/ }),
@@ -6905,13 +6911,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/url/escape.js */ "./node_modules/css-loader/lib/url/escape.js");
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n#fondo[data-v-75a9bb40]{\n    height: 100vh;\n}\n#fondo[data-v-75a9bb40]{\n    background: url(" + escape(__webpack_require__(/*! ../../../../public/img/Fondo-3.jpg */ "./public/img/Fondo-3.jpg")) + ") no-repeat center center fixed;\n    background-size: cover;\n    height: 99.99vh;\n    width: auto;\n}\n/*contenido que va dentro de la imagen*/\n#fondo .d-centro[data-v-75a9bb40]{\n    position:absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%,-50%);\n            transform: translate(-50%,-50%);\n}\n#fondo .d-centro .Titulo[data-v-75a9bb40]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    font-size: 80px;\n    color:white;\n    padding: 0;\n    margin: 0;\n}\n#fondo .d-centro .sub-titulo[data-v-75a9bb40]{\n    text-align: center;\n    font-family: 'Gabriela', serif;\n    font-size: 40px;\n    color:white;\n    padding: 0 0 10px 0;\n    margin-top: -20px;\n}\n#fondo .d-centro .botones[data-v-75a9bb40]{\n    position: absolute;\n    left: 0;\n    -webkit-transform: translateX(2%);\n            transform: translateX(2%);\n}\n#fondo .d-centro .botones .btn[data-v-75a9bb40]{\n    margin: 0 2px;\n    background-color: white;\n    border-radius: 50px;\n}\n#fondo .d-centro .botones[data-v-75a9bb40] {\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n}\n", ""]);
+exports.push([module.i, "\n#fondo[data-v-75a9bb40]{\n    height: 100vh;\n    background: no-repeat center center fixed;\n    background-size: cover;\n}\n#fondo img[data-v-75a9bb40]{\n    width: 100%;\n    background-size: cover;\n    height: 100%;\n}\n/*contenido que va dentro de la imagen*/\n#fondo .d-centro[data-v-75a9bb40]{\n    position:absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%,-50%);\n            transform: translate(-50%,-50%);\n}\n#fondo .d-centro .Titulo[data-v-75a9bb40]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    font-size: 80px;\n    color:white;\n    padding: 0;\n    margin: 0;\n}\n#fondo .d-centro .sub-titulo[data-v-75a9bb40]{\n    text-align: center;\n    font-family: 'Gabriela', serif;\n    font-size: 40px;\n    color:white;\n    padding: 0 0 10px 0;\n    margin-top: -20px;\n}\n#fondo .d-centro .botones[data-v-75a9bb40]{\n    position: absolute;\n    left: 0;\n    -webkit-transform: translateX(2%);\n            transform: translateX(2%);\n}\n#fondo .d-centro .botones .btn[data-v-75a9bb40]{\n    margin: 0 2px;\n    background-color: white;\n    border-radius: 50px;\n}\n#fondo .d-centro .botones[data-v-75a9bb40] {\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n}\n", ""]);
 
 // exports
 
@@ -7171,33 +7176,6 @@ function toComment(sourceMap) {
 	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
 
 	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/lib/url/escape.js":
-/*!***************************************************!*\
-  !*** ./node_modules/css-loader/lib/url/escape.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = function escape(url) {
-    if (typeof url !== 'string') {
-        return url
-    }
-    // If url is already wrapped in quotes, remove them
-    if (/^['"].*['"]$/.test(url)) {
-        url = url.slice(1, -1);
-    }
-    // Should url be wrapped?
-    // See https://drafts.csswg.org/css-values-3/#urls
-    if (/["'() \t\n]/.test(url)) {
-        return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"'
-    }
-
-    return url
 }
 
 
@@ -39884,31 +39862,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "view", attrs: { id: "fondo" } }, [
+    _c("img", { attrs: { src: _vm.img } }),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "view", attrs: { id: "fondo" } }, [
-      _c("div", { staticClass: "d-centro" }, [
-        _c("div", { staticClass: "Titulo animated fadeIn" }, [
-          _vm._v("MISVAH")
+    return _c("div", { staticClass: "d-centro" }, [
+      _c("div", { staticClass: "Titulo animated fadeIn" }, [_vm._v("MISVAH")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sub-titulo animated fadeIn" }, [
+        _vm._v("MODA")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "botones mx-auto d-flex aling-center" }, [
+        _c("button", { staticClass: "btn animated fadeIn" }, [
+          _vm._v("CONTACTO")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "sub-titulo animated fadeIn" }, [
-          _vm._v("MODA")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "botones mx-auto d-flex aling-center" }, [
-          _c("button", { staticClass: "btn animated fadeIn" }, [
-            _vm._v("CONTACTO")
-          ]),
-          _vm._v(" "),
-          _c("button", { staticClass: "btn animated fadeIn" }, [
-            _vm._v("PRODUCTOS")
-          ])
+        _c("button", { staticClass: "btn animated fadeIn" }, [
+          _vm._v("PRODUCTOS")
         ])
       ])
     ])
@@ -53532,17 +53510,6 @@ module.exports = function(module) {
 	return module;
 };
 
-
-/***/ }),
-
-/***/ "./public/img/Fondo-3.jpg":
-/*!********************************!*\
-  !*** ./public/img/Fondo-3.jpg ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/Fondo-3.jpg?db819444fe19818121f8dc6305d13013";
 
 /***/ }),
 

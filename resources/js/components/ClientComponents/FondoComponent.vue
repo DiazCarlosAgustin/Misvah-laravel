@@ -1,5 +1,6 @@
 <template>
-    <div id="fondo" class="view" >
+    <div id="fondo" class="view">
+        <img :src="img">
         <div class="d-centro">
             <div class="Titulo animated fadeIn">MISVAH</div>
             <div class="sub-titulo animated fadeIn">MODA</div>
@@ -12,21 +13,30 @@
 </template>
 <script>
 export default {
-    name:'fondo'
+    name:'fondo',
+    data(){
+        return{
+            img: '/img/Fondo-3.jpg'
+        }
+    }
 }
 </script>
 <style scoped>
     #fondo{
         height: 100vh;
-    }
-    #fondo{
-        background: url('../../../../public/img/Fondo-3.jpg') no-repeat center center fixed;
+        background: no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-        height: 99.99vh;
-        width: auto;
+    }
+    #fondo img{
+        width: 100%;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        height: 100%;
     }
     /*contenido que va dentro de la imagen*/
     #fondo .d-centro{

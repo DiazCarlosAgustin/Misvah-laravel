@@ -20,9 +20,6 @@ body{
   }
 /*estilo de los links del menu*/
 .nav{width: auto;}
-.navbar #navbarMenu a,.nav-link > i {
-    font-family: 'Roboto Condensed', sans-serif;
-}
 .nav .material-icons{
     color:#707070 !important; 
 } 

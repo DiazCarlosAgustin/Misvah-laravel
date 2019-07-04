@@ -27,7 +27,7 @@
         {{--section del navbar(menu)--}}
         @section('menu')
         {{--Menu--}}
-                <nav class="navbar navbar-expand-lg navbar-light fixed-top col-12 scrolling-navbar ">
+                <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white col-12 scrolling-navbar ">
                     {{-- navbar-brand xs que solo se vera en celulares o tablets--}}
                     <a href="#" class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde">MISVHA</a>
                     {{-- menu xs que se vera solo en tablets o celulares--}}
