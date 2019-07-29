@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="{{asset('css/adminEstilos.css')}}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     {{--Fonts--}}
-    <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto&display=swap" rel="stylesheet">
     {{--Editor de texto --}}
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.39/jodit.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.39/jodit.min.js"></script>
@@ -64,7 +63,7 @@
                                   <a class="dropdown-item" href="">Editar</a>
                                 </div>
                             </div>
-                            <a href="" class="nav-link nav-item">Elementos del UI</a>
+                            <a href="{{url('/admin/elementos')}}" class="nav-link nav-item">Elementos del UI</a>
                             <a href="" class="nav-link nav-item">Pedidos</a>
                             <a href="" class="nav-link nav-item">Ventas</a>
                             <a href="" class="nav-link nav-item">Estadisticas</a>

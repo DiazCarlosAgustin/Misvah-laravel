@@ -9,14 +9,13 @@
             </div>
             <div class="card-body card-body-cascade text-center">
                 <!-- Title -->
-                <h4 class="card-title"><strong>Categoria</strong></h4>
+                <h5 class="card-title">Categoria</h5>
                 <!-- Subtitle -->
-                <h5 class="pink-text pb-2"><strong>Nombre de la categoria</strong></h5>
+                <h4 class="pink-text pb-2">Nombre de la categoria</h4>
                 <!-- Text -->
                 <p class="card-text">
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore, officiis culpa sit minima enim, qui dignissimos nobis temporibus ratione soluta eaque, nam fuga quisquam in necessitatibus quos cupiditate ad voluptatem.
                 </p>
-
             </div>
         </div>
     </div>

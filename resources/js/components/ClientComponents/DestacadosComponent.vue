@@ -1,6 +1,6 @@
 <template>
     <div class="mt-4">
-        <div class="h3 p-3 text-center">Destacados</div>
+        <h3 class="p-3 text-center">Destacados</h3>
         <div class="swiper-container swiper-destacados  justify-content-center  animated fadeIn">
             <div class="swiper-wrapper">
                 <div class="swiper-slide animated fadeIn">
@@ -54,8 +54,6 @@ export default {
         height: 100%;
     }
     .Titulo-destacados{
-        padding: 35px 0 25px 0;
-        font-family: Impact, Charcoal, sans-serif !important;
         font-size: 45px;
         text-align: center;
     }

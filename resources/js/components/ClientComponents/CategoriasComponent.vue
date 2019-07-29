@@ -1,6 +1,6 @@
 <template>
     <div class="d-categoria mt-4">
-        <div class="h3 p-3 text-center">Categorias</div>
+        <h3 class="text-center p-3">Categorias</h3>
         <div class="row">
             <div class="col-12 col-xs-12 col-md-6 col-lg-4"> 
                 <categoria-component class=" animated fadeIn"></categoria-component>
@@ -32,10 +32,10 @@ export default {
     .d-categoria{
         position: relative;
     }   
-    .d-categoria .Titulo-categoria{
-        padding: 35px 0 25px 0;
-        font-family: Impact, Charcoal, sans-serif !important;
+    .d-categoria{
+        font-family: 'Montserrat', sans-serif;
         font-size: 45px;
+        letter-spacing:normal;
         text-align: center;
     }
 </style>

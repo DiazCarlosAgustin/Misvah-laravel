@@ -6,7 +6,6 @@
         <div class="codigo h6 text-muted">
             Cod-0001
         </div>
-        <div class="bar border"></div>
         <div class="precio mt-2 d-inline-flex h5">
             <strike class="text-danger pr-2">$223</strike> - <p class="px-2 text-muted">$200</p>
         </div>
@@ -19,21 +18,23 @@
         <div class="descripcion p text-muted text-justify">
            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.</p>
         </div>
-        <div class="comprar d-flex">
-            <div class="cantidad d-flex input-group my-auto col-5 mr-2 ml-0 pl-0">
+        <div class="comprar d-inline-flex row ml-auto">
+            <div class="cantidad d-flex input-group my-auto ml-0 pl-0 col-12 col-xs-12 col-md-4">
                 <div class="input-group-prepend">
                     <span class="input-group-text" @click="aumentar()" :style="{background: colorButtons, color:textButtons}">
                         <i class="fas fa-plus"></i>
                     </span>
                 </div>
-                <input type="text" name="txtCantidad" id="txtCantidad" class="my-auto form-control" v-model="cantidad">
+                <input type="number" name="txtCantidad" id="txtCantidad" class="my-auto form-control" v-model.number="cantidad" :min="1" :max="10">
                 <div class="input-group-append">
                     <span class="input-group-text" @click="disminuir()" :style="{background: colorButtons, color:textButtons}">
                         <i class="fas fa-minus"></i>
                     </span>
                 </div>
             </div>
-            <button class="btn btn-pink"> Añadir al carrito</button>
+            <div class="col-12 col-xs-12 col-md-8 ">
+                <button class="btn" :style="{background: colorButtons, color:textButtons}"> Añadir al carrito</button>
+            </div>
         </div>
     </div>
 </template>
@@ -42,14 +43,18 @@ export default {
     name: 'info-producto',
     data(){
         return{
-            cantidad: 1,
-            colorButtons: '#ff4081',
+            cantidad: 0,
+            max:10,
+            colorButtons: '#FF637D',
             textButtons: 'white'
         }
     },
     methods:{
         aumentar: function(){
-            this.cantidad += 1
+            this.cantidad = this.cantidad + 1;
+            if(this.cantidad > this.max){
+                this.cantidad = this.cantidad - 1;
+            }
         },
         disminuir: function(){
             this.cantidad -= 1
@@ -61,8 +66,7 @@ export default {
 }
 </script>
 <style scoped>
-    .bar{
-        width: 75px;
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
     }
-    
 </style>

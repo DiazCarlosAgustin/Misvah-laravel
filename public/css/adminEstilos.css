@@ -1,6 +1,10 @@
 /*colores*/
 body , *{
-    font-family: arial, helvetica, 'arial unicode ms', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Roboto', sans-serif;
 }
 .bg-purple{
     background-color: #CE0075;
@@ -82,19 +86,15 @@ span .fa-check{
 .table-wrapper-scroll-y {
     display: block;
 }
-.imagenesProducto{
-    position: relative;
-    height: 125px;
-    overflow: auto;
-}
+
 .navbar{
     z-index: 1;
 }
 .product-detail h4{
     margin: 2,5px 0; 
 }
-.dash{
-    color: #b388ff;
+.card-dash{
+    background: linear-gradient(to bottom, #FA71CD,#C471F5);
 }
 .card{
     border-radius: 10px; 

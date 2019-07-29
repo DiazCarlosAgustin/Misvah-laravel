@@ -1,5 +1,5 @@
 <template>
-    <div id="fondo" class="view">
+    <div id="fondo" class="justify-content-center">
         <img :src="img">
         <div class="d-centro">
             <div class="Titulo animated fadeIn">MISVAH</div>
@@ -24,11 +24,7 @@ export default {
 <style scoped>
     #fondo{
         height: 100vh;
-        background: no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
+        padding-top: 10vh;
     }
     #fondo img{
         width: 100%;
@@ -41,6 +37,7 @@ export default {
     /*contenido que va dentro de la imagen*/
     #fondo .d-centro{
         position:absolute;
+        height: auto; 
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);

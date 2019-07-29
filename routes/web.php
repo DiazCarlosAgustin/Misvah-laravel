@@ -1,20 +1,6 @@
 <?php
 
-	
-Route::get('formulario', 'imgController@index');
-Route::post('storage/create', 'imgController@save');
-Route::get('puclic/img/{archivo}', function ($archivo) {
-     $public_path = public_path();
-     $url = $public_path.'/img/'.$archivo;
-     //verificamos si el archivo existe y lo retornamos
-     if (Storage::exists($archivo))
-     {
-       return response()->download($url);
-     }
-     //si no se encuentra lanzamos un error 404.
-     abort(404);
- 
-});
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,6 +73,7 @@ Route::get('/admin/pedidos',function(){
 Route::get('/admin/ventas',function(){
    return view('admin.ventas');
 });
-Route::get('/admin/editElementos',function(){
+
+Route::get('/admin/elementos',function(){
    return view('admin.ElementsUI');
 });

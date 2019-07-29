@@ -1,42 +1,38 @@
 <template>
     <div class="colores">
-        <input type="radio" name="radioColor1" id="radioColor1">
-        <label for="radioColor1" ><span style="background-color:red;" class="text-center"><i class="fas fa-check"></i></span></label>
-        <input type="radio" name="radioColor1" id="radioColor2">
-        <label for="radioColor2" ><span style="background-color:black;" class="text-center"><i class="fas fa-check"></i></span></label>
+        <select name="cbColores" id="cbColores" v-model="selectColor" class="custom-select mb-3">
+            <option v-for="color in colores" :key="color.id">{{color.nombre}}</option>
+        </select>
     </div>
 </template>
 <script>
 export default {
-    
+    name:'color-producto',
+    data(){
+        return{
+            selectColor:'Rojo',
+            colores:[
+                {
+                    id:1,
+                    nombre:'Rojo'
+                },
+                {
+                    id:2,
+                    nombre:'Negro'
+                },
+                {
+                    id:3,
+                    nombre:'Gris'
+                },
+                {
+                    id:4,
+                    nombre:'Verde'
+                },
+            ]
+        }
+    }
 }
 </script>
 <style scoped>
-    .colores div{
-        display: inline-block;
-    }
-    .colores input[type="radio"]{
-        display: none;
-    }
-
-    .colores input[type="radio"] + label span{
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        margin: -1px 4px 0 0;
-        vertical-align: middle;
-        border-radius: 50%;
-        border: 2px solid #fff;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .33);
-    }
-    span .fa-check{
-        color: transparent;
-        margin-top: 10px;
-    }
-    .colores input[type="radio"]:checked + label span{
-        opacity: .3;
-    }
-    .colores input[type="radio"]:checked + label span .fa-check{
-        color:white;
-    }
+    
 </style>

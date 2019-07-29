@@ -9,10 +9,10 @@
             <div class="fav white border shadow mr-auto" @click="favorito()">
                 <i class="material-icons fav-xs" style="font-size: 30px" :class="[color]">{{icono}}</i>
             </div>
-            <div class="text-center my-2">
-                <h4 class="card-subtitle text-muted"><strong>Categoria</strong></h4>
+            <div class="text-center py-3">
+                <h5 class="card-subtitle text-muted">Categoria</h5>
                 <!-- Subtitle -->
-                <h5 class="card-title"><strong>Nombre del producto</strong></h5>
+                <h4 class="card-title">Nombre del producto</h4>
             </div>
             <div class="text-center">
                 <p class="card-subtitle mb-2 text-muted"><strike class="text-danger">$3000.50</strike> - $2900.50</p>

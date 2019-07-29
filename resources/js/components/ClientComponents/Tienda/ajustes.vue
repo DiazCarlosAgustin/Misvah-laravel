@@ -11,7 +11,7 @@
                 <filtro-categoria></filtro-categoria>
             </div>
             <div class="w-100 my-0 col-12 col-xs-12 col-md-4 p-a">
-                <filtro-marca></filtro-marca>
+                <filtro-ordenado></filtro-ordenado>
             </div>
         </div>
         <hr>
