@@ -1,22 +1,23 @@
 <template>
     <div class="mt-4">
         <h3 class="p-3 text-center">Destacados</h3>
-        <div class="swiper-container swiper-destacados  justify-content-center  animated fadeIn">
+        <div class="swiper-container swiper-destacados  justify-content-center">
             <div class="swiper-wrapper">
-                <div class="swiper-slide animated fadeIn">
+                <div class="swiper-slide">
                     <producto ></producto>
                 </div>
-                <div class="swiper-slide animated fadeIn">
+                <div class="swiper-slide">
                     <producto ></producto>
                 </div>
-                <div class="swiper-slide animated fadeIn">
+                <div class="swiper-slide">
                     <producto ></producto>
                 </div>
-                <div class="swiper-slide animated fadeIn">
+                <div class="swiper-slide">
                     <producto ></producto>
                 </div>
             </div>
             <!-- Add Pagination -->
+            
             <div class="pagination-pagination pagination-destacados text-danger text-center"></div>
         </div>
     </div>
@@ -24,6 +25,7 @@
 <script>
 export default {
     name:'destacados'
+    
 }
 </script>
 <style scoped>
@@ -33,7 +35,6 @@ export default {
         height: auto;
     }
     .swiper-slide {
-        text-align: center;
         font-size: 18px;
         /* Center slide text vertically */
         display: -webkit-box;

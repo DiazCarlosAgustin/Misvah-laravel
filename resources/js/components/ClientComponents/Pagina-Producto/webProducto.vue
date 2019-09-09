@@ -1,22 +1,26 @@
 <template>
-    <div class="container mt-5">
-        <div class="row text-center  d-flex justify-content-center">
-            <div class="col-12 col-sm-12 col-lg-8">
-                <div class="h3 p-3 text-center mt-4">
-                    Producto
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12 text-center">
+                <div class=" text-center my-4">
+                    <h2>Producto</h2>
                 </div>      
             </div>
         </div>
-        <div class="row d-flex ">
-            <swiper-fotos-producto  class="col-12 col-xs-12 col-md-6 text-center"></swiper-fotos-producto>
-            <info-producto  class="col-12 col-xs-12 col-md-6  text-left pr-5"></info-producto>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-md-7 col-lg-7 d-flex">
+                <swiper-fotos-producto  class="text-center"></swiper-fotos-producto>
+            </div>
+            <div class="col-12 col-md-5 col-lg-5 ">
+                <info-producto></info-producto>
+            </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 d-flex justify-content-center">
             <informacion-producto></informacion-producto>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-5 mx-auto">
             <productos-relacionados></productos-relacionados>
-        </div>
+        </div> 
     </div>
 </template>
 <script>

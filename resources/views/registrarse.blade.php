@@ -3,7 +3,7 @@
 @section('title','Crear cuenta')
 
 @section('Container')
-    <div class="d-registrarse container mt-5">
+    <div class="d-registrarse container ">
         <web-registrarse></web-registrarse>
     </div>
 @endsection

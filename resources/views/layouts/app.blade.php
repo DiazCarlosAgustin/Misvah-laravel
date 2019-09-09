@@ -16,6 +16,7 @@
         {{--Iconos de google--}}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
         {{--Fonts--}}
+        <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
         <title>Misvah - @yield('title')</title>
@@ -27,11 +28,14 @@
             @section('menu')
                 {{--Menu--}}
                 <navbar></navbar>
+
+                @yield('fondo')
             @show
-            @yield('fondo')
                 
             {{--contenedor vacio(se llena segun la page)--}}
-            @yield('Container')
+            <section>
+                @yield('Container')
+            </section>
         </div>
         {{--pie de pagina--}}
         @section('footer')
@@ -87,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="f-enlaces col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                        <div class="f-enlaces col-12 col-xs-12 col-sm-12 col-md-12 col-lg-6">
                             <div class="f-contenido mx-auto">
                                 <h1>ENLACES</h1>
                                 <div class="mx-auto">

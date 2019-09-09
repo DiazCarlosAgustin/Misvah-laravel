@@ -1,9 +1,9 @@
 <template>
-    <div class="container mt-5">
+    <div class="container">
         <div class="row text-center  d-flex justify-content-center">
             <div class="col-12 col-sm-12 col-lg-8">
-                <div class="h3 p-3 text-center mt-4">
-                    Tienda
+                <div class=" text-center my-4">
+                    <h2>Tienda</h2> 
                 </div>      
             </div>
         </div>

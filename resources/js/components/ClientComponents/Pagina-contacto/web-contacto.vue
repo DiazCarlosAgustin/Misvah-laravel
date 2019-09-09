@@ -1,8 +1,8 @@
 <template>
     <div class="row r-contacto text-center  d-flex justify-content-center">
-        <div class="col-12 col-sm-12 col-md-12">
-            <div class="h3 mt-5">
-                Contacto
+        <div class="col-12 col-sm-12 col-md-12 my-4">
+            <div class="">
+                <h2>Contacto</h2>  
             </div>
         </div>
         <div class="col-12 col-xs-12 col-md-6 col-lg-6">

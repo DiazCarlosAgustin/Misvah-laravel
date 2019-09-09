@@ -4,7 +4,7 @@
 @section('title','Acceder')
 
 @section('Container')
-    <div class="d-acceder container mt-5">
+    <div class="d-acceder container">
         <web-acceder></web-acceder>
     </div>
 @endsection

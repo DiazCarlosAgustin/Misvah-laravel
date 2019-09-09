@@ -1,21 +1,39 @@
 <template>
     <div class="row d-flex justify-content-center">
-        <div class="col-12 col-xs-12 col-md-6 col-lg-4 my-2 ">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 ">
             <producto class="mx-auto"></producto>
         </div>
-        <div class="col-12 col-xs-12 col-md-6 col-lg-4 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
             <producto class="mx-auto"></producto>
         </div>
-        <div class="col-12 col-xs-12 col-md-6 col-lg-4 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
             <producto class="mx-auto"></producto>
         </div>
-        <div class="col-12 col-xs-12 col-md-6 col-lg-4 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
             <producto class="mx-auto"></producto>
         </div>
-        <div class="col-12 col-xs-12 col-md-6 col-lg-4 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
             <producto class="mx-auto"></producto>
         </div>
-        <div class="col-12 col-xs-12 col-md-6 col-lg-4 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+            <producto class="mx-auto"></producto>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+            <producto class="mx-auto"></producto>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+            <producto class="mx-auto"></producto>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+            <producto class="mx-auto"></producto>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+            <producto class="mx-auto"></producto>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+            <producto class="mx-auto"></producto>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
             <producto class="mx-auto"></producto>
         </div>
     </div>

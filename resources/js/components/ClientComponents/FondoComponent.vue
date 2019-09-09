@@ -1,12 +1,15 @@
 <template>
-    <div id="fondo" class="justify-content-center">
-        <img :src="img">
-        <div class="d-centro">
-            <div class="Titulo animated fadeIn">MISVAH</div>
-            <div class="sub-titulo animated fadeIn">MODA</div>
-            <div class="botones mx-auto d-flex aling-center">
-                <button class="btn animated fadeIn">CONTACTO</button>    
-                <button class="btn animated fadeIn">PRODUCTOS</button>    
+    <div id="fondo" :style="{backgroundImage:'url(' + img + ')' }" class="view">
+        <div :class="align">
+            <div class="Titulo" :style="{color:colorTitulo}">
+                Misvah
+            </div>
+            <div class="sub-titulo" :style="{color:colorSubtitulo}">
+                Moda
+            </div>
+            <div class="botones d-flex aling-center">
+                <a href="/contacto" class="btn" :style="{backgroundColor:colorBoton}">CONTACTO</a>    
+                <a href="/tienda" class="btn" :style="{backgroundColor:colorBoton}">PRODUCTOS</a>    
             </div>  
         </div>
     </div>
@@ -16,58 +19,67 @@ export default {
     name:'fondo',
     data(){
         return{
-            img: '/img/Fondo-3.jpg'
+            img: '/img/Fondo-3.jpg',
+            align: 'd-center',
+            colorTitulo:'white',
+            colorSubtitulo:'white',
+            colorBoton: 'white'
         }
     }
 }
 </script>
 <style scoped>
     #fondo{
-        height: 100vh;
-        padding-top: 10vh;
-    }
-    #fondo img{
-        width: 100%;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
+        height: 90vh;
+        background-position: center;
+        background-repeat: no-repeat;
         background-size: cover;
-        height: 100%;
+        position: relative;
     }
     /*contenido que va dentro de la imagen*/
-    #fondo .d-centro{
+    .d-center{
         position:absolute;
         height: auto; 
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
+        text-align: center;
     }
-    #fondo .d-centro .Titulo{
-        font-family: Impact, Charcoal, sans-serif !important;
-        font-size: 80px;
-        color:white;
+    .d-left{
+        position: absolute;
+        top: 50%;
+        left: 7%;
+        transform: translate(-7%,-50%);
+        text-align:left;
+    }
+    .d-right{
+        position:absolute;
+        top: 50%;
+        left: 95%;
+        transform: translate(-95%,-50%);
+        text-align: right !important;
+    }
+    .Titulo{
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 6em;
         padding: 0;
         margin: 0;
     }
-    #fondo .d-centro .sub-titulo{
-        text-align: center;
-        font-family: 'Gabriela', serif;
-        font-size: 40px;
-        color:white;
-        padding: 0 0 10px 0;
-        margin-top: -20px;
+    .sub-titulo{
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 3em;
+        margin-top: -35px;
+        margin-bottom: 20px;
     }
-    #fondo .d-centro .botones{
+    .botones{
         position: absolute;
         left: 0;
         transform: translateX(2%);
     }
-    #fondo .d-centro .botones .btn{
+    .botones .btn{
         margin: 0 2px;
-        background-color: white;
-        border-radius: 50px;
     }
-    #fondo .d-centro .botones {
+    .botones {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);

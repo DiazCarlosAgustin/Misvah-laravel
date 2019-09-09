@@ -4,9 +4,7 @@
         <form action="" >
             <div class="form-group">
                 <label for="cbColor">Color:</label>
-                <select name="cbColor" id="cbColor" class="custom-select">
-                    <option v-for="color in colores" :key="color.id">{{color.nombre}}</option>
-                </select>
+                 <lista-color v-for="color in colores" :color="color" :key="color.id"></lista-color>   
             </div>
             <div class="form-group">
                 <label for="txtStock">Stock:</label>

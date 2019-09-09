@@ -4,11 +4,8 @@
         <form action="" >
             
             <div class="form-group">
-                <label for="txtStock">Colores:</label>
-                <select name="cbColores" id="cbColores" class="custom-select">
-                    <option value="-1">Seleccione un color</option>    
-                    <option v-for="color in colores" :key="color.id">{{color.nombre}}</option>    
-                </select>          
+                <label for="txtStock">Color:</label>
+                <lista-color v-for="color in colores" :color="color" :key="color.id"></lista-color>   
             </div>
             <div class="form-group">
                 <label for="txtimagen">imagen:</label>
@@ -40,6 +37,16 @@ export default {
             {
                 id:3,
                 nombre: 'gris',
+                stock: 7
+            } ,
+            {
+                id:4,
+                nombre: 'rosa',
+                stock: 7
+            },
+            {
+                id:5,
+                nombre: 'marron',
                 stock: 7
             }
         ]

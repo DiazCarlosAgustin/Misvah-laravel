@@ -6,9 +6,7 @@
 
 {{--le paso la imagen de fondo y lo que contiene la imagen al centro--}}
     @section('fondo')
-        <div class="fondo">
-            <fondo-component></fondo-component>
-        </div>
+        <fondo-component></fondo-component>
     @endsection
 {{--contenido de la pagina--}}
     @section('Container')
@@ -19,9 +17,6 @@
             <div class="d-destacados container">
                 <destacados-component></destacados-component>   
             </div>
-            <div class="d-instagram container">
-                <instagram-component></instagram-component>
-            </div>
         </div>
         @endsection
 
@@ -30,31 +25,38 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
         <script>
             $(document).ready(function(){
-                var cantidad = 0;
-                if($( window ).width() >= 360  && $( window ).width() < 800){
-                    cantidad = 1;
-                }
-                else if($( window ).width() >= 800 && $( window ).width() < 1020){
-                    cantidad = 2;
-                }
-                else if($( window ).width() >= 1020){
-                    cantidad = 3;
-                    
-                }
                 var swiperDestacados = new Swiper('.swiper-destacados', {
-                slidesPerView: cantidad,
-                pagination: {
-                el: '.pagination-destacados',
-                clickable: true,
-                },
+                    loop: true,
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                    pagination: {
+                        el: '.pagination-destacados',
+                        clickable: true
+                    },
+                    breakpoints: {
+                        1920:{
+                            slidesPerView:4,
+                            spaceBetween:10,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                            spaceBetween: 40,
+                        },
+                        768: {
+                            slidesPerView: 2,
+                            spaceBetween: 30,
+                        },
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        375: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                        }
+                    }
                 });
-                var swiper = new Swiper('.swiper-container', {
-                slidesPerView: cantidad,
-                pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-                },
-                });
+
                 
             });
         </script>

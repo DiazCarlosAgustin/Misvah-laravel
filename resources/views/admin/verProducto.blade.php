@@ -4,13 +4,14 @@
     
 @section('container')
     <div class="container">
-        <div class="row d-flex justify-content-center mt-4">
-            <div class="col-12">
-                <h3 class="text-center">Producto</h3>
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="col-12 mt-5">
+                <h3 class="text-center ">Ver producto</h3>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <div class="col-12 col-xs-12 col-md-6 col-lg-6 ">
+            <admin-ver-producto></admin-ver-producto>
+            {{-- <div class="col-12 col-xs-12 col-md-6 col-lg-6 ">
                 <div class="product-detail ">
                     <h4 >Codigo: <span class="text-muted">Codigo del producto</span></h4>
                     <h4 >Nombre: <span class="text-muted">Nombre del producto</span></h4>
@@ -91,7 +92,7 @@
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Id at tenetur alias, quaerat modi totam, quasi ullam incidunt quo, laboriosam impedit doloribus dolor et nemo ducimus repellat. Illum, adipisci ratione?
                     </textarea>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection

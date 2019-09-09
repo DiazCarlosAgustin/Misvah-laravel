@@ -23,6 +23,8 @@ window.Vue = require('vue');
 //Inicio 
     //menu de la pagina navbar
     Vue.component('navbar', require('./components/ClientComponents/Menu/menu.vue').default);
+    Vue.component('menu-categoria', require('./components/ClientComponents/Menu/categoriaMenu.vue').default);
+    Vue.component('menu-item-categoria', require('./components/ClientComponents/Menu/itemCategoriaMenu.vue').default);
 
     // Componente de carrito
     Vue.component('carrito', require('./components/ClientComponents/Cart/carrito.vue').default);
@@ -37,9 +39,6 @@ window.Vue = require('vue');
     Vue.component('categoria-component', require('./components/ClientComponents/CategoriaComponent.vue').default);
     // componente de destacados + llamado del componente producto
     Vue.component('destacados-component', require('./components/ClientComponents/DestacadosComponent.vue').default);
-    // Componente de instagram
-    Vue.component('instagram-component', require('./components/ClientComponents/instagramComponent.vue').default);
-    Vue.component('foto-instagram', require('./components/ClientComponents/FotoInstagram.vue').default);
 // Pagina tienda
     Vue.component('tienda', require('./components/ClientComponents/Tienda/Tienda.vue').default);
     Vue.component('ajustes', require('./components/ClientComponents/Tienda/ajustes.vue').default);
@@ -92,12 +91,15 @@ window.Vue = require('vue');
         Vue.component('producto-oferta', require('./components/AdminComponent/Producto/Lista/productoOferta.vue').default);
         Vue.component('lista-productos-cupones', require('./components/AdminComponent/Producto/Lista/listaProductosCupon.vue').default);
         Vue.component('producto-cupon', require('./components/AdminComponent/Producto/Lista/productoCupones.vue').default);
+        // Ver
+        Vue.component('admin-ver-producto', require('./components/AdminComponent/Producto/ver/adminVerProducto.vue').default);
         
         // Editar
         Vue.component('editar-producto', require('./components/AdminComponent/Producto/Editar/EditarProducto.vue').default);
         Vue.component('color-editar-producto', require('./components/AdminComponent/Producto/Editar/ColorEditarProducto.vue').default);
         Vue.component('imagen-editar-producto', require('./components/AdminComponent/Producto/Editar/ImagenesEditarProducto.vue').default);
         // Color nuevo, stock, imagen
+        Vue.component('lista-color', require('./components/AdminComponent/Producto/Editar/Colores/ListaColores.vue').default);
         Vue.component('nuevo-color', require('./components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue').default);
         Vue.component('stock-color', require('./components/AdminComponent/Producto/Editar/Colores/StockColor.vue').default);
         Vue.component('imagen-color', require('./components/AdminComponent/Producto/Editar/Colores/imagenColor.vue').default);

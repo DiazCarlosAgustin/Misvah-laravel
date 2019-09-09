@@ -3,8 +3,12 @@
         <h3 class="text-center text-muted">Agregar nuevo color</h3>
         <form action="" >
             <div class="form-group">
-                <label for="txtColor">Nombre:</label>
+                <label for="txtColor">Descripcion:</label>
                 <input type="text" placeholder="Ej: rojo" name="txtColor" id="txtColor" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="fileColor">Imagen:</label>
+                <input type="file" name="fileColor" id="fileColor" class="form-control">
             </div>
             <div class="text-center">
                 <button type="reset" class="btn btn-danger"><i class="fas fa-times"></i></button>

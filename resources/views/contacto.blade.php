@@ -4,7 +4,7 @@
 
 {{--section del container que contendra el contacto--}}
 @section('Container')
-    <div class="d-contacto container mt-5 ">
+    <div class="d-contacto container ">
         <web-contacto></web-contacto>
     </div>
 @endsection

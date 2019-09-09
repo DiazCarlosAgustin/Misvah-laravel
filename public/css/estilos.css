@@ -47,19 +47,3 @@ i{
 
 /*barra de busqueda*/
 
-.d-buscar{
-    position: absolute;
-    width: 100%;
-    background-color: white;
-    padding: 0 10px;
-    height: 55px;
-    left: 0;
-    top: 0;
-    display: none;
-}
-.d-buscar-active {
-    display: block;
-    top: 57px;
-    transition: 1.5s;
-    transition-duration:1s ; 
-}

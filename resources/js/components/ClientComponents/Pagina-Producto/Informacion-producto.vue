@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12 mt-4">
+    <div class="col-12 col-md-10 mt-4">
         <div class="head-info text-center">
            <h4>Información</h4>
         </div>
@@ -17,4 +17,7 @@ export default {
 }
 </script>
 <style scoped>
+    .body-info{
+        text-overflow:ellipsis;
+    }
 </style>

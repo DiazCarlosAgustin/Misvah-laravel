@@ -1,8 +1,8 @@
 <template>
-    <div class="d-flex my-2">
+    <div class="d-flex my-2 justify-content-center">
         <div class="card card-cascade wider">
             <div class="view view-cascade overlay">
-                <img  class="card-img-top" src="https://via.placeholder.com/350x240.png" alt="Card image cap">
+                <img  class="card-img-top" src="https://via.placeholder.com/250x250.png" alt="Card image cap">
                 <a href="#!">
                 <div class="mask rgba-white-slight"></div>
                 </a>
@@ -13,9 +13,6 @@
                 <!-- Subtitle -->
                 <h4 class="pink-text pb-2">Nombre de la categoria</h4>
                 <!-- Text -->
-                <p class="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore, officiis culpa sit minima enim, qui dignissimos nobis temporibus ratione soluta eaque, nam fuga quisquam in necessitatibus quos cupiditate ad voluptatem.
-                </p>
             </div>
         </div>
     </div>
