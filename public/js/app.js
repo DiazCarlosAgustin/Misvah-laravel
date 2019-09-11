@@ -3155,6 +3155,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
   data: function data() {
@@ -3247,7 +3250,10 @@ __webpack_require__.r(__webpack_exports__);
     clickMouse: function clickMouse() {
       if (window.innerWidth <= 991) {
         this.claseMenuXs = 'd-grid';
-        console.log(123);
+      } else {
+        this.claseMenu = "d-grid";
+        this.hover = !this.hover;
+        this.pantalla = window.innerWidth;
       }
     },
     CategoriaHover: function CategoriaHover(id) {
@@ -3262,6 +3268,8 @@ __webpack_require__.r(__webpack_exports__);
         this.claseVolver = 'd-none';
         this.classCat = 'd-none';
         this.claseVolverProducto = 'd-grid';
+      } else {
+        this.claseProducto = 'd-grid';
       }
     },
     tapVolverCategoria: function tapVolverCategoria() {
@@ -8638,7 +8646,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*estilo de los links del menu*/\n.collapse[data-v-007d1acc]{\n    height: auto;\n    max-height: 100vh;\n}\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    transition: 1.5s;\n    transition-duration:1s ;\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*estilo de los links del menu*/\n.collapse[data-v-007d1acc]{\n    height: auto;\n    max-height: 100vh;\n}\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    transition: 1.5s;\n    transition-duration:1s ;\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
 
 // exports
 
@@ -44474,11 +44482,11 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body card-body-cascade text-center" }, [
-          _c("h5", { staticClass: "card-title" }, [_vm._v("Categoria")]),
+          _c("h6", { staticClass: "card-title text-muted" }, [
+            _vm._v("Categoria")
+          ]),
           _vm._v(" "),
-          _c("h4", { staticClass: "pink-text pb-2" }, [
-            _vm._v("Nombre de la categoria")
-          ])
+          _c("h5", { staticClass: "pb-2" }, [_vm._v("Nombre de la categoria")])
         ])
       ])
     ])
@@ -44511,42 +44519,42 @@ var render = function() {
     _c("div", { staticClass: "row d-flex justify-content-center" }, [
       _c(
         "div",
-        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3" },
+        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" },
         [_c("categoria-component", {})],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3" },
+        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" },
         [_c("categoria-component", {})],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3" },
+        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" },
         [_c("categoria-component", {})],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3" },
+        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" },
         [_c("categoria-component", {})],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3" },
+        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" },
         [_c("categoria-component", {})],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3" },
+        { staticClass: "col-12 col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" },
         [_c("categoria-component", {})],
         1
       )
@@ -44696,7 +44704,7 @@ var render = function() {
   return _c(
     "span",
     {
-      on: { mousemove: _vm.categoriaHover },
+      on: { click: _vm.categoriaHover },
       nativeOn: {
         click: function($event) {
           return _vm.categoriaHover($event)
@@ -44782,7 +44790,12 @@ var render = function() {
               {
                 staticClass: "nav-item nav-link",
                 attrs: { id: "display-categorias" },
-                on: { mouseover: _vm.hoverMouse, click: _vm.clickMouse }
+                on: { click: _vm.clickMouse },
+                nativeOn: {
+                  click: function($event) {
+                    return _vm.clickMouse($event)
+                  }
+                }
               },
               [_vm._v("\n                CATEGORIAS\n            ")]
             ),
@@ -44920,33 +44933,30 @@ var render = function() {
                 2
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "productos" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "volverProducto",
-                      class: _vm.claseVolverProducto
-                    },
-                    [
-                      _c(
-                        "span",
-                        {
-                          staticClass: "my-auto w-100 ml-3",
-                          on: { click: _vm.tapVolverCategoria }
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-arrow-left" }),
-                          _vm._v(
-                            "\n                    Volver\n                "
-                          )
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
+              _c("div", { staticClass: "productos" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "volverProducto",
+                    class: _vm.claseVolverProducto
+                  },
+                  [
+                    _c(
+                      "span",
+                      {
+                        staticClass: "my-auto w-100 ml-3",
+                        on: { click: _vm.tapVolverCategoria }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-arrow-left" }),
+                        _vm._v("\n                    Volver\n                ")
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
                   _vm._l(_vm.productosCategoria, function(producto) {
                     return _c("menu-item-categoria", {
                       key: producto.id,
@@ -44954,10 +44964,10 @@ var render = function() {
                       class: _vm.claseProducto,
                       attrs: { producto: producto }
                     })
-                  })
-                ],
-                2
-              )
+                  }),
+                  1
+                )
+              ])
             ]
           )
     ]
@@ -62911,8 +62921,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Agustin Diaz\Documents\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Agustin Diaz\Documents\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

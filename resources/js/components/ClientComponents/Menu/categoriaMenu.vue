@@ -1,5 +1,5 @@
 <template>
-    <span  @mousemove="categoriaHover" @click.native="categoriaHover">{{categoria.nombre}}</span>
+    <span  @click.native="categoriaHover" @click="categoriaHover">{{categoria.nombre}}</span>
 </template>
 <script>
 export default {

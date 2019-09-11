@@ -21,7 +21,7 @@
             <div class="navbar-nav mr-auto text-center">
                 <a href="/" class="nav-item nav-link">INICIO</a>
                 <a class="nav-item nav-link" id="display-categorias" 
-                    @mouseover="hoverMouse" @click="clickMouse">
+                     @click.native="clickMouse" @click="clickMouse">
                     CATEGORIAS
                 </a>
                 <a href="/" class="nav-item nav-link">CONTACTO</a>
@@ -88,11 +88,14 @@
                         <i class="fas fa-arrow-left"></i>
                         Volver
                     </span>
-               </div>
-                <menu-item-categoria v-for="producto in productosCategoria" 
-                    :key="producto.id"
-                    :producto="producto"
-                    class="text-center" :class="claseProducto"/>
+                </div>
+                <div>
+                    <menu-item-categoria v-for="producto in productosCategoria" 
+                        :key="producto.id"
+                        :producto="producto"
+                        class="text-center" :class="claseProducto"
+                        />
+                </div>
             </div>
         </div>
     </nav>
@@ -208,8 +211,11 @@ export default {
         clickMouse:function(){
             if(window.innerWidth <= 991){
                 this.claseMenuXs = 'd-grid'
-                console.log(123);
-                
+            }
+            else{
+                this.claseMenu ="d-grid"
+                this.hover = !this.hover
+                this.pantalla = window.innerWidth
             }
         },
         CategoriaHover: function(id){
@@ -225,7 +231,9 @@ export default {
                 this.classCat = 'd-none'
                 this.claseVolverProducto = 'd-grid'
             }          
-              
+            else{
+                this.claseProducto = 'd-grid'
+            } 
         },
         tapVolverCategoria:function(){
             this.claseProducto = 'd-none'

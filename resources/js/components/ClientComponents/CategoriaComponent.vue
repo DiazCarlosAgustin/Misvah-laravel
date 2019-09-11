@@ -9,9 +9,9 @@
             </div>
             <div class="card-body card-body-cascade text-center">
                 <!-- Title -->
-                <h5 class="card-title">Categoria</h5>
+                <h6 class="card-title text-muted">Categoria</h6>
                 <!-- Subtitle -->
-                <h4 class="pink-text pb-2">Nombre de la categoria</h4>
+                <h5 class="pb-2">Nombre de la categoria</h5>
                 <!-- Text -->
             </div>
         </div>
