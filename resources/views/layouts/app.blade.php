@@ -36,77 +36,11 @@
             <section>
                 @yield('Container')
             </section>
+            @section('footer')
+                <footer-cliente></footer-cliente>
+            @show
         </div>
         {{--pie de pagina--}}
-        @section('footer')
-            <footer class="f-foot  animated fadeIn pink">
-                <div class="container">
-                    <div class="row">
-                        {{--area de horarios--}}
-                        <div class="f-horarios col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                            <div class="f-contenido">
-                                <h1>HORARIOS</h1>
-                                <div class="mx-auto ">
-                                    <table class="mx-auto text-white">
-                                        <tr>
-                                            <td>lun.:</td>
-                                            <td>8:30 - 20:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mar.:</td>
-                                            <td>8:30 - 20:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mié.:</td>
-                                            <td>8:30 - 20:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jue.:</td>
-                                            <td>8:30 - 20:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vie.:</td>
-                                            <td>8:30 - 20:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sáb.:</td>
-                                            <td>8:30 - 20:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dom.:</td>
-                                            <td>Cerrado</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        {{--area de redes sociales--}}
-                        <div class="f-redes col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                            <div class="f-contenido">
-                                <h1>NUESTRAS REDES</h1>
-                                <div class="mx-auto iconos">
-                                    <i class="fab fa-facebook f-icon"></i>
-                                    <i class="fab fa-instagram f-icon"></i>
-                                    <i class="fas fa-envelope f-icon"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="f-enlaces col-12 col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                            <div class="f-contenido mx-auto">
-                                <h1>ENLACES</h1>
-                                <div class="mx-auto">
-                                    <table class="mx-auto">
-                                        <tr><td><a href="{{url('/')}}">Inicio</a></td></tr>
-                                        <tr><td><a href="{{url('/tienda')}}">Tienda</a></td></tr>
-                                        <tr><td><a href="{{url('/contacto')}}">Contacto</a></td></tr>
-                                    </table>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        @show
         {{--librerias usadas--}}
         
         <!-- JQuery -->

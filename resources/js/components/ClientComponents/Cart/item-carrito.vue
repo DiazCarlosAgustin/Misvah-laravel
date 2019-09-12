@@ -22,7 +22,7 @@
                                         <form action="">
                                             <div class="form-group d-flex">
                                                 <p class="pr-1 mt-3">Cantidad:</p>
-                                                <input type="number" name="numCantidad" @change="sumarizar()" id="numCantidad" v-model="cantidad" class="my-auto" min="1" value="1">
+                                                <input type="number" name="numCantidad" @change="sumarizar()" v-model="cantidad" class="my-auto numCantidad" min="1" value="1">
                                             </div>
                                         </form>
                                     </div>
@@ -55,7 +55,7 @@ export default {
 }
 </script>
 <style scoped>
-    #numCantidad{
+    .numCantidad{
         width: 50px !important;
         height: 30px !important;
         border: none;

@@ -17,33 +17,6 @@ i{
 
 
 /*footer*/
-.f-foot{
-    position: relative;
-    bottom: 0;
-    background-color: #FF3B3BCC;
-    padding: 20px;
-    margin-top: 100px;
-}
-.f-horarios, .f-redes,.f-enlaces{
-    color:white;
-    text-align: center;
-}
-
-.f-icon{
-    font-size: 35px;
-    padding: 15px 20px;
-    cursor: pointer;
-}
-.f-enlaces table a{
-    text-decoration: none;
-    color: white;
-}
-.f-enlaces table td{
-    padding: 5px 0;
-}
-.f-foot table{
-    font-size: 22px;
-}
 
 /*barra de busqueda*/
 

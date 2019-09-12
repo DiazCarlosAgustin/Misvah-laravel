@@ -25,6 +25,9 @@ window.Vue = require('vue');
     Vue.component('navbar', require('./components/ClientComponents/Menu/menu.vue').default);
     Vue.component('menu-categoria', require('./components/ClientComponents/Menu/categoriaMenu.vue').default);
     Vue.component('menu-item-categoria', require('./components/ClientComponents/Menu/itemCategoriaMenu.vue').default);
+    
+    // footer de la pagina del cliente
+    Vue.component('footer-cliente', require('./components/ClientComponents/footer/clienteFooter.vue').default);
 
     // Componente de carrito
     Vue.component('carrito', require('./components/ClientComponents/Cart/carrito.vue').default);

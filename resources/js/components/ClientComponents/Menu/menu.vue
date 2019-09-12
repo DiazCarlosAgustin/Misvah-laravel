@@ -24,7 +24,7 @@
                      @click.native="clickMouse" @click="clickMouse">
                     CATEGORIAS
                 </a>
-                <a href="/" class="nav-item nav-link">CONTACTO</a>
+                <a href="/contacto" class="nav-item nav-link">CONTACTO</a>
                 <a href="/acceder" class="nav-item  nav-link xs-link d-xs-block d-lg-none">ACCEDER</a>
             </div>
             <div class="navbar-nav mx-auto text-center d-lg-flex d-none">
