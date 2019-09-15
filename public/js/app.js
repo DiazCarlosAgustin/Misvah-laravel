@@ -2646,13 +2646,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'carrito',
   data: function data() {
     return {
       bgColor: "#e91e63",
-      color: "white"
+      color: "white",
+      carrito: [{
+        id: 1,
+        nombre: 'producto 1',
+        precio: 200,
+        subtotal: 400,
+        imagen: 'https://via.placeholder.com/80.png',
+        color: 'https://via.placeholder.com/40x25/FF0000',
+        cantidad: 2
+      }, {
+        id: 2,
+        nombre: 'producto 2',
+        precio: 100,
+        subtotal: 100,
+        imagen: 'https://via.placeholder.com/80.png',
+        color: 'https://via.placeholder.com/40x25/FF0000',
+        cantidad: 1
+      }, {
+        id: 3,
+        nombre: 'producto 3',
+        precio: 140,
+        subtotal: 140,
+        imagen: 'https://via.placeholder.com/80.png',
+        color: 'https://via.placeholder.com/40x25/FF0000',
+        cantidad: 1
+      }, {
+        id: 4,
+        nombre: 'producto 4',
+        precio: 240,
+        subtotal: 480,
+        imagen: 'https://via.placeholder.com/80.png',
+        color: 'https://via.placeholder.com/40x25/FF0000',
+        cantidad: 2
+      }]
     };
+  },
+  methods: {
+    cantidad: function cantidad($id, $cantidad) {
+      this.carrito[$id].cantidad = $cantidad;
+      this.carrito[$id].subtotal = this.carrito[$id].precio * this.carrito[$id].cantidad;
+    },
+    eliminar: function eliminar($id) {
+      this.carrito.splice($id, 1);
+    }
   }
 });
 $(document).ready(function () {
@@ -2701,28 +2748,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'item-carrito',
+  props: ['producto'],
   data: function data() {
     return {
       cantidad: 1,
-      precio: 350,
-      total: 350
+      subtotal: 0
     };
   },
   methods: {
     sumarizar: function sumarizar() {
       this.total = this.precio * this.cantidad;
+    },
+    emitCantidad: function emitCantidad() {
+      this.$emit('Cantidad', this.producto.cantidad);
+    },
+    eliminar: function eliminar() {
+      this.$emit("Eliminar");
     }
   }
 });
@@ -8555,7 +8598,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.cart[data-v-360e53ac]{\n    position: absolute;\n    min-width: 450px;\n    max-width:500px;\n    width: 100%;\n    right: 100%;\n    z-index: 10000;\n    display: none;\n}\n.cart-active[data-v-360e53ac]{\n    position: absolute;\n    right: 0;\n    transition:ease-in-out 1.5s;\n    transition-duration:1s ; \n    margin-right: 30px;\n    display: block;\n}\n\n", ""]);
+exports.push([module.i, "\n.cart[data-v-360e53ac]{\n    position: absolute;\n    min-width: 450px;\n    max-width:500px;\n    width: 100%;\n    right: 100%;\n    z-index: 10000;\n    display: none;\n}\n.cart-active[data-v-360e53ac]{\n    position: absolute;\n    right: 0;\n    transition:ease-in-out 1.5s;\n    transition-duration:1s ; \n    margin-right: 30px;\n    display: block;\n}\n.item-carrito[data-v-360e53ac]{\n    border-top: 1px solid rgba(0, 0, 0, .1);\n    border-bottom: 1px solid rgba(0, 0, 0, .1);\n}\n.list-group[data-v-360e53ac]{\n    overflow: auto;\n    min-width: 45px;\n    max-height: 300px;\n    width: 100%;\n}\n.list-group[data-v-360e53ac]::-webkit-scrollbar {\n    width: 8px;     /* Tamaño del scroll en vertical */\n    height: 8px;    /* Tamaño del scroll en horizontal */\n}\n.list-group[data-v-360e53ac]::-webkit-scrollbar-thumb {\n    background: #ccc;\n    border-radius: 4px;\n}\n.list-group[data-v-360e53ac]::-webkit-scrollbar-thumb:hover {\n    background: #b3b3b3;\n    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);\n}\n.list-group[data-v-360e53ac]::-webkit-scrollbar-track:hover,\n.list-group[data-v-360e53ac]::-webkit-scrollbar-track:active {\n    background: #d4d4d4;\n}\n", ""]);
 
 // exports
 
@@ -8574,7 +8617,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.numCantidad[data-v-197cf258]{\n    width: 50px !important;\n    height: 30px !important;\n    border: none;\n}\n#txtCantidad[data-v-197cf258]{\n    width: 70px !important;\n}\n", ""]);
+exports.push([module.i, "\n.numCantidad[data-v-197cf258]{\n    width: 50px !important;\n    height: 30px !important;\n    border: none;\n}\n#txtCantidad[data-v-197cf258]{\n    width: 70px !important;\n}\n.container-producto[data-v-197cf258]{\n    display: grid;\n    grid-template-columns: 100px 1fr;\n}\n.img-producto[data-v-197cf258]{\n    grid-column: 1/2;\n    margin: 0 auto;\n}\n.desc-producto[data-v-197cf258]{\n    grid-column: 2/3;\n    display: grid;\n    grid-template-rows: 1fr 1fr 1fr;\n    grid-auto-columns: 100%;\n}\n.r-1[data-v-197cf258]{\n    display:grid;\n    grid-row: 1/2;\n    grid-template-rows: 1fr;\n    grid-template-columns: 90% 10%;\n}\n.r-2[data-v-197cf258]{\n    display:grid;\n    grid-row: 1/2;\n    grid-template-rows: 1fr;\n    grid-template-columns: 65% 35%;\n}\n.titulo-producto[data-v-197cf258]{\n    grid-row: 1/2;\n    grid-column: 1/2;\n}\n.eliminar-producto[data-v-197cf258]{\n    grid-row: 1/2;\n    grid-column: 2/2;\n}\n.color-producto[data-v-197cf258]{\n    grid-row: 2/3;\n    margin-left: 1em;\n    grid-column: 1/2;\n}\n.color-producto span img[data-v-197cf258]{\n    margin-left: 1em;\n}\n.cantidad-producto[data-v-197cf258]{\n    grid-row: 1/2;\n    margin-left: 1em;\n    grid-column: 1/2;\n}\n.subtotal[data-v-197cf258]{\n    grid-row: 1/2;\n    grid-column: 2/2;\n}\n", ""]);
 
 // exports
 
@@ -44153,34 +44196,47 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c(
-          "ul",
+          "div",
           { staticClass: "list-group  text-dark list-group-flush" },
-          [
-            _c("item-carrito"),
-            _vm._v(" "),
-            _c("item-carrito"),
-            _vm._v(" "),
-            _c("item-carrito")
-          ],
+          _vm._l(_vm.carrito, function(producto, index) {
+            return _c("item-carrito", {
+              key: producto.id,
+              staticClass: "item-carrito",
+              attrs: { producto: producto },
+              on: {
+                Cantidad: function($event) {
+                  var i = arguments.length,
+                    argsArray = Array(i)
+                  while (i--) argsArray[i] = arguments[i]
+                  return _vm.cantidad.apply(void 0, [index].concat(argsArray))
+                },
+                Eliminar: function($event) {
+                  return _vm.eliminar(index)
+                }
+              }
+            })
+          }),
           1
         )
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "card-fother d-flex justify-content-center mb-0" },
-        [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-block",
-              style: { backgroundColor: _vm.bgColor, color: _vm.color },
-              attrs: { href: "/carrito" }
-            },
-            [_vm._v("Detalles")]
-          )
-        ]
-      )
+      _c("div", { staticClass: "card-fother p-0 mb-0" }, [
+        _c(
+          "a",
+          { staticClass: "btn btn-block col", attrs: { href: "/carrito" } },
+          [_vm._v("Detalles")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-block col",
+            style: { backgroundColor: _vm.bgColor, color: _vm.color },
+            attrs: { href: "" }
+          },
+          [_vm._v("Comprar")]
+        )
+      ])
     ])
   ])
 }
@@ -44190,10 +44246,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "d-flex text-dark card-title w-100" }, [
-      _c("h5", [_vm._v("Mi carrito")]),
+      _c("h4", [_vm._v("Mi carrito")]),
       _vm._v(" "),
       _c("div", { staticClass: "ml-auto" }, [
-        _c("i", { staticClass: "fas fa-times" })
+        _c("i", { staticClass: "fas fa-times fa-2" })
       ])
     ])
   }
@@ -44219,96 +44275,80 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("li", { staticClass: "list-group-item px-0 border-bottom" }, [
-      _c("div", { staticClass: "card-product" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12 w-100 d-flex h-100" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-8" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c("div", { staticClass: "detalles w-100 h-100 d-flex " }, [
-                _c("div", { staticClass: "d-flex mr-auto" }, [
-                  _c("form", { attrs: { action: "" } }, [
-                    _c("div", { staticClass: "form-group d-flex" }, [
-                      _c("p", { staticClass: "pr-1 mt-3" }, [
-                        _vm._v("Cantidad:")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.cantidad,
-                            expression: "cantidad"
-                          }
-                        ],
-                        staticClass: "my-auto numCantidad",
-                        attrs: {
-                          type: "number",
-                          name: "numCantidad",
-                          min: "1",
-                          value: "1"
-                        },
-                        domProps: { value: _vm.cantidad },
-                        on: {
-                          change: function($event) {
-                            return _vm.sumarizar()
-                          },
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.cantidad = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "d-flex ml-auto" }, [
-                  _c("p", { staticClass: " mt-3" }, [
-                    _vm._v("$" + _vm._s(_vm.total))
-                  ])
-                ])
-              ])
+  return _c("div", { staticClass: "container-producto" }, [
+    _c("div", { staticClass: "img-producto my-auto" }, [
+      _c("img", { attrs: { src: _vm.producto.imagen } })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "des-producto" }, [
+      _c("div", { staticClass: "r-1" }, [
+        _c(
+          "div",
+          {
+            staticClass: "eliminar-producto my-auto text-center",
+            on: { click: _vm.eliminar }
+          },
+          [_c("i", { staticClass: "fas fa-trash-alt" })]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "titulo-producto text-center" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.producto.nombre))])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "color-producto d-flex align-middle" }, [
+        _c("h6", { staticClass: "text-muted " }, [
+          _vm._v("Color: "),
+          _c("span", [_c("img", { attrs: { src: _vm.producto.color } })])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "r-2" }, [
+        _c("div", { staticClass: "cantidad-producto d-flex align-middle" }, [
+          _c("h6", { staticClass: "text-muted " }, [
+            _vm._v("Cantidad: "),
+            _c("span", [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.producto.cantidad,
+                    expression: "producto.cantidad"
+                  }
+                ],
+                staticClass: "numCantidad text-right",
+                attrs: {
+                  type: "number",
+                  name: "txtCantidad",
+                  id: "txtCantidad",
+                  min: "1"
+                },
+                domProps: { value: _vm.producto.cantidad },
+                on: {
+                  change: function($event) {
+                    return _vm.emitCantidad()
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.producto, "cantidad", $event.target.value)
+                  }
+                }
+              })
             ])
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "subtotal text-right pr-2" }, [
+          _c("h6", [_vm._v("$" + _vm._s(_vm.producto.subtotal))])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4" }, [
-      _c("img", {
-        attrs: { src: "https://via.placeholder.com/75x75.png", alt: "" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex" }, [
-      _c("div", { staticClass: "name-producto d-block text-center" }, [
-        _c("h5", [_vm._v("Nombre del producto")])
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "ml-auto" }, [
-        _c("i", { staticClass: "fas fa-trash-alt" })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -63295,8 +63335,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Agustin Diaz\Documents\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Agustin Diaz\Documents\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
