@@ -6,14 +6,14 @@
             <div class="card-body row">
                 <div class="col-12">
                     <div class="row h-100">
-                        <div class="col-10">
+                        <div class="col-9">
                             <div class="row">
                                 <h6 class="col-12">Nombre del producto</h6>
                                 <h6 class="col-12">$450.50</h6>
                             </div>
                         </div>
-                        <div class="col-2 d-flex p-0">
-                            <i class="material-icons fav-xs mt-0 align-middle " style="font-size: 2em" :class="[color]" @click.prevent="favorito()">{{icono}}</i>
+                        <div class="col-3 d-flex p-0">
+                            <i class="material-icons fav-xs mt-0 align-middle mx-auto" style="font-size: 2em" :class="[color]" @click.prevent="favorito()">{{icono}}</i>
                         </div>
                     </div>
                 </div>

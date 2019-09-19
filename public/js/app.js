@@ -3836,37 +3836,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'productos',
+  props: [],
+  data: function data() {
+    return {
+      col: "col-12"
+    };
+  },
+  methods: {
+    cambiarClase: function cambiarClase() {
+      if (window.innerWidth > 380 && window.innerWidth < 575) {
+        this.col = 'col-6';
+      } else {
+        this.col = 'col-12';
+      }
+    }
+  },
+  created: function created() {
+    window.addEventListener('resize', this.cambiarClase);
+  }
+});
 
 /***/ }),
 
@@ -46131,11 +46121,12 @@ var render = function() {
           _c("div", { staticClass: "row h-100" }, [
             _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "col-2 d-flex p-0" }, [
+            _c("div", { staticClass: "col-3 d-flex p-0" }, [
               _c(
                 "i",
                 {
-                  staticClass: "material-icons fav-xs mt-0 align-middle ",
+                  staticClass:
+                    "material-icons fav-xs mt-0 align-middle mx-auto",
                   class: [_vm.color],
                   staticStyle: { "font-size": "2em" },
                   on: {
@@ -46159,7 +46150,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-10" }, [
+    return _c("div", { staticClass: "col-9" }, [
       _c("div", { staticClass: "row" }, [
         _c("h6", { staticClass: "col-12" }, [_vm._v("Nombre del producto")]),
         _vm._v(" "),
@@ -46189,91 +46180,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row d-flex justify-content-center" }, [
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2 " },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 my-2" },
-      [_c("producto", { staticClass: "mx-auto" })],
-      1
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "row d-flex justify-content-center" },
+    [
+      _c("producto", {
+        staticClass: "col-sm-6 col-md-4 col-lg-3",
+        class: _vm.col
+      }),
+      _vm._v(" "),
+      _c("producto", {
+        staticClass: "col-sm-6 col-md-4 col-lg-3",
+        class: _vm.col
+      }),
+      _vm._v(" "),
+      _c("producto", {
+        staticClass: "col-sm-6 col-md-4 col-lg-3",
+        class: _vm.col
+      }),
+      _vm._v(" "),
+      _c("producto", {
+        staticClass: "col-sm-6 col-md-4 col-lg-3",
+        class: _vm.col
+      }),
+      _vm._v(" "),
+      _c("producto", {
+        staticClass: "col-sm-6 col-md-4 col-lg-3",
+        class: _vm.col
+      }),
+      _vm._v(" "),
+      _c("producto", {
+        staticClass: "col-sm-6 col-md-4 col-lg-3",
+        class: _vm.col
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -63335,8 +63277,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Agustin Diaz\Documents\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Agustin Diaz\Documents\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
