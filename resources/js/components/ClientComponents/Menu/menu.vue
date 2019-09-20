@@ -10,7 +10,7 @@
                     <i class="material-icons" id="i-xs-carrito">shopping_cart</i>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
-                    aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation" @click="tapVolverMenu">
                     <span class="dark-blue-text">
                         <i class="fas fa-bars fa-1x"></i>
                     </span> 
@@ -94,13 +94,14 @@
                         :key="producto.id"
                         :producto="producto"
                         class="text-center" :class="claseProducto"
-                        />
+                    />
                 </div>
             </div>
         </div>
     </nav>
 </template>
 <script>
+import { log } from 'util'
 export default {
     props:[],
     data(){
@@ -223,6 +224,10 @@ export default {
         },
         tapVolverMenu: function(){
             this.claseMenuXs = 'd-none'
+            this.claseProducto = 'd-none'
+            this.classCat = 'd-grid'
+            this.claseVolver = 'd-grid'
+            this.claseVolverProducto = 'd-none'
         },
         tapCategoria: function(){        
             if(window.innerWidth <= 991){

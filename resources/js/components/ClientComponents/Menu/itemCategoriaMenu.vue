@@ -1,5 +1,5 @@
 <template>
-    <a href=""><span>{{producto.nombre}}</span></a>
+    <a href="" v-if="producto != null"><span>{{producto.nombre}}</span></a>
 </template>
 <script>
 export default {

@@ -2985,18 +2985,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'destacados'
+  name: 'destacados',
+  data: function data() {
+    return {
+      productos: [{
+        id: 1,
+        nombre: "Producto 1",
+        id_categoria: "1",
+        precio: 233
+      }, {
+        id: 2,
+        nombre: "Producto 2",
+        id_categoria: "1",
+        precio: 2343
+      }, {
+        id: 3,
+        nombre: "Producto 3",
+        id_categoria: "1",
+        precio: 213
+      }, {
+        id: 4,
+        nombre: "Producto 4",
+        id_categoria: "1",
+        precio: 2323
+      }, {
+        id: 5,
+        nombre: "Producto 5",
+        id_categoria: "1",
+        precio: 263
+      }, {
+        id: 6,
+        nombre: "Producto 6",
+        id_categoria: "1",
+        precio: 253
+      }, {
+        id: 7,
+        nombre: "Producto 7",
+        id_categoria: "1",
+        precio: 223
+      }, {
+        id: 8,
+        nombre: "Producto 8",
+        id_categoria: "1",
+        precio: 863
+      }, {
+        id: 9,
+        nombre: "Producto 9",
+        id_categoria: "1",
+        precio: 293
+      }, {
+        id: 10,
+        nombre: "Producto 10",
+        id_categoria: "1",
+        precio: 313
+      }]
+    };
+  }
 });
 
 /***/ }),
@@ -3099,6 +3144,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! util */ "./node_modules/util/util.js");
+/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3201,6 +3248,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
   data: function data() {
@@ -3304,6 +3352,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     tapVolverMenu: function tapVolverMenu() {
       this.claseMenuXs = 'd-none';
+      this.claseProducto = 'd-none';
+      this.classCat = 'd-grid';
+      this.claseVolver = 'd-grid';
+      this.claseVolverProducto = 'd-none';
     },
     tapCategoria: function tapCategoria() {
       if (window.innerWidth <= 991) {
@@ -3793,6 +3845,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'destacado',
+  props: ['producto'],
   data: function data() {
     return {
       estado: false,
@@ -3834,14 +3887,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productos',
   props: [],
   data: function data() {
     return {
-      col: "col-12"
+      col: "col-12",
+      productos: [{
+        id: 1,
+        nombre: "Producto 1",
+        id_categoria: "1",
+        precio: 233
+      }, {
+        id: 2,
+        nombre: "Producto 2",
+        id_categoria: "1",
+        precio: 2343
+      }, {
+        id: 3,
+        nombre: "Producto 3",
+        id_categoria: "1",
+        precio: 213
+      }, {
+        id: 4,
+        nombre: "Producto 4",
+        id_categoria: "1",
+        precio: 2323
+      }, {
+        id: 5,
+        nombre: "Producto 5",
+        id_categoria: "1",
+        precio: 263
+      }, {
+        id: 6,
+        nombre: "Producto 6",
+        id_categoria: "1",
+        precio: 253
+      }, {
+        id: 7,
+        nombre: "Producto 7",
+        id_categoria: "1",
+        precio: 223
+      }, {
+        id: 8,
+        nombre: "Producto 8",
+        id_categoria: "1",
+        precio: 863
+      }, {
+        id: 9,
+        nombre: "Producto 9",
+        id_categoria: "1",
+        precio: 293
+      }, {
+        id: 10,
+        nombre: "Producto 10",
+        id_categoria: "1",
+        precio: 313
+      }]
     };
   },
   methods: {
@@ -8683,7 +8785,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*estilo de swiper.js*/\n.swiper-container[data-v-7790b6af] {\r\n        width: auto ;\r\n        height: auto;\n}\n.swiper-slide[data-v-7790b6af] {\r\n        font-size: 18px;\r\n        /* Center slide text vertically */\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\n}\n.d-destacados[data-v-7790b6af]{\r\n        position: relative;\r\n        height: 100%;\n}\n.Titulo-destacados[data-v-7790b6af]{\r\n        font-size: 45px;\r\n        text-align: center;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*estilo de swiper.js*/\n.swiper-container[data-v-7790b6af] {\r\n        width: auto ;\r\n        height: auto;\n}\n.swiper-slide[data-v-7790b6af] {\r\n        font-size: 18px;\r\n        /* Center slide text vertically */\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\n}\n.d-destacados[data-v-7790b6af]{\r\n        position: relative;\r\n        height: 100%;\n}\n.Titulo-destacados[data-v-7790b6af]{\r\n        font-size: 45px;\r\n        text-align: center;\n}\r\n", ""]);
 
 // exports
 
@@ -8759,7 +8861,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*estilo de los links del menu*/\n.collapse[data-v-007d1acc]{\n    height: auto;\n    max-height: 100vh;\n}\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    transition: 1.5s;\n    transition-duration:1s ;\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*estilo de los links del menu*/\n.collapse[data-v-007d1acc]{\n    height: auto;\n    max-height: 100vh;\n}\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    transition: 1.5s;\n    transition-duration:1s ;\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
 
 // exports
 
@@ -8854,7 +8956,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* style v.2 */\na[data-v-75e1eb8f]{\n    text-decoration: none;\n    color:black;\n}\n/* style v.1 */\n/* .s-descuento{\n    position: absolute;\n    right: 0;\n    top: 40px;\n}\n.s-stock{\n    position: absolute;\n    left: 0;\n    top: 40px;\n} */\n.card-body[data-v-75e1eb8f]{\n    position: relative;\n}\n.fav[data-v-75e1eb8f]{\n    position: absolute;\n    top: 0;\n}/*\n.fav i{\n    position: absolute; \n    left: 50%;\n    top: 50%;\n    transform: translate(-50%,-50%);\n} */\n/*\n.card{\n    max-width: 300px;\n}\n.btn-ver{\n    border: none;\n    box-shadow: none;\n} */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* style v.2 */\na[data-v-75e1eb8f]{\n    text-decoration: none;\n    color:black;\n}\n/* style v.1 */\n/* .s-descuento{\n    position: absolute;\n    right: 0;\n    top: 40px;\n}\n.s-stock{\n    position: absolute;\n    left: 0;\n    top: 40px;\n} */\n.card-body[data-v-75e1eb8f]{\n    position: relative;\n}\n.fav[data-v-75e1eb8f]{\n    position: absolute;\n    top: 0;\n}/*\n.fav i{\n    position: absolute; \n    left: 50%;\n    top: 50%;\n    transform: translate(-50%,-50%);\n} */\n/*\n.card{\n    max-width: 300px;\n}\n.btn-ver{\n    border: none;\n    box-shadow: none;\n} */\n", ""]);
 
 // exports
 
@@ -44751,15 +44853,19 @@ var render = function() {
           "swiper-container swiper-destacados  justify-content-center"
       },
       [
-        _c("div", { staticClass: "swiper-wrapper" }, [
-          _c("div", { staticClass: "swiper-slide" }, [_c("producto")], 1),
-          _vm._v(" "),
-          _c("div", { staticClass: "swiper-slide" }, [_c("producto")], 1),
-          _vm._v(" "),
-          _c("div", { staticClass: "swiper-slide" }, [_c("producto")], 1),
-          _vm._v(" "),
-          _c("div", { staticClass: "swiper-slide" }, [_c("producto")], 1)
-        ]),
+        _c(
+          "div",
+          { staticClass: "swiper-wrapper" },
+          _vm._l(_vm.productos, function(producto) {
+            return _c(
+              "div",
+              { key: producto.id, staticClass: "swiper-slide" },
+              [_c("producto", { attrs: { producto: producto } })],
+              1
+            )
+          }),
+          0
+        ),
         _vm._v(" "),
         _c("div", {
           staticClass:
@@ -44894,9 +45000,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("a", { attrs: { href: "" } }, [
-    _c("span", [_vm._v(_vm._s(_vm.producto.nombre))])
-  ])
+  return _vm.producto != null
+    ? _c("a", { attrs: { href: "" } }, [
+        _c("span", [_vm._v(_vm._s(_vm.producto.nombre))])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -44927,7 +45035,44 @@ var render = function() {
       attrs: { id: "menu" }
     },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "d-flex d-lg-none w-100" }, [
+        _c(
+          "a",
+          {
+            staticClass:
+              "navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde nav-item",
+            attrs: { href: "/" }
+          },
+          [_vm._v("MISVHA")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: " d-xs-flex d-lg-none ml-auto" }, [
+          _c(
+            "i",
+            { staticClass: "material-icons", attrs: { id: "i-xs-buscar" } },
+            [_vm._v("search")]
+          ),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "navbar-toggler",
+              attrs: {
+                type: "button",
+                "data-toggle": "collapse",
+                "data-target": "#navbarMenu",
+                "aria-controls": "navbarMenu",
+                "aria-expanded": "false",
+                "aria-label": "Toggle navigation"
+              },
+              on: { click: _vm.tapVolverMenu }
+            },
+            [_vm._m(1)]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -44977,7 +45122,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _c(
             "div",
@@ -44995,7 +45140,7 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "nav-item" },
-                [_vm._m(2), _vm._v(" "), _c("carrito")],
+                [_vm._m(3), _vm._v(" "), _c("carrito")],
                 1
               ),
               _vm._v(" "),
@@ -45012,7 +45157,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(3),
+      _vm._m(4),
       _vm._v(" "),
       _vm.pantalla > 991
         ? _c(
@@ -45075,7 +45220,7 @@ var render = function() {
                       class: _vm.claseVolver,
                       on: { click: _vm.tapVolverMenu }
                     },
-                    [_vm._m(4)]
+                    [_vm._m(5)]
                   ),
                   _vm._v(" "),
                   _vm._l(_vm.categorias, function(categoria) {
@@ -45139,54 +45284,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex d-lg-none w-100" }, [
-      _c(
-        "a",
-        {
-          staticClass:
-            "navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde nav-item",
-          attrs: { href: "/" }
-        },
-        [_vm._v("MISVHA")]
-      ),
+    return _c("a", { attrs: { href: "/carrito" } }, [
+      _c("span", { staticClass: "s-carrito bg-danger" }),
       _vm._v(" "),
-      _c("div", { staticClass: " d-xs-flex d-lg-none ml-auto" }, [
-        _c(
-          "i",
-          { staticClass: "material-icons", attrs: { id: "i-xs-buscar" } },
-          [_vm._v("search")]
-        ),
-        _vm._v(" "),
-        _c("a", { attrs: { href: "/carrito" } }, [
-          _c("span", { staticClass: "s-carrito bg-danger" }),
-          _vm._v(" "),
-          _c(
-            "i",
-            { staticClass: "material-icons", attrs: { id: "i-xs-carrito" } },
-            [_vm._v("shopping_cart")]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "navbar-toggler",
-            attrs: {
-              type: "button",
-              "data-toggle": "collapse",
-              "data-target": "#navbarMenu",
-              "aria-controls": "navbarMenu",
-              "aria-expanded": "false",
-              "aria-label": "Toggle navigation"
-            }
-          },
-          [
-            _c("span", { staticClass: "dark-blue-text" }, [
-              _c("i", { staticClass: "fas fa-bars fa-1x" })
-            ])
-          ]
-        )
-      ])
+      _c(
+        "i",
+        { staticClass: "material-icons", attrs: { id: "i-xs-carrito" } },
+        [_vm._v("shopping_cart")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "dark-blue-text" }, [
+      _c("i", { staticClass: "fas fa-bars fa-1x" })
     ])
   },
   function() {
@@ -46119,7 +46232,17 @@ var render = function() {
       _c("div", { staticClass: "card-body row" }, [
         _c("div", { staticClass: "col-12" }, [
           _c("div", { staticClass: "row h-100" }, [
-            _vm._m(0),
+            _c("div", { staticClass: "col-9" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("h6", { staticClass: "col-12" }, [
+                  _vm._v(_vm._s(_vm.producto.nombre))
+                ]),
+                _vm._v(" "),
+                _c("h6", { staticClass: "col-12" }, [
+                  _vm._v("$" + _vm._s(_vm.producto.precio))
+                ])
+              ])
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-3 d-flex p-0" }, [
               _c(
@@ -46145,20 +46268,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-9" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("h6", { staticClass: "col-12" }, [_vm._v("Nombre del producto")]),
-        _vm._v(" "),
-        _c("h6", { staticClass: "col-12" }, [_vm._v("$450.50")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46183,37 +46293,14 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "row d-flex justify-content-center" },
-    [
-      _c("producto", {
+    _vm._l(_vm.productos, function(producto) {
+      return _c("producto", {
+        key: producto.id,
         staticClass: "col-sm-6 col-md-4 col-lg-3",
-        class: _vm.col
-      }),
-      _vm._v(" "),
-      _c("producto", {
-        staticClass: "col-sm-6 col-md-4 col-lg-3",
-        class: _vm.col
-      }),
-      _vm._v(" "),
-      _c("producto", {
-        staticClass: "col-sm-6 col-md-4 col-lg-3",
-        class: _vm.col
-      }),
-      _vm._v(" "),
-      _c("producto", {
-        staticClass: "col-sm-6 col-md-4 col-lg-3",
-        class: _vm.col
-      }),
-      _vm._v(" "),
-      _c("producto", {
-        staticClass: "col-sm-6 col-md-4 col-lg-3",
-        class: _vm.col
-      }),
-      _vm._v(" "),
-      _c("producto", {
-        staticClass: "col-sm-6 col-md-4 col-lg-3",
-        class: _vm.col
+        class: _vm.col,
+        attrs: { producto: producto }
       })
-    ],
+    }),
     1
   )
 }

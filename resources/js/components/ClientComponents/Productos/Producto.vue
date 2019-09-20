@@ -8,8 +8,8 @@
                     <div class="row h-100">
                         <div class="col-9">
                             <div class="row">
-                                <h6 class="col-12">Nombre del producto</h6>
-                                <h6 class="col-12">$450.50</h6>
+                                <h6 class="col-12">{{producto.nombre}}</h6>
+                                <h6 class="col-12">${{producto.precio}}</h6>
                             </div>
                         </div>
                         <div class="col-3 d-flex p-0">
@@ -54,6 +54,7 @@
 <script scoped>
 export default {
     name:'destacado',
+    props:['producto'],
     data() {
         return{
             estado: false,
