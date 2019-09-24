@@ -30,7 +30,7 @@ export default {
 </script>
 <style scoped>
     #fondo{
-        height: 90vh;
+        height: calc(100vh - 60px);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

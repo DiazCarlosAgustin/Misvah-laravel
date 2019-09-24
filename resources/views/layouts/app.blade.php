@@ -28,7 +28,6 @@
             @section('menu')
                 {{--Menu--}}
                 <navbar></navbar>
-
                 @yield('fondo')
             @show
                 

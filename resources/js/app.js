@@ -51,6 +51,7 @@ window.Vue = require('vue');
     Vue.component('productos', require('./components/ClientComponents/Productos/Productos.vue').default);
     Vue.component('paginacion', require('./components/paginacion.vue').default);
     // componente del producto
+    Vue.component('alert', require('./components/alertComponent.vue').default);
     Vue.component('producto', require('./components/ClientComponents/Productos/Producto.vue').default);
 // Pagina producto
     Vue.component('foto-producto', require('./components/ClientComponents/Pagina-Producto/FotosProducto.vue').default);

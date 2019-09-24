@@ -74,18 +74,18 @@ export default {
                     id_categoria:"1",
                     precio:313
                 },
-            ]
+            ],
         }
     },
     methods:{
         cambiarClase:function(){
-            if(window.innerWidth > 380 && window.innerWidth < 575){
+            if(window.innerWidth > 375 && window.innerWidth < 575){
                 this.col = 'col-6'
             }
             else{
                 this.col = 'col-12'
             }
-        }
+        },
     },
     created(){
         window.addEventListener('resize',this.cambiarClase)
@@ -93,6 +93,5 @@ export default {
 }
 </script>
 <style scoped>
-    
 </style>
 

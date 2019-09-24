@@ -16,5 +16,14 @@
         <div class="row mt-4 mb-0">
             <paginacion></paginacion>
         </div>
+        
     </div>
 </template>
+<script>
+export default {
+    data(){
+        return{
+        }
+    }
+}
+</script>
