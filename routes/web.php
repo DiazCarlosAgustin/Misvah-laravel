@@ -77,3 +77,6 @@ Route::get('/admin/ventas',function(){
 Route::get('/admin/elementos',function(){
    return view('admin.ElementsUI');
 });
+Route::get('/admin/ventas-local',function(){
+   return view('admin.ventasLocal');
+});

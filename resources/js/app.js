@@ -110,7 +110,11 @@ window.Vue = require('vue');
         // Generar cupon
         Vue.component('generar-cupon-descuento', require('./components/AdminComponent/Producto/Editar/Cupon/generarCuponDescuento.vue').default);
         // Oferta
-        Vue.component('generar-oferta', require('./components/AdminComponent/Producto/Editar/Oferta/generarOferta.vue').default);
+        Vue.component('generar-oferta', require('./components/AdminComponent/Producto/Editar/Oferta/generarOferta.vue').default);   
+        // Pagina de ventas
+        Vue.component('pagina-ventas-local', require('./components/AdminComponent/ventas-local/paginaVentasLocal.vue').default);
+        Vue.component('producto-local', require('./components/AdminComponent/ventas-local/productoLocal.vue').default);
+        Vue.component('color-local', require('./components/AdminComponent/ventas-local/color-local.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
