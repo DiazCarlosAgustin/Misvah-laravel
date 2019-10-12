@@ -1,39 +1,56 @@
 <template>
     <tr class=" align-middle border-bottom">
-        <td class="align-middle"><img src="https://via.placeholder.com/75x75.png" alt=""></td>
-        <td class="align-middle"><h6>Nombre del producto</h6></td>
+        <td class="align-middle">
+            <img :src="producto.imgProducto" alt="">
+        </td>
+        <td class="align-middle">
+            <h6>{{producto.producto}}</h6>
+        </td>
         <td class="align-middle ">
             <form action="">
-                <input type="number" name="txtCantidad" id="txtCantidad" min="1" max="" @change="sumarizar()" value="1" v-model.number="cantidad" class="form-control text-center mx-auto">
+                <input type="number" @change="SubT" name="txtCantidad" id="txtCantidad" min="1" max="" v-model.number="producto.cantidad"  class="form-control text-center mx-auto">
             </form>
         </td>
         <td class="align-middle">
-            Rojo
+            <img :src="producto.color" alt="">
         </td>
-        <td class="align-middle"><h6>350</h6></td>
-        <td class="align-middle"><h6>{{total}}</h6></td>
         <td class="align-middle">
-            <button class="btn btn-danger btn-sm">
+            <h6>${{producto.precio}}</h6>
+        </td>
+        <td class="align-middle"><h6>{{subTotal}}</h6></td>
+        <td class="align-middle">
+            <button class="btn btn-danger btn-sm" @click="EliminarProducto()">
                 <i class="fas fa-trash"></i>
             </button>
         </td>
     </tr>
-</template>
+</template>Ñ
 <script>
     export default {
         name:'producto-carrito',
+        props:['producto'],
         data(){
             return{
-                precio: 350,
-                total: 350,
-                cantidad: 1
+                total:0
             }
         },
         methods:{
-            sumarizar: function(){
-                this.total = this.precio * this.cantidad
+            SubT: function(){
+                // emite la funcion SubTotal para modificar el SubTotal en el componente padre
+                this.$emit('subTotal',this.subTotal)
+            },
+            EliminarProducto: function(){
+                console.log(1);
+                this.$emit('EliminarProducto')
+                
             }
-        }
+        },
+        computed: {
+            subTotal:function(){
+                // calcula el subTotal de cada producto
+                return this.producto.subtotal = this.producto.cantidad * this.producto.precio
+            }
+        },
     }
 </script>
 <style scoped>

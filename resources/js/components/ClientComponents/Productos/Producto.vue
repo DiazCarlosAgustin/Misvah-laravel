@@ -8,8 +8,8 @@
                         <div class="row h-100">
                             <div class="col-9">
                                 <div class="row">
-                                    <h5 class="col-12">{{producto.nombre}}</h5>
-                                    <h6 class="col-12">${{producto.precio}}</h6>
+                                    <p class="col-12 h4 text-muted">${{producto.precio}}</p>
+                                    <h6 class="col-12 ">{{producto.nombre}}</h6>
                                 </div>
                             </div>
                             <div class="col-3 d-flex p-0">
@@ -56,36 +56,11 @@ export default {
         text-decoration: none;
         color:black;
     }
-    /* style v.1 */
-    /* .s-descuento{
-        position: absolute;
-        right: 0;
-        top: 40px;
-    }
-    .s-stock{
-        position: absolute;
-        left: 0;
-        top: 40px;
-    } */
     .card-body{
         position: relative;
     }
     .fav{
         position: absolute;
         top: 0;
-     }/*
-    .fav i{
-        position: absolute; 
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-    } */
-    /*
-    .card{
-        max-width: 300px;
-    }
-    .btn-ver{
-        border: none;
-        box-shadow: none;
-    } */
+     }
 </style>

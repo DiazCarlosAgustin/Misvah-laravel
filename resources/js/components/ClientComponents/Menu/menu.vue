@@ -89,12 +89,15 @@
                         Volver
                     </span>
                 </div>
-                <div>
+                <div v-if="productosCategoria > 0">
                     <menu-item-categoria v-for="producto in productosCategoria" 
                         :key="producto.id"
                         :producto="producto"
                         class="text-center" :class="claseProducto"
                     />
+                </div>
+                <div class="d-flex w-100 justify-content-center text-center" :class="claseProducto" v-if="productosCategoria <= 0">
+                    <p>No hay elementos.</p>
                 </div>
             </div>
         </div>

@@ -2913,6 +2913,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'carrito',
   data: function data() {
@@ -3064,18 +3067,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'producto-carrito',
+  props: ['producto'],
   data: function data() {
     return {
-      precio: 350,
-      total: 350,
-      cantidad: 1
+      total: 0
     };
   },
   methods: {
-    sumarizar: function sumarizar() {
-      this.total = this.precio * this.cantidad;
+    SubT: function SubT() {
+      // emite la funcion SubTotal para modificar el SubTotal en el componente padre
+      this.$emit('subTotal', this.subTotal);
+    },
+    EliminarProducto: function EliminarProducto() {
+      console.log(1);
+      this.$emit('EliminarProducto');
+    }
+  },
+  computed: {
+    subTotal: function subTotal() {
+      // calcula el subTotal de cada producto
+      return this.producto.subtotal = this.producto.cantidad * this.producto.precio;
     }
   }
 });
@@ -3143,10 +3162,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'web-carrito',
   data: function data() {
-    return {};
+    return {
+      productos: [{
+        id: 0,
+        producto: "producto 1",
+        imgProducto: "https://via.placeholder.com/75",
+        cantidad: 2,
+        precio: 450,
+        color: "https://via.placeholder.com/40/0000FF/808080",
+        subTotal: 900
+      }, {
+        id: 1,
+        producto: "producto 2",
+        imgProducto: "https://via.placeholder.com/75",
+        cantidad: 2,
+        precio: 350,
+        color: "https://via.placeholder.com/40/0000FF/808080",
+        subTotal: 700
+      }, {
+        id: 2,
+        producto: "producto 3",
+        imgProducto: "https://via.placeholder.com/75",
+        cantidad: 1,
+        precio: 150,
+        color: "https://via.placeholder.com/40/0000FF/808080",
+        subTotal: 150
+      }, {
+        id: 3,
+        producto: "producto 4",
+        imgProducto: "https://via.placeholder.com/75",
+        cantidad: 1,
+        precio: 750,
+        color: "https://via.placeholder.com/40/0000FF/808080",
+        subTotal: 750
+      }],
+      total: 0
+    };
+  },
+  methods: {
+    subTot: function subTot(i, sub) {
+      // modifica el subTotal de cada producto en el carrito
+      this.productos[i].subTotal = sub; // divide el subTotal por el precio unitario para calcular la cantidad
+
+      this.productos[i].cantidad = this.productos[i].subTotal / this.productos[i].precio;
+    },
+    Eliminar: function Eliminar(i) {
+      // elimina un producto del array
+      this.productos.splice(i, 1);
+    }
+  },
+  computed: {
+    totalCarrito: function totalCarrito() {
+      // recorre el array de productos en el carrito para sacar el total
+      this.total = 0;
+
+      for (i in this.productos) {
+        this.total = this.total + this.productos[i].subTotal;
+      }
+
+      return this.total;
+    }
   }
 });
 
@@ -3408,6 +3495,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! util */ "./node_modules/util/util.js");
 /* harmony import */ var util__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
 //
 //
 //
@@ -9195,7 +9285,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*estilo de los links del menu*/\n.collapse[data-v-007d1acc]{\n    height: auto;\n    max-height: 100vh;\n}\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    transition: 1.5s;\n    transition-duration:1s ;\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*estilo de los links del menu*/\n.collapse[data-v-007d1acc]{\n    height: auto;\n    max-height: 100vh;\n}\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    transition: 1.5s;\n    transition-duration:1s ;\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
 
 // exports
 
@@ -9290,7 +9380,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* style v.2 */\na[data-v-75e1eb8f]{\n    text-decoration: none;\n    color:black;\n}\n/* style v.1 */\n/* .s-descuento{\n    position: absolute;\n    right: 0;\n    top: 40px;\n}\n.s-stock{\n    position: absolute;\n    left: 0;\n    top: 40px;\n} */\n.card-body[data-v-75e1eb8f]{\n    position: relative;\n}\n.fav[data-v-75e1eb8f]{\n    position: absolute;\n    top: 0;\n}/*\n.fav i{\n    position: absolute; \n    left: 50%;\n    top: 50%;\n    transform: translate(-50%,-50%);\n} */\n/*\n.card{\n    max-width: 300px;\n}\n.btn-ver{\n    border: none;\n    box-shadow: none;\n} */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* style v.2 */\na[data-v-75e1eb8f]{\n    text-decoration: none;\n    color:black;\n}\n.card-body[data-v-75e1eb8f]{\n    position: relative;\n}\n.fav[data-v-75e1eb8f]{\n    position: absolute;\n    top: 0;\n}\n", ""]);
 
 // exports
 
@@ -44954,26 +45044,36 @@ var render = function() {
             })
           }),
           1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-fother p-0 mb-0" }, [
-        _c(
-          "a",
-          { staticClass: "btn btn-block col", attrs: { href: "/carrito" } },
-          [_vm._v("Detalles")]
         ),
         _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-block col",
-            style: { backgroundColor: _vm.bgColor, color: _vm.color },
-            attrs: { href: "" }
-          },
-          [_vm._v("Comprar")]
-        )
-      ])
+        _vm.carrito.length <= 0
+          ? _c(
+              "div",
+              { staticClass: "d-flex justify-content-center text-center" },
+              [_c("p", [_vm._v("No hay elementos en el carrito.")])]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _vm.carrito.length > 0
+        ? _c("div", { staticClass: "card-fother p-0 mb-0" }, [
+            _c(
+              "a",
+              { staticClass: "btn btn-block col", attrs: { href: "/carrito" } },
+              [_vm._v("Detalles")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-block col",
+                style: { backgroundColor: _vm.bgColor, color: _vm.color },
+                attrs: { href: "" }
+              },
+              [_vm._v("Comprar")]
+            )
+          ])
+        : _vm._e()
     ])
   ])
 }
@@ -45108,9 +45208,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("tr", { staticClass: " align-middle border-bottom" }, [
-    _vm._m(0),
+    _c("td", { staticClass: "align-middle" }, [
+      _c("img", { attrs: { src: _vm.producto.imgProducto, alt: "" } })
+    ]),
     _vm._v(" "),
-    _vm._m(1),
+    _c("td", { staticClass: "align-middle" }, [
+      _c("h6", [_vm._v(_vm._s(_vm.producto.producto))])
+    ]),
     _vm._v(" "),
     _c("td", { staticClass: "align-middle " }, [
       _c("form", { attrs: { action: "" } }, [
@@ -45119,8 +45223,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model.number",
-              value: _vm.cantidad,
-              expression: "cantidad",
+              value: _vm.producto.cantidad,
+              expression: "producto.cantidad",
               modifiers: { number: true }
             }
           ],
@@ -45130,19 +45234,16 @@ var render = function() {
             name: "txtCantidad",
             id: "txtCantidad",
             min: "1",
-            max: "",
-            value: "1"
+            max: ""
           },
-          domProps: { value: _vm.cantidad },
+          domProps: { value: _vm.producto.cantidad },
           on: {
-            change: function($event) {
-              return _vm.sumarizar()
-            },
+            change: _vm.SubT,
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.cantidad = _vm._n($event.target.value)
+              _vm.$set(_vm.producto, "cantidad", _vm._n($event.target.value))
             },
             blur: function($event) {
               return _vm.$forceUpdate()
@@ -45152,55 +45253,35 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("td", { staticClass: "align-middle" }, [_vm._v("\n        Rojo\n    ")]),
-    _vm._v(" "),
-    _vm._m(2),
-    _vm._v(" "),
     _c("td", { staticClass: "align-middle" }, [
-      _c("h6", [_vm._v(_vm._s(_vm.total))])
+      _c("img", { attrs: { src: _vm.producto.color, alt: "" } })
     ]),
     _vm._v(" "),
-    _vm._m(3)
+    _c("td", { staticClass: "align-middle" }, [
+      _c("h6", [_vm._v("$" + _vm._s(_vm.producto.precio))])
+    ]),
+    _vm._v(" "),
+    _c("td", { staticClass: "align-middle" }, [
+      _c("h6", [_vm._v(_vm._s(_vm.subTotal))])
+    ]),
+    _vm._v(" "),
+    _c("td", { staticClass: "align-middle" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger btn-sm",
+          on: {
+            click: function($event) {
+              return _vm.EliminarProducto()
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-trash" })]
+      )
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "align-middle" }, [
-      _c("img", {
-        attrs: { src: "https://via.placeholder.com/75x75.png", alt: "" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "align-middle" }, [
-      _c("h6", [_vm._v("Nombre del producto")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "align-middle" }, [
-      _c("h6", [_vm._v("350")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "align-middle" }, [
-      _c("button", { staticClass: "btn btn-danger btn-sm" }, [
-        _c("i", { staticClass: "fas fa-trash" })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45222,29 +45303,83 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-5" }, [
+  return _c("div", { staticClass: "container mt-4" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12 table-responsive" }, [
-        _c(
-          "table",
-          {
-            staticClass: "table text-center",
-            attrs: {
-              id: "dtHorizontalExample",
-              cellspacing: "0",
-              width: "100%"
-            }
-          },
-          [_vm._m(1), _vm._v(" "), _c("tbody", [_c("producto-carrito")], 1)]
-        ),
-        _vm._v(" "),
-        _vm._m(2)
-      ])
-    ]),
+    _vm.productos.length <= 0
+      ? _c("div", { staticClass: "row d-flex justify-content-center" }, [
+          _c("h4", { staticClass: "text-center my-5 py-5" }, [
+            _vm._v("No hay productos en el carrito.")
+          ])
+        ])
+      : _vm._e(),
     _vm._v(" "),
-    _vm._m(3)
+    _vm.productos.length > 0
+      ? _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12 table-responsive" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table text-center",
+                attrs: {
+                  id: "dtHorizontalExample",
+                  cellspacing: "0",
+                  width: "100%"
+                }
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.productos, function(producto, index) {
+                    return _c("producto-carrito", {
+                      key: producto.id,
+                      attrs: { producto: producto },
+                      on: {
+                        subTotal: function($event) {
+                          var i = arguments.length,
+                            argsArray = Array(i)
+                          while (i--) argsArray[i] = arguments[i]
+                          return _vm.subTot.apply(
+                            void 0,
+                            [index].concat(argsArray)
+                          )
+                        },
+                        EliminarProducto: function($event) {
+                          return _vm.Eliminar(index)
+                        }
+                      }
+                    })
+                  }),
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "total mr-5 border-left border-right border-bottom"
+              },
+              [
+                _c("div", { staticClass: "h5" }, [
+                  _vm._v("Total: "),
+                  _c("span", [_vm._v(" $" + _vm._s(_vm.totalCarrito))])
+                ])
+              ]
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.productos.length > 0
+      ? _c("div", { staticClass: "row d-flex justify-content-center  mt-2" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3)
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -45254,8 +45389,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row " }, [
       _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "titulo-carrito mt-5 pb-3" }, [
-          _vm._v("\n                Mi carrito\n            ")
+        _c("div", { staticClass: "titulo-carrito text-center" }, [
+          _c("h3", { staticClass: "text-center" }, [_vm._v("Mi carrito")])
         ])
       ])
     ])
@@ -45286,60 +45421,43 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "total mr-5 border-left border-right border-bottom" },
-      [
-        _c("div", { staticClass: "h5" }, [
-          _vm._v("Total: "),
-          _c("span", [_vm._v(" $350")])
+    return _c("div", { staticClass: "col-12 col-xs-12 col-md-6" }, [
+      _c("form", { attrs: { action: "" } }, [
+        _c("div", { staticClass: "input-group mt-2 form-group-sm" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              placeholder: "Cupon",
+              "aria-label": "Example text with button addon",
+              "aria-describedby": "button-addon1"
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group-prepend" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "btn btn-md btn-pink m-0 px-3 py-2 z-depth-0 waves-effect",
+                attrs: { type: "button", id: "button-addon1" }
+              },
+              [_vm._v("Cajear")]
+            )
+          ])
         ])
-      ]
-    )
+      ])
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "row d-flex justify-content-center  mt-2" },
-      [
-        _c("div", { staticClass: "col-12 col-xs-12 col-md-6" }, [
-          _c("form", { attrs: { action: "" } }, [
-            _c("div", { staticClass: "input-group mt-2 form-group-sm" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  placeholder: "Cupon",
-                  "aria-label": "Example text with button addon",
-                  "aria-describedby": "button-addon1"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-prepend" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "btn btn-md btn-pink m-0 px-3 py-2 z-depth-0 waves-effect",
-                    attrs: { type: "button", id: "button-addon1" }
-                  },
-                  [_vm._v("Cajear")]
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-12 col-xs-12 col-md-6" }, [
-          _c("button", { staticClass: "btn btn-pink float-right" }, [
-            _vm._v("Continuar con la compra")
-          ])
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "col-12 col-xs-12 col-md-6" }, [
+      _c("button", { staticClass: "btn btn-pink float-right" }, [
+        _vm._v("Continuar con la compra")
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -45906,18 +46024,32 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  _vm._l(_vm.productosCategoria, function(producto) {
-                    return _c("menu-item-categoria", {
-                      key: producto.id,
-                      staticClass: "text-center",
-                      class: _vm.claseProducto,
-                      attrs: { producto: producto }
-                    })
-                  }),
-                  1
-                )
+                _vm.productosCategoria > 0
+                  ? _c(
+                      "div",
+                      _vm._l(_vm.productosCategoria, function(producto) {
+                        return _c("menu-item-categoria", {
+                          key: producto.id,
+                          staticClass: "text-center",
+                          class: _vm.claseProducto,
+                          attrs: { producto: producto }
+                        })
+                      }),
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.productosCategoria <= 0
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex w-100 justify-content-center text-center",
+                        class: _vm.claseProducto
+                      },
+                      [_c("p", [_vm._v("No hay elementos.")])]
+                    )
+                  : _vm._e()
               ])
             ]
           )
@@ -46880,12 +47012,12 @@ var render = function() {
             _c("div", { staticClass: "row h-100" }, [
               _c("div", { staticClass: "col-9" }, [
                 _c("div", { staticClass: "row" }, [
-                  _c("h5", { staticClass: "col-12" }, [
-                    _vm._v(_vm._s(_vm.producto.nombre))
+                  _c("p", { staticClass: "col-12 h4 text-muted" }, [
+                    _vm._v("$" + _vm._s(_vm.producto.precio))
                   ]),
                   _vm._v(" "),
-                  _c("h6", { staticClass: "col-12" }, [
-                    _vm._v("$" + _vm._s(_vm.producto.precio))
+                  _c("h6", { staticClass: "col-12 " }, [
+                    _vm._v(_vm._s(_vm.producto.nombre))
                   ])
                 ])
               ]),

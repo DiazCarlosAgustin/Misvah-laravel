@@ -17,8 +17,11 @@
                         @Eliminar="eliminar(index)"
                     />
                 </div>
+                <div class="d-flex justify-content-center text-center" v-if="carrito.length <= 0">
+                    <p>No hay elementos en el carrito.</p>
+                </div>
             </div>
-            <div class="card-fother p-0 mb-0">
+            <div class="card-fother p-0 mb-0" v-if="carrito.length > 0">
                 <a href="/carrito" class="btn btn-block col">Detalles</a>
                 <a href="" class="btn btn-block col" :style="{backgroundColor:bgColor, color:color}">Comprar</a>
             </div>
