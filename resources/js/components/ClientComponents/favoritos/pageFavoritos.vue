@@ -9,8 +9,8 @@
             <div class="text-center mb-5 col-12" v-if="productos.length == 0">
                 <h5>No hay productos en favoritos</h5>
             </div>
-            <div class="d-flex col-12" v-else>
-                <div class="col-12 col-xs-6 col-md-4 col-lg-3" v-for="(producto,index) in productos" :key="producto.id">
+            <div class="d-flex row" v-else>
+                <div :class="col" class="col-xs-6 col-md-4 col-lg-3" v-for="(producto,index) in productos" :key="producto.id">
                     <producto :producto="producto"
                         @productoFavorito="favorito(index,...arguments)"
                     />
@@ -24,6 +24,7 @@ export default {
     name:'page-favoritos',
     data(){
         return{
+            col:'col-12',
             productos:[
                 {
                     id:1,
@@ -50,6 +51,14 @@ export default {
         }
     },
     methods: {
+        cambiarClase:function(){
+            if(window.innerWidth > 375 && window.innerWidth < 575){
+                this.col = 'col-6'
+            }
+            else{
+                this.col = 'col-12'
+            }
+        },
         favorito: function($id,$favorito){
             if (!$favorito) {
                 this.productos.splice($id,1)
@@ -59,5 +68,8 @@ export default {
             }
         }
     },
+    created(){
+        window.addEventListener('resize',this.cambiarClase)
+    }
 }
 </script>

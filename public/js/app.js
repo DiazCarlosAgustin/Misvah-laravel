@@ -4464,6 +4464,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'page-favoritos',
   data: function data() {
     return {
+      col: 'col-12',
       productos: [{
         id: 1,
         nombre: "Producto 1",
@@ -4486,6 +4487,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    cambiarClase: function cambiarClase() {
+      if (window.innerWidth > 375 && window.innerWidth < 575) {
+        this.col = 'col-6';
+      } else {
+        this.col = 'col-12';
+      }
+    },
     favorito: function favorito($id, $favorito) {
       if (!$favorito) {
         this.productos.splice($id, 1);
@@ -4493,6 +4501,9 @@ __webpack_require__.r(__webpack_exports__);
         this.productos[$id].favorito = $favorito;
       }
     }
+  },
+  created: function created() {
+    window.addEventListener('resize', this.cambiarClase);
   }
 });
 
@@ -47580,13 +47591,14 @@ var render = function() {
           ])
         : _c(
             "div",
-            { staticClass: "d-flex col-12" },
+            { staticClass: "d-flex row" },
             _vm._l(_vm.productos, function(producto, index) {
               return _c(
                 "div",
                 {
                   key: producto.id,
-                  staticClass: "col-12 col-xs-6 col-md-4 col-lg-3"
+                  staticClass: "col-xs-6 col-md-4 col-lg-3",
+                  class: _vm.col
                 },
                 [
                   _c("producto", {
