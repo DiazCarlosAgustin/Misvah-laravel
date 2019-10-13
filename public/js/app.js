@@ -3627,7 +3627,7 @@ __webpack_require__.r(__webpack_exports__);
       hover: false,
       claseMenu: 'd-none',
       claseMenuXs: 'd-none',
-      claseProducto: '',
+      claseProducto: 'd-none',
       classCat: 'd-grid',
       claseVolver: 'd-grid',
       claseVolverProducto: 'd-none',
@@ -46146,7 +46146,7 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm.productosCategoria > 0
+                _vm.productosCategoria.length > 0
                   ? _c(
                       "div",
                       _vm._l(_vm.productosCategoria, function(producto) {
@@ -46159,19 +46159,11 @@ var render = function() {
                       }),
                       1
                     )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.productosCategoria <= 0
-                  ? _c(
+                  : _c(
                       "div",
-                      {
-                        staticClass:
-                          "d-flex w-100 justify-content-center text-center",
-                        class: _vm.claseProducto
-                      },
-                      [_c("p", [_vm._v("No hay elementos.")])]
+                      { staticClass: "text-center", class: _vm.claseProducto },
+                      [_c("p", [_vm._v("No se encontraron productos")])]
                     )
-                  : _vm._e()
               ])
             ]
           )

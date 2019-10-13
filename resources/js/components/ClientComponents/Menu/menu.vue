@@ -89,15 +89,15 @@
                         Volver
                     </span>
                 </div>
-                <div v-if="productosCategoria > 0">
+                <div v-if="productosCategoria.length > 0">
                     <menu-item-categoria v-for="producto in productosCategoria" 
                         :key="producto.id"
                         :producto="producto"
                         class="text-center" :class="claseProducto"
                     />
                 </div>
-                <div class="d-flex w-100 justify-content-center text-center" :class="claseProducto" v-if="productosCategoria <= 0">
-                    <p>No hay elementos.</p>
+                <div v-else class="text-center" :class="claseProducto">
+                    <p>No se encontraron productos</p>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@ export default {
             hover: false,
            	claseMenu:'d-none',
            	claseMenuXs:'d-none',
-           	claseProducto: '',
+           	claseProducto: 'd-none',
             classCat:'d-grid',
             claseVolver: 'd-grid',
             claseVolverProducto: 'd-none',
