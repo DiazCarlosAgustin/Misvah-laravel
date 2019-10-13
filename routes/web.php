@@ -37,6 +37,9 @@ Route::get('/carrito',function(){
 Route::get('/producto/{id}',function(){
    return view('producto');
 });
+Route::get('/favoritos',function(){
+   return view('UserFavorito');
+});
 
 //rutas de administrador
 

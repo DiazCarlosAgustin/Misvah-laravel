@@ -67,6 +67,8 @@ window.Vue = require('vue');
     Vue.component('web-acceder', require('./components/ClientComponents/Pagina-acceder/web-acceder.vue').default);
     //Pagina registrarse
     Vue.component('web-registrarse', require('./components/ClientComponents/Pagina-registrarse/web-registrarse.vue').default);
+    //Pagina registrarse
+    Vue.component('page-favoritos', require('./components/ClientComponents/favoritos/pageFavoritos.vue').default);
  
     
 // Admin

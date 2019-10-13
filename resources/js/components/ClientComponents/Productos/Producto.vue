@@ -13,7 +13,17 @@
                                 </div>
                             </div>
                             <div class="col-3 d-flex p-0">
-                                <i class="material-icons fav-xs mt-0 align-middle mx-auto" style="font-size: 2em" :class="[color]" @click.prevent="favorito()">{{icono}}</i>
+                                <i class="material-icons fav-xs mt-0 align-middle mx-auto text-dark" 
+                                    style="font-size: 2em"
+                                    v-show="!producto.favorito"
+                                    @click.prevent="favorito()">favorite_border
+                                </i>
+                                
+                                <i class="material-icons fav-xs mt-0 align-middle mx-auto text-danger" 
+                                    style="font-size: 2em"
+                                    v-show="producto.favorito"
+                                    @click.prevent="favorito()">favorite
+                                </i>
                             </div>
                         </div>
                     </div>
@@ -28,24 +38,12 @@ export default {
     props:['producto'],
     data() {
         return{
-            estado: false,
-            tipo:'favorito',
-            color: 'text-dark',
-            icono: 'favorite_border',
-            nombre:''
         }
     },
      methods:{
          favorito: function(){
-             this.estado = !this.estado
-             if(this.estado){
-                 this.color = 'text-danger';
-                 this.icono = 'favorite'
-             }
-             else{
-                 this.color ='text-dark';
-                 this.icono = 'favorite_border'
-             }
+             this.producto.favorito = !this.producto.favorito
+             this.$emit('productoFavorito',this.producto.favorito)
          }
      }
 }
