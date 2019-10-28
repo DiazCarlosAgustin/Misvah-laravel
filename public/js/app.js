@@ -3510,8 +3510,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! util */ "./node_modules/util/util.js");
-/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3617,7 +3615,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
   data: function data() {
@@ -4193,16 +4190,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'destacado',
   props: ['producto'],
   data: function data() {
-    return {};
+    return {
+      favorite: false,
+      tipo: 'favorito'
+    };
   },
   methods: {
     favorito: function favorito() {
       this.producto.favorito = !this.producto.favorito;
+      this.favorite = true;
       this.$emit('productoFavorito', this.producto.favorito);
+    },
+    ocultar: function ocultar($estado) {
+      this.favorite = $estado;
     }
   }
 });
@@ -4608,24 +4626,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'alert',
-  prop: ['estado', 'tipo', 'producto'],
+  props: ['estado', 'tipo', 'producto'],
   data: function data() {
-    return {};
+    return {
+      type: this.tipo
+    };
   },
-  methods: {
-    estadoFalse: function estadoFalse() {
-      this.estado = false;
-    }
-  },
-  computed: {
-    visible: function visible() {
-      return setTimeout(this.estadoFalse, 3000);
-    }
+  methods: {},
+  computed: {},
+  mounted: function mounted() {
+    var vm = this;
+    var $element = document.getElementById("fav-".concat(this._uid));
+    $element.addEventListener('animationend', function () {
+      vm.$emit('ocultar', false);
+    });
   }
 });
 
@@ -9335,7 +9351,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#fondo[data-v-75a9bb40]{\n    height: calc(100vh - 60px);\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n    position: relative;\n}\n/*contenido que va dentro de la imagen*/\n.d-center[data-v-75a9bb40]{\n    position:absolute;\n    height: auto; \n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%,-50%);\n            transform: translate(-50%,-50%);\n    text-align: center;\n}\n.d-left[data-v-75a9bb40]{\n    position: absolute;\n    top: 50%;\n    left: 7%;\n    -webkit-transform: translate(-7%,-50%);\n            transform: translate(-7%,-50%);\n    text-align:left;\n}\n.d-right[data-v-75a9bb40]{\n    position:absolute;\n    top: 50%;\n    left: 95%;\n    -webkit-transform: translate(-95%,-50%);\n            transform: translate(-95%,-50%);\n    text-align: right !important;\n}\n.Titulo[data-v-75a9bb40]{\n    font-family: 'Cormorant Garamond', serif;\n    font-size: 6em;\n    padding: 0;\n    margin: 0;\n}\n.sub-titulo[data-v-75a9bb40]{\n    font-family: 'Cormorant Garamond', serif;\n    font-size: 3em;\n    margin-top: -35px;\n    margin-bottom: 20px;\n}\n.botones[data-v-75a9bb40]{\n    position: absolute;\n    left: 0;\n    -webkit-transform: translateX(2%);\n            transform: translateX(2%);\n}\n.botones .btn[data-v-75a9bb40]{\n    margin: 0 2px;\n}\n.botones[data-v-75a9bb40] {\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n}\n", ""]);
+exports.push([module.i, "\n#fondo[data-v-75a9bb40]{\n    max-height: calc(100vh - 60px);\n    height: 100vh;\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n    position: relative;\n}\n/*contenido que va dentro de la imagen*/\n.d-center[data-v-75a9bb40]{\n    position:absolute;\n    height: auto;\n    width: 100%;\n    align-self: center !important;\n    top: 50%;\n    -webkit-transform: translateY(-70%);\n            transform: translateY(-70%);\n    justify-self: center;\n    text-align: center;\n}\n.d-left[data-v-75a9bb40]{\n    position: absolute;\n    left: 10%;\n    top:50%;\n    -webkit-transform: translate(-10%,-70%);\n            transform: translate(-10%,-70%);\n}\n.d-right[data-v-75a9bb40]{\n    position:absolute;\n    top: 50%;\n    right: 10%;\n    -webkit-transform: translate(-10%,-70%);\n            transform: translate(-10%,-70%);\n}\n.Titulo[data-v-75a9bb40]{\n    font-family: 'Cormorant Garamond', serif;\n    font-size: 6em;\n    padding: 0;\n    margin: 0;\n}\n.sub-titulo[data-v-75a9bb40]{\n    font-family: 'Cormorant Garamond', serif;\n    font-size: 3em;\n    margin-top: -35px;\n    margin-bottom: 20px;\n}\n.botones[data-v-75a9bb40]{\n    position: absolute;\n    left: 0;\n    -webkit-transform: translateX(2%);\n            transform: translateX(2%);\n}\n.botones .btn[data-v-75a9bb40]{\n    margin: 0 2px;\n}\n.botones[data-v-75a9bb40] {\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n}\n", ""]);
 
 // exports
 
@@ -9392,7 +9408,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*estilo de los links del menu*/\n.collapse[data-v-007d1acc]{\n    height: auto;\n    max-height: 100vh;\n}\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    transition: 1.5s;\n    transition-duration:1s ;\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*estilo de los links del menu*/\n.collapse[data-v-007d1acc]{\n    height: auto;\n    max-height: 100vh;\n}\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    transition: 1.5s;\n    transition-duration:1s ;\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
 
 // exports
 
@@ -9487,7 +9503,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* style v.2 */\na[data-v-75e1eb8f]{\n    text-decoration: none;\n    color:black;\n}\n.card-body[data-v-75e1eb8f]{\n    position: relative;\n}\n.fav[data-v-75e1eb8f]{\n    position: absolute;\n    top: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* style v.2 */\na[data-v-75e1eb8f]{\n    text-decoration: none;\n    color:black;\n}\n.card-body[data-v-75e1eb8f]{\n    position: relative;\n}\n.fav[data-v-75e1eb8f]{\n    position: absolute;\n    top: 0;\n}\n.cont-alert-fav[data-v-75e1eb8f]{\n    position: absolute;\n    top: 40%;\n    left:50%;\n    -webkit-transform: translate(-50%,-50%);\n            transform: translate(-50%,-50%);\n}\n.tags[data-v-75e1eb8f]{\n    position: absolute;\n    top:0;\n    width: 100%;\n}\n.tag-off[data-v-75e1eb8f]{\n    position: absolute;\n    background-color: white;\n    top:5%;\n    left: -2%;\n    font: bolder;\n    padding: .5em;\n    box-shadow:  0 10px 10px rgba(0,0,0,0.1);\n    margin: 0;\n}\n.tag-off p[data-v-75e1eb8f], .tag-out p[data-v-75e1eb8f]{\n    margin: 0;\n    padding: 0;\n    display: block;\n}\n.tag-out[data-v-75e1eb8f]{\n    position: absolute;\n    background-color: white;\n    top:5%;\n    right: -2%;\n    font: bolder;\n    padding: .5em;\n    box-shadow:  0 10px 10px rgba(0,0,0,0.1);\n    margin: 0;\n}\n", ""]);
 
 // exports
 
@@ -9601,7 +9617,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.notificacion[data-v-2be3c18c]{\n    position: absolute;\n    right: 0;\n    top: 70px;\n    width: 310px;\n    height:auto;\n    background-color: white;\n    z-index: 1;\n    display: grid;\n    grid-template-rows: 1fr;\n    grid-template-columns: 10% 90%;\n}\n.notificacion[data-v-2be3c18c]::after{\n    position: fixed;\n}\n.bar[data-v-2be3c18c]{\n    height: 100%;\n    width: 50%;\n    background-color:#FFC5C9;\n    grid-column: 1/2;\n    grid-row: 1;\n}\n.body[data-v-2be3c18c]{\n    width: 100%;\n    height: 100%;\n    grid-column: 2;\n    grid-row: 1;\n    padding: 10px 5px;\n}\n.isActive[data-v-2be3c18c]{\n    -webkit-animation-name: desaparecer-data-v-2be3c18c;\n            animation-name: desaparecer-data-v-2be3c18c;\n    -webkit-animation-duration: 5s;\n            animation-duration: 5s;\n    -webkit-animation-delay: 3s;\n            animation-delay: 3s;\n}\n@-webkit-keyframes desaparecer-data-v-2be3c18c{\n0%{\n        opacity: 1;\n}\n25%{\n        opacity: .75;\n}\n50%{\n        opacity: .5;\n}\n75%{\n        opacity: .25;\n}\n100%{\n        opacity: 0;\n        display: none;\n}\n}\n@keyframes desaparecer-data-v-2be3c18c{\n0%{\n        opacity: 1;\n}\n25%{\n        opacity: .75;\n}\n50%{\n        opacity: .5;\n}\n75%{\n        opacity: .25;\n}\n100%{\n        opacity: 0;\n        display: none;\n}\n}\n", ""]);
+exports.push([module.i, "\n.material-icons[data-v-2be3c18c]{\n    font-size: 3.5em;\n}\n.notificacion[data-v-2be3c18c]{\n    width: 100%;\n    height:100%;\n    z-index: 100;\n    display: grid;\n    grid-template-rows: 1fr;\n    grid-template-columns: 10% 90%;\n}\n.notificacion[data-v-2be3c18c]::after{\n    top: 50%;\n}\n.bar[data-v-2be3c18c]{\n    height: 100%;\n    width: 50%;\n    background-color:#FFC5C9;\n    grid-column: 1/2;\n    grid-row: 1;\n}\n.body[data-v-2be3c18c]{\n    width: 100%;\n    height: 100%;\n    grid-column: 2;\n    grid-row: 1;\n    padding: 10px 5px;\n}\n.isActive[data-v-2be3c18c]{\n    -webkit-animation-name: desaparecer-data-v-2be3c18c;\n            animation-name: desaparecer-data-v-2be3c18c;\n    -webkit-animation-duration: 2s;\n            animation-duration: 2s;\n    -webkit-animation-timing-function: ease-in-out;\n            animation-timing-function: ease-in-out;\n}\n@-webkit-keyframes desaparecer-data-v-2be3c18c{\nfrom{\n        opacity: 1;\n}\nto{\n        opacity: 0;\n}\n}\n@keyframes desaparecer-data-v-2be3c18c{\nfrom{\n        opacity: 1;\n}\nto{\n        opacity: 0;\n}\n}\n", ""]);
 
 // exports
 
@@ -45803,7 +45819,7 @@ var render = function() {
           [_vm._v("\n            Moda\n        ")]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "botones d-flex aling-center" }, [
+        _c("div", { staticClass: "botones d-flex" }, [
           _c(
             "a",
             {
@@ -47121,6 +47137,8 @@ var render = function() {
           attrs: { src: "https:via.placeholder.com/250x250.png", alt: "" }
         }),
         _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
         _c("div", { staticClass: "card-body row" }, [
           _c("div", { staticClass: "col-12" }, [
             _c("div", { staticClass: "row h-100" }, [
@@ -47189,10 +47207,43 @@ var render = function() {
           ])
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _vm.producto.favorito
+      ? _c(
+          "div",
+          { staticClass: "cont-alert-fav" },
+          [
+            _c("alert", {
+              attrs: {
+                estado: _vm.favorite,
+                tipo: _vm.tipo,
+                producto: _vm.producto.nombre
+              },
+              on: { ocultar: _vm.ocultar }
+            })
+          ],
+          1
+        )
+      : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tags text-center d-none" }, [
+      _c("span", { staticClass: "text-center tag-off" }, [
+        _c("p", [_vm._v("20% OFF")])
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-center tag-out" }, [
+        _c("p", [_vm._v("Sin Stock")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -47819,30 +47870,31 @@ var render = function() {
         }
       ],
       staticClass: "notificacion",
-      class: { isActive: _vm.visible }
+      class: { isActive: _vm.estado },
+      attrs: { id: "fav-" + _vm._uid }
     },
     [
-      _c("span", { staticClass: "bar" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "body" }, [
-        (_vm.tipo = "carrito")
-          ? _c("p", { staticClass: "align-middle my-auto" }, [
-              _vm._v(
-                "\n            El " +
-                  _vm._s(_vm.producto) +
-                  " se agrego al carrito correctamente.\n        "
-              )
-            ])
-          : (_vm.tipo = "favorito")
-          ? _c("p", { staticClass: "align-middle my-auto" }, [
-              _vm._v(
-                "\n            El " +
-                  _vm._s(_vm.producto) +
-                  " se agrego a favoritos correctamente.\n        "
-              )
-            ])
-          : _vm._e()
-      ])
+      _vm.type == "carrito"
+        ? _c("div", { staticClass: "icon" }, [
+            _c(
+              "i",
+              {
+                staticClass:
+                  "material-icons fav-xs mt-0 align-middle mx-auto text-danger"
+              },
+              [_vm._v("cart")]
+            )
+          ])
+        : _c("div", { staticClass: "icon " }, [
+            _c(
+              "i",
+              {
+                staticClass:
+                  "material-icons fav-xs mt-0 align-middle mx-auto text-danger"
+              },
+              [_vm._v("favorite")]
+            )
+          ])
     ]
   )
 }

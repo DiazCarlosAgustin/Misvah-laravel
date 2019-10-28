@@ -104,7 +104,6 @@
     </nav>
 </template>
 <script>
-import { log } from 'util'
 export default {
     props:[],
     data(){
@@ -208,7 +207,7 @@ export default {
                 }
                 else{
                     this.claseMenu = 'd-none' 
-                    this.claseProducto = 'd-none'
+                    this.claseProducto= 'd-none'
                 }
             }
         },

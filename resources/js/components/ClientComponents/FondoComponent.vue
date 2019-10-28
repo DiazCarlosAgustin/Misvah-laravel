@@ -7,7 +7,7 @@
             <div class="sub-titulo" :style="{color:colorSubtitulo}">
                 Moda
             </div>
-            <div class="botones d-flex aling-center">
+            <div class="botones d-flex">
                 <a href="/contacto" class="btn" :style="{backgroundColor:colorBoton}">CONTACTO</a>    
                 <a href="/tienda" class="btn" :style="{backgroundColor:colorBoton}">PRODUCTOS</a>    
             </div>  
@@ -30,7 +30,8 @@ export default {
 </script>
 <style scoped>
     #fondo{
-        height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px);
+        height: 100vh;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -39,25 +40,25 @@ export default {
     /*contenido que va dentro de la imagen*/
     .d-center{
         position:absolute;
-        height: auto; 
+        height: auto;
+        width: 100%;
+        align-self: center !important;
         top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translateY(-70%);
+        justify-self: center;
         text-align: center;
     }
     .d-left{
         position: absolute;
-        top: 50%;
-        left: 7%;
-        transform: translate(-7%,-50%);
-        text-align:left;
+        left: 10%;
+        top:50%;
+        transform: translate(-10%,-70%);
     }
     .d-right{
         position:absolute;
         top: 50%;
-        left: 95%;
-        transform: translate(-95%,-50%);
-        text-align: right !important;
+        right: 10%;
+        transform: translate(-10%,-70%);
     }
     .Titulo{
         font-family: 'Cormorant Garamond', serif;

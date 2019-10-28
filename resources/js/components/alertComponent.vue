@@ -1,52 +1,49 @@
 <template>
-    <div v-show="estado" class="notificacion" :class="{isActive:visible}">
-        <span class="bar"></span>
-        <div class="body">
-            <p v-if="tipo = 'carrito' " class="align-middle my-auto">
-                El {{producto}} se agrego al carrito correctamente.
-            </p>
-            <p v-else-if="tipo = 'favorito'" class="align-middle my-auto">
-                El {{producto}} se agrego a favoritos correctamente.
-            </p>
+    <div v-show="estado" class="notificacion" :class="{isActive:estado}" :id="'fav-'+_uid">
+        <div v-if="type =='carrito' " class="icon">
+            <i class="material-icons fav-xs mt-0 align-middle mx-auto text-danger" >cart</i>
+        </div>
+        <div v-else class="icon ">
+            <i class="material-icons fav-xs mt-0 align-middle mx-auto text-danger" >favorite</i>
         </div>
     </div>
 </template>
 <script>
 export default {
     name:'alert',
-    prop:['estado','tipo','producto'],
+    props:['estado','tipo','producto'],
     data() {
         return {
-    
+            type: this.tipo
         }
     },
     methods:{
-        estadoFalse:function(){
-            this.estado = false    
-        }
     },
     computed:{
-        visible:function(){
-           return setTimeout(this.estadoFalse, 3000)        
-        }
-    }
+    },
+    mounted() {
+        let vm = this
+        let $element = document.getElementById(`fav-${this._uid}`);
+        $element.addEventListener('animationend',function(){
+            vm.$emit('ocultar',false)
+        })
+    },
 }
 </script>
 <style scoped>
+    .material-icons{
+        font-size: 3.5em;
+    }
     .notificacion{
-        position: absolute;
-        right: 0;
-        top: 70px;
-        width: 310px;
-        height:auto;
-        background-color: white;
-        z-index: 1;
+        width: 100%;
+        height:100%;
+        z-index: 100;
         display: grid;
         grid-template-rows: 1fr;
         grid-template-columns: 10% 90%;
     }
     .notificacion::after{
-        position: fixed;
+        top: 50%;
     }
     .bar{
         height: 100%;
@@ -64,25 +61,15 @@ export default {
     }
     .isActive{
         animation-name: desaparecer;
-        animation-duration: 5s;
-        animation-delay: 3s;
+        animation-duration: 2s;
+        animation-timing-function: ease-in-out;
     }
     @keyframes desaparecer{
-        0%{
+        from{
             opacity: 1;
         }
-        25%{
-            opacity: .75;
-        }
-        50%{
-            opacity: .5;
-        }
-        75%{
-            opacity: .25;
-        }
-        100%{
+        to{
             opacity: 0;
-            display: none;
         }
     }
 </style>
