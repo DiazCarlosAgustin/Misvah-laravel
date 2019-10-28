@@ -8,7 +8,8 @@
         </td>
         <td class="align-middle ">
             <form action="">
-                <input type="number" @change="SubT" name="txtCantidad" id="txtCantidad" min="1" max="" v-model.number="producto.cantidad"  class="form-control text-center mx-auto">
+                <input type="number" @change="SubT" name="txtCantidad" id="txtCantidad" min="1" max=""
+                    v-model.number="producto.cantidad"  class="form-control border-0 text-center mx-auto">
             </form>
         </td>
         <td class="align-middle">
@@ -19,12 +20,10 @@
         </td>
         <td class="align-middle"><h6>{{subTotal}}</h6></td>
         <td class="align-middle">
-            <button class="btn btn-danger btn-sm" @click="EliminarProducto()">
-                <i class="fas fa-trash"></i>
-            </button>
+            <i class="fas fa-trash" @click="EliminarProducto()"></i>
         </td>
     </tr>
-</template>Ñ
+</template>
 <script>
     export default {
         name:'producto-carrito',
@@ -54,6 +53,9 @@
     }
 </script>
 <style scoped>
+    .fa-trash{
+        font-size: 1.2em;
+    }
     .colores div{
         display: inline-block;
     }

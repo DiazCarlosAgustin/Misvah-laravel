@@ -35,25 +35,27 @@
                         />
                     </tbody>
                 </table>
-                <div class="total mr-5 border-left border-right border-bottom">
-                    <div class="h5">Total: <span> ${{totalCarrito}}</span></div>
-                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h5 class="total mr-3" >Total: <span> ${{totalCarrito}}</span></h5>
             </div>
         </div>
         <div class="row d-flex justify-content-center  mt-2" v-if="productos.length > 0">
-            <div class="col-12 col-xs-12 col-md-6">
+            <div class="col-10 col-xs-8 col-md-5 my-auto">
                 <form action="">
                         <div class="input-group mt-2 form-group-sm">
                             <input type="text" class="form-control" placeholder="Cupon" aria-label="Example text with button addon"
                             aria-describedby="button-addon1">
                             <div class="input-group-prepend">
-                                <button class="btn btn-md btn-pink m-0 px-3 py-2 z-depth-0 waves-effect" type="button" id="button-addon1">Cajear</button>
+                                <button class="btn btn-pink m-0 px-3 py-2 z-depth-0 waves-effect" type="button" id="button-addon1">Cajear</button>
                             </div>
                         </div>
                 </form>
             </div>
-            <div class="col-12 col-xs-12 col-md-6">
-                <button class="btn btn-pink float-right">Continuar con la compra</button>
+            <div class="col-12 col-xs-12 col-md-6 text-center align-middle">
+                <button class="btn btn-pink">Continuar con la compra</button>
             </div>
         </div>
     </div>
@@ -133,8 +135,7 @@
 </script>
 <style scoped>
     .total{
-        width: 250px;
-        text-align: center;
-        margin-left: auto;
+        width: 100%;
+        text-align: right;
     }
 </style>

@@ -3072,7 +3072,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'producto-carrito',
   props: ['producto'],
@@ -3110,6 +3109,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -9275,7 +9276,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.colores div[data-v-3f7b4325]{\n    display: inline-block;\n}\n.colores input[type=\"radio\"][data-v-3f7b4325]{\n    display: none;\n}\n.colores input[type=\"radio\"] + label span[data-v-3f7b4325]{\n    display: inline-block;\n    width: 40px;\n    height: 40px;\n    margin: -1px 4px 0 0;\n    vertical-align: middle;\n    border-radius: 50%;\n    border: 2px solid #fff;\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .33);\n}\nspan .fa-check[data-v-3f7b4325]{\n    color: transparent;\n    margin-top: 10px;\n}\n.colores input[type=\"radio\"]:checked + label span[data-v-3f7b4325]{\n    opacity: .3;\n}\n.colores input[type=\"radio\"]:checked + label span .fa-check[data-v-3f7b4325]{\n    color:white;\n}\n", ""]);
+exports.push([module.i, "\n.fa-trash[data-v-3f7b4325]{\n    font-size: 1.2em;\n}\n.colores div[data-v-3f7b4325]{\n    display: inline-block;\n}\n.colores input[type=\"radio\"][data-v-3f7b4325]{\n    display: none;\n}\n.colores input[type=\"radio\"] + label span[data-v-3f7b4325]{\n    display: inline-block;\n    width: 40px;\n    height: 40px;\n    margin: -1px 4px 0 0;\n    vertical-align: middle;\n    border-radius: 50%;\n    border: 2px solid #fff;\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .33);\n}\nspan .fa-check[data-v-3f7b4325]{\n    color: transparent;\n    margin-top: 10px;\n}\n.colores input[type=\"radio\"]:checked + label span[data-v-3f7b4325]{\n    opacity: .3;\n}\n.colores input[type=\"radio\"]:checked + label span .fa-check[data-v-3f7b4325]{\n    color:white;\n}\n", ""]);
 
 // exports
 
@@ -9294,7 +9295,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.total[data-v-09828f31]{\n    width: 250px;\n    text-align: center;\n    margin-left: auto;\n}\n", ""]);
+exports.push([module.i, "\n.total[data-v-09828f31]{\n    width: 100%;\n    text-align: right;\n}\n", ""]);
 
 // exports
 
@@ -45351,7 +45352,7 @@ var render = function() {
               modifiers: { number: true }
             }
           ],
-          staticClass: "form-control text-center mx-auto",
+          staticClass: "form-control border-0 text-center mx-auto",
           attrs: {
             type: "number",
             name: "txtCantidad",
@@ -45389,18 +45390,14 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("td", { staticClass: "align-middle" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger btn-sm",
-          on: {
-            click: function($event) {
-              return _vm.EliminarProducto()
-            }
+      _c("i", {
+        staticClass: "fas fa-trash",
+        on: {
+          click: function($event) {
+            return _vm.EliminarProducto()
           }
-        },
-        [_c("i", { staticClass: "fas fa-trash" })]
-      )
+        }
+      })
     ])
   ])
 }
@@ -45478,23 +45475,19 @@ var render = function() {
                   1
                 )
               ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "total mr-5 border-left border-right border-bottom"
-              },
-              [
-                _c("div", { staticClass: "h5" }, [
-                  _vm._v("Total: "),
-                  _c("span", [_vm._v(" $" + _vm._s(_vm.totalCarrito))])
-                ])
-              ]
             )
           ])
         ])
       : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("h5", { staticClass: "total mr-3" }, [
+          _vm._v("Total: "),
+          _c("span", [_vm._v(" $" + _vm._s(_vm.totalCarrito))])
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _vm.productos.length > 0
       ? _c("div", { staticClass: "row d-flex justify-content-center  mt-2" }, [
@@ -45544,7 +45537,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 col-xs-12 col-md-6" }, [
+    return _c("div", { staticClass: "col-10 col-xs-8 col-md-5 my-auto" }, [
       _c("form", { attrs: { action: "" } }, [
         _c("div", { staticClass: "input-group mt-2 form-group-sm" }, [
           _c("input", {
@@ -45562,7 +45555,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "btn btn-md btn-pink m-0 px-3 py-2 z-depth-0 waves-effect",
+                  "btn btn-pink m-0 px-3 py-2 z-depth-0 waves-effect",
                 attrs: { type: "button", id: "button-addon1" }
               },
               [_vm._v("Cajear")]
@@ -45576,11 +45569,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 col-xs-12 col-md-6" }, [
-      _c("button", { staticClass: "btn btn-pink float-right" }, [
-        _vm._v("Continuar con la compra")
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "col-12 col-xs-12 col-md-6 text-center align-middle" },
+      [
+        _c("button", { staticClass: "btn btn-pink" }, [
+          _vm._v("Continuar con la compra")
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
