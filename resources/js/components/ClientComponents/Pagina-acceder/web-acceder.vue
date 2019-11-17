@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="col-12 col-xs-12 col-md-6 mt-4">
-            <form action="">
+            <form @submit.prevent="login">
                 <div class="form-group text-left">
                     <input type="email" name="txtAccederMail" id="txtAccederMail" class="form-control mb-4" placeholder="E-mail" required>
                 </div>
@@ -44,9 +44,28 @@ export default {
     data(){
         return{
             // bgcolor: '#ffb4ac',
-            textcolor: '#fff'
+            textcolor: '#fff',
+            params:{
+                email:'',
+                password:''
+            }
         }
-    }
+    },
+    methods: {
+        login(){
+            var token = document.head.querySelector('meta[name="csrf-token"]')
+            window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+            axios.post('/login',this.params)
+                .then(res =>{
+                    console.log(res)
+                    let token = res.data.token
+                    console.log(token);
+                    localStorage.setItem('token',token)
+                    this.$router.push('/')
+                    
+                })
+        }
+    },
 }
 </script>
 <style scoped>

@@ -21,11 +21,11 @@ Route::get('/contacto',function(){
 });
 
 Route::get('/acceder',function(){
-   return view('acceder');
+   return view('auth.login');
 });
 
 Route::get('/registrarse',function(){
-   return view('registrarse');
+   return view('auth.register');
 });
 
 Route::get('/tienda',function(){
@@ -42,44 +42,52 @@ Route::get('/favoritos',function(){
 });
 
 //rutas de administrador
+Route::group(['middleware' => 'admin'], function () {
+   Route::get('/admin/index',function(){
+      return view('admin\adminIndex');
+   });
+   Route::get('/admin/categorias',function(){
+      return view('admin\categorias');
+   });
+   Route::get('/admin/nueva_categoria',function(){
+      return view('admin\nuevaCategoria');
+   });
+   Route::get('/admin/editar_categoria/{id}',function(){
+      return view('admin\editar_categoria');
+   });
+   Route::get('/admin/productos',function(){
+      return view('admin\productos');
+   });
+   Route::get('/admin/editar_producto/{id}',function(){
+      return view('admin\editarProducto');
+   });
+   Route::get('/admin/ver_producto/{id}',function(){
+      return view('admin\verProducto');
+   });
+   Route::get('/admin/nuevo_producto',function(){
+      return view('admin\nuevoProducto');
+   });
+   Route::get('/admin/nuevo_color',function(){
+      return view('admin\nuevoColor');
+   });
+   Route::get('/admin/pedidos',function(){
+      return view('admin\pedidos');
+   });
+   Route::get('/admin/ventas',function(){
+      return view('admin.ventas');
+   });
+   
+   Route::get('/admin/elementos',function(){
+      return view('admin.ElementsUI');
+   });
+   Route::get('/admin/ventas-local',function(){
+      return view('admin.ventasLocal');
+   });
+});
 
-Route::get('/admin/index',function(){
-   return view('admin\adminIndex');
-});
-Route::get('/admin/categorias',function(){
-   return view('admin\categorias');
-});
-Route::get('/admin/nueva_categoria',function(){
-   return view('admin\nuevaCategoria');
-});
-Route::get('/admin/editar_categoria/{id}',function(){
-   return view('admin\editar_categoria');
-});
-Route::get('/admin/productos',function(){
-   return view('admin\productos');
-});
-Route::get('/admin/editar_producto/{id}',function(){
-   return view('admin\editarProducto');
-});
-Route::get('/admin/ver_producto/{id}',function(){
-   return view('admin\verProducto');
-});
-Route::get('/admin/nuevo_producto',function(){
-   return view('admin\nuevoProducto');
-});
-Route::get('/admin/nuevo_color',function(){
-   return view('admin\nuevoColor');
-});
-Route::get('/admin/pedidos',function(){
-   return view('admin\pedidos');
-});
-Route::get('/admin/ventas',function(){
-   return view('admin.ventas');
-});
 
-Route::get('/admin/elementos',function(){
-   return view('admin.ElementsUI');
-});
-Route::get('/admin/ventas-local',function(){
-   return view('admin.ventasLocal');
-});
+Route::resource('api/menu','MenuController');
+Route::post('api/newMenu','MenuController@store');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

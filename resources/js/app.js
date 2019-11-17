@@ -52,6 +52,7 @@ window.Vue = require('vue');
     Vue.component('paginacion', require('./components/paginacion.vue').default);
     // componente del producto
     Vue.component('alert', require('./components/alertComponent.vue').default);
+    Vue.component('loader', require('./components/loader.vue').default);
     Vue.component('producto', require('./components/ClientComponents/Productos/Producto.vue').default);
 // Pagina producto
     Vue.component('foto-producto', require('./components/ClientComponents/Pagina-Producto/FotosProducto.vue').default);
@@ -117,6 +118,11 @@ window.Vue = require('vue');
         Vue.component('pagina-ventas-local', require('./components/AdminComponent/ventas-local/paginaVentasLocal.vue').default);
         Vue.component('producto-local', require('./components/AdminComponent/ventas-local/productoLocal.vue').default);
         Vue.component('color-local', require('./components/AdminComponent/ventas-local/color-local.vue').default);
+        // elemento UI
+        Vue.component('pagina-elementos', require('./components/AdminComponent/ElementosUi/paginaElementos.vue').default);
+        Vue.component('menu-form', require('./components/AdminComponent/ElementosUi/menu/menu.vue').default);
+        Vue.component('tabla-menu', require('./components/AdminComponent/ElementosUi/menu/tablaMenu.vue').default);
+        Vue.component('elementos-tabla-menu', require('./components/AdminComponent/ElementosUi/menu/elementoTablaMenu.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
