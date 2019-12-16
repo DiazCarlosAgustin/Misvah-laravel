@@ -15,7 +15,7 @@ class CreateDireccionsTable extends Migration
     {
         Schema::create('direccions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('calle', 100)->nullable()->default('text');
             $table->string('numero', 100)->nullable()->default('text');
             $table->string('departamento', 100)->nullable()->default('text');

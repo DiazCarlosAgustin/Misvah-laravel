@@ -15,8 +15,8 @@ class CreateDetalleOrdensTable extends Migration
     {
         Schema::create('detalle_ordens', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('order_id');
-            $table->bigInteger('producto_id');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('producto_id');
             $table->integer('cantidad')->nullable($value = false);
             $table->double('precio')->nullable($value = false);
             $table->double('subtotal', 15, 8)->nullable($value = false);
@@ -24,7 +24,7 @@ class CreateDetalleOrdensTable extends Migration
             $table->timestamps();
 
             // relations
-            $table->foreign('order_id')->references('id')->on('orderCompras')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orden_compras')->onDelete('cascade');
         });
     }
 

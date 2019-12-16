@@ -15,7 +15,7 @@ class CreateOfertasTable extends Migration
     {
         Schema::create('ofertas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('producto_id');
+            $table->unsignedBigInteger('producto_id');
             $table->integer('porcentaje')->unsigned();
             $table->date('fecha_desde')->nullable();
             $table->date('fecha_hasta')->nullable();

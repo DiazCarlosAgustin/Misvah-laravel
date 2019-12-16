@@ -15,7 +15,7 @@ class CreateOrdenComprasTable extends Migration
     {
         Schema::create('orden_compras', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('email', 100)->nullable($value = false);
             $table->bigInteger('telefono')->nullable($value = false);
             $table->string('direccion', 180)->nullable($value = false);
