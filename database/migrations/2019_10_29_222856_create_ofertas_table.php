@@ -15,7 +15,14 @@ class CreateOfertasTable extends Migration
     {
         Schema::create('ofertas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('producto_id');
+            $table->integer('porcentaje')->unsigned();
+            $table->date('fecha_desde')->nullable();
+            $table->date('fecha_hasta')->nullable();
             $table->timestamps();
+
+            // relations
+            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
         });
     }
 

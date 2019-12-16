@@ -46,4 +46,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\carrito', 'foreign_key', 'local_key');
     }
+    public function orderCompra()
+    {
+        return $this->hasMany('App\ordenCompra', 'foreign_key', 'local_key');
+    }
+    public function direccion()
+    {
+        return $this->hasMany('App\direccion', 'foreign_key', 'local_key');
+    }
 }

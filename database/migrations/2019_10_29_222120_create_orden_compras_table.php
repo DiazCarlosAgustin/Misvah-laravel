@@ -15,7 +15,18 @@ class CreateOrdenComprasTable extends Migration
     {
         Schema::create('orden_compras', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id');
+            $table->string('email', 100)->nullable($value = false);
+            $table->bigInteger('telefono')->nullable($value = false);
+            $table->string('direccion', 180)->nullable($value = false);
+            $table->string('piso')->nullable();
+            $table->bigInteger('codigo_postal')->nullable($value = false);
+            $table->double('total', 15, 8);
+
             $table->timestamps();
+
+            // relations
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

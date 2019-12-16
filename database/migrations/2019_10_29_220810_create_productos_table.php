@@ -18,8 +18,9 @@ class CreateProductosTable extends Migration
             $table->string('codigo')->unique();
             $table->unsignedBigInteger('id_categoria');
             $table->string('nombre');
-            $table->float('precio',8,2);
-            $table->longText('descripcion');
+            $table->float('precio',8,2)->nullable($value = false);
+            $table->longText('descripcion')->nulleable();
+            $table->longText('infomacion')->nullable()->default('text');
             $table->timestamps();
 
             // foreign key - user

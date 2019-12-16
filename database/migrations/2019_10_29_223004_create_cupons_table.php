@@ -15,6 +15,9 @@ class CreateCuponsTable extends Migration
     {
         Schema::create('cupons', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('codigo', 100)->unique();
+            $table->double('monto', 15, 8)->nullable();
+            $table->boolean('estado')->nullable()->default(false);
             $table->timestamps();
         });
     }

@@ -27,4 +27,8 @@ class Producto extends Model
     {
         return $this->hasMany('App\carrito', 'foreign_key', 'local_key');
     }
+    public function oferta()
+    {
+        return $this->hasOne('App\oferta', 'foreign_key', 'local_key');
+    }
 }

@@ -18,9 +18,9 @@ class CreateCarritosTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('producto_id');
             $table->unsignedBigInteger('color_id');
-            $table->integer('cantidad');
-            $table->double('precio', 8, 2)->nullable();
-            $table->double('subtotal', 8, 2)->nullable();
+            $table->integer('cantidad')->nullable($value = false);
+            $table->double('precio', 8, 2)->nullable($value = false);
+            $table->double('subtotal', 8, 2)->nullable($value = false);
             $table->timestamps();
 
             // Relations
