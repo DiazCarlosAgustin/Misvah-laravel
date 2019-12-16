@@ -15,7 +15,13 @@ class CreateFavoritosTable extends Migration
     {
         Schema::create('favoritos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_producto');
+            $table->unsignedBigInteger('id_user');
             $table->timestamps();
+
+            // relations
+            $table->foreign('id_producto')->references('id')->on('productos')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

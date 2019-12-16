@@ -42,7 +42,7 @@ Route::get('/favoritos',function(){
 });
 
 //rutas de administrador
-Route::group(['middleware' => 'admin'], function () {
+// Route::group(['middleware' => 'admin'], function () {
    Route::get('/admin/index',function(){
       return view('admin\adminIndex');
    });
@@ -83,7 +83,7 @@ Route::group(['middleware' => 'admin'], function () {
    Route::get('/admin/ventas-local',function(){
       return view('admin.ventasLocal');
    });
-});
+// });
 
 
 Route::resource('api/menu','MenuController');

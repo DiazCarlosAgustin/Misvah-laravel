@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // relacion usuario - favorito
+    public function favorito()
+    {
+        return $this->hasOne('App\favorito', 'foreign_key', 'local_key');
+    }
+    public function carrito()
+    {
+        return $this->hasMany('App\carrito', 'foreign_key', 'local_key');
+    }
 }

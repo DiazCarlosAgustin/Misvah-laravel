@@ -15,7 +15,11 @@ class CreateImagenColorsTable extends Migration
     {
         Schema::create('imagen_colors', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_color');
+            $table->string('imagen_color_producto');
             $table->timestamps();
+            
+            $table->foreign('id_color')->references('id')->on('colors')->onDelete('cascade');
         });
     }
 

@@ -15,7 +15,18 @@ class CreateCarritosTable extends Migration
     {
         Schema::create('carritos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('producto_id');
+            $table->unsignedBigInteger('color_id');
+            $table->integer('cantidad');
+            $table->double('precio', 8, 2)->nullable();
+            $table->double('subtotal', 8, 2)->nullable();
             $table->timestamps();
+
+            // Relations
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
         });
     }
 
