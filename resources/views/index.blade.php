@@ -20,9 +20,9 @@
         </div>
         @endsection
 
-    @section('script')
+        @section('script')
         <script src="{{asset('js/app.js')}}" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+        <script src="{{asset('js/swiper.js')}}" ></script>
         <script>
             $(document).ready(function(){
                 var swiperDestacados = new Swiper('.swiper-destacados', {
