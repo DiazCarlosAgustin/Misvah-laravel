@@ -12,6 +12,14 @@
 |
 */
 
+Route::prefix('auth')->group(function (){
+   Route::get('init','appController@init');
+
+   Route::post('login','appController@login');
+   Route::post('register','appController@register');
+   Route::post('logout','appController@logout');
+});
+
 Route::get('/', function () {
     return view('index');
 });
