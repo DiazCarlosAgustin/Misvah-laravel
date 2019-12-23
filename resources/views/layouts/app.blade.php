@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         {{--Estilos externos--}}
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="user" content="{{ Auth::user() }}">
         <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
         <link rel="stylesheet" href="{{asset('css/mdb.css')}}">
         <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
@@ -43,7 +44,8 @@
         
         <!-- JQuery -->
         
-        @yield('script')
         <script src="{{asset('js/main.js')}}"></script>
+        <script src="{{asset('js/jquery.js')}}"></script>
+        @yield('script')
     </body>
     </html>

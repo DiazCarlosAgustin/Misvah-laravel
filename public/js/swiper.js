@@ -117,7 +117,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\BurG´s\Documents\Proyectos\Misvah-laravel\node_modules\swiper\js\swiper.min.js */"./node_modules/swiper/js/swiper.min.js");
+module.exports = __webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\node_modules\swiper\js\swiper.min.js */"./node_modules/swiper/js/swiper.min.js");
 
 
 /***/ })

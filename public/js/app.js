@@ -3684,6 +3684,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mix_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../mix/auth */ "./resources/js/mix/auth.js");
+/* harmony import */ var _mix_auth__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_mix_auth__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3789,12 +3791,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
+  mixins: [_mix_auth__WEBPACK_IMPORTED_MODULE_0___default.a],
   data: function data() {
     return {
       idCategoriaHover: 0,
       pantalla: 0,
+      dw: false,
       hover: false,
       claseMenu: 'd-none',
       claseMenuXs: 'd-none',
@@ -3802,25 +3851,44 @@ __webpack_require__.r(__webpack_exports__);
       classCat: 'd-grid',
       claseVolver: 'd-grid',
       claseVolverProducto: 'd-none',
-      categorias: [{
-        id: 1,
-        nombre: 'categoria 1'
-      }, {
-        id: 2,
-        nombre: 'categoria 2'
-      }, {
-        id: 3,
-        nombre: 'categoria 3'
-      }, {
-        id: 4,
-        nombre: 'categoria 4'
-      }, {
-        id: 5,
-        nombre: 'categoria 5'
-      }, {
-        id: 6,
-        nombre: 'categoria 6'
-      }],
+      // categorias:[
+      //     {
+      //         id: 1,
+      //         nombre:'categoria 1'
+      //     },
+      //     {
+      //         id: 2,
+      //         nombre:'categoria 2'
+      //     },
+      //     {
+      //         id: 3,
+      //         nombre:'categoria 3'
+      //     },
+      //     {
+      //         id: 4,
+      //         nombre:'categoria 4'
+      //     },
+      //     {
+      //         id: 5,
+      //         nombre:'categoria 5'
+      //     },
+      //     {
+      //         id: 6,
+      //         nombre:'categoria 6'
+      //     },
+      //     {
+      //         id: 7,
+      //         nombre:'categoria 7'
+      //     },
+      //     {
+      //         id: 8 ,
+      //         nombre:'categoria 8 '
+      //     },
+      //     {
+      //         id: 9,
+      //         nombre:'categoria 9'
+      //     },
+      // ],
       productos: [{
         id: 1,
         id_categoria: 1,
@@ -3861,6 +3929,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    cerrarSesion: function cerrarSesion() {
+      axios.post('auth/logout').then(function (res) {
+        window.location.href = '/';
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    clickUserXs: function clickUserXs() {
+      this.dw = !this.dw;
+    },
     hoverMouse: function hoverMouse() {
       this.hover = !this.hover;
       this.pantalla = window.innerWidth;
@@ -3896,6 +3974,7 @@ __webpack_require__.r(__webpack_exports__);
       this.classCat = 'd-grid';
       this.claseVolver = 'd-grid';
       this.claseVolverProducto = 'd-none';
+      this.dw = false;
     },
     tapCategoria: function tapCategoria() {
       if (window.innerWidth <= 991) {
@@ -4207,6 +4286,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'web-acceder',
   data: function data() {
@@ -4223,15 +4306,12 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
 
-      var token = document.head.querySelector('meta[name="csrf-token"]');
-      window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
       axios.post('/login', this.params).then(function (res) {
-        console.log(res);
-        var token = res.data.token;
-        console.log(token);
-        localStorage.setItem('token', token);
-
-        _this.$router.push('/');
+        _this.params.email = '';
+        _this.params.password = '';
+        window.location.href = '/';
+      })["catch"](function (err) {
+        console.log(err);
       });
     }
   }
@@ -4344,6 +4424,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'web-registrarse',
   data: function data() {
@@ -4351,22 +4440,52 @@ __webpack_require__.r(__webpack_exports__);
       email: '',
       name: '',
       password: '',
-      telefono: ''
+      passwordConfirm: '',
+      telefono: '',
+      error: '',
+      errorPassword: '',
+      passLength: ''
     };
   },
   methods: {
     register: function register() {
+      var _this = this;
+
       var params = {
         name: this.name,
         email: this.email,
         password: this.password,
         telefono: this.telefono
       };
-      axios.post('auth/register', this.params).then(function (res) {
-        console.log(res.data);
-      })["catch"](function (err) {
-        alert(err);
-      });
+
+      if (this.password.length >= 8) {
+        axios.post('auth/register', params).then(function (res) {
+          if (res.data.error != "") {
+            _this.error = res.data.error;
+          } else {
+            _this.error = "";
+          }
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      } else {
+        this.passLength = "La contraseña tiene que tener mas de 8 caracteres.";
+      }
+    },
+    clearMessagge: function clearMessagge() {
+      this.passLength = '';
+      this.error = '';
+    }
+  },
+  computed: {
+    validationPassword: function validationPassword() {
+      if (this.password != this.passwordConfirm) {
+        this.errorPassword = "Las contraseñas no coinciden.";
+        return true;
+      } else {
+        this.errorPassword = '';
+        return false;
+      }
     }
   }
 });
@@ -9742,7 +9861,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*estilo de los links del menu*/\n.collapse[data-v-007d1acc]{\n    height: auto;\n    max-height: 100vh;\n}\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    -webkit-transition-delay: .2s;\n            transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    -webkit-transition: 1.5s;\n    transition: 1.5s;\n    -webkit-transition-duration:1s ;\n            transition-duration:1s ;\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
+exports.push([module.i, "\n.categorias[data-v-007d1acc]{\n    height: auto;\n    overflow: auto;\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar {\n    width: 8px;     /* Tamaño del scroll en vertical */\n    height: 8px;    /* Tamaño del scroll en horizontal */\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar-thumb {\n    background: #ccc;\n    border-radius: 4px;\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar-thumb:hover {\n    background: #b3b3b3;\n    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar-track:hover,\n.categorias[data-v-007d1acc]::-webkit-scrollbar-track:active {\n    background: #d4d4d4;\n}\n.drop[data-v-007d1acc]{\n    width: 100%;\n    height: 100vh !important;\n    left: 0;\n    position:absolute;\n    top:65px;\n    background-color: white;\n    color: inherit;\n    display: block;\n}\n/*estilo de los links del menu*/\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    -webkit-transition-delay: .2s;\n            transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    -webkit-transition: 1.5s;\n    transition: 1.5s;\n    -webkit-transition-duration:1s ;\n            transition-duration:1s ;\n}\n.a-user[data-v-007d1acc]{\n    overflow: hidden;\n    width: 100%;\n    max-width: 10ch;\n    text-align: center\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
 
 // exports
 
@@ -49171,14 +49290,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "span",
-    {
-      on: { click: _vm.categoriaHover },
-      nativeOn: {
-        click: function($event) {
-          return _vm.categoriaHover($event)
-        }
-      }
-    },
+    { on: { "click:native": _vm.categoriaHover, click: _vm.categoriaHover } },
     [_vm._v(_vm._s(_vm.categoria.nombre))]
   )
 }
@@ -49239,44 +49351,7 @@ var render = function() {
       attrs: { id: "menu" }
     },
     [
-      _c("div", { staticClass: "d-flex d-lg-none w-100" }, [
-        _c(
-          "a",
-          {
-            staticClass:
-              "navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde nav-item",
-            attrs: { href: "/" }
-          },
-          [_vm._v("MISVHA")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: " d-xs-flex d-lg-none ml-auto" }, [
-          _c(
-            "i",
-            { staticClass: "material-icons", attrs: { id: "i-xs-buscar" } },
-            [_vm._v("search")]
-          ),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "navbar-toggler",
-              attrs: {
-                type: "button",
-                "data-toggle": "collapse",
-                "data-target": "#navbarMenu",
-                "aria-controls": "navbarMenu",
-                "aria-expanded": "false",
-                "aria-label": "Toggle navigation"
-              },
-              on: { click: _vm.tapVolverMenu }
-            },
-            [_vm._m(1)]
-          )
-        ])
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "div",
@@ -49297,12 +49372,7 @@ var render = function() {
               {
                 staticClass: "nav-item nav-link",
                 attrs: { id: "display-categorias" },
-                on: { click: _vm.clickMouse },
-                nativeOn: {
-                  click: function($event) {
-                    return _vm.clickMouse($event)
-                  }
-                }
+                on: { "click:native": _vm.clickMouse, click: _vm.clickMouse }
               },
               [_vm._v("\n                CATEGORIAS\n            ")]
             ),
@@ -49316,14 +49386,93 @@ var render = function() {
               [_vm._v("CONTACTO")]
             ),
             _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "nav-item  nav-link xs-link d-xs-block d-lg-none",
-                attrs: { href: "/acceder" }
-              },
-              [_vm._v("ACCEDER")]
-            )
+            !_vm.logeado
+              ? _c("div", [
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "nav-item  nav-link xs-link d-xs-block d-lg-none",
+                      attrs: { href: "/acceder" }
+                    },
+                    [_vm._v("ACCEDER")]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.logeado
+              ? _c("div", [
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        " nav-item  nav-link xs-link text-uppercase d-xs-block d-lg-none",
+                      on: { click: _vm.clickUserXs }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.user.name) +
+                          "\n                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.dw,
+                          expression: "dw"
+                        }
+                      ],
+                      staticClass: "drop d-lg-none d-xs-block nav-item"
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "volver text-left",
+                          class: _vm.claseVolver,
+                          on: { click: _vm.tapVolverMenu }
+                        },
+                        [_vm._m(1)]
+                      ),
+                      _vm._v(" "),
+                      _c("a", { staticClass: "nav-item nav-link" }, [
+                        _vm._v("Mi Perfil")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-item nav-link",
+                          attrs: { href: "/favoritos" }
+                        },
+                        [_vm._v("Mis Favoritos")]
+                      ),
+                      _vm._v(" "),
+                      _c("a", { staticClass: "nav-item nav-link" }, [
+                        _vm._v("Mis compras")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dropdown-divider" }),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          on: { click: _vm.cerrarSesion }
+                        },
+                        [_vm._v("Cerrar sesion")]
+                      )
+                    ]
+                  )
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _vm._m(2),
@@ -49348,14 +49497,94 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "nav-item nav-link xs-link ",
-                  attrs: { href: "/acceder" }
-                },
-                [_vm._v("ACCEDER")]
-              )
+              !_vm.logeado
+                ? _c("div", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-item nav-link xs-link ",
+                        attrs: { href: "/acceder" }
+                      },
+                      [_vm._v("ACCEDER")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.logeado
+                ? _c("div", [
+                    _c("div", { staticClass: "dropdown" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "dropdown-toggle nav-item nav-link xs-link text-uppercase a-user",
+                          attrs: {
+                            type: "button",
+                            id: "dropdownMenu2",
+                            "data-toggle": "dropdown",
+                            "aria-haspopup": "true",
+                            "aria-expanded": "false"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.user.name) +
+                              "\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "dropdown-menu dropdown-menu-right",
+                          attrs: { "aria-labelledby": "dropdownMenu2" }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { type: "button" }
+                            },
+                            [_vm._v("Mi Perfil")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { type: "button" }
+                            },
+                            [_vm._v("Mis Favoritos")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { type: "button" }
+                            },
+                            [_vm._v("Mis compras")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "dropdown-divider" }),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { type: "button" },
+                              on: { click: _vm.cerrarSesion }
+                            },
+                            [_vm._v("Cerrar sesion")]
+                          )
+                        ]
+                      )
+                    ])
+                  ])
+                : _vm._e()
             ]
           )
         ]
@@ -49363,7 +49592,7 @@ var render = function() {
       _vm._v(" "),
       _vm._m(4),
       _vm._v(" "),
-      _vm.pantalla > 991
+      _vm.pantalla > 991 && _vm.categorias.length > 0
         ? _c(
             "div",
             {
@@ -49390,19 +49619,29 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "productos" },
-                _vm._l(_vm.productosCategoria, function(producto) {
-                  return _c("menu-item-categoria", {
-                    key: producto.id,
-                    staticClass: "text-center",
-                    class: _vm.claseProducto,
-                    attrs: { producto: producto }
-                  })
-                }),
-                1
-              )
+              _c("div", { staticClass: "productos" }, [
+                _vm.productosCategoria.length > 0
+                  ? _c(
+                      "div",
+                      _vm._l(_vm.productosCategoria, function(producto) {
+                        return _c("menu-item-categoria", {
+                          key: producto.id,
+                          staticClass: "text-center",
+                          class: _vm.claseProducto,
+                          attrs: { producto: producto }
+                        })
+                      }),
+                      1
+                    )
+                  : _c(
+                      "div",
+                      {
+                        staticClass: "text-center my-3",
+                        class: _vm.claseProducto
+                      },
+                      [_c("p", [_vm._v("No se encontraron productos")])]
+                    )
+              ])
             ]
           )
         : _c(
@@ -49494,22 +49733,63 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "/carrito" } }, [
-      _c("span", { staticClass: "s-carrito bg-danger" }),
-      _vm._v(" "),
+    return _c("div", { staticClass: "d-flex d-lg-none w-100" }, [
       _c(
-        "i",
-        { staticClass: "material-icons", attrs: { id: "i-xs-carrito" } },
-        [_vm._v("shopping_cart")]
-      )
+        "a",
+        {
+          staticClass:
+            "navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde nav-item",
+          attrs: { href: "/" }
+        },
+        [_vm._v("MISVHA")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: " d-xs-flex d-lg-none ml-auto" }, [
+        _c(
+          "i",
+          { staticClass: "material-icons", attrs: { id: "i-xs-buscar" } },
+          [_vm._v("search")]
+        ),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "/carrito" } }, [
+          _c("span", { staticClass: "s-carrito bg-danger" }),
+          _vm._v(" "),
+          _c(
+            "i",
+            { staticClass: "material-icons", attrs: { id: "i-xs-carrito" } },
+            [_vm._v("shopping_cart")]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "navbar-toggler",
+            attrs: {
+              type: "button",
+              "data-toggle": "collapse",
+              "data-target": "#navbarMenu",
+              "aria-controls": "navbarMenu",
+              "aria-expanded": "false",
+              "aria-label": "Toggle navigation"
+            }
+          },
+          [
+            _c("span", { staticClass: "dark-blue-text" }, [
+              _c("i", { staticClass: "fas fa-bars fa-1x" })
+            ])
+          ]
+        )
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "dark-blue-text" }, [
-      _c("i", { staticClass: "fas fa-bars fa-1x" })
+    return _c("span", { staticClass: "my-auto w-100 ml-3" }, [
+      _c("i", { staticClass: "fas fa-arrow-left" }),
+      _vm._v("\n                            Volver\n                        ")
     ])
   },
   function() {
@@ -50036,11 +50316,67 @@ var render = function() {
             }
           },
           [
+            _c("div", { staticClass: "form-group text-left" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.params.email,
+                    expression: "params.email"
+                  }
+                ],
+                staticClass: "form-control mb-4",
+                attrs: {
+                  type: "email",
+                  name: "txtAccederMail",
+                  id: "txtAccederMail",
+                  placeholder: "example@mail.com",
+                  required: ""
+                },
+                domProps: { value: _vm.params.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.params, "email", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group text-left" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.params.password,
+                    expression: "params.password"
+                  }
+                ],
+                staticClass: "form-control  mb-4",
+                attrs: {
+                  type: "password",
+                  name: "txtAccederPass",
+                  id: "txtAccederPass",
+                  placeholder: "Contraseña",
+                  required: ""
+                },
+                domProps: { value: _vm.params.password },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.params, "password", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
             _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c(
@@ -50054,7 +50390,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(4)
+            _vm._m(2)
           ]
         )
       ])
@@ -50070,40 +50406,6 @@ var staticRenderFns = [
       _c("div", { staticClass: "h3 mt-5 " }, [
         _vm._v("\n            Acceder\n        ")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group text-left" }, [
-      _c("input", {
-        staticClass: "form-control mb-4",
-        attrs: {
-          type: "email",
-          name: "txtAccederMail",
-          id: "txtAccederMail",
-          placeholder: "E-mail",
-          required: ""
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group text-left" }, [
-      _c("input", {
-        staticClass: "form-control  mb-4",
-        attrs: {
-          type: "password",
-          name: "txtAccederPass",
-          id: "txtAccederPass",
-          placeholder: "Contraseña",
-          required: ""
-        }
-      })
     ])
   },
   function() {
@@ -50307,6 +50609,7 @@ var render = function() {
             _c(
               "form",
               {
+                attrs: { role: "form" },
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
@@ -50343,13 +50646,11 @@ var render = function() {
                         _vm.name = $event.target.value
                       }
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm._m(2)
+                  })
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-campos py-1" }, [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -50369,16 +50670,43 @@ var render = function() {
                     },
                     domProps: { value: _vm.email },
                     on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.email = $event.target.value
+                        },
+                        function($event) {
+                          return _vm.clearMessagge()
                         }
-                        _vm.email = $event.target.value
-                      }
+                      ]
                     }
                   }),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.error.length > 0,
+                          expression: "error.length > 0"
+                        }
+                      ],
+                      staticClass: "text-left"
+                    },
+                    [
+                      _c("span", { staticClass: "text-danger" }, [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(_vm.error) +
+                            "\n                            "
+                        )
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-campos py-1" }, [
@@ -50410,7 +50738,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-campos py-1" }, [
-                  _vm._m(5),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -50430,21 +50758,91 @@ var render = function() {
                     },
                     domProps: { value: _vm.password },
                     on: {
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.password = $event.target.value
+                        },
+                        function($event) {
+                          return _vm.clearMessagge()
+                        }
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.passLength.length > 0,
+                          expression: "passLength.length > 0"
+                        }
+                      ],
+                      staticClass: "text-danger",
+                      attrs: { role: "alert" }
+                    },
+                    [_c("strong", [_vm._v(_vm._s(_vm.passLength))])]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "d-campos py-1" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.passwordConfirm,
+                        expression: "passwordConfirm"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "password-confirm",
+                      type: "password",
+                      name: "password_confirmation",
+                      required: "",
+                      autocomplete: "new-password"
+                    },
+                    domProps: { value: _vm.passwordConfirm },
+                    on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.password = $event.target.value
+                        _vm.passwordConfirm = $event.target.value
                       }
                     }
                   }),
                   _vm._v(" "),
-                  _vm._m(6)
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.validationPassword,
+                          expression: "validationPassword"
+                        }
+                      ],
+                      staticClass: "text-left"
+                    },
+                    [
+                      _c("span", { staticClass: "text-danger" }, [
+                        _c("strong", [_vm._v(_vm._s(_vm.errorPassword))])
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
-                _vm._m(7),
-                _vm._v(" "),
-                _vm._m(8)
+                _vm._m(5)
               ]
             )
           ])
@@ -50475,30 +50873,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "span",
-      { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-      [_c("strong")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("label", { staticClass: "text-left" }, [
       _vm._v("Email  "),
       _c("span", { staticClass: "text-danger" }, [_vm._v(" * ")])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "span",
-      { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-      [_c("strong")]
-    )
   },
   function() {
     var _vm = this
@@ -50513,32 +50891,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "span",
-      { staticClass: "invalid-feedback", attrs: { role: "alert" } },
-      [_c("strong")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-campos py-1" }, [
-      _c("label", { staticClass: "text-left" }, [
-        _vm._v("Confirmar contraseña  "),
-        _c("span", { staticClass: "text-danger" }, [_vm._v(" * ")])
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          id: "password-confirm",
-          type: "password",
-          name: "password_confirmation",
-          required: "",
-          autocomplete: "new-password"
-        }
-      })
+    return _c("label", { staticClass: "text-left" }, [
+      _vm._v("Confirmar contraseña  "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v(" * ")])
     ])
   },
   function() {
@@ -68730,6 +69085,34 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/mix/auth.js":
+/*!**********************************!*\
+  !*** ./resources/js/mix/auth.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var _user = document.querySelector("meta[name='user']");
+
+module.exports = {
+  computed: {
+    user: function user() {
+      if (_user.content != "") {
+        return JSON.parse(_user.content);
+      }
+    },
+    logeado: function logeado() {
+      if (_user.content != "") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -68748,8 +69131,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\BurG´s\Documents\Proyectos\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\BurG´s\Documents\Proyectos\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

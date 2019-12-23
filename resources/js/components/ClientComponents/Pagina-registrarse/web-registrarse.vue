@@ -6,20 +6,20 @@
                     <h2>Registrarse</h2>    
                 </div>
                 <div class="form-registrarse text-left">
-                    <form @submit.prevent="register()">
+                    <form @submit.prevent="register()" role="form">
                         <div class="d-campos py-1">
                             <label class="text-left">Nombre <span class="text-danger"> * </span></label>
                             <input type="text" name="name" class="form-control" required v-model="name" autofocus>
-                                <span class="invalid-feedback" role="alert">
-                                    <strong></strong>
-                                </span>
                         </div>
                         <div class="d-campos py-1">
                             <label class="text-left">Email  <span class="text-danger"> * </span></label>
-                            <input id="email" type="email" class="form-control" name="email" required v-model="email">
-                            <span class="invalid-feedback" role="alert">
-                                <strong></strong>
-                            </span>
+                            <input id="email" type="email" class="form-control" name="email" 
+                                required v-model="email"  @input="clearMessagge()">
+                            <div v-show="error.length > 0" class="text-left">
+                                <span class="text-danger">
+                                    {{error}}
+                                </span>
+                            </div>
                         </div>
                         <div class="d-campos py-1">
                             <label class="text-left">Telefono </label>
@@ -27,15 +27,24 @@
                         </div>
                         <div class="d-campos py-1">
                             <label class="text-left">Contraseña  <span class="text-danger"> * </span></label>
-                            <input id="password" type="password" class="form-control" name="password" required v-model="password">
-                                <span class="invalid-feedback" role="alert">
-                                    <strong></strong>
+                            <input id="password" type="password" class="form-control" 
+                                name="password" required v-model="password"
+                                @input="clearMessagge()">
+                                <span v-show="passLength.length > 0" class="text-danger" role="alert">
+                                    <strong>{{passLength}}</strong>
                                 </span>
                         </div>
                         <div class="d-campos py-1">
                             <label class="text-left">Confirmar contraseña  <span class="text-danger"> * </span></label>
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                        </div>
+                            <input id="password-confirm" v-model="passwordConfirm" type="password" 
+                                class="form-control" name="password_confirmation" 
+                                required autocomplete="new-password">
+                            <div v-show="validationPassword" class="text-left">
+                                <span  class="text-danger">
+                                    <strong>{{errorPassword}}</strong>
+                                </span>
+                            </div>
+                       </div>
                         <div class="form-group">
                             <button class="btn btn-block my-4 pink text-white" type="submit">Aceptar</button>
                         </div>
@@ -53,7 +62,11 @@ export default {
             email:'',
             name:'',
             password:'',
-            telefono:''
+            passwordConfirm:'',
+            telefono:'',
+            error:'',
+            errorPassword:'',
+            passLength:''
         }
     },
     methods: {
@@ -64,14 +77,43 @@ export default {
                 password: this.password,
                 telefono: this.telefono
             }
-            axios.post('auth/register',this.params)
-                .then(res => {
-                    console.log(res.data);
-                })
-                .catch(err => {
-                    alert(err);
-                })
+            if(this.password.length >= 8){
+                axios.post('auth/register',params)
+                    .then(res => {
+                        if(res.data.error != ""){
+                            this.error = res.data.error
+                        }
+                        else{
+                            this.error = ""
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        
+                    })
+            }
+            else{
+                this.passLength = "La contraseña tiene que tener mas de 8 caracteres."
+            }
+        },
+        clearMessagge: function(){
+            this.passLength = ''
+            this.error = ''
+            
         }
-    }
+    },
+    computed: {
+        validationPassword: function(){
+            if(this.password != this.passwordConfirm){
+                this.errorPassword = "Las contraseñas no coinciden."
+                return true
+            }
+            else{
+                this.errorPassword = ''
+                return false
+            }
+            
+        }
+    },
 }
 </script>

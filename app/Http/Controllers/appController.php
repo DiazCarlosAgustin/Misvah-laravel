@@ -23,7 +23,7 @@ class appController extends Controller
                 return redirect('/admin/index')->response()->json($user, 200);
             }
             elseif($user->is_admin = 0) {
-                return redirect('/')->response()->json($user, 200);
+                return response()->json($user, 200)->redirect('/');
             }
         }
         else{
@@ -53,8 +53,7 @@ class appController extends Controller
 
         Auth::login($user);
         
-        dd($user);
-        // return response()->json($user, 200);
+        return response()->json($user, 200)->redirect('/');
     }
     public function logout(){
         Auth::logout();
