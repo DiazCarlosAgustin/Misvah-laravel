@@ -88,6 +88,10 @@ window.Vue = require('vue');
         // tabla de productos con stock bajo
         Vue.component('tabla-productos-stock-bajo', require('./components/AdminComponent/Index/tablas/tabla-stock-bajo/tablaStockBajo.vue').default);
         Vue.component('producto-stock-bajo', require('./components/AdminComponent/Index/tablas/tabla-stock-bajo/productoStockBajo.vue').default);
+    
+    //Categoria 
+        // agregar
+        Vue.component('agregar-categoria', require('./components/AdminComponent/categoria/agregar/nuevaCategoria.vue').default);
     // Productos    
         // agregar
         Vue.component('agregar-producto', require('./components/AdminComponent/Producto/agregar/agregarProducto.vue').default);

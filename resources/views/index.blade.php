@@ -21,8 +21,8 @@
         @endsection
 
         @section('script')
-        <script src="{{asset('js/app.js')}}" defer></script>
         <script src="{{asset('js/swiper.js')}}" ></script>
+        <script src="{{asset('js/app.js')}}" defer></script>
         <script>
             $(document).ready(function(){
                 var swiperDestacados = new Swiper('.swiper-destacados', {

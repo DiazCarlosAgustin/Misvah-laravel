@@ -15,6 +15,9 @@ class CategoriaController extends Controller
     public function index()
     {
         //
+        $categoria = Categoria::all();
+
+        return response()->json($categoria, 200);
     }
 
     /**
@@ -35,7 +38,16 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //agregar una nueva categoria 
+        $cat = new Categoria;
+        
+        $cat->nombre = $request->nombre;
+        $cat->descripcion = $request->descripcion;
+        $cat->imagen = $request->imagen;
+        
+        $cat->save();
+        
+        return $cat;
     }
 
     /**
@@ -44,9 +56,12 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show(Categoria $request)
     {
-        //
+        //busca una categoria
+        $cat = Categoria::find($categoria);
+
+        return response()->json($cat, 200);
     }
 
     /**
@@ -69,7 +84,15 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        //actualizar una categoria
+        $cat = Categoria::find($categoria);
+
+        $cat->nombre = $request->nombre;
+        $cat->descripcion = $request->descripcion;
+        $cat->imagen = $request->imagen;
+        $cat->save();
+
+        return response()->json($cat, 200);
     }
 
     /**
@@ -80,6 +103,10 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        //elimina una categoria
+        $cat = Categoria::find($categoria);
+        $cat->delete();
+
+        return response()->json($cat, 200);
     }
 }

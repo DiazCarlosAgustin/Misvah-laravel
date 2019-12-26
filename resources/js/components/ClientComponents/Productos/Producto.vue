@@ -41,7 +41,6 @@
         <div v-if="producto.favorito" class="cont-alert-fav">
             <alert :estado="favorite"
             :tipo="tipo"
-            :producto="producto.nombre"
             @ocultar="ocultar" />
         </div>
     </div>

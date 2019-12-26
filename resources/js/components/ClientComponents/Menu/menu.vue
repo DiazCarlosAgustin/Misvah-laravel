@@ -164,44 +164,44 @@
                 classCat:'d-grid',
                 claseVolver: 'd-grid',
                 claseVolverProducto: 'd-none',
-                // categorias:[
-                //     {
-                //         id: 1,
-                //         nombre:'categoria 1'
-                //     },
-                //     {
-                //         id: 2,
-                //         nombre:'categoria 2'
-                //     },
-                //     {
-                //         id: 3,
-                //         nombre:'categoria 3'
-                //     },
-                //     {
-                //         id: 4,
-                //         nombre:'categoria 4'
-                //     },
-                //     {
-                //         id: 5,
-                //         nombre:'categoria 5'
-                //     },
-                //     {
-                //         id: 6,
-                //         nombre:'categoria 6'
-                //     },
-                //     {
-                //         id: 7,
-                //         nombre:'categoria 7'
-                //     },
-                //     {
-                //         id: 8 ,
-                //         nombre:'categoria 8 '
-                //     },
-                //     {
-                //         id: 9,
-                //         nombre:'categoria 9'
-                //     },
-                // ],
+                categorias:[
+                    {
+                        id: 1,
+                        nombre:'categoria 1'
+                    },
+                    {
+                        id: 2,
+                        nombre:'categoria 2'
+                    },
+                    {
+                        id: 3,
+                        nombre:'categoria 3'
+                    },
+                    {
+                        id: 4,
+                        nombre:'categoria 4'
+                    },
+                    {
+                        id: 5,
+                        nombre:'categoria 5'
+                    },
+                    {
+                        id: 6,
+                        nombre:'categoria 6'
+                    },
+                    {
+                        id: 7,
+                        nombre:'categoria 7'
+                    },
+                    {
+                        id: 8 ,
+                        nombre:'categoria 8 '
+                    },
+                    {
+                        id: 9,
+                        nombre:'categoria 9'
+                    },
+                ],
                 productos:[
                     {
                         id:1,

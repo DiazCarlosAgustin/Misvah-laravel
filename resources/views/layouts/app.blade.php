@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="{{asset('css/mdb.css')}}">
         <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
         <link rel="stylesheet" href="{{asset('css/swiper.css')}}">
-        <script src="{{asset('js/jquery.js')}}"></script>
         {{--Iconos de google--}}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
         {{--Fonts--}}
@@ -44,8 +43,8 @@
         
         <!-- JQuery -->
         
-        <script src="{{asset('js/main.js')}}"></script>
-        <script src="{{asset('js/jquery.js')}}"></script>
+        <script src="{{asset('js/mdbootstrap.js')}}"></script>
         @yield('script')
+        <script src="{{asset('js/main.js')}}"></script>
     </body>
     </html>

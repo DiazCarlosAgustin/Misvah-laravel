@@ -12,14 +12,22 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .js('node_modules/swiper/js/swiper.min.js','public/js/swiper.js')
    .sass('resources/sass/app.scss', 'public/css')
    .styles('node_modules/bootstrap/dist/css/bootstrap.min.css','public/css/bootstrap.css')
    .styles('node_modules/mdbootstrap/css/mdb.min.css','public/css/mdb.css')
    .styles('node_modules/swiper/css/swiper.min.css','public/css/swiper.css');
 
 mix.combine([
-      'node_modules/jquery/dist/jquery.js',
-      'node_modules/bootstrap/dist/js/bootstrap.min.js',
-      'node_modules/swiper/js/swiper.min.js',
-   ],'public/js/jquery.js');
+   'node_modules/jquery/dist/jquery.js',
+   'node_modules/mdbootstrap/js/mdb.min.js'
+],'public/mdbootstrap.js');
+
+mix.combine([
+   'node_modules/jquery/dist/jquery.js',
+   'node_modules/bootstrap/dist/js/bootstrap.min.js'
+],'public/bootstrap.js');
+
+mix.combine([
+   'node_modules/jquery/dist/jquery.js',
+   'node_modules/swiper/js/swiper.min.js'
+],'public/js/swiper.js');
