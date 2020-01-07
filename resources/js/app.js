@@ -92,6 +92,11 @@ window.Vue = require('vue');
     //Categoria 
         // agregar
         Vue.component('agregar-categoria', require('./components/AdminComponent/categoria/agregar/nuevaCategoria.vue').default);
+        // Listar
+        Vue.component('admin-categorias', require('./components/AdminComponent/categoria/listar/listaCategorias.vue').default);
+        Vue.component('lista-categoria', require('./components/AdminComponent/categoria/listar/listaCategoria.vue').default);
+        // editar
+        Vue.component('editar-categoria', require('./components/AdminComponent/categoria/editar/editarCategoria.vue').default);
     // Productos    
         // agregar
         Vue.component('agregar-producto', require('./components/AdminComponent/Producto/agregar/agregarProducto.vue').default);

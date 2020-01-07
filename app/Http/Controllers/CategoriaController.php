@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\store;
 
 class CategoriaController extends Controller
 {
@@ -38,16 +39,28 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
+        $exploded = explode(',', $request->imagen);
+        $decode = base64_decode($exploded[1]);
+
+        if (str_contains($exploded[0],'jpeg'))
+            $extension = 'jpg';
+        else
+            $extension = 'png';
+
+        $fileName = str_random().'.'.$extension;
+        $path = public_path().'/img/'.$fileName;
+        file_put_contents($path, $decode);
+
         //agregar una nueva categoria 
         $cat = new Categoria;
         
         $cat->nombre = $request->nombre;
         $cat->descripcion = $request->descripcion;
-        $cat->imagen = $request->imagen;
-        
+        $cat->imagen_categoria = $fileName;
+
+
         $cat->save();
-        
-        return $cat;
+        return response()->json($cat, 200);
     }
 
     /**
@@ -56,12 +69,11 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $request)
+    public function show(Categoria $id)
     {
         //busca una categoria
-        $cat = Categoria::find($categoria);
-
-        return response()->json($cat, 200);
+        $cat = Categoria::find($id);
+        return view('admin\editar_categoria')->with('categoria', $cat);
     }
 
     /**
@@ -72,7 +84,27 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+        $exploded = explode(',', $categoria->imagen);
+        $decode = base64_decode($exploded[1]);
+
+        if (str_contains($exploded[0],'jpeg'))
+            $extension = 'jpg';
+        else
+            $extension = 'png';
+
+        $fileName = str_random().'.'.$extension;
+        $path = public_path().'/img/'.$fileName;
+        file_put_contents($path, $decode);
+        
+        //actualizar una categoria
+        $cat = Categoria::find($categoria->id);
+
+        $cat->nombre = $categoria->nombre;
+        $cat->descripcion = $categoria->descripcion;
+        $cat->imagen_categoria = $fileName;
+        $cat->save();
+
+        return response()->json($cat, 200);
     }
 
     /**
@@ -84,12 +116,24 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
+        $exploded = explode(',', $request->imagen);
+        $decode = base64_decode($exploded[1]);
+
+        if (str_contains($exploded[0],'jpeg'))
+            $extension = 'jpg';
+        else
+            $extension = 'png';
+
+        $fileName = str_random().'.'.$extension;
+        $path = public_path().'/img/'.$fileName;
+        file_put_contents($path, $decode);
+        
         //actualizar una categoria
         $cat = Categoria::find($categoria);
 
         $cat->nombre = $request->nombre;
         $cat->descripcion = $request->descripcion;
-        $cat->imagen = $request->imagen;
+        $cat->imagen_categoria = $fileName;
         $cat->save();
 
         return response()->json($cat, 200);

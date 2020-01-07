@@ -3,7 +3,10 @@
 @section('title','Nueva categoria')
 
 @section('container')
-   <agregar-categoria />
+   <div class="d-nueva-categoria">
+        @csrf
+        <agregar-categoria />
+   </div>
 @endsection
 
 @section('script')

@@ -7,7 +7,7 @@
         </div>
         <div class="row d-flex justify-content-center mt-5">
             <div class="col-12 col-xs-12 col-md-8 text-center">
-                <form @submit.prevent="agregar" role="form">
+                <form @submit.prevent="agregar" role="form" enctype="multipart/form-data">
                         <div class="form-group row">
                             <label for="txtNombreCategoria" class="col-sm-2 col-form-label">Nombre:</label>
                             <div class="col-sm-10">
@@ -46,9 +46,13 @@ export default {
     },
     methods: {
         image:function(e){
-            this.imagen = e.target.files[0].name
-            console.log(this.imagen);
+            var file = new FileReader()
             
+            file.readAsDataURL(e.target.files[0])
+            
+            file.onload = (e) => {
+                this.imagen = e.target.result
+            }
         },
         agregar: function(){
             const params = {
