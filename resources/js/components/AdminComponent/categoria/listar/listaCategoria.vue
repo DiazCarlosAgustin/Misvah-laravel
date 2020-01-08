@@ -5,7 +5,7 @@
         <td class="align-middle">
             <img :src="`../../../img/${categoria.imagen_categoria}`" alt="" width="95">
         </td>
-        <td class="aling-middle">
+        <td class="align-middle">
             {{categoria.descripcion}}
         </td>
         <td class="align-middle text-center">
@@ -14,7 +14,9 @@
             </button>
         </td>
         <td class="align-middle text-center">
-            <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+            <button type="button" class="btn btn-danger" @click="eliminar">
+                <i class="fas fa-times"></i>
+            </button>
         </td>
     </tr>
 </template>
@@ -24,21 +26,23 @@ export default {
     props:['categoria'],
     data() {
         return {
+            id: this.categoria.id
         }
     },
     methods: {
         editar: function(){
-            // axios.get('http://127.0.0.1:8000/api/categoria/'+this.categoria.id)
-            //     .then(res => {
-            //         console.log(res);
-                    
-            //     })
-            //     .catch(err => {
-            //         console.log(err);
-                    
-            //     })
             window.location.href = "http://127.0.0.1:8000/admin/editar_producto/" + this.categoria.id 
+        },
+        eliminar:function(){
+            axios.delete('http://127.0.0.1:8000/api/categoria/' + this.id)
+                .then(res => {
+                    this.$emit('eliminar')
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }
     },
+
 }
 </script>

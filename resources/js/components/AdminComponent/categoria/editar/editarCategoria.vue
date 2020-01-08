@@ -7,7 +7,7 @@
         </div>
         <div class="row d-flex justify-content-center mt-5">
             <div class="col-12 col-xs-12 col-md-6">
-                <form role="form" enctype="multipart/form-data" @submit.prevent="editar">
+                <form role="form" method="put"  enctype="multipart/form-data" @submit.prevent="editar">
                         <div class="form-group ">
                             <label for="txtNombreCategoria" class="">Nombre:</label>
                             <div class="">
@@ -54,9 +54,10 @@ export default {
         return {
             edit:false,
             nombre: this.categoria[0].nombre,
+            id: this.categoria[0].id,
             imagen: '',
             descripcion: this.categoria[0].descripcion,
-            file:''
+            file:'',
         }
     },
     methods: {
@@ -84,14 +85,17 @@ export default {
                 this.imagen =  this.categoria[0].imagen_categoria
             }
             const param = {
-                id: this.categoria[0].id,
                 nombre: this.nombre,
                 imagen: this.imagen,
                 descripcion: this.descripcion
             }
-            axios.put('http://127.0.0.1:8000/api/categoria',param)
+            console.log(param);
+            
+            axios.put('http://127.0.0.1:8000/api/categoria/' + this.id ,param)
                 .then(res => {
-                    console.log(res);
+                    if (res.data.messagge == 'Se actualizo correctamete.') {
+                         window.location.href = "http://127.0.0.1:8000/admin/categorias"
+                    }
                 })
                 .catch(err =>{
                     console.log(err);
