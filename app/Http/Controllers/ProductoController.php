@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use Illuminate\Http\Request;
+use App\Categoria;
 
 class ProductoController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $pro = Producto::with('Categoria:id,nombre')->paginate(5);
+        return response()->json($pro, 200);
     }
 
     /**
@@ -35,7 +37,19 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //crear producto
+        $producto = new Producto;
+
+        $producto->codigo = $request->cod;
+        $producto->id_categoria = $request->categoria;
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precio;
+        $producto->descripcion = $request->descripcion;
+        $producto->infomacion = $request->informacion;
+
+        $producto->save();
+
+        return response()->json($producto, 200);
     }
 
     /**

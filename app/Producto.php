@@ -3,14 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Producto extends Model
 {
     // relacion producto - categoria
     public function categoria()
     {
         // 1 producto - 1 categoria
-        return $this->hasOne('App\Categoria', 'foreign_key', 'local_key');
+        return $this->belongsTo(Categoria::Class, 'id_categoria','id');
     }
 
     // relacion producto - favorito

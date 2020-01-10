@@ -8,6 +8,6 @@ class Categoria extends Model
 {
     public function productos()
     {
-        return $this->hasMany('App\productos', 'foreign_key', 'local_key');
+        return $this->hasMany(Productos::Class, 'id_categoria','id_categoria');
     }
 }

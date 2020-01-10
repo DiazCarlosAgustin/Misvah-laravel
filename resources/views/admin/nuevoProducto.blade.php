@@ -3,10 +3,11 @@
 @section('title','Agregar producto')
     
 @section('container')
-<div class="container">
-        <agregar-producto></agregar-producto>
-</div>
+        <div class="container">
+                @csrf
+                <agregar-producto></agregar-producto>
+        </div>
 @endsection
 @section('script')
-<script src="{{asset('js/app.js')}}" defer></script>
+        <script src="{{asset('js/app.js')}}" defer></script>
 @endsection
