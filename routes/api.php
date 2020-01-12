@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Categoria
 Route::resource('/categoria', 'CategoriaController');
+// producto
+Route::resource('/producto', 'ProductoController');

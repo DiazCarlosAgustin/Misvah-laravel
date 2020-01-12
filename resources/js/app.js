@@ -100,6 +100,7 @@ window.Vue = require('vue');
     // Productos    
         // agregar
         Vue.component('agregar-producto', require('./components/AdminComponent/Producto/agregar/agregarProducto.vue').default);
+        Vue.component('lista-nuevo-producto', require('./components/AdminComponent/Producto/agregar/listaNuevoProducto.vue').default);
         // Lista 
         Vue.component('lista-productos', require('./components/AdminComponent/Producto/Lista/ListaProductos.vue').default);
         Vue.component('producto-lista', require('./components/AdminComponent/Producto/Lista/productoLista.vue').default);
