@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Categoria;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\store;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriaController extends Controller
 {
@@ -95,6 +95,8 @@ class CategoriaController extends Controller
      */
     public function update($id,Request $request)
     {
+        $cat = Categoria::find($id);
+
         $exploded = explode(',', $request->imagen);
         $tamaño = count($exploded);
 
@@ -109,13 +111,13 @@ class CategoriaController extends Controller
             $fileName = str_random().'.'.$extension;
             $path = public_path().'/img/'.$fileName;
             file_put_contents($path, $decode);
+            Storage::delete($cat->imagen_categoria);
         }
         else{
             $fileName = $request->imagen;
         }
 
         //actualizar una categoria
-        $cat = Categoria::find($id);
 
         $cat->nombre = $request->nombre;
         $cat->descripcion = $request->descripcion;
@@ -127,7 +129,7 @@ class CategoriaController extends Controller
         ];
         return response()->json($response, 200);
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -138,6 +140,7 @@ class CategoriaController extends Controller
     {
         //elimina una categoria
         $cat = Categoria::find($categoria);
+        Storage::delete($cat->imagen_categoria);
         $cat->delete();
 
         return response()->json($cat, 200);

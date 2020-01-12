@@ -10,7 +10,7 @@ class Producto extends Model
     public function categoria()
     {
         // 1 producto - 1 categoria
-        return $this->hasOne('App\Categoria', 'foreign_key', 'local_key');
+        return $this->hasOne('App\Categoria', 'id_categoria');
     }
 
     // relacion producto - favorito
