@@ -3168,6 +3168,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       edit: false,
       nombre: this.categoria[0].nombre,
+      id: this.categoria[0].id,
       imagen: '',
       descripcion: this.categoria[0].descripcion,
       file: ''
@@ -3201,13 +3202,15 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       var param = {
-        id: this.categoria[0].id,
         nombre: this.nombre,
         imagen: this.imagen,
         descripcion: this.descripcion
       };
-      axios.put('http://127.0.0.1:8000/api/categoria', param).then(function (res) {
-        console.log(res);
+      console.log(param);
+      axios.put('http://127.0.0.1:8000/api/categoria/' + this.id, param).then(function (res) {
+        if (res.data.messagge == 'Se actualizo correctamete.') {
+          window.location.href = "http://127.0.0.1:8000/admin/categorias";
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -3246,14 +3249,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'lista-categoria',
   props: ['categoria'],
   data: function data() {
-    return {};
+    return {
+      id: this.categoria.id
+    };
   },
   methods: {
     editar: function editar() {
+<<<<<<< HEAD
       // axios.get('http://127.0.0.1:8000/api/categoria/'+this.categoria.id)
       //     .then(res => {
       //         console.log(res);
@@ -3262,6 +3270,18 @@ __webpack_require__.r(__webpack_exports__);
       //         console.log(err);
       //     })
       window.location.href = "http://127.0.0.1:8000/admin/editar_categoria/" + this.categoria.id;
+=======
+      window.location.href = "http://127.0.0.1:8000/admin/editar_producto/" + this.categoria.id;
+    },
+    eliminar: function eliminar() {
+      var _this = this;
+
+      axios["delete"]('http://127.0.0.1:8000/api/categoria/' + this.id).then(function (res) {
+        _this.$emit('eliminar');
+      })["catch"](function (err) {
+        console.log(err);
+      });
+>>>>>>> 4175af3ae9761c3a3fae5acd323fcb3d07b1e7f9
     }
   }
 });
@@ -3307,6 +3327,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'admin-categorias',
   data: function data() {
@@ -3319,10 +3340,14 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('http://127.0.0.1:8000/api/categoria').then(function (res) {
       _this.categorias = res.data;
-      console.log(_this.categorias);
     })["catch"](function (err) {
       console.log(err);
     });
+  },
+  methods: {
+    eliminar: function eliminar($id) {
+      this.categorias.splice($id, 1);
+    }
   }
 });
 
@@ -4955,6 +4980,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('auth/register', params).then(function (res) {
           if (res.data.error != "") {
             _this.error = res.data.error;
+            windows.location.href = '/';
           } else {
             _this.error = "";
           }
@@ -49229,7 +49255,11 @@ var render = function() {
         _c(
           "form",
           {
-            attrs: { role: "form", enctype: "multipart/form-data" },
+            attrs: {
+              role: "form",
+              method: "put",
+              enctype: "multipart/form-data"
+            },
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -49467,7 +49497,7 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("td", { staticClass: "aling-middle" }, [
+    _c("td", { staticClass: "align-middle" }, [
       _vm._v("\n        " + _vm._s(_vm.categoria.descripcion) + "\n    ")
     ]),
     _vm._v(" "),
@@ -49482,23 +49512,20 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(0)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "align-middle text-center" }, [
+    _c("td", { staticClass: "align-middle text-center" }, [
       _c(
         "button",
-        { staticClass: "btn btn-danger", attrs: { type: "button" } },
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button" },
+          on: { click: _vm.eliminar }
+        },
         [_c("i", { staticClass: "fas fa-times" })]
       )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49530,10 +49557,15 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.categorias, function(categoria) {
+            _vm._l(_vm.categorias, function(categoria, index) {
               return _c("lista-categoria", {
                 key: categoria.id,
-                attrs: { categoria: categoria }
+                attrs: { categoria: categoria },
+                on: {
+                  eliminar: function($event) {
+                    return _vm.eliminar(index)
+                  }
+                }
               })
             }),
             1
@@ -70874,8 +70906,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\BurG´s\Documents\Proyectos\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\BurG´s\Documents\Proyectos\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

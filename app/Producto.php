@@ -9,7 +9,7 @@ class Producto extends Model
     public function categoria()
     {
         // 1 producto - 1 categoria
-        return $this->belongsTo(Categoria::Class, 'id_categoria','id');
+        return $this->hasOne('App\Categoria', 'id_categoria');
     }
 
     // relacion producto - favorito

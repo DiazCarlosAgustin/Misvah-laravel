@@ -3,6 +3,7 @@
 @section('title', 'Categorias')
     
 @section('container')
+    @csrf
     <admin-categorias />
 @endsection
 

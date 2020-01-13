@@ -19,9 +19,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <lista-categoria v-for="categoria in categorias" 
+                        <lista-categoria v-for="(categoria, index) in categorias" 
                             :key="categoria.id"
-                            :categoria="categoria" />
+                            :categoria="categoria" 
+                            @eliminar="eliminar(index)"/>
                     </tbody>
                 </table>
             </div>
@@ -40,13 +41,15 @@ export default {
         axios.get('http://127.0.0.1:8000/api/categoria')
             .then(res => {
                 this.categorias = res.data
-                console.log(this.categorias);
-                
             })
             .catch(err => {
                 console.log(err);
-                
             })
     },
+    methods:{
+        eliminar:function($id) {
+            this.categorias.splice($id,1)
+        }
+    }
 }
 </script>

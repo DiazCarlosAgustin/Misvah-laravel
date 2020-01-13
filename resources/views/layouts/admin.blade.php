@@ -58,7 +58,6 @@
                                 <div class="dropdown-menu w-100 text-center" aria-labelledby="navbarDropdown">
                                   <a class="dropdown-item" href={{asset('/admin/nueva_categoria')}}>Agregar</a>
                                   <a class="dropdown-item" href="{{asset('/admin/categorias')}}">Listar</a>
-                                  <a class="dropdown-item" href="">Editar</a>
                                 </div>
                             </div>
                             <a href="{{url('/admin/elementos')}}" class="nav-link nav-item">Elementos del UI</a>

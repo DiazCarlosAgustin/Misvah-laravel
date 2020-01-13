@@ -82,6 +82,7 @@ export default {
                     .then(res => {
                         if(res.data.error != ""){
                             this.error = res.data.error
+                            windows.location.href = '/'
                         }
                         else{
                             this.error = ""

@@ -53,7 +53,7 @@ class appController extends Controller
 
         Auth::login($user);
         
-        return response()->json($user, 200)->redirect('/');
+        return response()->json($user, 200);
     }
     public function logout(){
         Auth::logout();
