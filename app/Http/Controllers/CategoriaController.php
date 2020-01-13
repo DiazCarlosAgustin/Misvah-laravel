@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\store;
-
+use App\Producto;
 class CategoriaController extends Controller
 {
     /**
@@ -16,7 +16,7 @@ class CategoriaController extends Controller
     public function index()
     {
         //
-        $categoria = Categoria::all();
+        $categoria = Categoria::with('Producto:id_categoria,id,nombre')->get();
 
         return response()->json($categoria, 200);
     }

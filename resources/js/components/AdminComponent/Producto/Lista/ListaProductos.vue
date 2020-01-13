@@ -17,13 +17,17 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <producto-lista v-for="producto in productos" :key="producto.codigo" :producto="producto"></producto-lista>
+                        <producto-lista v-for="(producto,index) in listProduct" 
+                            :key="producto.codigo" 
+                            :producto="producto" 
+                            @eliminar="eliminarProducto(index)"/>
                         <tr>
                             <td colspan="9"> 
-                                <div class="text-center">
-                                    <button v-if="actual != primera" class="btn btn-sm">
-                                        Primera
-                                    </button>
+                                <div class="">
+                                    <btn-paginacion v-for="index in last" :key="index" 
+                                        :actual="currentPage"
+                                        :number="index"
+                                        :http="http+index" @next="actualPage"/>
                                 </div>
                             </td>
                         </tr>
@@ -40,24 +44,49 @@ export default {
         return{
             cod:'',
             productos: [],
-            actual:'',
+            actual:1,
             primera:'',
             siguiente:'',
-            ultima:''
+            ultima:'',
+            current:1,
+            last:0,
+            http:'http://127.0.0.1:8000/api/producto?page='
         }
     },
     mounted() {
         axios.get('http://127.0.0.1:8000/api/producto')
             .then(res => {
                 this.productos = res.data.data
-                this.actual = res.data.first_page_url
                 this.primera = res.data.first_page_url
                 this.siguiente = res.data.next_page_url
                 this.ultima = res.data.last_page_url
+                this.current = res.data.current_page
+                this.last = res.data.last_page
             })
             .catch(err => {
                 console.log(err);
             });
+    },
+    methods: {
+        actualPage: function($res){          
+            this.productos = $res.data
+            this.primera = $res.first_page_url
+            this.siguiente = $res.next_page_url
+            this.ultima = $res.last_page_url
+            this.current = $res.current_page
+            this.last = $res.last_page
+        },
+        eliminarProducto:function($i){
+            this.productos.splice($i,1)
+        }
+    },
+    computed: {
+        listProduct: function(){
+            return this.productos
+        },
+        currentPage: function(){
+            return this.current
+        },
     },
 }
 </script>

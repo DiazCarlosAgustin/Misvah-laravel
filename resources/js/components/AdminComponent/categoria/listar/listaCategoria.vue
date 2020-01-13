@@ -37,7 +37,7 @@ export default {
             //         console.log(err);
                     
             //     })
-            window.location.href = "http://127.0.0.1:8000/admin/editar_producto/" + this.categoria.id 
+            window.location.href = "http://127.0.0.1:8000/admin/editar_categoria/" + this.categoria.id 
         }
     },
 }

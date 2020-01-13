@@ -7,13 +7,13 @@
         <td class="align-middle">${{producto.precio}}</td>
         <td class="align-middle">{{producto.descripcion}}</td>
         <td class="align-middle text-center">
-            <a href="/admin/ver_producto/1" class="btn btn-primary text-white"><i class="far fa-eye"></i></a>
+            <a :href="'/admin/ver_producto/'+ this.id" class="btn btn-primary text-white btn-sm"><i class="far fa-eye"></i></a>
         </td>
         <td class="align-middle text-center">
-            <a href="/admin/editar_producto/1" class="btn btn-success text-white"><i class="far fa-edit"></i></a>
+            <a :href="'/admin/editar_producto/'+this.id" class="btn btn-success text-white btn-sm"><i class="far fa-edit"></i></a>
         </td>
         <td class="align-middle text-center">
-            <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+            <button type="button" class="btn btn-danger btn-sm" @click="eliminar"><i class="fas fa-times"></i></button>
         </td>
     </tr>
 </template>
@@ -22,8 +22,23 @@ export default {
     props:['producto'],
     name: 'producto-lista',
     data(){
-        return{}
-    }
+        return{
+            id: this.producto.id
+        }
+    },
+    methods: {
+        eliminar: function(){
+            console.log(this.id);
+            
+            axios.delete('http://127.0.0.1:8000/api/producto/'+this.id)
+                .then(res => {
+                    this.$emit('eliminar')
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+    },
 }
 </script>
 <style scoped>

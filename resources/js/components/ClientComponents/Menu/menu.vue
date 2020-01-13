@@ -149,6 +149,7 @@
 </template>
 <script>
     import auth from '../../../mix/auth'
+import { async } from 'q'
     export default {
         props:[],
         mixins:[auth],
@@ -164,94 +165,24 @@
                 classCat:'d-grid',
                 claseVolver: 'd-grid',
                 claseVolverProducto: 'd-none',
-                categorias:[
-                    {
-                        id: 1,
-                        nombre:'categoria 1'
-                    },
-                    {
-                        id: 2,
-                        nombre:'categoria 2'
-                    },
-                    {
-                        id: 3,
-                        nombre:'categoria 3'
-                    },
-                    {
-                        id: 4,
-                        nombre:'categoria 4'
-                    },
-                    {
-                        id: 5,
-                        nombre:'categoria 5'
-                    },
-                    {
-                        id: 6,
-                        nombre:'categoria 6'
-                    },
-                    {
-                        id: 7,
-                        nombre:'categoria 7'
-                    },
-                    {
-                        id: 8 ,
-                        nombre:'categoria 8 '
-                    },
-                    {
-                        id: 9,
-                        nombre:'categoria 9'
-                    },
-                ],
-                productos:[
-                    {
-                        id:1,
-                        id_categoria:1,
-                        nombre:'producto 1'
-                    },
-                    {
-                        id:2,
-                        w:1,
-                        nombre:'producto 2'
-                    },
-                    {
-                        id:3,
-                        id_categoria:1,
-                        nombre:'producto 3'
-                    },
-                    {
-                        id:4,
-                        id_categoria:2,
-                        nombre:'producto 4'
-                    },
-                    {
-                        id:5,
-                        id_categoria:2,
-                        nombre:'producto 5'
-                    },
-                    {
-                        id:6,
-                        id_categoria:2,
-                        nombre:'producto 6'
-                    },
-                    {
-                        id:7,
-                        id_categoria:3,
-                        nombre:'producto 7'
-                    },
-                    {
-                        id:8,
-                        id_categoria:3,
-                        nombre:'producto 8'
-                    },
-                    {
-                        id:9,
-                        id_categoria:4,
-                        nombre:'producto 9'
-                    },
-                ]
+                categorias:[],
+                productos:[]
             }
         },
+        beforeMount() {
+            this.traerCategorias()
+        },
         methods:{
+            traerCategorias:function(){
+                axios.get('http://127.0.0.1:8000/api/categoria')
+                    .then(res => {
+                        this.categorias = res.data
+                        this.getProductos()
+                    })
+                    .catch(err =>{
+                        console.log(err);
+                    })
+            },
             cerrarSesion: function(){
                 axios.post('auth/logout')
                     .then(res => {
@@ -322,6 +253,14 @@
                 this.claseVolver = 'd-grid'
                 this.claseVolverProducto = 'd-none'
             },
+            getProductos: function(){
+                for (let index = 0; index <this.categorias.length; index++) {
+                   for (let x = 0; x < this.categorias[index].producto.length;x++){
+                        this.productos.push(this.categorias[index].producto[x])   
+                    }
+                }
+                return this.productos
+            },
         },
         created(){
             window.addEventListener('resize',this.hoverMenu)
@@ -330,6 +269,7 @@
         destroyed(){
             window.addEventListener('resize',this.hoverMenu)
         },
+
     computed:{
             productosCategoria: function(){
                 return this.productos.filter((producto) => {

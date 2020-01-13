@@ -57,16 +57,17 @@ Route::get('/favoritos',function(){
    Route::get('/admin/categorias',function(){
       return view('admin\categorias');
    });
+   Route::get('/admin/editar_categoria/{id}','CategoriaController@show');
    Route::get('/admin/nueva_categoria',function(){
       return view('admin\nuevaCategoria');
    });
    Route::get('/admin/productos',function(){
       return view('admin\productos');
    });
+   
    Route::get('/admin/editar_producto/{id}','CategoriaController@show');
-   Route::get('/admin/ver_producto/{id}',function(){
-      return view('admin\verProducto');
-   });
+   Route::get('/admin/ver_producto/{id}','ProductoController@show');
+   
    Route::get('/admin/nuevo_producto',function(){
       return view('admin\nuevoProducto');
    });

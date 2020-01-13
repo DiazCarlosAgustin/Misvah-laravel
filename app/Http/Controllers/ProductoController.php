@@ -60,7 +60,10 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+        //retorna la vista con el producto
+        $producto = Producto::with('Categoria:id,nombre')->get();
+        $producto = $producto->find($producto);
+        return view('/admin/editarProducto')->with('productos',$producto);
     }
 
     /**
@@ -94,6 +97,10 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        //eliminar producto
+        $pro = Producto::find($producto->id);
+        $pro->delete();
+
+        return response()->json($pro, 200);
     }
 }
