@@ -55,16 +55,16 @@ export default {
             tipo:'favorito'
         }
     },
-     methods:{
-         favorito: function(){
-             this.producto.favorito = !this.producto.favorito
-             this.favorite = true
-             this.$emit('productoFavorito',this.producto.favorito)
-         },
-         ocultar: function($estado){
-             this.favorite = $estado
-         }
-     }
+    methods:{
+        favorito: function(){
+            this.producto.favorito = !this.producto.favorito
+            this.favorite = true
+            this.$emit('productoFavorito',this.producto.favorito)
+        },
+        ocultar: function($estado){
+            this.favorite = $estado
+        }
+    }
 }
 </script>
 <style scoped>

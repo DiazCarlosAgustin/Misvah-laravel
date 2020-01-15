@@ -15,7 +15,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $pro = Producto::with('Categoria:id,nombre')->paginate(5);
+        $pro = Producto::with('Categoria:id,nombre')->paginate(8);
         return response()->json($pro, 200);
     }
 
@@ -65,13 +65,10 @@ class ProductoController extends Controller
         $producto = $producto->find($producto);
         return view('/admin/VerProducto')->with('productos',$producto);
     }
-    
+
     public function ver(Producto $producto)
     {
-        //retorna la vista con el producto
-        $producto = Producto::with('Categoria:id,nombre')->get();
-        $producto = $producto->find($producto);
-        return view('/admin/VerProducto')->with('productos',$producto);
+        
     }
 
     /**
@@ -82,9 +79,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        $producto = Producto::with('Categoria:id,nombre')->get();
-        $producto = $producto->find($producto);
-        return view('/admin/editarProducto')->with('productos',$producto);
+        
     }
 
     public function editar(Producto $producto)

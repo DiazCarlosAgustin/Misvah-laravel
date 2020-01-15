@@ -9,10 +9,11 @@
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-12">
-                <ajustes class="mb-2"/>
+                <ajustes class="mb-2"
+                    :categorias="categorias"/>
             </div>
         </div>
-        <productos></productos>
+        <productos />
         <div class="row mt-4 mb-0">
             <paginacion></paginacion>
         </div>
@@ -23,7 +24,17 @@
 export default {
     data(){
         return{
+            categorias:[]
         }
-    }
+    },
+    beforeMount() {
+        axios.get('http://127.0.0.1:8000/api/categoria')
+            .then(res => {
+                this.categorias = res.data
+            })
+            .catch(err =>{
+                console.log(err)
+            })
+    },
 }
 </script>

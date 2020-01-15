@@ -8,7 +8,7 @@
                 <filtro-precio></filtro-precio>
             </div>
             <div class="w-100 my-0 col-12 col-xs-12 col-md-4 p-a">
-                <filtro-categoria></filtro-categoria>
+                <filtro-categoria :categorias="categorias" />
             </div>
             <div class="w-100 my-0 col-12 col-xs-12 col-md-4 p-a">
                 <filtro-ordenado></filtro-ordenado>
@@ -19,7 +19,7 @@
 </template>
 <script>
 export default {
-    
+    props:['categorias']
 }
 </script>
 <style scoped>
