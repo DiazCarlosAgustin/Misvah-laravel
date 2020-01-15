@@ -31,7 +31,6 @@ export default {
     },
     methods: {
         editar: function(){
-<<<<<<< HEAD
             // axios.get('http://127.0.0.1:8000/api/categoria/'+this.categoria.id)
             //     .then(res => {
             //         console.log(res);
@@ -42,18 +41,6 @@ export default {
                     
             //     })
             window.location.href = "http://127.0.0.1:8000/admin/editar_categoria/" + this.categoria.id 
-=======
-            window.location.href = "http://127.0.0.1:8000/admin/editar_producto/" + this.categoria.id 
-        },
-        eliminar:function(){
-            axios.delete('http://127.0.0.1:8000/api/categoria/' + this.id)
-                .then(res => {
-                    this.$emit('eliminar')
-                })
-                .catch(err => {
-                    console.log(err);
-                })
->>>>>>> 4175af3ae9761c3a3fae5acd323fcb3d07b1e7f9
         }
     },
 

@@ -4,13 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Categoria;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\store;
-use App\Producto;
-=======
 use Illuminate\Support\Facades\Storage;
-
->>>>>>> 4175af3ae9761c3a3fae5acd323fcb3d07b1e7f9
+use App\Producto;
 class CategoriaController extends Controller
 {
     /**
@@ -104,7 +99,6 @@ class CategoriaController extends Controller
 
         $exploded = explode(',', $request->imagen);
         $tamaño = count($exploded);
-
         if ($tamaño > 1) {
             $decode = base64_decode($exploded[1]);
 
