@@ -10373,7 +10373,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\nspan[data-v-9bf1cfd6]{\n    display: block;\n    width: 100%;\n    padding: 10px 0;\n    text-align: center;\n}\nspan[data-v-9bf1cfd6]:hover{\n    cursor: pointer;\n    background-color: #F7A399;\n    color: white;\n    -webkit-transition: .5s all ease-out;\n    transition: .5s all ease-out;\n}\n", ""]);
+exports.push([module.i, "\nspan[data-v-9bf1cfd6]{\n    display: block;\n    width: 100%;\n    padding: 10px 0;\n    text-align: center;\n}\nspan[data-v-9bf1cfd6]:hover{\n    cursor: pointer;\n    background-color: #F7A399;\n    color: white;\n    -webkit-transition: .5s all ease-in-out;\n    transition: .5s all ease-in-out;\n}\n", ""]);
 
 // exports
 

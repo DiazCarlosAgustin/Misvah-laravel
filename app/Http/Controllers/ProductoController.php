@@ -63,7 +63,15 @@ class ProductoController extends Controller
         //retorna la vista con el producto
         $producto = Producto::with('Categoria:id,nombre')->get();
         $producto = $producto->find($producto);
-        return view('/admin/editarProducto')->with('productos',$producto);
+        return view('/admin/VerProducto')->with('productos',$producto);
+    }
+    
+    public function ver(Producto $producto)
+    {
+        //retorna la vista con el producto
+        $producto = Producto::with('Categoria:id,nombre')->get();
+        $producto = $producto->find($producto);
+        return view('/admin/VerProducto')->with('productos',$producto);
     }
 
     /**
@@ -74,7 +82,16 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //
+        $producto = Producto::with('Categoria:id,nombre')->get();
+        $producto = $producto->find($producto);
+        return view('/admin/editarProducto')->with('productos',$producto);
+    }
+
+    public function editar(Producto $producto)
+    {
+        $producto = Producto::with('Categoria:id,nombre')->get();
+        $producto = $producto->find($producto);
+        return view('/admin/editarProducto')->with('productos',$producto);
     }
 
     /**

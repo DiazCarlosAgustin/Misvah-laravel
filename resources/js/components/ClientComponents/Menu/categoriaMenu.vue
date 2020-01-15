@@ -26,6 +26,6 @@ export default {
         cursor: pointer;
         background-color: #F7A399;
         color: white;
-        transition: .5s all ease-out;
+        transition: .5s all ease-in-out;
     }
 </style>
