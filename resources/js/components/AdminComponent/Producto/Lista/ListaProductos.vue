@@ -1,7 +1,7 @@
 <template>
      <div class="row d-flex justify-content-center mt-4">
         <div class="col-12 col-xs-12 col-md-12">
-            <div class="table-responsive mt-3">
+            <div class="table-responsive mt-3" v-if="productos.length > 0">
                 <table class="table table-striped" id="tablaProductos">
                     <thead>
                         <tr class="text-center">
@@ -23,7 +23,7 @@
                             @eliminar="eliminarProducto(index)"/>
                         <tr>
                             <td colspan="9"> 
-                                <div class="">
+                                <div v-show="productos.length > 0">
                                     <btn-paginacion v-for="index in last" :key="index" 
                                         :actual="currentPage"
                                         :number="index"
