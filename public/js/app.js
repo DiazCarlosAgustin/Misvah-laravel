@@ -5103,27 +5103,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productos',
-  props: [],
+  props: ['productos'],
   data: function data() {
     return {
       col: "col-12",
       productos: []
     };
   },
-  beforeMount: function beforeMount() {
-    this.getProductos();
-  },
   methods: {
-    getProductos: function getProductos() {
-      var _this = this;
-
-      axios.get('http://127.0.0.1:8000/api/producto').then(function (res) {
-        _this.productos = res.data.data;
-        console.log(res.data.data);
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
     cambiarClase: function cambiarClase() {
       if (window.innerWidth > 375 && window.innerWidth < 575) {
         this.col = 'col-6';
@@ -5198,6 +5185,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FiltroPrecio',
@@ -5248,20 +5237,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      categorias: []
+      categorias: [],
+      productos: [],
+      primera: '',
+      siguiente: '',
+      ultima: '',
+      current: 1,
+      last: 1,
+      http: 'http://127.0.0.1:8000/api/producto?page='
     };
   },
   beforeMount: function beforeMount() {
-    var _this = this;
+    this.getCategorias();
+    this.getProductos();
+  },
+  methods: {
+    getCategorias: function getCategorias() {
+      var _this = this;
 
-    axios.get('http://127.0.0.1:8000/api/categoria').then(function (res) {
-      _this.categorias = res.data;
-    })["catch"](function (err) {
-      console.log(err);
-    });
+      axios.get('http://127.0.0.1:8000/api/categoria').then(function (res) {
+        _this.categorias = res.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    getProductos: function getProductos() {
+      var _this2 = this;
+
+      axios.get('http://127.0.0.1:8000/api/producto').then(function (res) {
+        _this2.productos = res.data.data;
+        _this2.primera = res.data.first_page_url;
+        _this2.siguiente = res.data.next_page_url;
+        _this2.ultima = res.data.last_page_url;
+        _this2.current = res.data.current_page;
+        _this2.last = res.data.last_page;
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    actualPage: function actualPage($res) {
+      this.productos = $res.data;
+      this.primera = $res.first_page_url;
+      this.siguiente = $res.next_page_url;
+      this.ultima = $res.last_page_url;
+      this.current = $res.current_page;
+      this.last = $res.last_page;
+    }
+  },
+  computed: {
+    listProduct: function listProduct() {
+      return this.categorias;
+    },
+    currentPage: function currentPage() {
+      return this.current;
+    }
   }
 });
 
@@ -5295,8 +5331,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['categorias']
+  props: ['categorias'],
+  data: function data() {
+    return {
+      active: false
+    };
+  },
+  methods: {
+    handleFiltro: function handleFiltro() {
+      this.active = !this.active;
+      return this.active;
+    }
+  }
 });
 
 /***/ }),
@@ -10579,7 +10628,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.filtrar[data-v-5ea89d9a]{\n    padding: 0;\n    margin: 0;\n}\n", ""]);
+exports.push([module.i, "\n.filtrar[data-v-5ea89d9a]{\n    padding: 0;\n    margin: 0;\n}\n.head p[data-v-5ea89d9a]{\n    cursor: pointer;\n    -webkit-animation: 1s ease-in-out;\n            animation: 1s ease-in-out;\n}\n\n", ""]);
 
 // exports
 
@@ -52501,54 +52550,61 @@ var render = function() {
       _c("form", { attrs: { action: "" } }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Precio:")]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group d-inline-flex " }, [
-          _c("label", { staticClass: "mt-auto mx-1", attrs: { for: "" } }, [
-            _vm._v("De:")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.minHasta,
-                expression: "minHasta"
-              }
-            ],
-            staticClass: "form-control mx-1",
-            attrs: { type: "number", id: "NumDesde", value: "0" },
-            domProps: { value: _vm.minHasta },
-            on: {
-              change: _vm.cambio,
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c("div", { staticClass: "form-group d-md-flex" }, [
+          _c("div", { staticClass: "col-12 col-xs-12 col-md-6 my-3 my-lg-0" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.minHasta,
+                  expression: "minHasta"
                 }
-                _vm.minHasta = $event.target.value
+              ],
+              staticClass: "form-control mx-1",
+              attrs: { type: "number", id: "NumDesde", value: "0" },
+              domProps: { value: _vm.minHasta },
+              on: {
+                change: _vm.cambio,
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.minHasta = $event.target.value
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "mt-auto mx-1", attrs: { for: "" } }, [
-            _vm._v("Hasta:")
+            })
           ]),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control mx-1",
-            attrs: {
-              type: "number",
-              id: "NumHasta",
-              value: "5000",
-              min: "0",
-              max: "5000"
-            }
-          })
+          _vm._m(0)
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-12 col-xs-12 col-md-6 my-3 my-lg-0" },
+      [
+        _c("input", {
+          staticClass: "form-control mx-1",
+          attrs: {
+            type: "number",
+            id: "NumHasta",
+            value: "5000",
+            min: "0",
+            max: "5000"
+          }
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -52582,7 +52638,7 @@ var render = function() {
           { staticClass: "col-12" },
           [
             _c("ajustes", {
-              staticClass: "mb-2",
+              staticClass: "my-2",
               attrs: { categorias: _vm.categorias }
             })
           ],
@@ -52590,9 +52646,24 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("productos"),
+      _c("productos", { attrs: { productos: _vm.productos } }),
       _vm._v(" "),
-      _c("div", { staticClass: "row mt-4 mb-0" }, [_c("paginacion")], 1)
+      _c(
+        "div",
+        { staticClass: "row my-3 d-flex justify-content-center" },
+        _vm._l(_vm.last, function(index) {
+          return _c("btn-paginacion", {
+            key: index,
+            attrs: {
+              actual: _vm.currentPage,
+              number: index,
+              http: _vm.http + index
+            },
+            on: { next: _vm.actualPage }
+          })
+        }),
+        1
+      )
     ],
     1
   )
@@ -52638,43 +52709,58 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "filtrar row" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "head p-2 col-12 text-right" }, [
+        _c("p", { on: { click: _vm.handleFiltro } }, [_vm._v("Filtros ")])
+      ]),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "w-100 my-0 col-12 col-xs-12 col-md-4 p-a" },
-        [_c("filtro-precio")],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "w-100 my-0 col-12 col-xs-12 col-md-4 p-a" },
-        [_c("filtro-categoria", { attrs: { categorias: _vm.categorias } })],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "w-100 my-0 col-12 col-xs-12 col-md-4 p-a" },
-        [_c("filtro-ordenado")],
-        1
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.active,
+              expression: "active"
+            }
+          ],
+          staticClass: "filters row"
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "w-100 my-0 col-12 col-xs-12 col-md-12  col-lg-4 p-a"
+            },
+            [_c("filtro-precio")],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "w-100 my-0 col-12 col-xs-12 col-md-6 col-lg-4 p-a"
+            },
+            [_c("filtro-categoria", { attrs: { categorias: _vm.categorias } })],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "w-100 my-0 col-12 col-xs-12 col-md-6 col-lg-4 p-a"
+            },
+            [_c("filtro-ordenado")],
+            1
+          ),
+          _vm._v(" "),
+          _c("hr")
+        ]
       )
-    ]),
-    _vm._v(" "),
-    _c("hr")
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "head p-2 col-12 text-right" }, [
-      _c("p", [_vm._v("Filtros ")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -67788,15 +67874,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************************************!*\
   !*** ./resources/js/components/AdminComponent/categoria/listar/listaCategoria.vue ***!
   \************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _listaCategoria_vue_vue_type_template_id_730c2bde___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listaCategoria.vue?vue&type=template&id=730c2bde& */ "./resources/js/components/AdminComponent/categoria/listar/listaCategoria.vue?vue&type=template&id=730c2bde&");
 /* harmony import */ var _listaCategoria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./listaCategoria.vue?vue&type=script&lang=js& */ "./resources/js/components/AdminComponent/categoria/listar/listaCategoria.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _listaCategoria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _listaCategoria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -67826,7 +67911,7 @@ component.options.__file = "resources/js/components/AdminComponent/categoria/lis
 /*!*************************************************************************************************************!*\
   !*** ./resources/js/components/AdminComponent/categoria/listar/listaCategoria.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

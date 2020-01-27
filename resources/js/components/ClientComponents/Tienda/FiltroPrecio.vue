@@ -3,11 +3,13 @@
         <div class="body" id="filtro-color">
             <form action="">
                 <label for="">Precio:</label>
-                <div class="form-group d-inline-flex ">
-                    <label for="" class="mt-auto mx-1">De:</label>
-                    <input type="number" id="NumDesde" class="form-control mx-1" value="0" v-model="minHasta" @change="cambio">
-                    <label for="" class="mt-auto mx-1">Hasta:</label>
-                    <input type="number" id="NumHasta" class="form-control mx-1" value="5000" min="0" max="5000">
+                <div class="form-group d-md-flex">
+                    <div class="col-12 col-xs-12 col-md-6 my-3 my-lg-0">
+                        <input type="number" id="NumDesde" class="form-control mx-1" value="0" v-model="minHasta" @change="cambio">
+                    </div>
+                    <div class="col-12 col-xs-12 col-md-6 my-3 my-lg-0">
+                        <input type="number" id="NumHasta" class="form-control mx-1" value="5000" min="0" max="5000">
+                    </div>
                 </div>
             </form>
         </div>
