@@ -10,27 +10,14 @@
 <script>
 export default {
     name:'productos',
-    props:[],
+    props:['productos'],
     data(){
         return{
             col:"col-12",
             productos:[],
         }
     },
-    beforeMount() {
-        this.getProductos()
-    },
     methods:{
-        getProductos:function(){
-            axios.get('http://127.0.0.1:8000/api/producto')
-                .then(res => {
-                    this.productos = res.data.data
-                    console.log(res.data.data)
-                })
-                .catch(err =>{
-                    console.log(err);
-                })
-        },
         cambiarClase:function(){
             if(window.innerWidth > 375 && window.innerWidth < 575){
                 this.col = 'col-6'

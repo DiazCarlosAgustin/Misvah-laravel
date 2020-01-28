@@ -15,7 +15,8 @@ mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .styles('node_modules/bootstrap/dist/css/bootstrap.min.css','public/css/bootstrap.css')
    .styles('node_modules/mdbootstrap/css/mdb.min.css','public/css/mdb.css')
-   .styles('node_modules/swiper/css/swiper.min.css','public/css/swiper.css');
+   .styles('node_modules/swiper/css/swiper.min.css','public/css/swiper.css')
+   .js( 'node_modules/jquery/dist/jquery.js','public/jquery.js');
 
 mix.combine([
    'node_modules/jquery/dist/jquery.js',
