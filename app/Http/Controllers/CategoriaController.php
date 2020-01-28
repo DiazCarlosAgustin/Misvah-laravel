@@ -99,7 +99,6 @@ class CategoriaController extends Controller
 
         $exploded = explode(',', $request->imagen);
         $tamaño = count($exploded);
-
         if ($tamaño > 1) {
             $decode = base64_decode($exploded[1]);
 
