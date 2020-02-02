@@ -1,7 +1,7 @@
 <template>
      <div class="row d-flex justify-content-center mt-4">
         <div class="col-12 col-xs-12 col-md-12">
-            <div class="table-responsive mt-3" v-if="productos.length > 0">
+            <div class="table-responsive mt-3" v-if="productos.length > 0 && active">
                 <table class="table table-striped" id="tablaProductos">
                     <thead>
                         <tr class="text-center">
@@ -25,7 +25,7 @@
                             <td colspan="9"> 
                                 <div v-show="productos.length > 0">
                                     <btn-paginacion v-for="index in last" :key="index" 
-                                        :actual="currentPage"
+                                        :actual="current"
                                         :number="index"
                                         :http="http+index" @next="actualPage"/>
                                 </div>
@@ -34,6 +34,7 @@
                     </tbody>
                 </table>
             </div>
+            <loader :active="!active"/>
         </div>
     </div>
 </template>
@@ -48,26 +49,37 @@ export default {
             primera:'',
             siguiente:'',
             ultima:'',
-            current:1,
+            current:localStorage.getItem('current'),
             last:0,
-            http:'http://127.0.0.1:8000/api/producto?page='
+            http:'http://127.0.0.1:8000/api/producto?page=',
+            active:false
         }
     },
-    mounted() {
-        axios.get('http://127.0.0.1:8000/api/producto')
+    async beforeMount() {
+        this.getProductos()
+    },
+    methods: {
+        getProductos: function() {
+            axios.get(this.http+this.current)
             .then(res => {
+                if (localStorage.getItem('current')) {
+                    this.current = JSON.parse(localStorage.getItem('current'))
+                }
+                else{
+                    this.current = res.data.current_page
+                }       
                 this.productos = res.data.data
                 this.primera = res.data.first_page_url
                 this.siguiente = res.data.next_page_url
                 this.ultima = res.data.last_page_url
-                this.current = res.data.current_page
                 this.last = res.data.last_page
+                this.active = true
             })
             .catch(err => {
                 console.log(err);
+                this.active = true
             });
-    },
-    methods: {
+        },
         actualPage: function($res){          
             this.productos = $res.data
             this.primera = $res.first_page_url
@@ -84,10 +96,23 @@ export default {
         listProduct: function(){
             return this.productos
         },
-        currentPage: function(){
-            return this.current
-        },
     },
+    mounted(){ 
+        if (localStorage.getItem('current')) {
+            this.current = JSON.parse(localStorage.getItem('current'))
+        }
+        if (localStorage.getItem('last')) {
+            this.last = JSON.parse(localStorage.getItem('last'))
+        }
+    },
+    watch:{
+        last:function(newLast) {
+            localStorage.setItem('last',JSON.stringify(newLast))
+        },
+        current:function(newCurrent){
+            localStorage.setItem('current',JSON.stringify(newCurrent))
+        }
+    }
 }
 </script>
 <style scoped>

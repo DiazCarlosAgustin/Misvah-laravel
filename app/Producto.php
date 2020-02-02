@@ -15,19 +15,23 @@ class Producto extends Model
     // relacion producto - favorito
     public function favorito()
     {
-        return $this->hasOne('App\favorito', 'foreign_key', 'local_key');
+        return $this->hasOne( Favorito::class, 'id_producto', 'id');
     }
 
     public function color()
     {
-        return $this->hasMany('App\color', 'foreign_key', 'local_key');
+        return $this->hasMany(Color::class, 'id_producto', 'id');
     }
     public function carrito()
     {
-        return $this->hasMany('App\carrito', 'foreign_key', 'local_key');
+        return $this->hasOne(Carrito::class, 'id_producto', 'id');
     }
     public function oferta()
     {
-        return $this->hasOne('App\oferta', 'foreign_key', 'local_key');
+        return $this->hasOne(Oferta::class, 'id_producto', 'id');
+    }
+    public function imagenesColor()
+    {
+        return $this->hasMany(imagenesColor::class, 'id_producto', 'id');
     }
 }

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10696,14 +10696,14 @@ return jQuery;
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!**************************************************!*\
   !*** multi ./node_modules/jquery/dist/jquery.js ***!
   \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\node_modules\jquery\dist\jquery.js */"./node_modules/jquery/dist/jquery.js");
+module.exports = __webpack_require__(/*! C:\Users\BurG´s\Documents\Proyectos\Misvah-laravel\node_modules\jquery\dist\jquery.js */"./node_modules/jquery/dist/jquery.js");
 
 
 /***/ })

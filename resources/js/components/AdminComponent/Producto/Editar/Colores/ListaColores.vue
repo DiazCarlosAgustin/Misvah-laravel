@@ -1,6 +1,6 @@
 <template>
     <label class="m-1">
-        <input type="radio" name="color" id="" class="form-check-input">
+        <input type="radio" name="color" class="form-check-input">
         <img src="https://via.placeholder.com/55x55.png" alt="">
     </label>
 </template>

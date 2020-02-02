@@ -113,6 +113,7 @@ Vue.component('btn-paginacion', require('./components/botonPaginacion.vue').defa
         Vue.component('admin-ver-producto', require('./components/AdminComponent/Producto/ver/adminVerProducto.vue').default);
         
         // Editar
+        Vue.component('pagina-editar-producto', require('./components/AdminComponent/Producto/Editar/paginaEditarProducto.vue').default);
         Vue.component('editar-producto', require('./components/AdminComponent/Producto/Editar/EditarProducto.vue').default);
         Vue.component('color-editar-producto', require('./components/AdminComponent/Producto/Editar/ColorEditarProducto.vue').default);
         Vue.component('imagen-editar-producto', require('./components/AdminComponent/Producto/Editar/ImagenesEditarProducto.vue').default);

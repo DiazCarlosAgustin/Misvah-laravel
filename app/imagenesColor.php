@@ -8,6 +8,10 @@ class imagenesColor extends Model
 {
     public function color()
     {
-        return $this->hasOne('App\color', 'foreign_key', 'local_key');
+        return $this->hasOne(color::class, 'id', 'id_color');
+    }
+    public function producto()
+    {
+        return $this->hasOne(Producto::class, 'id', 'id_producto');
     }
 }

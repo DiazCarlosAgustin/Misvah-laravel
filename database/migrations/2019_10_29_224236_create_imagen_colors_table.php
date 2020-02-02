@@ -13,13 +13,15 @@ class CreateImagenColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('imagen_colors', function (Blueprint $table) {
+        Schema::create('imagenes_colors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_color');
+            $table->unsignedBigInteger('id_producto');
             $table->string('imagen_color_producto');
             $table->timestamps();
             
             $table->foreign('id_color')->references('id')->on('colors')->onDelete('cascade');
+            $table->foreign('id_producto')->references('id')->on('productos')->onDelete('cascade');
         });
     }
 
