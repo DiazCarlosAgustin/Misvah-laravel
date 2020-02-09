@@ -93,3 +93,7 @@ Route::get('/favoritos',function(){
 Route::resource('api/menu','MenuController');
 Route::post('api/newMenu','MenuController@store');
 Auth::routes();
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

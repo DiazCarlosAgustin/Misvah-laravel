@@ -146,7 +146,7 @@
         @show
     </div>
     {{--librerias usadas--}}
-     
+    
     <script src="{{asset('js/mdbootstrap.js')}}"></script>
     @yield('script')
 </body>

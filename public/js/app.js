@@ -2038,6 +2038,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ColorEditarProducto',
   props: ['color'],
@@ -2068,14 +2070,19 @@ __webpack_require__.r(__webpack_exports__);
   props: ['color'],
   data: function data() {
     return {};
+  },
+  methods: {
+    handleClick: function handleClick() {
+      this.$emit('selectColor', this.color.id);
+    }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/StockColor.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdminComponent/Producto/Editar/Colores/StockColor.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -2101,24 +2108,135 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'stock-color',
+  name: 'agregar-color',
+  props: ['id_producto'],
   data: function data() {
     return {
-      colores: [{
-        id: 1,
-        nombre: 'rojo',
-        stock: 10
-      }, {
-        id: 2,
-        nombre: 'negro',
-        stock: 3
-      }, {
-        id: 3,
-        nombre: 'gris',
-        stock: 7
-      }]
+      color: {
+        producto: 0,
+        imagen: '',
+        descripcion: ''
+      }
     };
+  },
+  methods: {
+    handleImagen: function handleImagen(e) {
+      var _this = this;
+
+      var file = new FileReader();
+      file.readAsDataURL(e.target.files[0]);
+
+      file.onload = function (e) {
+        _this.color.imagen = e.target.result;
+      };
+    },
+    agregarColor: function agregarColor() {
+      var _this2 = this;
+
+      this.color.id_producto = this.id_producto;
+      axios.post('http://127.0.0.1:8000/api/color', this.color).then(function (res) {
+        if (res) {
+          _this2.color.descripcion = '';
+          _this2.color.imagen = '';
+        }
+      })["catch"](function (err) {
+        console.log(err);
+        _this2.color.descripcion = '';
+        _this2.color.imagen = '';
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/StockColor.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdminComponent/Producto/Editar/Colores/StockColor.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'stock-color',
+  props: ['id'],
+  data: function data() {
+    return {
+      colores: [],
+      id_color: 0,
+      stock: 0
+    };
+  },
+  mounted: function mounted() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function mounted$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            this.getColor();
+
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, null, this);
+  },
+  methods: {
+    getColor: function getColor() {
+      var _this = this;
+
+      var id = this.id;
+      axios.get('http://127.0.0.1:8000/api/color/' + id).then(function (res) {
+        _this.colores = res.data;
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    selectColor: function selectColor($id) {
+      this.id_color = $id;
+      console.log(this.id_color);
+    },
+    postStock: function postStock() {
+      var params = {
+        color_id: this.id_color,
+        stock: this.stock
+      };
+      console.log(params);
+      axios.post('http://127.0.0.1:8000/api/stock', params).then(function (res) {
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -2308,7 +2426,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      categorias: []
+      categorias: [],
+      colores: [],
+      imagenes: []
     };
   },
   beforeMount: function beforeMount() {
@@ -2316,8 +2436,8 @@ __webpack_require__.r(__webpack_exports__);
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(this.producto);
             this.getCategoria();
+            this.getColors();
 
           case 2:
           case "end":
@@ -2332,7 +2452,15 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('http://127.0.0.1:8000/api/categoria').then(function (res) {
         _this.categorias = res.data;
-        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    getColors: function getColors() {
+      var _this2 = this;
+
+      axios.get('http://127.0.0.1:8000/api/color/' + this.producto.id).then(function (res) {
+        _this2.colores = res.data;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -4301,8 +4429,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mix_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../mix/auth */ "./resources/js/mix/auth.js");
 /* harmony import */ var _mix_auth__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_mix_auth__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! q */ "./node_modules/q/q.js");
-/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(q__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -4452,10 +4578,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
+  name: 'navbar',
   mixins: [_mix_auth__WEBPACK_IMPORTED_MODULE_0___default.a],
   data: function data() {
     return {
@@ -4858,6 +4984,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'web-acceder',
   data: function data() {
@@ -4867,17 +4996,29 @@ __webpack_require__.r(__webpack_exports__);
       params: {
         email: '',
         password: ''
-      }
+      },
+      error: ''
     };
   },
   methods: {
     login: function login() {
       var _this = this;
 
-      axios.post('/login', this.params).then(function (res) {
+      axios.post('auth/login', this.params).then(function (res) {
+        if (res.data.error) {
+          _this.error = res.data.error;
+        } else {
+          _this.error = '';
+        }
+
         _this.params.email = '';
         _this.params.password = '';
-        window.location.href = '/';
+
+        if (res.data.is_admin == 0) {
+          window.location.href = '/';
+        } else if (res.data.is_admin == 1) {
+          window.location.href = '/admin/index';
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -5028,11 +5169,12 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.password.length >= 8) {
         axios.post('auth/register', params).then(function (res) {
-          if (res.data.error != "") {
-            _this.error = res.data.error;
-            windows.location.href = '/';
+          console.log(res.data.error.length);
+
+          if (res.data.error.length == 0) {
+            window.location.href = '/';
           } else {
-            _this.error = "";
+            _this.error = res.data.error;
           }
         })["catch"](function (err) {
           console.log(err);
@@ -5056,7 +5198,8 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
     }
-  }
+  },
+  watch: {}
 });
 
 /***/ }),
@@ -48119,15 +48262,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("tr", [
-    _c("td", { staticClass: "align-center align-middle" }, [
-      _c("p", { staticClass: " text-center" }, [
-        _vm._v(_vm._s(_vm.color.nombre) + " ")
-      ])
+    _c("td", { staticClass: "align-center align-middle text-center" }, [
+      _c("img", {
+        attrs: {
+          src: "../../../img/colores/" + _vm.color.imagen_color,
+          alt: _vm.color.descripcion,
+          width: "40"
+        }
+      })
     ]),
     _vm._v(" "),
     _c("td", { staticClass: "align-center align-middle" }, [
-      _c("p", { staticClass: " text-center" }, [
-        _vm._v(_vm._s(_vm.color.stock) + " ")
+      _c("p", { staticClass: " text-center align-middle m-0" }, [
+        _vm._v(_vm._s(_vm.color.stock_color.stock) + " ")
       ])
     ]),
     _vm._v(" "),
@@ -48185,25 +48332,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("label", { staticClass: "m-1" }, [
+    _c("input", {
+      staticClass: "form-check-input",
+      attrs: { type: "radio", name: "color" },
+      on: { click: _vm.handleClick }
+    }),
+    _vm._v(" "),
+    _c("img", {
+      attrs: {
+        src: "../../../img/colores/" + _vm.color.imagen_color,
+        alt: _vm.color.description,
+        width: "45"
+      }
+    })
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { staticClass: "m-1" }, [
-      _c("input", {
-        staticClass: "form-check-input",
-        attrs: { type: "radio", name: "color" }
-      }),
-      _vm._v(" "),
-      _c("img", {
-        attrs: { src: "https://via.placeholder.com/55x55.png", alt: "" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -48225,36 +48370,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "col-12 col-xs-12 col-md-12 col-lg-12  border-bottom pb-4"
-      },
-      [
-        _c("h3", { staticClass: "text-center text-muted" }, [
-          _vm._v("Agregar nuevo color")
-        ]),
-        _vm._v(" "),
-        _c("form", { attrs: { action: "" } }, [
+  return _c(
+    "div",
+    { staticClass: "col-12 col-xs-12 col-md-12 col-lg-12  border-bottom pb-4" },
+    [
+      _c("h3", { staticClass: "text-center text-muted" }, [
+        _vm._v("Agregar nuevo color")
+      ]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          attrs: { enctype: "multipart/form-data" },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.agregarColor($event)
+            }
+          }
+        },
+        [
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "txtColor" } }, [
               _vm._v("Descripcion:")
             ]),
             _vm._v(" "),
             _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.color.descripcion,
+                  expression: "color.descripcion"
+                }
+              ],
               staticClass: "form-control",
               attrs: {
                 type: "text",
                 placeholder: "Ej: rojo",
                 name: "txtColor",
                 id: "txtColor"
+              },
+              domProps: { value: _vm.color.descripcion },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.color, "descripcion", $event.target.value)
+                }
               }
             })
           ]),
@@ -48264,26 +48428,39 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: { type: "file", name: "fileColor", id: "fileColor" }
+              attrs: { type: "file", name: "fileColor", id: "fileColor" },
+              on: {
+                change: function($event) {
+                  return _vm.handleImagen($event)
+                }
+              }
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "text-center" }, [
-            _c(
-              "button",
-              { staticClass: "btn btn-danger", attrs: { type: "reset" } },
-              [_c("i", { staticClass: "fas fa-times" })]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              { staticClass: "btn btn-success", attrs: { type: "submit" } },
-              [_c("i", { staticClass: "fas fa-check" })]
-            )
-          ])
-        ])
-      ]
-    )
+          _vm._m(0)
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "reset" } },
+        [_c("i", { staticClass: "fas fa-times" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_c("i", { staticClass: "fas fa-check" })]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -48315,50 +48492,72 @@ var render = function() {
         _vm._v("Agregar stock a un color")
       ]),
       _vm._v(" "),
-      _c("form", { attrs: { action: "" } }, [
-        _c(
-          "div",
-          { staticClass: "form-group" },
-          [
-            _c("label", { attrs: { for: "cbColor" } }, [_vm._v("Color:")]),
-            _vm._v(" "),
-            _vm._l(_vm.colores, function(color) {
-              return _c("lista-color", {
-                key: color.id,
-                attrs: { color: color }
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.postStock($event)
+            }
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("label", { attrs: { for: "cbColor" } }, [_vm._v("Color:")]),
+              _vm._v(" "),
+              _vm._l(_vm.colores, function(color) {
+                return _c("lista-color", {
+                  key: color.id,
+                  attrs: { color: color },
+                  on: { selectColor: _vm.selectColor }
+                })
               })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "txtStock" } }, [_vm._v("Stock:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.stock,
+                  expression: "stock"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "number",
+                name: "txtStock",
+                id: "txtStock",
+                min: "0"
+              },
+              domProps: { value: _vm.stock },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.stock = $event.target.value
+                }
+              }
             })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1)
-      ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "txtStock" } }, [_vm._v("Stock:")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "number",
-          name: "txtStock",
-          id: "txtStock",
-          value: "1",
-          min: "0"
-        }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -48513,7 +48712,6 @@ var staticRenderFns = [
               attrs: {
                 type: "text",
                 name: "txtCuponDescuento",
-                id: "txtCuponDescuento",
                 placeholder: "$"
               }
             })
@@ -49071,9 +49269,9 @@ var render = function() {
         "div",
         { staticClass: "col-12 col-xs-12 col-md-12 col-lg-4" },
         [
-          _c("nuevo-color"),
+          _c("nuevo-color", { attrs: { id_producto: _vm.producto.id } }),
           _vm._v(" "),
-          _c("stock-color"),
+          _c("stock-color", { attrs: { id: _vm.producto.id } }),
           _vm._v(" "),
           _c("imagen-color"),
           _vm._v(" "),
@@ -52452,7 +52650,7 @@ var render = function() {
                   type: "email",
                   name: "txtAccederMail",
                   id: "txtAccederMail",
-                  placeholder: "example@mail.com",
+                  placeholder: "ejemplo@mail.com",
                   required: ""
                 },
                 domProps: { value: _vm.params.email },
@@ -52495,6 +52693,14 @@ var render = function() {
                   }
                 }
               })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group text-left" }, [
+              _vm.error.length > 0
+                ? _c("p", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.error))
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _vm._m(1),
@@ -52805,29 +53011,17 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.error.length > 0,
-                          expression: "error.length > 0"
-                        }
-                      ],
-                      staticClass: "text-left"
-                    },
-                    [
-                      _c("span", { staticClass: "text-danger" }, [
-                        _vm._v(
-                          "\n                                " +
-                            _vm._s(_vm.error) +
-                            "\n                            "
-                        )
+                  _vm.error.length > 0
+                    ? _c("div", { staticClass: "text-left" }, [
+                        _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(_vm.error) +
+                              "\n                            "
+                          )
+                        ])
                       ])
-                    ]
-                  )
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-campos py-1" }, [
@@ -67484,15 +67678,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NuevoColor_vue_vue_type_template_id_c57fd816___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NuevoColor.vue?vue&type=template&id=c57fd816& */ "./resources/js/components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue?vue&type=template&id=c57fd816&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _NuevoColor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NuevoColor.vue?vue&type=script&lang=js& */ "./resources/js/components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NuevoColor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _NuevoColor_vue_vue_type_template_id_c57fd816___WEBPACK_IMPORTED_MODULE_0__["render"],
   _NuevoColor_vue_vue_type_template_id_c57fd816___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -67506,6 +67702,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NuevoColor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./NuevoColor.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NuevoColor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateColorsTable extends Migration
+class CreateStockColorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('colors', function (Blueprint $table) {
+        Schema::create('stock_colors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_producto');
-            $table->string('imagen_color');
-            $table->string('descripcion');
+            $table->unsignedBigInteger('color_id');
+            $table->integer('stock');
             $table->timestamps();
 
-            $table->foreign('id_producto')->references('id')->on('productos')->onDelete('cascade');
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateColorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('colors');
+        Schema::dropIfExists('stock_colors');
     }
 }

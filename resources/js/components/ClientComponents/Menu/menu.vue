@@ -149,9 +149,9 @@
 </template>
 <script>
     import auth from '../../../mix/auth'
-import { async } from 'q'
     export default {
         props:[],
+        name:'navbar',
         mixins:[auth],
         data(){
             return{

@@ -21,3 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('/categoria', 'CategoriaController');
 // producto
 Route::resource('/producto', 'ProductoController');
+// color
+Route::resource('/color', 'colorController');
+// color
+Route::resource('/stock', 'colorStockController');

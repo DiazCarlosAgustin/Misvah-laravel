@@ -4,7 +4,7 @@
         <form action="">
             <div class="form-group">
                 <label for="txtCuponDescuento">Valor del cupon: </label>
-                <input type="text" name="txtCuponDescuento" id="txtCuponDescuento" class="form-control" placeholder="$">
+                <input type="text" name="txtCuponDescuento"  class="form-control" placeholder="$">
                 
             </div>
             <div class="form-group text-center">

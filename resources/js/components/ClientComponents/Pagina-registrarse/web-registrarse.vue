@@ -15,7 +15,7 @@
                             <label class="text-left">Email  <span class="text-danger"> * </span></label>
                             <input id="email" type="email" class="form-control" name="email" 
                                 required v-model="email"  @input="clearMessagge()">
-                            <div v-show="error.length > 0" class="text-left">
+                            <div v-if="error.length > 0" class="text-left">
                                 <span class="text-danger">
                                     {{error}}
                                 </span>
@@ -80,12 +80,13 @@ export default {
             if(this.password.length >= 8){
                 axios.post('auth/register',params)
                     .then(res => {
-                        if(res.data.error != ""){
-                            this.error = res.data.error
-                            windows.location.href = '/'
+                        console.log(res.data.error.length);
+                        
+                        if(res.data.error.length == 0){
+                            window.location.href = '/'
                         }
                         else{
-                            this.error = ""
+                            this.error = res.data.error
                         }
                     })
                     .catch(err => {
@@ -116,5 +117,8 @@ export default {
             
         }
     },
+    watch:{
+
+    }
 }
 </script>

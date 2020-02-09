@@ -15,19 +15,12 @@ class appController extends Controller
     }
     
     public function login(Request $request){
-
-        
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
-            $user = User::where('email','=',$request->email)->get();
-            if($user->is_admin = 1){
-                return redirect('/admin/index')->response()->json($user, 200);
-            }
-            elseif($user->is_admin = 0) {
-                return response()->json($user, 200)->redirect('/');
-            }
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = User::where('email','=',$request->email)->first();
+            return response()->json($user, 200);
         }
         else{
-            return response()->json(['error' => 'No se pudo acceder, intente nuevamente.'], 401);
+            return response()->json(['error' => 'El mail o la contraseña es incorrecta.']);
         }
     }
     public function register(Request $request){
