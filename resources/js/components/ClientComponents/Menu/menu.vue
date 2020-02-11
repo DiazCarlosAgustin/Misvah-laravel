@@ -9,15 +9,15 @@
                     <span class="s-carrito bg-danger"></span>
                     <i class="material-icons" id="i-xs-carrito">shopping_cart</i>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
-                    aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="dark-blue-text">
-                        <i class="fas fa-bars fa-1x"></i>
+                <button class="navbar-toggler" type="button" @click="showMenu">
+                    <span class="align-middle">
+                        <i class="fas fa-bars fa-1x" v-if="!show"></i>
+                        <i class="fas fa-times fa-1x" v-if="show"></i>
                     </span> 
                 </button>
             </div>
         </div>
-        <div class="navbar-collapse collapse " id="navbarMenu">
+        <div class="navbar-collapse collapse" :class="[show ? 'show': '']" id="navbarMenu">
             <div class="navbar-nav mr-auto text-center">
                 <a href="/" class="nav-item nav-link">INICIO</a>
                 <a class="nav-item nav-link" id="display-categorias" 
@@ -166,13 +166,17 @@
                 claseVolver: 'd-grid',
                 claseVolverProducto: 'd-none',
                 categorias:[],
-                productos:[]
+                productos:[],
+                show:false
             }
         },
         beforeMount() {
             this.traerCategorias()
         },
         methods:{
+            showMenu:function(){
+                this.show = !this.show
+            },
             traerCategorias:function(){
                 axios.get('http://127.0.0.1:8000/api/categoria')
                     .then(res => {

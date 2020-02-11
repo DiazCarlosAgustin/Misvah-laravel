@@ -21,18 +21,14 @@
                             :key="producto.codigo" 
                             :producto="producto" 
                             @eliminar="eliminarProducto(index)"/>
-                        <tr>
-                            <td colspan="9"> 
-                                <div v-show="productos.length > 0">
-                                    <btn-paginacion v-for="index in last" :key="index" 
-                                        :actual="current"
-                                        :number="index"
-                                        :http="http+index" @next="actualPage"/>
-                                </div>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
+            </div>
+            <div v-show="productos.length > 0" class="text-center my-3">
+                <btn-paginacion v-for="index in last" :key="index" 
+                    :actual="current"
+                    :number="index"
+                    :http="http+index" @next="actualPage"/>
             </div>
             <loader :active="!active"/>
         </div>

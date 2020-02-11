@@ -32,7 +32,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <color-editar-producto v-for="color in colores" :key="color.id" :color="color"></color-editar-producto>
+                            <color-editar-producto v-for="(color,index) in colors" 
+                                :key="index" 
+                                :color="color" 
+                                @updateStock="updateStock(index,...arguments)"/>
                         </tbody>
                     </table>
                 </div>
@@ -104,8 +107,16 @@ export default {
                 .catch(err => {
                     console.log(err);
                 })
+        },
+        updateStock:function($i,$stock){
+            this.colores[$i].stock_color.stock = $stock
         }
     },
+    computed:{
+        colors:function(){
+            return this.colores
+        }
+    }
 }
 </script>
 <style scoped>

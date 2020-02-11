@@ -76,9 +76,15 @@ class ColorStockController extends Controller
      * @param  \App\stockColor  $colorStock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, colorStock $colorStock)
+    public function update($colorStock,Request $request)
     {
-        //
+        //actualizar stock
+        $color = stockColor::find($colorStock);
+        $color->stock = $request->stock;
+
+        $color->save();
+
+        return response()->json($color, 200);
     }
 
     /**

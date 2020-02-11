@@ -91,6 +91,7 @@ Vue.component('btn-paginacion', require('./components/botonPaginacion.vue').defa
         Vue.component('producto-stock-bajo', require('./components/AdminComponent/Index/tablas/tabla-stock-bajo/productoStockBajo.vue').default);
     
     //Categoria 
+        Vue.component('menu-admin', require('./components/AdminComponent/menuAdmin/menu.vue').default);
         // agregar
         Vue.component('agregar-categoria', require('./components/AdminComponent/categoria/agregar/nuevaCategoria.vue').default);
         // Listar

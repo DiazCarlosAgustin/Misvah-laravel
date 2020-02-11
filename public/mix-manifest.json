@@ -1,4 +1,11 @@
 {
+    "/jquery.js": "/jquery.js",
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/bootstrap.css": "/css/bootstrap.css",
+    "/css/mdb.css": "/css/mdb.css",
+    "/css/swiper.css": "/css/swiper.css",
+    "/js/mdbootstrap.js": "/js/mdbootstrap.js",
+    "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/swiper.js": "/js/swiper.js"
 }
