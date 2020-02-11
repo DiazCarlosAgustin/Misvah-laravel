@@ -7,7 +7,7 @@
         </td>
         <td class="align-center align-middle justify-content-center">
            <p class=" text-center align-middle m-0" v-if="!edit">{{color.stock_color.stock}} </p> 
-           <input type="number" name="txtStock" id="txtStock" v-model="stock" v-if="edit">
+           <input type="number" name="txtStock" id="txtStock" v-model="stock" v-if="edit" class="w-auto">
         </td>
         <td class="align-center align-middle text-center" v-if="!edit">
             <button type="button" class="btn btn-success py-2 px-3 text-center" @click="handdleEdit">

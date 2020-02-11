@@ -1,8 +1,8 @@
 <template>
     <div class="container d-nueva-categoria">
         <div class="row d-flex justify-content-center">
-            <div class="col-12 text-center">
-                <h2>Nueva categoria</h2>
+            <div class="col-12 text-center mt-3">
+                <h2>Editar categoria</h2>
             </div>
         </div>
         <div class="row d-flex justify-content-center mt-5">
@@ -15,11 +15,11 @@
                                     v-model="nombre">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group row d-flex justify-content-center">
                             <label for="txtNombreCategoria" class="">Imagen:</label>
-                            <div class=" col-sm-10 d-block">
-                                <img :src="`../../../img/${categoria[0].imagen_categoria}`" v-if="!file" width="350" alt="" class="d-block">
-                                <img :src="imagen" v-else width="350" alt="" class="d-block">
+                            <div class=" col-sm-12 d-block text-center">
+                                <img :src="`../../../img/${categoria[0].imagen_categoria}`" v-if="!file" alt="" class="d-block mx-auto img-edit">
+                                <img :src="imagen" v-else width="350" alt="imagen categoria" class="d-block mx-auto img-edit">
                                 <button v-show="!edit" class="btn btn-sm btn-success" @click.prevent="showEdit">Editar</button>
                             </div>
                             <div class="col-sm-10 my-3" v-if="edit">
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="form-group float-right">
-                            <a href="" class="btn btn-danger m-1">Volver</a>
+                            <a href="/admin/categorias" class="btn btn-danger m-1">Volver</a>
                             <button type="submit" class="btn btn-primary m-1">Aceptar</button>
                         </div>
                 </form>
@@ -105,3 +105,8 @@ export default {
     },
 }
 </script>
+<style scoped>
+    .img-edit{
+        width: 100%;
+    }
+</style>

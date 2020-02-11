@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed-top">
+    <div>
         <nav class="navbar navbar-dark  bg-purple fixed-top col-12 scrolling-navbar">
             <button class="navbar-toggler" type="button" @click="showMenu">
                 <span class="align-middle">
