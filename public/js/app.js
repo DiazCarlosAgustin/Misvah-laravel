@@ -2054,13 +2054,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ColorEditarProducto',
   props: ['color'],
   data: function data() {
     return {
-      edit: false,
-      stock: this.color.stock_color.stock
+      edit: false
     };
   },
   methods: {
@@ -2072,7 +2072,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var id = this.color.stock_color.id;
       var params = {
-        stock: this.stock
+        stock: this.color.stock_color.stock
       };
       axios.put('http://127.0.0.1:8000/api/stock/' + id, params).then(function (res) {
         console.log(res.data);
@@ -2106,15 +2106,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'lista-color',
-  props: ['color'],
+  props: ['color', 'id'],
   data: function data() {
-    return {};
+    return {
+      val: false
+    };
   },
   methods: {
     handleClick: function handleClick() {
       this.$emit('selectColor', this.color.id);
     }
-  }
+  },
+  computed: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'lista-color-imagen',
+  props: ['color'],
+  data: function data() {
+    return {};
+  },
+  methods: {},
+  mounted: function mounted() {},
+  computed: {}
 });
 
 /***/ }),
@@ -2200,9 +2231,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
+//
 //
 //
 //
@@ -2226,43 +2255,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'stock-color',
-  props: ['id'],
+  props: ['id', 'colores'],
   data: function data() {
     return {
-      colores: [],
       id_color: 0,
-      stock: 0
+      stock: 0,
+      stocks: []
     };
   },
-  mounted: function mounted() {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function mounted$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            this.getColor();
-
-          case 1:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, null, this);
-  },
   methods: {
-    getColor: function getColor() {
-      var _this = this;
-
-      var id = this.id;
-      axios.get('http://127.0.0.1:8000/api/color/' + id).then(function (res) {
-        _this.colores = res.data;
-        console.log(res.data);
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
     selectColor: function selectColor($id) {
       this.id_color = $id;
-      console.log(this.id_color);
+      console.log($id);
     },
     postStock: function postStock() {
       var params = {
@@ -2275,8 +2279,18 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    id_stock: function id_stock() {
+      var _this = this;
+
+      var colors = this.colores;
+      colors.forEach(function (c) {
+        _this.stocks.push(c.stock_color);
+      });
+      return this.stocks;
     }
-  }
+  },
+  computed: {}
 });
 
 /***/ }),
@@ -2310,32 +2324,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'imagen-color',
+  props: ['colors'],
   data: function data() {
-    return {
-      colores: [{
-        id: 1,
-        nombre: 'rojo',
-        stock: 10
-      }, {
-        id: 2,
-        nombre: 'negro',
-        stock: 3
-      }, {
-        id: 3,
-        nombre: 'gris',
-        stock: 7
-      }, {
-        id: 4,
-        nombre: 'rosa',
-        stock: 7
-      }, {
-        id: 5,
-        nombre: 'marron',
-        stock: 7
-      }]
-    };
+    return {};
   }
 });
 
@@ -2463,13 +2457,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'editar-producto',
-  props: {
-    producto: Object
-  },
+  props: ['producto', 'colores'],
   data: function data() {
     return {
       categorias: [],
-      colores: [],
       imagenes: []
     };
   },
@@ -2479,9 +2470,8 @@ __webpack_require__.r(__webpack_exports__);
         switch (_context.prev = _context.next) {
           case 0:
             this.getCategoria();
-            this.getColors();
 
-          case 2:
+          case 1:
           case "end":
             return _context.stop();
         }
@@ -2494,15 +2484,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('http://127.0.0.1:8000/api/categoria').then(function (res) {
         _this.categorias = res.data;
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
-    getColors: function getColors() {
-      var _this2 = this;
-
-      axios.get('http://127.0.0.1:8000/api/color/' + this.producto.id).then(function (res) {
-        _this2.colores = res.data;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2572,12 +2553,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'pagina-editar-producto',
-  props: {
-    producto: Object
-  },
+  props: ['producto', 'colores'],
   data: function data() {
-    return {};
-  }
+    return {
+      colors: []
+    };
+  },
+  computed: {}
 });
 
 /***/ }),
@@ -10627,7 +10609,26 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\n[type=\"radio\"][data-v-79db23d2] { \n    position: absolute;\n    opacity: 0;\n    width: 0;\n    height: 0;\n}\n[type=\"radio\"] +  img[data-v-79db23d2] {\n    cursor: pointer;\n}\n[type=\"radio\"]:checked + img[data-v-79db23d2]{\n    outline: 2px solid #fd6d6df2;\n}\n", ""]);
+exports.push([module.i, "\n[type=\"radio\"][data-v-79db23d2] { \n    position: absolute;\n    opacity: 0;\n    width: 0;\n    height: 0;\n}\n[type=\"radio\"] +  img[data-v-79db23d2] {\n    cursor: pointer;\n}\n[type=\"radio\"]:checked + img[data-v-79db23d2]{\n    outline: 2px solid #fd6d6df2;\n}\n.disabled[data-v-79db23d2]{\n    pointer-events: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n[type=\"radio\"][data-v-c8d1e4cc] { \n    position: absolute;\n    opacity: 0;\n    width: 0;\n    height: 0;\n}\n[type=\"radio\"] +  img[data-v-c8d1e4cc] {\n    cursor: pointer;\n}\n[type=\"radio\"]:checked + img[data-v-c8d1e4cc]{\n    outline: 2px solid #fd6d6df2;\n}\n.disabled[data-v-c8d1e4cc]{\n    pointer-events: none;\n}\n", ""]);
 
 // exports
 
@@ -44964,6 +44965,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--6-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/EditarProducto.vue?vue&type=style&index=0&id=ce6a32b4&scoped=true&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdminComponent/Producto/Editar/EditarProducto.vue?vue&type=style&index=0&id=ce6a32b4&scoped=true&lang=css& ***!
@@ -48505,93 +48536,99 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", [
-    _c("td", { staticClass: "align-center align-middle text-center" }, [
-      _c("img", {
-        attrs: {
-          src: "../../../img/colores/" + _vm.color.imagen_color,
-          alt: _vm.color.descripcion,
-          width: "40"
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "align-center align-middle justify-content-center" },
-      [
+  return _vm.color.stock_color != null
+    ? _c("tr", [
+        _c("td", { staticClass: "align-center align-middle text-center" }, [
+          _c("img", {
+            attrs: {
+              src: "../../../img/colores/" + _vm.color.imagen_color,
+              alt: _vm.color.descripcion,
+              width: "40"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "td",
+          { staticClass: "align-center align-middle justify-content-center" },
+          [
+            !_vm.edit
+              ? _c("p", { staticClass: " text-center align-middle m-0" }, [
+                  _vm._v(_vm._s(_vm.color.stock_color.stock) + " ")
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.edit
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.color.stock_color.stock,
+                      expression: "color.stock_color.stock"
+                    }
+                  ],
+                  staticClass: "w-auto form-control mx-auto",
+                  attrs: { type: "number", name: "txtStock", id: "txtStock" },
+                  domProps: { value: _vm.color.stock_color.stock },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.color.stock_color,
+                        "stock",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              : _vm._e()
+          ]
+        ),
+        _vm._v(" "),
         !_vm.edit
-          ? _c("p", { staticClass: " text-center align-middle m-0" }, [
-              _vm._v(_vm._s(_vm.color.stock_color.stock) + " ")
+          ? _c("td", { staticClass: "align-center align-middle text-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success py-2 px-3 text-center",
+                  attrs: { type: "button" },
+                  on: { click: _vm.handdleEdit }
+                },
+                [_c("i", { staticClass: "fas fa-edit" })]
+              ),
+              _vm._v(" "),
+              _vm._m(0)
             ])
           : _vm._e(),
         _vm._v(" "),
         _vm.edit
-          ? _c("input", {
-              directives: [
+          ? _c("td", { staticClass: "align-center align-middle text-center" }, [
+              _c(
+                "button",
                 {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.stock,
-                  expression: "stock"
-                }
-              ],
-              staticClass: "w-auto",
-              attrs: { type: "number", name: "txtStock", id: "txtStock" },
-              domProps: { value: _vm.stock },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.stock = $event.target.value
-                }
-              }
-            })
+                  staticClass: "btn btn-success py-2 px-3 text-center",
+                  attrs: { type: "button" },
+                  on: { click: _vm.updateStock }
+                },
+                [_c("i", { staticClass: "fas fa-check" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger py-2 px-3 text-center",
+                  attrs: { type: "button" },
+                  on: { click: _vm.handdleEdit }
+                },
+                [_c("i", { staticClass: "fas fa-times" })]
+              )
+            ])
           : _vm._e()
-      ]
-    ),
-    _vm._v(" "),
-    !_vm.edit
-      ? _c("td", { staticClass: "align-center align-middle text-center" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success py-2 px-3 text-center",
-              attrs: { type: "button" },
-              on: { click: _vm.handdleEdit }
-            },
-            [_c("i", { staticClass: "fas fa-edit" })]
-          ),
-          _vm._v(" "),
-          _vm._m(0)
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.edit
-      ? _c("td", { staticClass: "align-center align-middle text-center" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success py-2 px-3 text-center",
-              attrs: { type: "button" },
-              on: { click: _vm.updateStock }
-            },
-            [_c("i", { staticClass: "fas fa-check" })]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-danger py-2 px-3 text-center",
-              attrs: { type: "button" },
-              on: { click: _vm.handdleEdit }
-            },
-            [_c("i", { staticClass: "fas fa-times" })]
-          )
-        ])
-      : _vm._e()
-  ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -48632,7 +48669,11 @@ var render = function() {
   return _c("label", { staticClass: "m-1" }, [
     _c("input", {
       staticClass: "form-check-input",
-      attrs: { type: "radio", name: "color" },
+      attrs: {
+        type: "radio",
+        name: "color",
+        disabled: _vm.color.stock_color != null
+      },
       on: { click: _vm.handleClick }
     }),
     _vm._v(" "),
@@ -48640,7 +48681,46 @@ var render = function() {
       attrs: {
         src: "../../../img/colores/" + _vm.color.imagen_color,
         alt: _vm.color.description,
-        width: "45"
+        width: "45",
+        height: "35"
+      }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=template&id=c8d1e4cc&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=template&id=c8d1e4cc&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("label", { staticClass: "m-1" }, [
+    _c("input", {
+      staticClass: "form-check-input",
+      attrs: { type: "radio", name: "color" }
+    }),
+    _vm._v(" "),
+    _c("img", {
+      attrs: {
+        src: "../../../img/colores/" + _vm.color.imagen_color,
+        alt: _vm.color.description,
+        width: "45",
+        height: "35"
       }
     })
   ])
@@ -48809,7 +48889,7 @@ var render = function() {
               _vm._l(_vm.colores, function(color) {
                 return _c("lista-color", {
                   key: color.id,
-                  attrs: { color: color },
+                  attrs: { color: color, id: _vm.stocks },
                   on: { selectColor: _vm.selectColor }
                 })
               })
@@ -48910,8 +48990,8 @@ var render = function() {
           [
             _c("label", { attrs: { for: "txtStock" } }, [_vm._v("Color:")]),
             _vm._v(" "),
-            _vm._l(_vm.colores, function(color) {
-              return _c("lista-color", {
+            _vm._l(_vm.colors, function(color) {
+              return _c("lista-color-imagen", {
                 key: color.id,
                 attrs: { color: color }
               })
@@ -49571,7 +49651,9 @@ var render = function() {
     "div",
     { staticClass: "row mt-2" },
     [
-      _c("editar-producto", { attrs: { producto: _vm.producto } }),
+      _c("editar-producto", {
+        attrs: { producto: _vm.producto, colores: _vm.colores }
+      }),
       _vm._v(" "),
       _c(
         "div",
@@ -49579,9 +49661,11 @@ var render = function() {
         [
           _c("nuevo-color", { attrs: { id_producto: _vm.producto.id } }),
           _vm._v(" "),
-          _c("stock-color", { attrs: { id: _vm.producto.id } }),
+          _c("stock-color", {
+            attrs: { id: _vm.producto.id, colores: _vm.colores }
+          }),
           _vm._v(" "),
-          _c("imagen-color"),
+          _c("imagen-color", { attrs: { colors: _vm.colores } }),
           _vm._v(" "),
           _c("generar-cupon-descuento"),
           _vm._v(" "),
@@ -67235,6 +67319,7 @@ Vue.component('color-editar-producto', __webpack_require__(/*! ./components/Admi
 Vue.component('imagen-editar-producto', __webpack_require__(/*! ./components/AdminComponent/Producto/Editar/ImagenesEditarProducto.vue */ "./resources/js/components/AdminComponent/Producto/Editar/ImagenesEditarProducto.vue")["default"]); // Color nuevo, stock, imagen
 
 Vue.component('lista-color', __webpack_require__(/*! ./components/AdminComponent/Producto/Editar/Colores/ListaColores.vue */ "./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColores.vue")["default"]);
+Vue.component('lista-color-imagen', __webpack_require__(/*! ./components/AdminComponent/Producto/Editar/Colores/ListaColors.vue */ "./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue")["default"]);
 Vue.component('nuevo-color', __webpack_require__(/*! ./components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue */ "./resources/js/components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue")["default"]);
 Vue.component('stock-color', __webpack_require__(/*! ./components/AdminComponent/Producto/Editar/Colores/StockColor.vue */ "./resources/js/components/AdminComponent/Producto/Editar/Colores/StockColor.vue")["default"]);
 Vue.component('imagen-color', __webpack_require__(/*! ./components/AdminComponent/Producto/Editar/Colores/imagenColor.vue */ "./resources/js/components/AdminComponent/Producto/Editar/Colores/imagenColor.vue")["default"]); // Generar cupon
@@ -68414,6 +68499,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColores_vue_vue_type_template_id_79db23d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColores_vue_vue_type_template_id_79db23d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListaColors_vue_vue_type_template_id_c8d1e4cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListaColors.vue?vue&type=template&id=c8d1e4cc&scoped=true& */ "./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=template&id=c8d1e4cc&scoped=true&");
+/* harmony import */ var _ListaColors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListaColors.vue?vue&type=script&lang=js& */ "./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _ListaColors_vue_vue_type_style_index_0_id_c8d1e4cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css& */ "./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _ListaColors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListaColors_vue_vue_type_template_id_c8d1e4cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ListaColors_vue_vue_type_template_id_c8d1e4cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "c8d1e4cc",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaColors.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************!*\
+  !*** ./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_style_index_0_id_c8d1e4cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/style-loader!../../../../../../../node_modules/css-loader??ref--6-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=style&index=0&id=c8d1e4cc&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_style_index_0_id_c8d1e4cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_style_index_0_id_c8d1e4cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_style_index_0_id_c8d1e4cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_style_index_0_id_c8d1e4cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_style_index_0_id_c8d1e4cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=template&id=c8d1e4cc&scoped=true&":
+/*!***********************************************************************************************************************************!*\
+  !*** ./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=template&id=c8d1e4cc&scoped=true& ***!
+  \***********************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_template_id_c8d1e4cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaColors.vue?vue&type=template&id=c8d1e4cc&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdminComponent/Producto/Editar/Colores/ListaColors.vue?vue&type=template&id=c8d1e4cc&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_template_id_c8d1e4cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaColors_vue_vue_type_template_id_c8d1e4cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

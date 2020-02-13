@@ -9,7 +9,7 @@
                 <h2 class="text-center">Editar producto</h2>
             </div>
         </div>
-        <pagina-editar-producto :producto="{{$producto}}"/>
+        <pagina-editar-producto :producto="{{$producto}}" :colores="{{$color}}"/>
     </div>
 
     {{-- Modal's --}}

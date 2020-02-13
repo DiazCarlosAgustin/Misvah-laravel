@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Producto;
 use Illuminate\Http\Request;
 use App\Categoria;
+use App\color;
 
 class ProductoController extends Controller
 {
@@ -90,7 +91,9 @@ class ProductoController extends Controller
                     ->with('color')
                     ->with('imagenesColor')->get();
         $prod = $prod->find($producto);
-        return view('/admin/editarProducto')->with('producto',$prod);
+        $color = Color::with('stockColor')->get();
+        // $color = json_encode($color);
+        return view('/admin/editarProducto',['producto' => $prod, 'color' => $color]);
     }
 
     /**

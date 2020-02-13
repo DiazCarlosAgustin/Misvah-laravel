@@ -5,6 +5,7 @@
             <div class="form-group">
                 <label for="cbColor">Color:</label>
                     <lista-color v-for="color in colores" :color="color" 
+                        :id="stocks"
                         :key="color.id" 
                         @selectColor="selectColor"/>   
             </div>
@@ -22,33 +23,18 @@
 <script>
 export default {
     name:'stock-color',
-    props:['id'],
+    props:['id', 'colores'],
     data(){
         return{
-            colores:[],
             id_color:0,
-            stock:0
+            stock:0,
+            stocks:[]
         }
     },
-    async mounted(){
-        this.getColor()
-    },
     methods:{
-        getColor:function(){
-            const id = this.id
-            axios.get('http://127.0.0.1:8000/api/color/'+id)
-                .then(res=>{
-                    this.colores = res.data
-                    console.log(res.data);
-                })
-                .catch(err=>{
-                    console.log(err);
-                })
-        },
         selectColor:function($id){
             this.id_color = $id
-            console.log(this.id_color);
-            
+            console.log($id)
         },
         postStock:function(){
             const params = {
@@ -64,7 +50,16 @@ export default {
                 .catch(err=>{
                     console.log(err);
                 })
+        },
+        id_stock:function(){
+            const colors = this.colores
+            colors.forEach(c =>{
+                this.stocks.push(c.stock_color)
+            })
+            return this.stocks
         }
+    },
+    computed:{
     }
 }
 </script>

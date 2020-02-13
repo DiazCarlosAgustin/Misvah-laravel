@@ -37,14 +37,20 @@ class ColorStockController extends Controller
      */
     public function store(Request $request)
     {
-        $stock = new stockColor();
+        $stock = stockColor::find($request->color_id);
+        if($stock->color_id > 0){
+            $stock = new stockColor();
         
-        $stock->color_id = $request->color_id;
-        $stock->stock = $request->stock;
+            $stock->color_id = $request->color_id;
+            $stock->stock = $request->stock;
 
-        $stock->save();
+            $stock->save();
 
-        return response()->json($stock, 200);
+            return response()->json($stock, 200);
+        }
+        else{
+            return response()->json(["error" => "El color ya posee stock."]);
+        }
     }
 
     /**

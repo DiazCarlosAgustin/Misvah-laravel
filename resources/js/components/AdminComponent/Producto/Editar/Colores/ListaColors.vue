@@ -1,22 +1,20 @@
 <template>
     <label class="m-1">
-        <input type="radio" name="color" class="form-check-input" @click="handleClick" :disabled="color.stock_color != null">
+        <input type="radio" name="color" class="form-check-input">
         <img :src="`../../../img/colores/${color.imagen_color}`" :alt="color.description" width="45" height="35">
     </label>
 </template>
 <script>
 export default {
-    name:'lista-color',
-    props:['color','id'],
+    name:'lista-color-imagen',
+    props:['color'],
     data(){
         return{
-            val:false
         }
     },
     methods:{
-        handleClick:function(){
-            this.$emit('selectColor',this.color.id)
-        }
+    },
+    mounted(){
     },
     computed:{
     }

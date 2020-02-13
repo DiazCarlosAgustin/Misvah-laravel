@@ -75,34 +75,21 @@
 <script>
 export default {
     name:'editar-producto',
-    props:{
-        producto:Object
-    },
+    props:['producto','colores'],
     data(){
         return {
             categorias:[],
-            colores:[],
             imagenes:[]
         }
     },
     async beforeMount(){
         this.getCategoria()
-        this.getColors()
     },
     methods:{
         getCategoria:function() {
             axios.get('http://127.0.0.1:8000/api/categoria')
                 .then(res =>{
                     this.categorias = res.data
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        },
-        getColors:function(){
-            axios.get('http://127.0.0.1:8000/api/color/'+this.producto.id)
-                .then(res =>{
-                    this.colores = res.data
                 })
                 .catch(err => {
                     console.log(err);

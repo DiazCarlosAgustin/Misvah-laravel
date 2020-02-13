@@ -120,6 +120,7 @@ Vue.component('btn-paginacion', require('./components/botonPaginacion.vue').defa
         Vue.component('imagen-editar-producto', require('./components/AdminComponent/Producto/Editar/ImagenesEditarProducto.vue').default);
         // Color nuevo, stock, imagen
         Vue.component('lista-color', require('./components/AdminComponent/Producto/Editar/Colores/ListaColores.vue').default);
+        Vue.component('lista-color-imagen', require('./components/AdminComponent/Producto/Editar/Colores/ListaColors.vue').default);
         Vue.component('nuevo-color', require('./components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue').default);
         Vue.component('stock-color', require('./components/AdminComponent/Producto/Editar/Colores/StockColor.vue').default);
         Vue.component('imagen-color', require('./components/AdminComponent/Producto/Editar/Colores/imagenColor.vue').default);
