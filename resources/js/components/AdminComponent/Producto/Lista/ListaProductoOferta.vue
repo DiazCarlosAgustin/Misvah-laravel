@@ -13,18 +13,18 @@
                 <table class="table table-stripted">
                     <thead>
                         <tr>
-                            <th class="align-middle text-center">Cod.</th>
-                            <th class="align-middle text-center">Nombre</th>
-                            <th class="align-middle text-center">precio</th>
+                            <th class="align-middle text-center">ID</th>
+                            <th class="align-middle text-center">Codigo</th>
+                            <th class="align-middle text-center">Producto</th>
                             <th class="align-middle text-center">% descuento</th>
-                            <th class="align-middle text-center">precio descuento</th>
                             <th class="align-middle text-center">Desde</th>
                             <th class="align-middle text-center">Hasta</th>
                             <th class="align-middle text-center">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <producto-oferta v-for="producto in filtrarOferta" :key="producto.cod" :producto="producto"></producto-oferta>
+                        <producto-oferta v-for="(oferta,index) in ArrayOfertas" 
+                            :key="oferta.id" :oferta="oferta" @deleteOferta="deleteOferta(index)" />
                     </tbody>
                 </table>
             </div>
@@ -37,34 +37,37 @@ export default {
     data(){
         return{
             buscar:'',
-            productosOferta:[
-                {
-                    cod:'1',
-                    nombre: 'Nombre producto',
-                    precio: 255,
-                    descuento: 25,
-                    precioDescuento: 0,
-                    desde: '25/07/2019',
-                    hasta: '29/07/2019'
-                },
-                {
-                    cod:'2',
-                    nombre: 'Nombre producto',
-                    precio: 295,
-                    descuento: 15,
-                    precioDescuento:0,
-                    desde: '22/07/2019',
-                    hasta: '29/07/2019'
-                }
-            ]
+            ofertas:[]
         }
     },
-   computed:{
-       filtrarOferta: function(){
-            return this.productosOferta.filter((producto) => {
-                return producto.cod.match(this.buscar);
-            })
+    beforeMount(){
+        this.getOferta()
+    },
+    methods:{
+        getOferta:function(){
+            axios.get('http://127.0.0.1:8000/api/oferta')
+                .then(res =>{
+                    this.ofertas = res.data
+                })
+                .catch(err =>{
+                    console.log(err);
+                })
         },
+        deleteOferta:function($i){
+            this.ofertas.splice($i,1);
+        }
+    },
+    computed:{
+        ArrayOfertas(){
+            if (this.buscar != ''){
+                this.ofertas.filter(o => {
+                    return o.producto.codigo.match(this.buscar) ? this.ofertas : "No se encontro el codigo"    
+                })
+            }
+            else{
+                return this.ofertas
+            }
+        }
    },
 }
 </script>

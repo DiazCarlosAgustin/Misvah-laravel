@@ -3,6 +3,7 @@
 @section('title', 'productos')
     
 @section('container')
+    @csrf
     <div class="container-fluid mt-5">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-xs-12 col-md-10 mt-4">

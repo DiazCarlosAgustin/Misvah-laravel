@@ -14,7 +14,9 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        $color = color::all();
+
+        return response()->json($color, 200);
     }
 
     /**
@@ -35,7 +37,30 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $exploded = explode(',', $request->imagen);
+        $decode = base64_decode($exploded[1]);
+        
+        
+        if (str_contains($exploded[0],'jpeg'))
+        $extension = 'jpg';
+        else
+        $extension = 'png';
+        
+        $fileName = str_random().'.'.$extension;
+        $path = public_path().'/img/colores/'.$fileName;
+        file_put_contents($path, $decode);
+        
+        $color = new color();
+
+        $color->id_producto = $request->id_producto;
+        $color->imagen_color = $fileName;
+        $color->descripcion = $request->descripcion;
+
+        $color->save();
+
+        return response()->json($color, 200);
+
     }
 
     /**
@@ -44,9 +69,12 @@ class ColorController extends Controller
      * @param  \App\color  $color
      * @return \Illuminate\Http\Response
      */
-    public function show(color $color)
+    public function show($color)
     {
         //
+        $color = color::where('id_producto',$color)
+            ->with('stockColor')->get();
+        return response()->json($color, 200);
     }
 
     /**

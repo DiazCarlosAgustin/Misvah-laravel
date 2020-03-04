@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('meta[content]').hide();
     //mostrar o no el contenedor de buscar
     $('#i-lg-carrito').click(function(){
         $('.cart').toggleClass('cart-active');

@@ -14,7 +14,9 @@ class OfertaController extends Controller
      */
     public function index()
     {
-        //
+        $oferta = Oferta::with('producto')->get();
+
+        return response()->json($oferta, 200);
     }
 
     /**
@@ -35,7 +37,42 @@ class OfertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $off = oferta::where('producto_id','=',$request->producto_id)->get();
+
+        if(count($off) >= 1){
+           return response()->json([
+               'err' => 'El producto ya posee una oferta activa',
+               'oferta' => $off
+           ]);
+        }
+        else{
+            $oferta = new oferta;
+
+            if ($request->porcentaje > 100 || $request->porcentaje <= 0) {
+                return response()->json([
+                    "err" => "El porcentaje ingresado no debe de ser mayor a 100 o menor a 0."
+                ]);
+            }
+            else{
+                $oferta->producto_id = $request->producto_id;
+                $oferta->porcentaje = $request->porcentaje;
+                $oferta->fecha_desde = $request->desde;
+                $oferta->fecha_hasta = $request->hasta;
+
+                if($oferta->save()){
+                    return response()->json([
+                        'oferta' => $oferta,
+                        'success' => "Se genero la oferta correctamente."
+                        ]);
+                }
+                else{
+                    return response()->json([
+                        "err" => "No se pudo generar la oferta, intente nuevamente."
+                    ]);
+                }
+            }
+        }
+
     }
 
     /**

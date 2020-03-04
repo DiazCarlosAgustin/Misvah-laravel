@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\colorStock;
+use App\stockColor;
 use Illuminate\Http\Request;
 
 class ColorStockController extends Controller
@@ -14,7 +14,9 @@ class ColorStockController extends Controller
      */
     public function index()
     {
-        //
+        $stock = stockColor::all();
+
+        return response()->json($stock, 200);
     }
 
     /**
@@ -35,13 +37,26 @@ class ColorStockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $stock = stockColor::find($request->color_id);
+        if($stock->color_id > 0){
+            $stock = new stockColor();
+        
+            $stock->color_id = $request->color_id;
+            $stock->stock = $request->stock;
+
+            $stock->save();
+
+            return response()->json($stock, 200);
+        }
+        else{
+            return response()->json(["error" => "El color ya posee stock."]);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\colorStock  $colorStock
+     * @param  \App\stockColor  $colorStock
      * @return \Illuminate\Http\Response
      */
     public function show(colorStock $colorStock)
@@ -52,7 +67,7 @@ class ColorStockController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\colorStock  $colorStock
+     * @param  \App\stockColor  $colorStock
      * @return \Illuminate\Http\Response
      */
     public function edit(colorStock $colorStock)
@@ -64,18 +79,24 @@ class ColorStockController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\colorStock  $colorStock
+     * @param  \App\stockColor  $colorStock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, colorStock $colorStock)
+    public function update($colorStock,Request $request)
     {
-        //
+        //actualizar stock
+        $color = stockColor::find($colorStock);
+        $color->stock = $request->stock;
+
+        $color->save();
+
+        return response()->json($color, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\colorStock  $colorStock
+     * @param  \App\stockColor  $colorStock
      * @return \Illuminate\Http\Response
      */
     public function destroy(colorStock $colorStock)

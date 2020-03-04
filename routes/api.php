@@ -16,3 +16,18 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Categoria
+Route::resource('/categoria', 'CategoriaController');
+// producto
+Route::resource('/producto', 'ProductoController');
+// color
+Route::resource('/color', 'colorController');
+// color
+Route::resource('/stock', 'colorStockController');
+// imagen
+Route::resource('/imagen', 'imagenColorController');
+// cupon
+Route::resource('/cupon', 'CuponController');
+// cupon
+Route::resource('/oferta', 'OfertaController');

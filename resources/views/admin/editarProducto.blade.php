@@ -5,20 +5,11 @@
 @section('container')
     <div class="container">
         <div class="row d-flex justify-content-center mt-5">
-            <div class="col col-12 mt-4">
+            <div class="col col-12">
                 <h2 class="text-center">Editar producto</h2>
             </div>
         </div>
-        <div class="row mt-2">
-            <editar-producto></editar-producto>
-            <div class="col-12 col-xs-12 col-md-12 col-lg-4">
-                <nuevo-color></nuevo-color>
-                <stock-color></stock-color>
-                <imagen-color></imagen-color>
-                <generar-cupon-descuento></generar-cupon-descuento>
-                <generar-oferta></generar-oferta>
-            </div>
-        </div>
+        <pagina-editar-producto :producto="{{$producto}}" :colores="{{$color}}"/>
     </div>
 
     {{-- Modal's --}}

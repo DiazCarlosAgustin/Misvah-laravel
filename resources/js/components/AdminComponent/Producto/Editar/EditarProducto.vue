@@ -1,6 +1,6 @@
 <template>
     <div class="col-12 col-xs-12 col-md-12 col-lg-8 border-right">
-        <form action="" >
+        <form action="" @submit.prevent="updateProducto">
             <div class="form-group">
                 <label for="txtCodProducto">Codigo:</label>
                 <input v-model="producto.codigo" type="text" class="form-control" name="txtCodProducto" id="txtCodProducto">
@@ -11,20 +11,14 @@
             </div>
             <div class="form-group">
                 <label for="cbCategoriaProducto">Categoria:</label>
-                <select name="" id="" class="custom-select" v-model="producto.categoria">
+                <select name="" id="cbCategorias" class="custom-select" v-model="producto.categoria.id">
                     <option value="0" disabled>Seleccione una categoria</option>
-                    <option v-for="categoria in categorias" :key="categoria.id">{{categoria.nombre}}</option>
+                    <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{categoria.nombre}}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="txtPrecioProducto">Precio:</label>
                 <input type="number" name="txtPrecioProducto" id="txtPrecioProducto" min="0" v-model="producto.precio" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="cbEstadoProducto">Estado:</label>
-                <select name="cbEstadoProducto" id="cbEstadoProducto" class="custom-select" v-model="producto.estado">
-                    <option v-for="estado in estados" :key="estado.id">{{estado.estado}}</option>
-                </select>
             </div>
             <div class="form-group">
                 <label for="txtColoresProducto">Colores:</label>
@@ -38,7 +32,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <color-editar-producto v-for="color in colores" :key="color.id" :color="color"></color-editar-producto>
+                            <color-editar-producto v-for="(color,index) in colors" 
+                                :key="index" 
+                                :color="color" 
+                                @updateStock="updateStock(index,...arguments)"/>
                         </tbody>
                     </table>
                 </div>
@@ -56,7 +53,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <imagen-editar-producto v-for="imagen in imagenes" :key="imagen.id" :imagen="imagen"></imagen-editar-producto>
+                            <imagen-editar-producto v-for="(imagen,index) in imagenes" 
+                                :key="imagen.id" :imagen="imagen" 
+                                @deleteImagen="deleteImagen(index)"/>
                         </tbody>
                     </table>
                 </div>
@@ -67,9 +66,20 @@
             </div>
             <div class="form-group">
                 <label for="txtInformacionProducto">Informacion adicional:</label>
-                <textarea name="txtInformacionProducto" id="txtInformacionProducto" class="form-control w-100" cols="30" rows="10" v-model="producto.informacion"></textarea>
+                <textarea name="txtInformacionProducto" id="txtInformacionProducto" class="form-control w-100" cols="30" rows="10" v-model="producto.infomacion"></textarea>
             </div>
-            <div class="form-group text-right">
+            <div v-if="success.length > 0">
+                <div class="alert alert-success" role="alert" >
+                    {{success}}
+                </div>
+            </div>
+            <div v-else-if="error.length > 0">
+                <div class="alert alert-danger" role="alert" >
+                    {{error}}
+                </div>
+            </div>
+            
+            <div class="form-group text-right" >
                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
             </div>
         </form>
@@ -78,81 +88,62 @@
 <script>
 export default {
     name:'editar-producto',
+    props:['producto','colores','imagenes'],
     data(){
         return {
-            producto: {
-                codigo: '123-cod',
-                nombre:'Nombre del producto',
-                categoria: 'Categoria 2',
-                precio: 350,
-                estado: 'oculto',
-                descripcion: 'Esta seria la descripcion del producto',
-                informacion:'Esta seria la información adicional del producto....'
-            },
-            estados:[
-                {
-                    id:'1',
-                    estado:'activo'
-                },
-                {
-                    id:'2',
-                    estado:'oculto'
-                }
-            ],
-            colores:[
-                {
-                    id:1,
-                    nombre: 'rojo',
-                    stock: 10
-                },
-                {
-                    id:2,
-                    nombre: 'negro',
-                    stock: 3
-                },
-                {
-                    id:3,
-                    nombre: 'gris',
-                    stock: 7
-                }
-            ],
-            imagenes:[
-                {
-                    id:1,
-                    src:'https://via.placeholder.com/75x75.png',
-                    color: 'Rojo'
-                },
-                {
-                    id:2,
-                    src:'https://via.placeholder.com/75x75.png',
-                    color:'Rojo'
-                },
-                {
-                    id:3,
-                    src:'https://via.placeholder.com/75x75.png',
-                    color:'Negro'
-                },
-                {
-                    id:4,
-                    src:'https://via.placeholder.com/75x75.png',
-                    color:'Gris'
-                }
-
-            ],
-            categorias: [
-                {
-                    id:1,
-                    nombre:'Categoria 1'
-                },
-                {
-                    id:2,
-                    nombre:'Categoria 2'
-                },
-                {
-                    id:3,
-                    nombre:'Categoria 3'
-                }
-            ]
+            categorias:[],
+            url:'http://127.0.0.1:8000/api/',
+            error:'',
+            success:'',
+            categoria:0
+        }
+    },
+    async beforeMount(){
+        this.getCategoria()
+    },
+    methods:{
+        getCategoria:function() {
+            axios.get(this.url+'categoria')
+                .then(res =>{
+                    this.categorias = res.data
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        },
+        updateStock:function($i,$stock){
+            this.colores[$i].stock_color.stock = $stock
+        },
+        deleteImagen:function($i){
+            this.imagenes.splice($i,1)
+        },
+        updateProducto:function(){
+            this.error = ''
+            this.success = ''
+            const params = {
+                id:this.producto.id,
+                codigo: this.producto.codigo,
+                nombre: this.producto.nombre,
+                categoria: this.producto.categoria.id,
+                precio: this.producto.precio,
+                descripcion: this.producto.descripcion,
+                infomacion: this.producto.infomacion
+            }
+            axios.put(this.url+'producto/'+params.id,params)
+                .then(res =>{
+                    this.error = res.data.error
+                    this.success = res.data.success
+                    
+                    if (res.data.success) this.$emit('updateProductos',this.producto)
+                })
+                .catch(err =>{
+                    console.log(err);
+                })
+        }
+    },
+    computed:{
+        colors:function(){
+            return this.colores
         }
     }
 }
@@ -160,7 +151,7 @@ export default {
 <style scoped>
     .tabla-imagen-producto{
         position: relative;
-        height: 185px;
+        height: 245px;
         overflow: auto;
     }
 </style>

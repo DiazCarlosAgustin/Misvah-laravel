@@ -1,15 +1,24 @@
 <template>
     <label class="m-1">
-        <input type="radio" name="color" id="" class="form-check-input">
-        <img src="https://via.placeholder.com/55x55.png" alt="">
+        <input type="radio" name="color" class="form-check-input" @click="handleClick" :disabled="color.stock_color != null">
+        <img :src="`../../../img/colores/${color.imagen_color}`" :alt="color.description" width="45" height="35">
     </label>
 </template>
 <script>
 export default {
     name:'lista-color',
-    props:['color'],
+    props:['color','id'],
     data(){
-        return{}
+        return{
+            val:false
+        }
+    },
+    methods:{
+        handleClick:function(){
+            this.$emit('selectColor',this.color.id)
+        }
+    },
+    computed:{
     }
 }
 </script>
@@ -26,5 +35,8 @@ export default {
 
     [type="radio"]:checked + img{
         outline: 2px solid #fd6d6df2;
+    }
+    .disabled{
+        pointer-events: none;
     }
 </style>

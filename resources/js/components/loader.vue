@@ -1,5 +1,5 @@
 <template>
-   <center>
+   <center v-show="active">
        <div class="contenido">
            <div class="circle"></div>
            <div class="circle"></div>
@@ -9,7 +9,9 @@
 </template>
 <script>
 export default {
-    
+    props:{
+        active:Boolean = true
+    }
 }
 </script>
 <style scoped>

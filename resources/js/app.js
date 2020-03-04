@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
+Vue.component('btn-paginacion', require('./components/botonPaginacion.vue').default);
 //Inicio 
     //menu de la pagina navbar
     Vue.component('navbar', require('./components/ClientComponents/Menu/menu.vue').default);
@@ -49,7 +50,6 @@ window.Vue = require('vue');
     Vue.component('filtro-categoria', require('./components/ClientComponents/Tienda/FiltroCategoria.vue').default);
     Vue.component('filtro-ordenado', require('./components/ClientComponents/Tienda/FiltroOrdenado.vue').default);
     Vue.component('productos', require('./components/ClientComponents/Productos/Productos.vue').default);
-    Vue.component('paginacion', require('./components/paginacion.vue').default);
     // componente del producto
     Vue.component('alert', require('./components/alertComponent.vue').default);
     Vue.component('loader', require('./components/loader.vue').default);
@@ -88,9 +88,20 @@ window.Vue = require('vue');
         // tabla de productos con stock bajo
         Vue.component('tabla-productos-stock-bajo', require('./components/AdminComponent/Index/tablas/tabla-stock-bajo/tablaStockBajo.vue').default);
         Vue.component('producto-stock-bajo', require('./components/AdminComponent/Index/tablas/tabla-stock-bajo/productoStockBajo.vue').default);
+    
+    //Categoria 
+        Vue.component('menu-admin', require('./components/AdminComponent/menuAdmin/menu.vue').default);
+        // agregar
+        Vue.component('agregar-categoria', require('./components/AdminComponent/categoria/agregar/nuevaCategoria.vue').default);
+        // Listar
+        Vue.component('admin-categorias', require('./components/AdminComponent/categoria/listar/listaCategorias.vue').default);
+        Vue.component('lista-categoria', require('./components/AdminComponent/categoria/listar/listaCategoria.vue').default);
+        // editar
+        Vue.component('editar-categoria', require('./components/AdminComponent/categoria/editar/editarCategoria.vue').default);
     // Productos    
         // agregar
         Vue.component('agregar-producto', require('./components/AdminComponent/Producto/agregar/agregarProducto.vue').default);
+        Vue.component('lista-nuevo-producto', require('./components/AdminComponent/Producto/agregar/listaNuevoProducto.vue').default);
         // Lista 
         Vue.component('lista-productos', require('./components/AdminComponent/Producto/Lista/ListaProductos.vue').default);
         Vue.component('producto-lista', require('./components/AdminComponent/Producto/Lista/productoLista.vue').default);
@@ -102,11 +113,13 @@ window.Vue = require('vue');
         Vue.component('admin-ver-producto', require('./components/AdminComponent/Producto/ver/adminVerProducto.vue').default);
         
         // Editar
+        Vue.component('pagina-editar-producto', require('./components/AdminComponent/Producto/Editar/paginaEditarProducto.vue').default);
         Vue.component('editar-producto', require('./components/AdminComponent/Producto/Editar/EditarProducto.vue').default);
         Vue.component('color-editar-producto', require('./components/AdminComponent/Producto/Editar/ColorEditarProducto.vue').default);
         Vue.component('imagen-editar-producto', require('./components/AdminComponent/Producto/Editar/ImagenesEditarProducto.vue').default);
         // Color nuevo, stock, imagen
         Vue.component('lista-color', require('./components/AdminComponent/Producto/Editar/Colores/ListaColores.vue').default);
+        Vue.component('lista-color-imagen', require('./components/AdminComponent/Producto/Editar/Colores/ListaColors.vue').default);
         Vue.component('nuevo-color', require('./components/AdminComponent/Producto/Editar/Colores/NuevoColor.vue').default);
         Vue.component('stock-color', require('./components/AdminComponent/Producto/Editar/Colores/StockColor.vue').default);
         Vue.component('imagen-color', require('./components/AdminComponent/Producto/Editar/Colores/imagenColor.vue').default);

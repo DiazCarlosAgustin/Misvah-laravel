@@ -11,7 +11,7 @@
 <script>
 export default {
     name:'alert',
-    props:['estado','tipo','producto'],
+    props:['estado','tipo'],
     data() {
         return {
             type: this.tipo

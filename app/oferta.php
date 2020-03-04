@@ -9,6 +9,6 @@ class oferta extends Model
     //relations
     public function producto()
     {
-        return $this->hasOne('App\producto', 'foreign_key', 'local_key');
+        return $this->hasOne(Producto::class, 'id', 'producto_id');
     }
 }

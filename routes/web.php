@@ -12,6 +12,14 @@
 |
 */
 
+Route::prefix('auth')->group(function (){
+   Route::get('init','appController@init');
+
+   Route::post('login','appController@login');
+   Route::post('register','appController@register');
+   Route::post('logout','appController@logout');
+});
+
 Route::get('/', function () {
     return view('index');
 });
@@ -49,21 +57,15 @@ Route::get('/favoritos',function(){
    Route::get('/admin/categorias',function(){
       return view('admin\categorias');
    });
+   Route::get('/admin/editar_categoria/{id}','CategoriaController@show');
    Route::get('/admin/nueva_categoria',function(){
       return view('admin\nuevaCategoria');
    });
-   Route::get('/admin/editar_categoria/{id}',function(){
-      return view('admin\editar_categoria');
-   });
-   Route::get('/admin/productos',function(){
-      return view('admin\productos');
-   });
-   Route::get('/admin/editar_producto/{id}',function(){
-      return view('admin\editarProducto');
-   });
-   Route::get('/admin/ver_producto/{id}',function(){
-      return view('admin\verProducto');
-   });
+   Route::get('/admin/productos','ProductoController@ver');
+   
+   Route::get('/admin/editar_producto/{id}','ProductoController@editar');
+   Route::get('/admin/ver_producto/{id}','ProductoController@ver');
+   
    Route::get('/admin/nuevo_producto',function(){
       return view('admin\nuevoProducto');
    });
@@ -88,6 +90,8 @@ Route::get('/favoritos',function(){
 
 Route::resource('api/menu','MenuController');
 Route::post('api/newMenu','MenuController@store');
+Auth::routes();
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

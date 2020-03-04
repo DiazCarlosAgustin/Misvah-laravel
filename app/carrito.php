@@ -9,16 +9,16 @@ class carrito extends Model
     //relations
     public function user()
     {
-        return $this->hasOne('App\User', 'foreign_key', 'local_key');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
     
     public function producto()
     {
-        return $this->hasOne('App\Producto', 'foreign_key', 'local_key');
+        return $this->hasOne(Producto::class, 'id', 'id_producto');
     }
 
     public function color()
     {
-        return $this->hasOne('App\color', 'foreign_key', 'local_key');
+        return $this->hasOne(color::class, 'id', 'id_color');
     }
 }

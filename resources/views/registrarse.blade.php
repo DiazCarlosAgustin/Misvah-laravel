@@ -4,7 +4,7 @@
 
 @section('Container')
     <div class="d-registrarse container ">
-        <web-registrarse></web-registrarse>
+        <web-registrarse />
     </div>
 @endsection
 

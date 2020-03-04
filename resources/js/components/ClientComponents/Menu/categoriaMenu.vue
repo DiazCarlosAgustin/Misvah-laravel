@@ -1,5 +1,5 @@
 <template>
-    <span  @click.native="categoriaHover" @click="categoriaHover">{{categoria.nombre}}</span>
+    <span @click:native="categoriaHover" @click="categoriaHover">{{categoria.nombre}}</span>
 </template>
 <script>
 export default {
@@ -26,6 +26,6 @@ export default {
         cursor: pointer;
         background-color: #F7A399;
         color: white;
-        transition: .5s all ease-out;
+        transition: .5s all ease-in-out;
     }
 </style>

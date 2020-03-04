@@ -8,11 +8,11 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         {{--Estilos externos--}}
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="user" content="{{ Auth::user() }}">
         <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
         <link rel="stylesheet" href="{{asset('css/mdb.css')}}">
         <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
         <link rel="stylesheet" href="{{asset('css/swiper.css')}}">
-        <script src="{{asset('js/jquery.js')}}"></script>
         {{--Iconos de google--}}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
         {{--Fonts--}}
@@ -43,6 +43,7 @@
         
         <!-- JQuery -->
         
+        <script src="{{asset('js/mdbootstrap.js')}}"></script>
         @yield('script')
         <script src="{{asset('js/main.js')}}"></script>
     </body>

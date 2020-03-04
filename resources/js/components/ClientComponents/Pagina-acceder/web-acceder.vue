@@ -8,10 +8,17 @@
         <div class="col-12 col-xs-12 col-md-6 mt-4">
             <form @submit.prevent="login">
                 <div class="form-group text-left">
-                    <input type="email" name="txtAccederMail" id="txtAccederMail" class="form-control mb-4" placeholder="E-mail" required>
+                    <input type="email" name="txtAccederMail" id="txtAccederMail" 
+                        class="form-control mb-4" placeholder="ejemplo@mail.com" 
+                        v-model="params.email" required>
                 </div>
                 <div class="form-group text-left">
-                    <input type="password" name="txtAccederPass" id="txtAccederPass" class="form-control  mb-4" placeholder="Contraseña" required>
+                    <input type="password" name="txtAccederPass" id="txtAccederPass" 
+                        class="form-control  mb-4" placeholder="Contraseña" 
+                        v-model="params.password" required>
+                </div>
+                <div class="form-group text-left">
+                    <p class="text-danger" v-if="error.length > 0">{{error}}</p>
                 </div>
                 <div class="d-flex justify-content-around">
                     <div>
@@ -48,20 +55,31 @@ export default {
             params:{
                 email:'',
                 password:''
-            }
+            },
+            error:''
         }
     },
     methods: {
         login(){
-            var token = document.head.querySelector('meta[name="csrf-token"]')
-            window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-            axios.post('/login',this.params)
+            axios.post('auth/login',this.params)
                 .then(res =>{
-                    console.log(res)
-                    let token = res.data.token
-                    console.log(token);
-                    localStorage.setItem('token',token)
-                    this.$router.push('/')
+                    if (res.data.error) {
+                        this.error = res.data.error
+                    }
+                    else{
+                        this.error = ''
+                    }
+                    this.params.email = ''                
+                    this.params.password = ''  
+                    if(res.data.is_admin == 0){
+                        window.location.href = '/'
+                    }
+                    else if(res.data.is_admin == 1){
+                        window.location.href = '/admin/index'
+                    }    
+                })
+                .catch(err =>{
+                    console.log(err);
                     
                 })
         }
