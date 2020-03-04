@@ -59,7 +59,6 @@ class ColorController extends Controller
 
         $color->save();
 
-        dd($color);
         return response()->json($color, 200);
 
     }

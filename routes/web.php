@@ -61,9 +61,7 @@ Route::get('/favoritos',function(){
    Route::get('/admin/nueva_categoria',function(){
       return view('admin\nuevaCategoria');
    });
-   Route::get('/admin/productos',function(){
-      return view('admin\productos');
-   });
+   Route::get('/admin/productos','ProductoController@ver');
    
    Route::get('/admin/editar_producto/{id}','ProductoController@editar');
    Route::get('/admin/ver_producto/{id}','ProductoController@ver');

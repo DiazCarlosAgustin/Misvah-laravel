@@ -28,7 +28,7 @@ class Producto extends Model
     }
     public function oferta()
     {
-        return $this->hasOne(Oferta::class, 'id_producto', 'id');
+        return $this->hasOne(Oferta::class, 'producto_id', 'id');
     }
     public function imagenesColor()
     {

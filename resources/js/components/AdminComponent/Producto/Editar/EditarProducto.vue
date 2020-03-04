@@ -1,6 +1,6 @@
 <template>
     <div class="col-12 col-xs-12 col-md-12 col-lg-8 border-right">
-        <form action="" >
+        <form action="" @submit.prevent="updateProducto">
             <div class="form-group">
                 <label for="txtCodProducto">Codigo:</label>
                 <input v-model="producto.codigo" type="text" class="form-control" name="txtCodProducto" id="txtCodProducto">
@@ -11,9 +11,9 @@
             </div>
             <div class="form-group">
                 <label for="cbCategoriaProducto">Categoria:</label>
-                <select name="" id="" class="custom-select" v-model="producto.categoria.nombre">
+                <select name="" id="cbCategorias" class="custom-select" v-model="producto.categoria.id">
                     <option value="0" disabled>Seleccione una categoria</option>
-                    <option v-for="categoria in categorias" :key="categoria.id">{{categoria.nombre}}</option>
+                    <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{categoria.nombre}}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -53,7 +53,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <imagen-editar-producto v-for="imagen in imagenes" :key="imagen.id" :imagen="imagen"></imagen-editar-producto>
+                            <imagen-editar-producto v-for="(imagen,index) in imagenes" 
+                                :key="imagen.id" :imagen="imagen" 
+                                @deleteImagen="deleteImagen(index)"/>
                         </tbody>
                     </table>
                 </div>
@@ -66,7 +68,18 @@
                 <label for="txtInformacionProducto">Informacion adicional:</label>
                 <textarea name="txtInformacionProducto" id="txtInformacionProducto" class="form-control w-100" cols="30" rows="10" v-model="producto.infomacion"></textarea>
             </div>
-            <div class="form-group text-right">
+            <div v-if="success.length > 0">
+                <div class="alert alert-success" role="alert" >
+                    {{success}}
+                </div>
+            </div>
+            <div v-else-if="error.length > 0">
+                <div class="alert alert-danger" role="alert" >
+                    {{error}}
+                </div>
+            </div>
+            
+            <div class="form-group text-right" >
                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
             </div>
         </form>
@@ -75,11 +88,14 @@
 <script>
 export default {
     name:'editar-producto',
-    props:['producto','colores'],
+    props:['producto','colores','imagenes'],
     data(){
         return {
             categorias:[],
-            imagenes:[]
+            url:'http://127.0.0.1:8000/api/',
+            error:'',
+            success:'',
+            categoria:0
         }
     },
     async beforeMount(){
@@ -87,7 +103,7 @@ export default {
     },
     methods:{
         getCategoria:function() {
-            axios.get('http://127.0.0.1:8000/api/categoria')
+            axios.get(this.url+'categoria')
                 .then(res =>{
                     this.categorias = res.data
                 })
@@ -97,6 +113,32 @@ export default {
         },
         updateStock:function($i,$stock){
             this.colores[$i].stock_color.stock = $stock
+        },
+        deleteImagen:function($i){
+            this.imagenes.splice($i,1)
+        },
+        updateProducto:function(){
+            this.error = ''
+            this.success = ''
+            const params = {
+                id:this.producto.id,
+                codigo: this.producto.codigo,
+                nombre: this.producto.nombre,
+                categoria: this.producto.categoria.id,
+                precio: this.producto.precio,
+                descripcion: this.producto.descripcion,
+                infomacion: this.producto.infomacion
+            }
+            axios.put(this.url+'producto/'+params.id,params)
+                .then(res =>{
+                    this.error = res.data.error
+                    this.success = res.data.success
+                    
+                    if (res.data.success) this.$emit('updateProductos',this.producto)
+                })
+                .catch(err =>{
+                    console.log(err);
+                })
         }
     },
     computed:{
@@ -109,7 +151,7 @@ export default {
 <style scoped>
     .tabla-imagen-producto{
         position: relative;
-        height: 185px;
+        height: 245px;
         overflow: auto;
     }
 </style>

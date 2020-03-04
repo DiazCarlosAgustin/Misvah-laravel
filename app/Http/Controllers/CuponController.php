@@ -35,7 +35,25 @@ class CuponController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //crear cupon
+        $guardo = false;
+        do{
+            $cupon = str_random(20);
+
+            $newCupon = Cupon::where('codigo','=',$cupon)->get();
+
+            if ($newCupon->isEmpty()) {
+                $newCupon = new Cupon;
+
+                $newCupon->codigo = $cupon;
+                $newCupon->monto = $request->monto;
+                if ($newCupon->save() ) {
+                    $guardo = true;
+                }
+            }
+
+        }while(!$guardo);
+        return response()->json($newCupon, 200);
     }
 
     /**

@@ -13,7 +13,7 @@ class CreateImagenColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('imagenes_colors', function (Blueprint $table) {
+        Schema::create('imagen_colors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_color');
             $table->unsignedBigInteger('id_producto');

@@ -5,7 +5,7 @@
 @section('container')
     <div class="container">
         <div class="row d-flex justify-content-center mt-5">
-            <div class="col col-12 mt-4">
+            <div class="col col-12">
                 <h2 class="text-center">Editar producto</h2>
             </div>
         </div>

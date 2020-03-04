@@ -25,3 +25,9 @@ Route::resource('/producto', 'ProductoController');
 Route::resource('/color', 'colorController');
 // color
 Route::resource('/stock', 'colorStockController');
+// imagen
+Route::resource('/imagen', 'imagenColorController');
+// cupon
+Route::resource('/cupon', 'CuponController');
+// cupon
+Route::resource('/oferta', 'OfertaController');

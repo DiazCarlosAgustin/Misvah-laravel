@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Categoria;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\store;
+use Illuminate\Support\Facades\Storage;
 use App\Producto;
 class CategoriaController extends Controller
 {

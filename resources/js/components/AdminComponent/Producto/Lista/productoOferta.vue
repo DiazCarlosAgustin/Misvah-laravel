@@ -1,37 +1,41 @@
 <template>
     <tr>
         <td class="align-middle text-center">
-            {{producto.cod}}
+            {{oferta.id}}
         </td>
         <td class="align-middle text-center">
-            {{producto.nombre}}
+            {{oferta.producto.codigo}}
         </td>
         <td class="align-middle text-center">
-            {{producto.precio}}
+            {{oferta.producto.nombre}}
         </td>
         <td class="align-middle text-center">
-            {{producto.descuento}}
+            {{oferta.porcentaje}}%
         </td>
         <td class="align-middle text-center">
-            {{producto.precioDescuento}}
+            {{oferta.fecha_desde}}
         </td>
         <td class="align-middle text-center">
-            {{producto.desde}}
-        </td>
-        <td class="align-middle text-center">
-            {{producto.hasta}}
+            {{oferta.fecha_hasta}}
         </td>
          <td class="align-middle text-center">
-            <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+            <button type="button" class="btn btn-danger" @click="deleteOferta">
+                <i class="fas fa-times"></i>
+            </button>
         </td>
     </tr>
 </template>
 <script>
 export default {
     name:'producto-oferta',
-    props:['producto'],
+    props:['oferta'],
     data(){
         return{}
+    },
+    methods:{
+        deleteOferta:function(){
+            this.$emit('deleteOferta')
+        }
     }
 }
 </script>

@@ -9,7 +9,9 @@
             </div>
             <div class="form-group">
                 <label for="fileColor">Imagen:</label>
-                <input type="file" name="fileColor" id="fileColor" class="form-control" @change="handleImagen($event)">
+                <input type="file" name="fileColor" id="fileColor" 
+                    class="form-control" @change="handleImagen($event)"
+                    accept=".png, .jpg, .jpeg">
             </div>
             <div class="text-center">
                 <button type="reset" class="btn btn-danger"><i class="fas fa-times"></i></button>
@@ -45,9 +47,11 @@ export default {
             
             axios.post('http://127.0.0.1:8000/api/color',this.color)
                 .then(res=>{
+                    const file = document.getElementById('fileColor')
                     if (res) {
                         this.color.descripcion = ''
                         this.color.imagen = ''
+                        file = ""
                     }   
                 })
                 .catch(err=>{

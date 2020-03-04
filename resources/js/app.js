@@ -50,7 +50,6 @@ Vue.component('btn-paginacion', require('./components/botonPaginacion.vue').defa
     Vue.component('filtro-categoria', require('./components/ClientComponents/Tienda/FiltroCategoria.vue').default);
     Vue.component('filtro-ordenado', require('./components/ClientComponents/Tienda/FiltroOrdenado.vue').default);
     Vue.component('productos', require('./components/ClientComponents/Productos/Productos.vue').default);
-    Vue.component('paginacion', require('./components/paginacion.vue').default);
     // componente del producto
     Vue.component('alert', require('./components/alertComponent.vue').default);
     Vue.component('loader', require('./components/loader.vue').default);
