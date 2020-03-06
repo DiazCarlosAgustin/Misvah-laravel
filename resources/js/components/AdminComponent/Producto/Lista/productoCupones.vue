@@ -4,16 +4,13 @@
             {{cupon.id}}
         </th>
         <th class="align-middle text-center">
-            {{cupon.nombre}}
+            {{cupon.codigo}}
         </th>
         <th class="align-middle text-center">
-            {{cupon.precio}}
+            ${{cupon.monto}}
         </th>
         <th class="align-middle text-center">
-            {{cupon.cupon}}
-        </th>
-        <th class="align-middle text-center">
-            {{cupon.valor}}
+            {{cupon.created_at}}
         </th>
         <td class="align-middle text-center">
             <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>

@@ -88,16 +88,11 @@ class ProductoController extends Controller
 
     public function ver(Producto $producto)
     {
-        $prod = Producto::with('Categoria')
+        $productos = Producto::with('Categoria')
                 ->with('color')
                 ->with('imagenesColor')
-                ->with('Oferta')->get();
-        $cupon = Cupon::paginate(6);
-        $off = Oferta::paginate(6);
-
-        return view('/admin/productos')->with('productos',$prod)
-                                        ->with('cupon',$cupon)
-                                        ->with('off',$off);
+                ->with('Oferta')->paginate(6);
+        return view('/admin/productos')->with('productos',$productos);
     }
 
     /**

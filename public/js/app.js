@@ -2754,9 +2754,9 @@ __webpack_require__.r(__webpack_exports__);
       var desde = new Date(this.desde);
       var tiempo = hasta.getTime() - desde.getTime();
       var dias = Math.round(1000 * 60 * 60 * 24 / tiempo);
-      console.log(hasta + ' - ' + desde);
+      console.log(dias);
 
-      if (dias < 1) {
+      if (dias >= 0) {
         this.err = "La fecha Hasta debe ser mayor a la fecha Desde.";
       } else {
         if (this.porcentaje <= 0) {
@@ -2840,13 +2840,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-//
-//
-//
-//
 //
 //
 //
@@ -2878,62 +2871,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Lista-productos',
+  props: ['productos'],
   data: function data() {
-    return {
-      cod: '',
-      productos: {},
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      },
-      http: 'http://127.0.0.1:8000/api/producto?page=',
-      active: false
-    };
-  },
-  beforeMount: function beforeMount() {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function beforeMount$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            this.getProductos();
-
-          case 1:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, null, this);
-  },
-  methods: {
-    getProductos: function getProductos(page) {
-      var _this = this;
-
-      axios.get(this.http + page).then(function (res) {
-        _this.productos = res.data.productos.data;
-        _this.pagination = res.data.pagination;
-        _this.active = true;
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
-    eliminarProducto: function eliminarProducto($i) {
-      this.productos.splice($i, 1);
-    },
-    changePage: function changePage(page) {
-      this.pagination.current_page = page;
-      this.getProductos(page);
-    }
-  },
-  computed: {
-    listProduct: function listProduct() {
-      return this.productos;
-    }
-  },
-  mounted: function mounted() {}
+    return {};
+  }
 });
 
 /***/ }),
@@ -2973,51 +2914,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'lista-productos-oferta',
+  props: ['ofertas'],
   data: function data() {
-    return {
-      buscar: '',
-      ofertas: []
-    };
-  },
-  beforeMount: function beforeMount() {
-    this.getOferta();
+    return {};
   },
   methods: {
-    getOferta: function getOferta() {
-      var _this = this;
-
-      axios.get('http://127.0.0.1:8000/api/oferta').then(function (res) {
-        _this.ofertas = res.data;
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
     deleteOferta: function deleteOferta($i) {
       this.ofertas.splice($i, 1);
     }
   },
-  computed: {
-    ArrayOfertas: function ArrayOfertas() {
-      var _this2 = this;
-
-      if (this.buscar != '') {
-        this.ofertas.filter(function (o) {
-          return o.producto.codigo.match(_this2.buscar) ? _this2.ofertas : "No se encontro el codigo";
-        });
-      } else {
-        return this.ofertas;
-      }
-    }
-  }
+  computed: {}
 });
 
 /***/ }),
@@ -3051,52 +2959,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'lista-productos-cupon',
+  props: ['cupones'],
   data: function data() {
-    return {
-      buscar: '',
-      cuponen: [{
-        id: '1',
-        nombre: 'Nombre del producto',
-        precio: '234',
-        cupon: '123-xxx-yyy',
-        valor: 150
-      }, {
-        id: '2',
-        nombre: 'Nombre del producto',
-        precio: '740',
-        cupon: '123-xxx-yyy',
-        valor: 250
-      }, {
-        id: '3',
-        nombre: 'Nombre del producto',
-        precio: '634',
-        cupon: '123-xxx-yyy',
-        valor: 200
-      }]
-    };
+    return {};
   },
-  computed: {
-    filtarCupones: function filtarCupones() {
-      var _this = this;
-
-      return this.cuponen.filter(function (cupon) {
-        return cupon.id.match(_this.buscar);
-      });
-    }
-  }
+  methods: {},
+  computed: {}
 });
 
 /***/ }),
@@ -3110,9 +2980,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -3807,6 +3674,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -50305,68 +50174,37 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row d-flex justify-content-center mt-4" }, [
-    _c(
-      "div",
-      { staticClass: "col-12 col-xs-12 col-md-12" },
-      [
-        _vm.productos.length > 0 && _vm.active
-          ? _c("div", { staticClass: "table-responsive mt-3" }, [
-              _c(
-                "table",
-                {
-                  staticClass: "table table-striped",
-                  attrs: { id: "tablaProductos" }
-                },
-                [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    { staticClass: "text-center" },
-                    _vm._l(_vm.productos, function(producto, index) {
-                      return _c("producto-lista", {
-                        key: producto.codigo,
-                        attrs: { producto: producto },
-                        on: {
-                          eliminar: function($event) {
-                            return _vm.eliminarProducto(index)
-                          }
-                        }
-                      })
-                    }),
-                    1
-                  )
-                ]
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
+    _c("div", { staticClass: "col-12 col-xs-12 col-md-12" }, [
+      _c("div", { staticClass: "table-responsive mt-3" }, [
         _c(
-          "div",
+          "table",
           {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.productos,
-                expression: "productos"
-              }
-            ],
-            staticClass: "text-center my-3"
+            staticClass: "table table-striped",
+            attrs: { id: "tablaProductos" }
           },
           [
-            _c("btn-paginacion", {
-              attrs: { pagination: _vm.pagination },
-              on: { changePage: _vm.changePage }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("loader", { attrs: { active: !_vm.active } })
-      ],
-      1
-    )
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              { staticClass: "text-center" },
+              _vm._l(_vm.productos.data, function(producto, index) {
+                return _c("producto-lista", {
+                  key: producto.codigo,
+                  attrs: { producto: producto },
+                  on: {
+                    eliminar: function($event) {
+                      return _vm.eliminarProducto(index)
+                    }
+                  }
+                })
+              }),
+              1
+            )
+          ]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -50418,74 +50256,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row mt-4 d-flex justify-content-center" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-12 col-xs-12 col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.buscar,
-              expression: "buscar"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "txtBuscarOferta",
-            id: "txtBuscarOferta",
-            placeholder: "Buscar oferta por cod."
-          },
-          domProps: { value: _vm.buscar },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.buscar = $event.target.value
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-12" }, [
-      _c("div", { staticClass: "table-responsive" }, [
-        _c("table", { staticClass: "table table-stripted" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.ArrayOfertas, function(oferta, index) {
-              return _c("producto-oferta", {
-                key: oferta.id,
-                attrs: { oferta: oferta },
-                on: {
-                  deleteOferta: function($event) {
-                    return _vm.deleteOferta(index)
-                  }
+  return _c("div", { staticClass: "table-responsive" }, [
+    _c("table", { staticClass: "table table-stripted" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        [
+          _vm._l(_vm.ofertas.data, function(oferta, index) {
+            return _c("producto-oferta", {
+              key: oferta.id,
+              attrs: { oferta: oferta },
+              on: {
+                deleteOferta: function($event) {
+                  return _vm.deleteOferta(index)
                 }
-              })
-            }),
-            1
-          )
-        ])
-      ])
+              }
+            })
+          }),
+          _vm._v(" "),
+          _vm.ofertas.data.length <= 0
+            ? _c("tr", [
+                _c(
+                  "td",
+                  { staticClass: "text-center", attrs: { colspan: "7" } },
+                  [
+                    _vm._v(
+                      "\n                    No se encontraron resultados\n                "
+                    )
+                  ]
+                )
+              ])
+            : _vm._e()
+        ],
+        2
+      )
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("h4", [_vm._v("Productos en oferta")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -50542,57 +50351,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row mt-4 d-flex justify-content-center" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-12 col-xs-12 col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.buscar,
-              expression: "buscar"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "txtBuscarCupon",
-            id: "txtBuscarCupon",
-            placeholder: "Buscar"
-          },
-          domProps: { value: _vm.buscar },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.buscar = $event.target.value
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-12 col-xs-12 col-md-12" }, [
-      _c("div", { staticClass: "table-responsive" }, [
-        _c("table", { staticClass: "table table-striped" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.filtarCupones, function(cupon) {
-              return _c("producto-cupon", {
-                key: cupon.id,
-                attrs: { cupon: cupon }
-              })
-            }),
-            1
-          )
-        ])
-      ])
+  return _c("div", { staticClass: "table-responsive" }, [
+    _c("table", { staticClass: "table table-striped" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.cupones.data, function(cupon) {
+          return _c("producto-cupon", {
+            key: cupon.id,
+            attrs: { cupon: cupon }
+          })
+        }),
+        1
+      )
     ])
   ])
 }
@@ -50601,25 +50373,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("h4", [_vm._v("Productos con cupones")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { staticClass: "text-center" }, [
         _c("th", [_vm._v("Cod.")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Nombre")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("precio")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Cupon")]),
         _vm._v(" "),
         _c("th", [_vm._v("Valor")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha Generado")]),
         _vm._v(" "),
         _c("th", [_vm._v("Accion")])
       ])
@@ -50653,19 +50415,15 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("th", { staticClass: "align-middle text-center" }, [
-      _vm._v("\n        " + _vm._s(_vm.cupon.nombre) + "\n    ")
+      _vm._v("\n        " + _vm._s(_vm.cupon.codigo) + "\n    ")
     ]),
     _vm._v(" "),
     _c("th", { staticClass: "align-middle text-center" }, [
-      _vm._v("\n        " + _vm._s(_vm.cupon.precio) + "\n    ")
+      _vm._v("\n        $" + _vm._s(_vm.cupon.monto) + "\n    ")
     ]),
     _vm._v(" "),
     _c("th", { staticClass: "align-middle text-center" }, [
-      _vm._v("\n        " + _vm._s(_vm.cupon.cupon) + "\n    ")
-    ]),
-    _vm._v(" "),
-    _c("th", { staticClass: "align-middle text-center" }, [
-      _vm._v("\n        " + _vm._s(_vm.cupon.valor) + "\n    ")
+      _vm._v("\n        " + _vm._s(_vm.cupon.created_at) + "\n    ")
     ]),
     _vm._v(" "),
     _vm._m(0)
@@ -51847,6 +51605,18 @@ var staticRenderFns = [
           ]
         )
       ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "nav-link nav-item", attrs: { href: "/admin/cupones" } },
+        [_vm._v("Cupones")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "nav-link nav-item", attrs: { href: "/admin/ofertas" } },
+        [_vm._v("Ofertas")]
+      ),
       _vm._v(" "),
       _c(
         "a",

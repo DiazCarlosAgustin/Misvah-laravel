@@ -65,9 +65,9 @@ export default {
 
             let dias = Math.round( (1000*60*60*24) / tiempo)            
             
-            console.log(hasta + ' - ' + desde);
+            console.log(dias);
             
-            if(dias < 1){
+            if(dias >= 0){
                 this.err = "La fecha Hasta debe ser mayor a la fecha Desde."
             }
             else{

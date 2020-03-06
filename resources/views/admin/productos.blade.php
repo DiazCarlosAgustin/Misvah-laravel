@@ -4,7 +4,7 @@
     
 @section('container')
     @csrf
-    <div class="container-fluid mt-5">
+    <div class="container-fluid">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-xs-12 col-md-10 mt-4">
                 <div class="text-center">
@@ -12,9 +12,12 @@
                 </div>
             </div>
         </div>
-        <lista-productos></lista-productos>
-        <lista-productos-oferta></lista-productos-oferta>
-        <lista-productos-cupones></lista-productos-cupones>
+        <lista-productos :productos="{{json_encode($productos)}}"> </lista-productos>
+        <div class="d-flex justify-content-center">
+            {{$productos->links()}}
+        </div>
+        {{-- <lista-productos-oferta></lista-productos-oferta>
+         --}}
     </div>
 @endsection
 
