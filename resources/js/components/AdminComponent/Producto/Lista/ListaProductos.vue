@@ -1,5 +1,24 @@
 <template>
      <div class="row d-flex justify-content-center mt-4">
+        <div class="col-12 col-md-8 col-lg-6">
+            <form action="productos/buscar" role="search" method="get">
+                <div class="input-group">
+                    <input type="search" name="buscar" id="txtSearch"
+                        placeholder="Buscar producto"
+                        class="form-control my-auto" required>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-info">
+                            Buscar
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <modal :mensaje="mensaje"
+            v-show="active"
+            @event="eliminar" 
+            @close="closeModal"
+        />
         <div class="col-12 col-xs-12 col-md-12">
             <div class="table-responsive mt-3">
                 <table class="table table-striped" id="tablaProductos">
@@ -20,7 +39,7 @@
                         <producto-lista v-for="(producto,index) in productos.data" 
                             :key="producto.codigo" 
                             :producto="producto" 
-                            @eliminar="eliminarProducto(index)"/>
+                            @show="modal(index,...arguments)"/>
                     </tbody>
                 </table>
             </div>
@@ -32,9 +51,44 @@ export default {
     name: 'Lista-productos',
     props:['productos'],
     data(){
-        return{
+       return{
+            mensaje:'el producto',
+            active:false,
+            prod:{
+                id:0,
+                index:0
+            }
+       }
+    },
+    mounted(){
+        console.log(this.productos)
+    },
+    methods:{
+        closeModal:function(){
+            this.active = false
+        },
+        modal:function(index,id){
+            this.active = true
+            this.prod.id = id
+            this.prod.index = index
+
+            console.log(this.prod);
+            
+        },
+        eliminar: function(status){
+            if(status){
+                axios.delete('http://127.0.0.1:8000/api/producto/'+this.prod.id)
+                .then(res => {
+                    location.reload()
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
         }
     },
+    computed:{
+    }
 }
 </script>
 <style scoped>

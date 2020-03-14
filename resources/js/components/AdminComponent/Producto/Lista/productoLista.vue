@@ -13,7 +13,9 @@
             <a :href="'/admin/editar_producto/'+this.id" class="btn btn-success text-white btn-sm"><i class="far fa-edit"></i></a>
         </td>
         <td class="align-middle text-center">
-            <button type="button" class="btn btn-danger btn-sm" @click="eliminar"><i class="fas fa-times"></i></button>
+            <button type="button" class="btn btn-danger btn-sm" @click="show">
+                <i class="fas fa-times"></i>
+            </button>
         </td>
     </tr>
 </template>
@@ -23,20 +25,13 @@ export default {
     name: 'producto-lista',
     data(){
         return{
-            id: this.producto.id
+            id: this.producto.id,
+            mensaje:'el producto'
         }
     },
     methods: {
-        eliminar: function(){
-            console.log(this.id);
-            
-            axios.delete('http://127.0.0.1:8000/api/producto/'+this.id)
-                .then(res => {
-                    this.$emit('eliminar')
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+        show:function(){
+            this.$emit('show',this.producto.id) 
         }
     },
 }

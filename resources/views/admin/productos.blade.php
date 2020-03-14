@@ -12,12 +12,27 @@
                 </div>
             </div>
         </div>
-        <lista-productos :productos="{{json_encode($productos)}}"> </lista-productos>
-        <div class="d-flex justify-content-center">
-            {{$productos->links()}}
+        <div class="col-12 my-3">
+            @if(!empty($error))
+                <div class="my-3">
+                    <a href="{{ url()->previous() }}">Volver</a>
+                </div>
+                <div class="alert alert-danger" role="alert">
+                    {{$error}}
+                </div>
+            @endif
+            @if(!empty($productos))
+                @if($back)
+                    <div class="my-3">
+                        <a href="/admin/productos">Volver</a>
+                    </div>
+                @endif
+                <lista-productos :productos="{{JSON_ENCODE($productos)}}"> </lista-productos>
+                <div class="d-flex justify-content-center">
+                    {!! $productos->render() !!}
+                </div>
+            @endif
         </div>
-        {{-- <lista-productos-oferta></lista-productos-oferta>
-         --}}
     </div>
 @endsection
 

@@ -21,6 +21,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('btn-paginacion', require('./components/botonPaginacion.vue').default);
+Vue.component('modal', require('./components/modal.vue').default);
 //Inicio 
     //menu de la pagina navbar
     Vue.component('navbar', require('./components/ClientComponents/Menu/menu.vue').default);

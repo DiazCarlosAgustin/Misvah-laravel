@@ -61,7 +61,23 @@ Route::get('/favoritos',function(){
    Route::get('/admin/nueva_categoria',function(){
       return view('admin\nuevaCategoria');
    });
-   Route::get('/admin/productos','ProductoController@ver');
+   Route::get('/admin/productos',function(){
+      $productos = App::call('App\Http\Controllers\ProductoController@ver');
+      return view('/admin/productos')->with('productos',$productos)
+                                    ->with('back',false);
+   });
+   Route::get('/admin/productos/buscar',function(){
+      $productos = App::call('App\Http\Controllers\ProductoController@buscar');
+      if (is_object($productos)){
+         return view('/admin/productos')->with('productos',$productos)
+                                       ->with('back',true);
+      }
+      else{
+         $error = $productos;
+         return view('/admin/productos')->with('error',$error);
+      }
+      
+   });
 
    Route::get('/admin/cupones','CuponController@index');
    Route::get('/admin/ofertas','OfertaController@index');

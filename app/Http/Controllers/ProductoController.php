@@ -83,16 +83,13 @@ class ProductoController extends Controller
                 ->with('imagenesColor')
                 ->with('Oferta')->get();
         $prod = $prod->find($producto);
-        return view('/admin/VerProducto')->with('productos',$producto);
+        return view('/admin/VerProducto')->with('productos',$prod);
     }
 
     public function ver(Producto $producto)
     {
-        $productos = Producto::with('Categoria')
-                ->with('color')
-                ->with('imagenesColor')
-                ->with('Oferta')->paginate(6);
-        return view('/admin/productos')->with('productos',$productos);
+        $productos = Producto::with('Categoria')->paginate(6);
+        return $productos;
     }
 
     /**
@@ -105,6 +102,25 @@ class ProductoController extends Controller
     {
 
         
+    }
+
+    public function buscar(Request $request)
+    {
+        $busqueda = $request->input('buscar');
+
+        $productos = Producto::with('Categoria')
+                            ->where('nombre','LIKE','%'.$busqueda.'%')
+                            ->orWhere('codigo','LIKE','%'.$busqueda.'%')
+                            ->paginate(6);
+        if (count($productos) > 0){
+            return $productos;
+        }
+        else{
+            $error = 'No se encontraron resultados para '.$busqueda. '.';
+
+            return $error;
+        }
+
     }
 
     public function editar($producto)
