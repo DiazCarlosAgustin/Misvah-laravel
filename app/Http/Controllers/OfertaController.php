@@ -16,7 +16,7 @@ class OfertaController extends Controller
     {
         $ofertas = Oferta::with('producto')->paginate(6);
 
-        return view('admin.ofertas')->with('ofertas',$ofertas);
+       return $ofertas;
     }
 
     /**

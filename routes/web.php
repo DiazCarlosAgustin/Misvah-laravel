@@ -67,20 +67,45 @@ Route::get('/favoritos',function(){
                                     ->with('back',false);
    });
    Route::get('/admin/productos/buscar',function(){
+      // Obtengo los resultados de la busqueda en productos
       $productos = App::call('App\Http\Controllers\ProductoController@buscar');
+      
       if (is_object($productos)){
+         // En caso de que $productos sea un objeto retorna la vista con productos
+         
+         // si back es TRUE se hablita la vuelta atras de URL 
          return view('/admin/productos')->with('productos',$productos)
                                        ->with('back',true);
       }
       else{
+
+         // en caso de que $producto no sea un objeto, se guardara en una var el error
          $error = $productos;
-         return view('/admin/productos')->with('error',$error);
+
+         //  retorno la vista de productos con el error al buscar
+         // si back es TRUE se hablita la vuelta atras de URL 
+         return view('/admin/productos')->with('error',$error)
+                                       ->with('back',true);
       }
       
    });
 
-   Route::get('/admin/cupones','CuponController@index');
-   Route::get('/admin/ofertas','OfertaController@index');
+   Route::get('/admin/cupones',function(){
+      // obtengo los cupones
+      $cupones = App::call('App\Http\Controllers\CuponController@index');
+
+      return view('admin.cupones')->with('cupones',$cupones);
+   });
+
+   // Pagina de ofertas 
+   Route::get('/admin/ofertas',function(){
+
+      // obtengo todas las ofertas -con paginacion-
+      $ofertas = App::call('App\Http\Controllers\OfertaController@index');
+
+      // retorno la vista con las ofertas
+      return view('admin/ofertas')->with('ofertas',$ofertas);
+   });
    
    Route::get('/admin/editar_producto/{id}','ProductoController@editar');
    Route::get('/admin/ver_producto/{id}','ProductoController@ver');

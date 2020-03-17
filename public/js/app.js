@@ -2893,7 +2893,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['productos'],
   data: function data() {
     return {
-      mensaje: 'el producto',
+      mensaje: 'Al eliminar este producto se eliminaran: Imagenes, Colores, en caso de que posea ordenes de compra no se podra eliminar.',
       active: false,
       prod: {
         id: 0,
@@ -6187,6 +6187,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11376,7 +11381,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal-backdrop[data-v-478d961c] {\n    position: fixed;\n    min-height: 100vh;\n    width: 100%;\n    background-color: rgba(0, 0, 0, 0.3);\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-pack: center;\n            justify-content: center;\n    -webkit-box-align: center ;\n            align-items: center ;\n}\n.modal[data-v-478d961c] {\n    background: #FFFFFF;\n    box-shadow: 2px 2px 20px 1px;\n    overflow-x: auto;\n    display: -webkit-box;\n    display: flex;\n    position: relative !important;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    min-height: 200px;\n    height: auto;\n    max-height: 250px;\n}\n.modal-header[data-v-478d961c],\n.modal-footer[data-v-478d961c] {\n    padding: 15px;\n    display: -webkit-box;\n    display: flex;\n}\n.modal-header[data-v-478d961c] {\n    border-bottom: 1px solid #eeeeee;\n    color:black;\n    -webkit-box-pack: justify;\n            justify-content: space-between;\n}\n.modal-footer[data-v-478d961c] {\n    border-top: 1px solid #eeeeee;\n    -webkit-box-pack: end;\n            justify-content: flex-end;\n}\n.modal-body[data-v-478d961c] {\n    position: relative;\n    padding: 40px 10px;\n}\n", ""]);
+exports.push([module.i, "\n.modal-backdrop[data-v-478d961c] {\n    position: fixed;\n    min-height: 100vh;\n    width: 100%;\n    background-color: rgba(0, 0, 0, 0.3);\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-pack: center;\n            justify-content: center;\n    -webkit-box-align: center ;\n            align-items: center ;\n}\n.modal[data-v-478d961c] {\n    background: #FFFFFF;\n    box-shadow: 2px 2px 20px 1px;\n    overflow-x: auto;\n    display: -webkit-box;\n    display: flex;\n    position: relative !important;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    min-height: 250px;\n    height: auto;\n    max-height: 350px;\n}\n.modal-header[data-v-478d961c],\n.modal-footer[data-v-478d961c] {\n    padding: 15px;\n    display: -webkit-box;\n    display: flex;\n}\n.modal-header[data-v-478d961c] {\n    border-bottom: 1px solid #eeeeee;\n    color:black;\n    -webkit-box-pack: justify;\n            justify-content: space-between;\n}\n.modal-footer[data-v-478d961c] {\n    border-top: 1px solid #eeeeee;\n    -webkit-box-pack: end;\n            justify-content: flex-end;\n}\n.modal-body[data-v-478d961c] {\n    position: relative;\n    padding: 40px 10px;\n}\n", ""]);
 
 // exports
 
@@ -55588,13 +55593,22 @@ var render = function() {
       [
         _c(
           "section",
+          { staticClass: "modal-header" },
+          [
+            _vm._t("head", [
+              _vm._v("\n                ¿Desea eliminar?\n            ")
+            ])
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "section",
           { staticClass: "modal-body" },
           [
             _vm._t("body", [
               _vm._v(
-                "\n                Seguro que desea eliminar " +
-                  _vm._s(_vm.mensaje) +
-                  "\n            "
+                "\n                " + _vm._s(_vm.mensaje) + "\n            "
               )
             ])
           ],

@@ -52,7 +52,7 @@ export default {
     props:['productos'],
     data(){
        return{
-            mensaje:'el producto',
+            mensaje:'Al eliminar este producto se eliminaran: Imagenes, Colores, en caso de que posea ordenes de compra no se podra eliminar.',
             active:false,
             prod:{
                 id:0,

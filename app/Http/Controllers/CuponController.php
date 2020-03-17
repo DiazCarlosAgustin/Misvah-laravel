@@ -14,9 +14,9 @@ class CuponController extends Controller
      */
     public function index()
     {
-        $cupones = Cupon::paginate(6);
+        $cupones = Cupon::paginate(2);
 
-        return view('admin.cupones')->with('cupones',$cupones);
+        return $cupones;
     }   
 
     /**
