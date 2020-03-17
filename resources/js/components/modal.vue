@@ -1,9 +1,14 @@
 <template>
     <div class="modal-backdrop ">
         <div class="modal col-12 col-xs-10 col-sm-8 col-md-6 col-lg-4 ">
+            <section class="modal-header">
+                <slot name="head">
+                    ¿Desea eliminar?
+                </slot>
+            </section>
             <section class="modal-body">
                 <slot name="body">
-                    Seguro que desea eliminar {{mensaje}}
+                    {{mensaje}}
                 </slot>
             </section>
             <footer class="modal-footer">
@@ -53,9 +58,9 @@
         display: flex;
         position: relative !important;
         flex-direction: column;
-        min-height: 200px;
+        min-height: 250px;
         height: auto;
-        max-height: 250px;
+        max-height: 350px;
     }
 
     .modal-header,
