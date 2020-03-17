@@ -80,9 +80,7 @@ export default {
             if(this.password.length >= 8){
                 axios.post('auth/register',params)
                     .then(res => {
-                        console.log(res.data.error.length);
-                        
-                        if(res.data.error.length == 0){
+                        if(!res.data.error){
                             window.location.href = '/'
                         }
                         else{

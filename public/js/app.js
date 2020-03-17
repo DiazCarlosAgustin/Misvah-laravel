@@ -5506,9 +5506,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.password.length >= 8) {
         axios.post('auth/register', params).then(function (res) {
-          console.log(res.data.error.length);
-
-          if (res.data.error.length == 0) {
+          if (!res.data.error) {
             window.location.href = '/';
           } else {
             _this.error = res.data.error;
@@ -73763,8 +73761,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\BurG´s\Documents\Proyectos\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\BurG´s\Documents\Proyectos\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Dicsys\Documents\Agustin\Misvah-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

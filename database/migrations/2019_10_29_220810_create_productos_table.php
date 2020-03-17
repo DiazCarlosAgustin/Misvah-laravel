@@ -21,6 +21,7 @@ class CreateProductosTable extends Migration
             $table->float('precio',8,2)->nullable($value = false);
             $table->longText('descripcion')->nulleable();
             $table->longText('infomacion')->nullable()->default('text');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
 
             // foreign key - user
