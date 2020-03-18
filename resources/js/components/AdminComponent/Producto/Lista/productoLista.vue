@@ -4,7 +4,10 @@
         <td class="align-middle">{{producto.nombre}}</td>
         <td class="align-middle">{{producto.categoria.nombre}}</td>
         <td class="align-middle">${{producto.precio}}</td>
-        <td class="align-middle">Activo</td>
+        <td class="align-middle">
+            <p v-if="producto.estado == 1">Activo</p>
+            <p v-if="producto.estado == 0">Inactivo</p>
+        </td>
         <td class="align-middle">{{producto.descripcion}}</td>
         <td class="align-middle text-center">
             <a :href="'/admin/ver_producto/'+ this.id" class="btn btn-primary text-white btn-sm"><i class="far fa-eye"></i></a>

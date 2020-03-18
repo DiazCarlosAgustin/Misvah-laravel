@@ -2560,6 +2560,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'editar-producto',
   props: ['producto', 'colores', 'imagenes'],
@@ -2611,6 +2619,7 @@ __webpack_require__.r(__webpack_exports__);
         id: this.producto.id,
         codigo: this.producto.codigo,
         nombre: this.producto.nombre,
+        estado: this.producto.estado,
         categoria: this.producto.categoria.id,
         precio: this.producto.precio,
         descripcion: this.producto.descripcion,
@@ -2893,7 +2902,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['productos'],
   data: function data() {
     return {
-      mensaje: 'Al eliminar este producto se eliminaran: Imagenes, Colores, en caso de que posea ordenes de compra no se podra eliminar.',
+      mensaje: 'El producto no se eliminara, quedara inactivo',
       active: false,
       prod: {
         id: 0,
@@ -3068,6 +3077,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -49682,6 +49694,54 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "cbEstadoProducto" } }, [
+              _vm._v("Estado:")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.producto.estado,
+                    expression: "producto.estado"
+                  }
+                ],
+                staticClass: "custom-select",
+                attrs: { name: "", id: "cbEstado" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.producto,
+                      "estado",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "-1", disabled: "" } }, [
+                  _vm._v("Seleccione una categoria")
+                ]),
+                _vm._v(" "),
+                _c("option", { domProps: { value: 0 } }, [_vm._v("Inactivo")]),
+                _vm._v(" "),
+                _c("option", { domProps: { value: 1 } }, [_vm._v("Activo")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "txtPrecioProducto" } }, [
               _vm._v("Precio:")
             ]),
@@ -49850,7 +49910,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm.success.length > 0
+          _vm.success
             ? _c("div", [
                 _c(
                   "div",
@@ -49867,7 +49927,7 @@ var render = function() {
                   ]
                 )
               ])
-            : _vm.error.length > 0
+            : _vm.error
             ? _c("div", [
                 _c(
                   "div",
@@ -50691,7 +50751,11 @@ var render = function() {
       _vm._v("$" + _vm._s(_vm.producto.precio))
     ]),
     _vm._v(" "),
-    _c("td", { staticClass: "align-middle" }, [_vm._v("Activo")]),
+    _c("td", { staticClass: "align-middle" }, [
+      _vm.producto.estado == 1 ? _c("p", [_vm._v("Activo")]) : _vm._e(),
+      _vm._v(" "),
+      _vm.producto.estado == 0 ? _c("p", [_vm._v("Inactivo")]) : _vm._e()
+    ]),
     _vm._v(" "),
     _c("td", { staticClass: "align-middle" }, [
       _vm._v(_vm._s(_vm.producto.descripcion))

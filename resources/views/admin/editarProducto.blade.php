@@ -8,12 +8,15 @@
             <div class="col col-12">
                 <h2 class="text-center">Editar producto</h2>
             </div>
+            <div class="my-3 col-12 text-left">
+              <a href="{{ url()->previous() }}" class="a-volver mx-2 my-2"><i class="fas fa-arrow-left pr-1"></i>Volver</a>
+          </div>
         </div>
         <pagina-editar-producto :producto="{{$producto}}" :colores="{{$color}}"/>
     </div>
 
     {{-- Modal's --}}
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -37,7 +40,7 @@
           </div>
         </div>
       </div>
-    <div class="modal fade" id="ModalEditarImagenes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ModalEditarImagenes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> --}}
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">

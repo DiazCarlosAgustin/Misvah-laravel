@@ -6,6 +6,7 @@ use App\Producto;
 use Illuminate\Http\Request;
 use App\Categoria;
 use App\color;
+use App\imagenColor;
 use App\Oferta;
 use App\Cupon;
 
@@ -80,7 +81,7 @@ class ProductoController extends Controller
         //retorna la vista con el producto
         $prod = Producto::with('Categoria')
                 ->with('color') 
-                ->with('imagenesColor')
+                ->with('imagenesColors')
                 ->with('Oferta')->get();
         $prod = $prod->find($producto);
         return view('/admin/VerProducto')->with('productos',$prod);
@@ -127,7 +128,7 @@ class ProductoController extends Controller
     {   
         $prod = Producto::with('Categoria:id,nombre')
                     ->with('color')
-                    ->with('imagenesColor')->get();
+                    ->with('imagenColor')->get();
         $prod = $prod->find($producto);
 
         $color = Color::with('stockColor')->get();
@@ -147,13 +148,14 @@ class ProductoController extends Controller
         //actualizo el producto
         $cod = Producto::where('codigo', $request->codigo)
                         ->where('id','<>',$request->id)->get();
-        if (!$cod){
+        if (count($cod) == 0){
             $prod = Producto::find($request->id);
             $prod->id  = $request->id;
             $prod->codigo  = $request->codigo;
             $prod->id_categoria  = $request->categoria;
             $prod->nombre  = $request->nombre;
             $prod->precio  = $request->precio;
+            $prod->estado  = $request->estado;
             $prod->descripcion  = $request->descripcion;
             $prod->infomacion  = $request->infomacion;
             if  ( $prod->save() )

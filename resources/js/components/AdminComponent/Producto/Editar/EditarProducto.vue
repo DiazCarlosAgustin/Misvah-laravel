@@ -17,6 +17,14 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="cbEstadoProducto">Estado:</label>
+                <select name="" id="cbEstado" class="custom-select" v-model="producto.estado">
+                    <option value="-1" disabled>Seleccione una categoria</option>
+                    <option :value="0">Inactivo</option>
+                    <option :value="1">Activo</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="txtPrecioProducto">Precio:</label>
                 <input type="number" name="txtPrecioProducto" id="txtPrecioProducto" min="0" v-model="producto.precio" class="form-control">
             </div>
@@ -68,12 +76,12 @@
                 <label for="txtInformacionProducto">Informacion adicional:</label>
                 <textarea name="txtInformacionProducto" id="txtInformacionProducto" class="form-control w-100" cols="30" rows="10" v-model="producto.infomacion"></textarea>
             </div>
-            <div v-if="success.length > 0">
+            <div v-if="success">
                 <div class="alert alert-success" role="alert" >
                     {{success}}
                 </div>
             </div>
-            <div v-else-if="error.length > 0">
+            <div v-else-if="error">
                 <div class="alert alert-danger" role="alert" >
                     {{error}}
                 </div>
@@ -124,6 +132,7 @@ export default {
                 id:this.producto.id,
                 codigo: this.producto.codigo,
                 nombre: this.producto.nombre,
+                estado: this.producto.estado,
                 categoria: this.producto.categoria.id,
                 precio: this.producto.precio,
                 descripcion: this.producto.descripcion,
