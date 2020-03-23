@@ -52,7 +52,7 @@
             <div class="form-group">
                 <label for="txtPrecioProducto">Imagenes:</label>
                 <div class="table-responsive tabla-imagen-producto">
-                    <table class="table table-striped">
+                    <table class="table">
                         <thead>
                             <tr class="text-center">
                                 <th>Imagen</th>

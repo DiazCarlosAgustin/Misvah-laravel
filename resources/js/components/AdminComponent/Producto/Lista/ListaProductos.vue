@@ -21,7 +21,7 @@
         />
         <div class="col-12 col-xs-12 col-md-12">
             <div class="table-responsive mt-3">
-                <table class="table table-striped" id="tablaProductos">
+                <table class="table" id="tablaProductos">
                     <thead>
                         <tr class="text-center">
                             <th scope="col">Codigo</th>
@@ -61,7 +61,6 @@ export default {
        }
     },
     mounted(){
-        console.log(this.productos)
     },
     methods:{
         closeModal:function(){

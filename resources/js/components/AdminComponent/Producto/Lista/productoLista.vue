@@ -16,7 +16,7 @@
             <a :href="'/admin/editar_producto/'+this.id" class="btn btn-success text-white btn-sm"><i class="far fa-edit"></i></a>
         </td>
         <td class="align-middle text-center">
-            <button type="button" class="btn btn-danger btn-sm" @click="show">
+            <button type="button" class="btn btn-danger btn-sm" @click="show" :class="producto.estado == 0 ? 'no-btn disabled' : ''">
                 <i class="fas fa-times"></i>
             </button>
         </td>
@@ -40,5 +40,7 @@ export default {
 }
 </script>
 <style scoped>
-
+    .no-btn{
+        pointer-events: none;
+    }
 </style>

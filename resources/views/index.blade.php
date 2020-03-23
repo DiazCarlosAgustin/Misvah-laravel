@@ -12,7 +12,7 @@
     @section('Container')
         <div class="">
             <div class="d-categoria container">
-                <categorias-component></categorias-component>
+                <categorias-component :categorias="{{ json_encode($categorias) }}"></categorias-component>
             </div>
             <div class="d-destacados container">
                 <destacados-component></destacados-component>   

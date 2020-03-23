@@ -14,7 +14,8 @@ class FavoritoController extends Controller
      */
     public function index()
     {
-        //
+        $favoritos = favorito::with('user')->get();
+        return $favoritos;
     }
 
     /**
@@ -35,7 +36,22 @@ class FavoritoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $favorito = new favorito;
+
+        $favorito->id_user = $request->user;
+        $favorito->id_producto = $request->producto;
+
+        if($favorito->save()){
+            $msg = "se guardo correctamente";
+            return response()->json([
+                "msg" => $msg,
+                "favorito" => $favorito
+            ]);
+        }
+        else{
+            $msg = "No se pudo guardar, intente mas tarde";
+            return response()->json($msg);
+        }
     }
 
     /**
@@ -78,8 +94,12 @@ class FavoritoController extends Controller
      * @param  \App\favorito  $favorito
      * @return \Illuminate\Http\Response
      */
-    public function destroy(favorito $favorito)
+    public function destroy($fav)
     {
-        //
+        $favorito = favorito::findOrFail($fav);
+       
+        $favorito->delete();
+
+        return $favorito;
     }
 }

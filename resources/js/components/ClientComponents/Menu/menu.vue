@@ -188,7 +188,7 @@
                     })
             },
             cerrarSesion: function(){
-                axios.post('auth/logout')
+                axios.post('http://127.0.0.1:8000/auth/logout')
                     .then(res => {
                         window.location.href = '/'
                     })

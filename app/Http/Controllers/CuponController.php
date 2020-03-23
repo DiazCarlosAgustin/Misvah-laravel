@@ -98,8 +98,8 @@ class CuponController extends Controller
      * @param  \App\cupon  $cupon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cupon $cupon)
+    public function destroy(Request $request)
     {
-        //
+
     }
 }

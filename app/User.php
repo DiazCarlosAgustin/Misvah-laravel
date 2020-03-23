@@ -40,7 +40,7 @@ class User extends Authenticatable
     // relacion usuario - favorito
     public function favorito()
     {
-        return $this->hasOne('App\favorito', 'foreign_key', 'local_key');
+        return $this->hasOne(favorito::class, 'id_user', 'id');
     }
     public function carrito()
     {

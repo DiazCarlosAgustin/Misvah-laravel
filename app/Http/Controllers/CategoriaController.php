@@ -16,11 +16,18 @@ class CategoriaController extends Controller
     public function index()
     {
         //
-        $categoria = Categoria::with('Producto:id_categoria,id,nombre')->get();
+        $categorias = Categoria::all();
 
-        return response()->json($categoria, 200);
+        return $categorias;
     }
 
+
+    public function categoriaPaginate()
+    {
+        $categorias = Categoria::paginate(6);
+
+        return $categorias;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -69,11 +76,10 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $id)
+    public function show()
     {
-        //busca una categoria
-        $cat = Categoria::find($id);
-        return view('admin\editar_categoria')->with('categoria', $cat);
+
+
     }
 
     /**
@@ -84,6 +90,19 @@ class CategoriaController extends Controller
      */
     public function edit($id,Categoria $categoria)
     {
+    }
+    public function buscar(Request $request){
+        $buscar = $request->input('buscar');
+
+        $categorias = Categoria::where('nombre','LIKE','%'.$buscar.'%')
+                                    ->paginate(6);
+
+        if (count($categorias) > 0){
+            return $categorias;
+        }else{
+            $error = 'No se encontraron resultados para ' .$buscar. '.';
+            return $error;
+        }
     }
 
     /**

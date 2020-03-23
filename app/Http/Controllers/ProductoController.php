@@ -19,24 +19,26 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        $pro = Producto::with('Categoria:id,nombre')
-            ->with('color')
-            ->with('imagenesColor')
-            ->orderBy('id','DESC')
-            ->paginate(6);
-       return [
-           'pagination' => [
-                'total'         => $pro->total(), 
-                'current_page'  => $pro->currentPage(), 
-                'per_page'      => $pro->perPage(), 
-                'last_page'     => $pro->lastPage(), 
-                'from'          => $pro->firstItem(), 
-                'to'            => $pro->lastPage()
-           ],
-           'productos' => $pro
-       ];
+        
     }
 
+    public function tienda($id)
+    {
+        //busca una categoria
+        $productos = Producto::with(['favorito' => function($q){
+                                $user = auth()->user();
+                                if($user){
+                                    $q->where('id_user','=',$user->id);
+                                }
+                                else{
+                                    $q->where('id_user','=',0);
+                                }
+                            }])
+                            ->where('id_categoria', '=' , $id)
+                            ->paginate(6);
+
+        return $productos;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -184,8 +186,13 @@ class ProductoController extends Controller
     {
         //eliminar producto
         $pro = Producto::find($producto->id);
-        $pro->delete();
+        $pro->estado = false;
 
-        return response()->json($pro, 200);
+        if($pro->save()){
+            return response()->json([
+                        "success" => "Se actualizo el estado del producto ". $pro->nombre
+                    ]);
+        }
+        
     }
 }

@@ -21,7 +21,8 @@ Route::prefix('auth')->group(function (){
 });
 
 Route::get('/', function () {
-    return view('index');
+   $categorias = App::call('App\Http\Controllers\CategoriaController@index');
+    return view('index')->with('categorias',$categorias);
 });
 
 Route::get('/contacto',function(){
@@ -36,8 +37,12 @@ Route::get('/registrarse',function(){
    return view('auth.register');
 });
 
-Route::get('/tienda',function(){
-   return view('tienda');
+Route::get('/categoria/{id}',function($id){
+   $productos = App::call('App\Http\Controllers\ProductoController@tienda', ['id' => $id]);
+   $categorias = App::call('App\Http\Controllers\CategoriaController@categoriaPaginate');
+
+   return view('tienda')->with('productos',$productos)
+                        ->with('categorias',$categorias);
 });
 Route::get('/carrito',function(){
    return view('carrito');
@@ -55,8 +60,37 @@ Route::get('/favoritos',function(){
       return view('admin\adminIndex');
    });
    Route::get('/admin/categorias',function(){
-      return view('admin\categorias');
+      $categorias = App::call('App\Http\Controllers\CategoriaController@categoriaPaginate');
+
+      return view('admin\categoria')->with('categorias',$categorias)
+                                    ->with('back', false);
    });
+
+   Route::get('/admin/categorias/buscar',function(){
+      // Obtengo los resultados de la busqueda en categorias
+      $categorias = App::call('App\Http\Controllers\CategoriaController@buscar');
+      
+      if (is_object($categorias)){
+         // En caso de que $categorias sea un objeto retorna la vista con categorias
+         
+         // si back es TRUE se hablita la vuelta atras de URL 
+         return view('/admin/categorias')->with('categorias',$categorias)
+                                       ->with('back',true);
+      }
+      else{
+
+         // en caso de que $categorias no sea un objeto, se guardara en una var el error
+         $error = $categorias;
+
+         //  retorno la vista de categorias con el error al buscar
+         // si back es TRUE se hablita la vuelta atras de URL 
+         return view('/admin/categorias')->with('error',$error)
+                                       ->with('back',true);
+      }
+      
+   });
+
+
    Route::get('/admin/editar_categoria/{id}','CategoriaController@show');
    Route::get('/admin/nueva_categoria',function(){
       return view('admin\nuevaCategoria');
@@ -137,5 +171,3 @@ Route::post('api/newMenu','MenuController@store');
 Auth::routes();
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

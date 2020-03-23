@@ -23,7 +23,22 @@
                 <p class="h4 text-muted">Cantidad:</p>
             </div>
             <div class="col-12 col-md-12 col-lg-8">
-                <input type="number" name="txtCantidad" id="txtCantidad" min="0" max="5" value="1" class="form-control">
+                <div class="input-group w-100">
+                    <div class="input-group-append">
+                        <button @click="disminuir()" class="minus btn btn-md mx-0" :style="{background: colorButtons, color:textButtons}">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                    
+                    <input class="form-control text-center my-auto mx-0" min="0" name="quantity" v-model="cantidad" type="number">
+                    
+                    <div class="input-group-append">
+                        <button @click="aumentar()" class="plus btn btn-md mx-0" :style="{background: colorButtons, color:textButtons}">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    </div>
+                    
+                </div>
             </div>
         </div>
         <div class="comprar row d-flex">
@@ -58,12 +73,15 @@ export default {
             if(this.cantidad > this.max){
                 this.cantidad = this.cantidad - 1;
             }
+            console.log(this.cantidad);
         },
         disminuir: function(){
             this.cantidad -= 1
             if(this.cantidad < 0){
                 this.cantidad = 0;
             }
+            console.log(this.cantidad);
+            
         }
     }
 }

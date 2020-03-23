@@ -3,7 +3,7 @@
         <div class="card card-cascade wider">
             <div class="view view-cascade overlay">
                 <img  class="card-img-top" :src="`../../../img/${categoria.imagen_categoria}`" alt="Card image cap">
-                <a href="#!">
+                <a :href="`categoria/${categoria.id}`">
                 <div class="mask rgba-white-slight"></div>
                 </a>
             </div>

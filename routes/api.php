@@ -31,3 +31,6 @@ Route::resource('/imagen', 'imagenColorController');
 Route::resource('/cupon', 'CuponController');
 // cupon
 Route::resource('/oferta', 'OfertaController');
+
+Route::resource('/favoritos', 'FavoritoController');
+
