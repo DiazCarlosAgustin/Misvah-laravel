@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\imagenesColor;
+use App\imagenColor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +15,7 @@ class ImagenColorController extends Controller
      */
     public function index()
     {
-        $img = imagenesColor::all();
+        $img = imagenColor::all();
 
         return response()->json($img, 200);
     }
@@ -51,7 +51,7 @@ class ImagenColorController extends Controller
         $path = public_path().'/img/productos/'.$fileName;
         file_put_contents($path, $decode);
         
-        $img = new imagenesColor();
+        $img = new imagenColor();
 
     
         $img->id_producto = $request->id_producto;
@@ -68,10 +68,10 @@ class ImagenColorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\imagenesColor  $imagenesColor
+     * @param  \App\imagenColor  $imagenColor
      * @return \Illuminate\Http\Response
      */
-    public function show(imagenesColor $imagenesColor)
+    public function show(imagenColor $imagenColor)
     {
         //
     }
@@ -79,10 +79,10 @@ class ImagenColorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\imagenesColor  $imagenesColor
+     * @param  \App\imagenColor  $imagenColor
      * @return \Illuminate\Http\Response
      */
-    public function edit(imagenesColor $imagenesColor)
+    public function edit(imagenColor $imagenColor)
     {
         //
     }
@@ -91,10 +91,10 @@ class ImagenColorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\imagenesColor  $imagenesColor
+     * @param  \App\imagenColor  $imagenColor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, imagenesColor $imagenesColor)
+    public function update(Request $request, imagenColor $imagenColor)
     {
         //
     }
@@ -102,12 +102,12 @@ class ImagenColorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\imagenesColor  $imagenesColor
+     * @param  \App\imagenColor  $imagenColor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($imagenesColor)
+    public function destroy($imagenColor)
     {
-        $img = imagenesColor::find($imagenesColor);
+        $img = imagenColor::find($imagenColor);
         Storage::delete($img->imagen_color_producto);
         $img->delete();
 

@@ -2055,9 +2055,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'ColorEditarProducto',
-  props: ['color'],
+  name: "ColorEditarProducto",
+  props: ["color"],
+  mounted: function mounted() {
+    console.log(this.color);
+  },
   data: function data() {
     return {
       edit: false
@@ -2072,12 +2097,12 @@ __webpack_require__.r(__webpack_exports__);
 
       var id = this.color.stock_color.id;
       var params = {
-        stock: this.color.stock_color.stock
+        id_color: this.color.id_color
       };
-      axios.put('http://127.0.0.1:8000/api/stock/' + id, params).then(function (res) {
+      axios.put("http://127.0.0.1:8000/api/stock/" + id, params).then(function (res) {
         console.log(res.data);
 
-        _this.$emit('updateStock', res.data.stock);
+        _this.$emit("updateStock", res.data.stock);
 
         _this.edit = !_this.edit;
       })["catch"](function (err) {
@@ -2265,9 +2290,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'stock-color',
-  props: ['id', 'colores'],
+  name: "stock-color",
+  props: ["id", "colores"],
   data: function data() {
     return {
       id_color: 0,
@@ -2278,15 +2317,13 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     selectColor: function selectColor($id) {
       this.id_color = $id;
-      console.log($id);
     },
     postStock: function postStock() {
       var params = {
         color_id: this.id_color,
         stock: this.stock
       };
-      console.log(params);
-      axios.post('http://127.0.0.1:8000/api/stock', params).then(function (res) {
+      axios.post("http://127.0.0.1:8000/api/stock", params).then(function (res) {
         console.log(res.data);
       })["catch"](function (err) {
         console.log(err);
@@ -2568,15 +2605,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'editar-producto',
-  props: ['producto', 'colores', 'imagenes'],
+  name: "editar-producto",
+  props: ["producto", "colores", "imagenes"],
   data: function data() {
     return {
       categorias: [],
-      url: 'http://127.0.0.1:8000/api/',
-      error: '',
-      success: '',
+      url: "http://127.0.0.1:8000/api/",
+      error: "",
+      success: "",
       categoria: 0
     };
   },
@@ -2598,7 +2705,7 @@ __webpack_require__.r(__webpack_exports__);
     getCategoria: function getCategoria() {
       var _this = this;
 
-      axios.get(this.url + 'categoria').then(function (res) {
+      axios.get(this.url + "categoria").then(function (res) {
         _this.categorias = res.data;
       })["catch"](function (err) {
         console.log(err);
@@ -2613,8 +2720,8 @@ __webpack_require__.r(__webpack_exports__);
     updateProducto: function updateProducto() {
       var _this2 = this;
 
-      this.error = '';
-      this.success = '';
+      this.error = "";
+      this.success = "";
       var params = {
         id: this.producto.id,
         codigo: this.producto.codigo,
@@ -2625,10 +2732,10 @@ __webpack_require__.r(__webpack_exports__);
         descripcion: this.producto.descripcion,
         infomacion: this.producto.infomacion
       };
-      axios.put(this.url + 'producto/' + params.id, params).then(function (res) {
+      axios.put(this.url + "producto/" + params.id, params).then(function (res) {
         _this2.error = res.data.error;
         _this2.success = res.data.success;
-        if (res.data.success) _this2.$emit('updateProductos', _this2.producto);
+        if (res.data.success) _this2.$emit("updateProductos", _this2.producto);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2668,9 +2775,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'imagen-editar-producto',
-  props: ['imagen'],
+  name: "imagen-editar-producto",
+  props: ["imagen"],
   data: function data() {
     return {};
   },
@@ -2678,8 +2798,8 @@ __webpack_require__.r(__webpack_exports__);
     deleteImagen: function deleteImagen() {
       var _this = this;
 
-      axios["delete"]('http://127.0.0.1:8000/api/imagen/' + this.imagen.id).then(function (res) {
-        _this.$emit('deleteImagen');
+      axios["delete"]("http://127.0.0.1:8000/api/imagen/" + this.imagen.id).then(function (res) {
+        _this.$emit("deleteImagen");
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2814,13 +2934,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'pagina-editar-producto',
-  props: ['producto', 'colores'],
+  name: "pagina-editar-producto",
+  props: ["pro"],
   data: function data() {
     return {
-      colors: [],
-      imagenes: this.producto.imagenes_color
+      colores: this.pro[0].color,
+      imagenes: this.pro[0].imagen_color,
+      producto: this.pro[0]
     };
   },
   methods: {
@@ -4525,8 +4652,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['categoria']
+  props: ["categoria"],
+  mounted: function mounted() {
+    console.log(this.categoria);
+  }
 });
 
 /***/ }),
@@ -4540,6 +4674,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -4915,10 +5050,101 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
-  name: 'navbar',
+  name: "navbar",
   mixins: [_mix_auth__WEBPACK_IMPORTED_MODULE_0___default.a],
   data: function data() {
     return {
@@ -4926,12 +5152,12 @@ __webpack_require__.r(__webpack_exports__);
       pantalla: 0,
       dw: false,
       hover: false,
-      claseMenu: 'd-none',
-      claseMenuXs: 'd-none',
-      claseProducto: 'd-none',
-      classCat: 'd-grid',
-      claseVolver: 'd-grid',
-      claseVolverProducto: 'd-none',
+      claseMenu: "d-none",
+      claseMenuXs: "d-none",
+      claseProducto: "d-none",
+      classCat: "d-grid",
+      claseVolver: "d-grid",
+      claseVolverProducto: "d-none",
       categorias: [],
       productos: [],
       show: false
@@ -4947,7 +5173,7 @@ __webpack_require__.r(__webpack_exports__);
     traerCategorias: function traerCategorias() {
       var _this = this;
 
-      axios.get('http://127.0.0.1:8000/api/categoria').then(function (res) {
+      axios.get("http://127.0.0.1:8000/api/categoria").then(function (res) {
         _this.categorias = res.data;
 
         _this.getProductos();
@@ -4956,8 +5182,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     cerrarSesion: function cerrarSesion() {
-      axios.post('http://127.0.0.1:8000/auth/logout').then(function (res) {
-        window.location.href = '/';
+      axios.post("http://127.0.0.1:8000/auth/logout").then(function (res) {
+        window.location.href = "/";
       })["catch"](function (err) {
         console.log(err);
       });
@@ -4968,23 +5194,23 @@ __webpack_require__.r(__webpack_exports__);
     hoverMouse: function hoverMouse() {
       this.hover = !this.hover;
       this.pantalla = window.innerWidth;
-      this.claseProducto = 'd-none';
+      this.claseProducto = "d-none";
       this.hoverMenu();
     },
     hoverMenu: function hoverMenu() {
       if (window.innerWidth > 991) {
         if (this.hover) {
-          this.claseMenu = 'd-grid';
-          this.claseProducto = 'd-grid';
+          this.claseMenu = "d-grid";
+          this.claseProducto = "d-grid";
         } else {
-          this.claseMenu = 'd-none';
-          this.claseProducto = 'd-none';
+          this.claseMenu = "d-none";
+          this.claseProducto = "d-none";
         }
       }
     },
     clickMouse: function clickMouse() {
       if (window.innerWidth <= 991) {
-        this.claseMenuXs = 'd-grid';
+        this.claseMenuXs = "d-grid";
       } else {
         this.claseMenu = "d-grid";
         this.hover = !this.hover;
@@ -4995,28 +5221,28 @@ __webpack_require__.r(__webpack_exports__);
       this.idCategoriaHover = id;
     },
     tapVolverMenu: function tapVolverMenu() {
-      this.claseMenuXs = 'd-none';
-      this.claseProducto = 'd-none';
-      this.classCat = 'd-grid';
-      this.claseVolver = 'd-grid';
-      this.claseVolverProducto = 'd-none';
+      this.claseMenuXs = "d-none";
+      this.claseProducto = "d-none";
+      this.classCat = "d-grid";
+      this.claseVolver = "d-grid";
+      this.claseVolverProducto = "d-none";
       this.dw = false;
     },
     tapCategoria: function tapCategoria() {
       if (window.innerWidth <= 991) {
-        this.claseProducto = 'd-grid';
-        this.claseVolver = 'd-none';
-        this.classCat = 'd-none';
-        this.claseVolverProducto = 'd-grid';
+        this.claseProducto = "d-grid";
+        this.claseVolver = "d-none";
+        this.classCat = "d-none";
+        this.claseVolverProducto = "d-grid";
       } else {
-        this.claseProducto = 'd-grid';
+        this.claseProducto = "d-grid";
       }
     },
     tapVolverCategoria: function tapVolverCategoria() {
-      this.claseProducto = 'd-none';
-      this.classCat = 'd-grid';
-      this.claseVolver = 'd-grid';
-      this.claseVolverProducto = 'd-none';
+      this.claseProducto = "d-none";
+      this.classCat = "d-grid";
+      this.claseVolver = "d-grid";
+      this.claseVolverProducto = "d-none";
     },
     getProductos: function getProductos() {
       for (var index = 0; index < this.categorias.length; index++) {
@@ -5029,11 +5255,11 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    window.addEventListener('resize', this.hoverMenu);
+    window.addEventListener("resize", this.hoverMenu);
     this.hoverMenu();
   },
   destroyed: function destroyed() {
-    window.addEventListener('resize', this.hoverMenu);
+    window.addEventListener("resize", this.hoverMenu);
   },
   computed: {
     productosCategoria: function productosCategoria() {
@@ -5062,7 +5288,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["foto"]
+});
 
 /***/ }),
 
@@ -5247,9 +5479,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['fotos']
+});
 
 /***/ }),
 
@@ -5287,7 +5519,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["producto"]
+});
 
 /***/ }),
 
@@ -10914,7 +11150,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.tabla-imagen-producto[data-v-ce6a32b4]{\n    position: relative;\n    height: 245px;\n    overflow: auto;\n}\n", ""]);
+exports.push([module.i, "\n.tabla-imagen-producto[data-v-ce6a32b4] {\r\n    position: relative;\r\n    height: 245px;\r\n    overflow: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -11161,7 +11397,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.categorias[data-v-007d1acc]{\n    height: auto;\n    overflow: auto;\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar {\n    width: 8px;     /* Tamaño del scroll en vertical */\n    height: 8px;    /* Tamaño del scroll en horizontal */\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar-thumb {\n    background: #ccc;\n    border-radius: 4px;\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar-thumb:hover {\n    background: #b3b3b3;\n    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar-track:hover,\n.categorias[data-v-007d1acc]::-webkit-scrollbar-track:active {\n    background: #d4d4d4;\n}\n.drop[data-v-007d1acc]{\n    width: 100%;\n    height: 100vh !important;\n    left: 0;\n    position:absolute;\n    top:65px;\n    background-color: white;\n    color: inherit;\n    display: block;\n}\n/*estilo de los links del menu*/\n.nav .material-icons[data-v-007d1acc]{\n    color:#707070 !important;\n}\n.s-carrito[data-v-007d1acc]{\n    height: 10px;\n    width: 10px;\n    border-radius: 50%;\n    position: absolute;\n}\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc]{\n    cursor: pointer;\n}\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover{\n    color: black !important;\n    -webkit-transition-delay: .2s;\n            transition-delay: .2s;\n}\n.bg-navbar[data-v-007d1acc]{\n    background-color: white !important;\n}\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;   \n    margin-left: -50px !important;\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc]{\n    font-family: Impact, Charcoal, sans-serif !important;\n    color:#707070 !important;\n    padding-left: 7px;\n    padding-right: 7px;\n    letter-spacing: 2px;  \n    border: 2px solid #707070;\n}\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc], #i-xs-carrito[data-v-007d1acc]{\n    position: relative;\n    top: 7px;\n    padding: 0px 7px;\n    color: #707070;\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc]{\n    position: absolute;\n    width: 100%;\n    background-color: white;\n    padding: 0 10px;\n    height: 55px;\n    left: 0;\n    top: 0;\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\n    display: block;\n    top: 57px;\n    -webkit-transition: 1.5s;\n    transition: 1.5s;\n    -webkit-transition-duration:1s ;\n            transition-duration:1s ;\n}\n.a-user[data-v-007d1acc]{\n    overflow: hidden;\n    width: 100%;\n    max-width: 10ch;\n    text-align: center\n}\n\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc]{\n        width: 100%;\n        height: 100vh;\n        position:absolute;\n        top:65px;\n        left: 0;\n        grid-template-rows: 10vh 100%;\n        grid-template-columns: 1vw;\n        background-color: inherit;\n        color:inherit;\n}\n.volver[data-v-007d1acc]{\n        grid-row:1/2;\n        grid-column:1;\n}\n.categorias[data-v-007d1acc]{\n        grid-row: 2/2;\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc]{\n        width: 100%;\n}\n}\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc]{\n        width: 70%;\n        display: grid;\n        grid-template-columns: 40% 60%;\n        grid-template-rows: 1fr;\n        position: absolute;\n        background-color: inherit;\n        height: 50vh;\n        top:60px;\n}\n.categorias[data-v-007d1acc]{\n        grid-column: 1/2;\n        grid-row: 1;\n}\n.productos[data-v-007d1acc]{\n        grid-column: 2/2;\n        grid-row: 1;\n}\n}\n", ""]);
+exports.push([module.i, "\n.categorias[data-v-007d1acc] {\r\n    height: auto;\r\n    overflow: auto;\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar {\r\n    width: 8px; /* Tamaño del scroll en vertical */\r\n    height: 8px; /* Tamaño del scroll en horizontal */\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar-thumb {\r\n    background: #ccc;\r\n    border-radius: 4px;\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar-thumb:hover {\r\n    background: #b3b3b3;\r\n    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);\n}\n.categorias[data-v-007d1acc]::-webkit-scrollbar-track:hover,\r\n.categorias[data-v-007d1acc]::-webkit-scrollbar-track:active {\r\n    background: #d4d4d4;\n}\n.drop[data-v-007d1acc] {\r\n    width: 100%;\r\n    height: 100vh !important;\r\n    left: 0;\r\n    position: absolute;\r\n    top: 65px;\r\n    background-color: white;\r\n    color: inherit;\r\n    display: block;\n}\r\n/*estilo de los links del menu*/\n.nav .material-icons[data-v-007d1acc] {\r\n    color: #707070 !important;\n}\n.s-carrito[data-v-007d1acc] {\r\n    height: 10px;\r\n    width: 10px;\r\n    border-radius: 50%;\r\n    position: absolute;\n}\r\n/*pointer en los ico*/\n.navbar #navbarMenu i[data-v-007d1acc] {\r\n    cursor: pointer;\n}\r\n/*hover de los nav-link*/\n.navbar #navbarMenu .nav-link[data-v-007d1acc]:hover,\r\n.navbar #navbarMenu .navbar-brand[data-v-007d1acc]:hover {\r\n    color: black !important;\r\n    -webkit-transition-delay: 0.2s;\r\n            transition-delay: 0.2s;\n}\n.bg-navbar[data-v-007d1acc] {\r\n    background-color: white !important;\n}\r\n/*estilo del navbar brand logo*/\n#navbarMenu .navbar-brand[data-v-007d1acc] {\r\n    font-family: Impact, Charcoal, sans-serif !important;\r\n    color: #707070 !important;\r\n    padding-left: 7px;\r\n    padding-right: 7px;\r\n    letter-spacing: 2px;\r\n    margin-left: -50px !important;\r\n    border: 2px solid #707070;\n}\n.navbar-brand-xs[data-v-007d1acc] {\r\n    font-family: Impact, Charcoal, sans-serif !important;\r\n    color: #707070 !important;\r\n    padding-left: 7px;\r\n    padding-right: 7px;\r\n    letter-spacing: 2px;\r\n    border: 2px solid #707070;\n}\r\n/* items del menu xs */\n#i-xs-buscar[data-v-007d1acc],\r\n#i-xs-carrito[data-v-007d1acc] {\r\n    position: relative;\r\n    top: 7px;\r\n    padding: 0px 7px;\r\n    color: #707070;\r\n    cursor: pointer;\n}\n.d-buscar[data-v-007d1acc] {\r\n    position: absolute;\r\n    width: 100%;\r\n    background-color: white;\r\n    padding: 0 10px;\r\n    height: 55px;\r\n    left: 0;\r\n    top: 0;\r\n    display: none;\n}\n.d-buscar-active[data-v-007d1acc] {\r\n    display: block;\r\n    top: 57px;\r\n    -webkit-transition: 1.5s;\r\n    transition: 1.5s;\r\n    -webkit-transition-duration: 1s;\r\n            transition-duration: 1s;\n}\n.a-user[data-v-007d1acc] {\r\n    overflow: hidden;\r\n    width: 100%;\r\n    max-width: 10ch;\r\n    text-align: center;\n}\r\n\r\n/* menu categoria xs */\n@media (max-width: 991px) {\n.menu-categoria-xs[data-v-007d1acc] {\r\n        width: 100%;\r\n        height: 100vh;\r\n        position: absolute;\r\n        top: 65px;\r\n        left: 0;\r\n        grid-template-rows: 10vh 100%;\r\n        grid-template-columns: 1vw;\r\n        background-color: inherit;\r\n        color: inherit;\n}\n.volver[data-v-007d1acc] {\r\n        grid-row: 1/2;\r\n        grid-column: 1;\n}\n.categorias[data-v-007d1acc] {\r\n        grid-row: 2/2;\r\n        grid-column: 1;\n}\nmenu-item-categoria[data-v-007d1acc] {\r\n        width: 100%;\n}\n}\r\n/* menu categoria lg*/\n@media (min-width: 992px) {\n.menu-categoria-lg[data-v-007d1acc] {\r\n        width: 70%;\r\n        display: grid;\r\n        grid-template-columns: 40% 60%;\r\n        grid-template-rows: 1fr;\r\n        position: absolute;\r\n        background-color: inherit;\r\n        height: 50vh;\r\n        top: 60px;\n}\n.categorias[data-v-007d1acc] {\r\n        grid-column: 1/2;\r\n        grid-row: 1;\n}\n.productos[data-v-007d1acc] {\r\n        grid-column: 2/2;\r\n        grid-row: 1;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -11180,7 +11416,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.img[data-v-cfcfa738]{\n    max-height: 80vh;\n    max-width: 100%;\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n", ""]);
+exports.push([module.i, "\n.img[data-v-cfcfa738] {\r\n    max-height: 80vh;\r\n    height: auto;\r\n    max-width: 100%;\r\n    width: auto;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\n}\r\n", ""]);
 
 // exports
 
@@ -48901,7 +49137,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.color.stock_color != null
+  return _vm.color.stock > 0
     ? _c("tr", [
         _c("td", { staticClass: "align-center align-middle text-center" }, [
           _c("img", {
@@ -48919,7 +49155,9 @@ var render = function() {
           [
             !_vm.edit
               ? _c("p", { staticClass: " text-center align-middle m-0" }, [
-                  _vm._v(_vm._s(_vm.color.stock_color.stock) + " ")
+                  _vm._v(
+                    "\n            " + _vm._s(_vm.color.stock) + "\n        "
+                  )
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -48929,23 +49167,19 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.color.stock_color.stock,
-                      expression: "color.stock_color.stock"
+                      value: _vm.color.stock,
+                      expression: "color.stock"
                     }
                   ],
                   staticClass: "w-auto form-control mx-auto",
                   attrs: { type: "number", name: "txtStock", id: "txtStock" },
-                  domProps: { value: _vm.color.stock_color.stock },
+                  domProps: { value: _vm.color.stock },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(
-                        _vm.color.stock_color,
-                        "stock",
-                        $event.target.value
-                      )
+                      _vm.$set(_vm.color, "stock", $event.target.value)
                     }
                   }
                 })
@@ -50026,15 +50260,21 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", { staticClass: "align-center text-center align-middle" }, [
-          _vm._v("Color")
+          _vm._v(
+            "\n                                Color\n                            "
+          )
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "align-center text-center align-middle" }, [
-          _vm._v("Stock")
+          _vm._v(
+            "\n                                Stock\n                            "
+          )
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "align-center text-center align-middle" }, [
-          _vm._v("Accion")
+          _vm._v(
+            "\n                                Accion\n                            "
+          )
         ])
       ])
     ])
@@ -50061,7 +50301,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Guardar cambios")]
+        [_vm._v("\n                Guardar cambios\n            ")]
       )
     ])
   }
@@ -50101,7 +50341,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("td", { staticClass: "align-middle text-center" }, [
-      _vm._v(_vm._s(_vm.imagen.id_color))
+      _vm._v(_vm._s(_vm.imagen.descripcion))
     ]),
     _vm._v(" "),
     _c("td", { staticClass: "align-middle text-center" }, [
@@ -52996,7 +53236,7 @@ var render = function() {
     _c(
       "div",
       { staticClass: "row d-flex justify-content-center" },
-      _vm._l(_vm.categorias.data, function(categoria) {
+      _vm._l(_vm.categorias, function(categoria) {
         return _c(
           "div",
           {
@@ -53471,7 +53711,11 @@ var render = function() {
                               staticClass: "dropdown-item",
                               attrs: { type: "button" }
                             },
-                            [_vm._v("Mi Perfil")]
+                            [
+                              _vm._v(
+                                "\n                            Mi Perfil\n                        "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -53480,7 +53724,11 @@ var render = function() {
                               staticClass: "dropdown-item",
                               attrs: { type: "button" }
                             },
-                            [_vm._v("Mis Favoritos")]
+                            [
+                              _vm._v(
+                                "\n                            Mis Favoritos\n                        "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -53489,7 +53737,11 @@ var render = function() {
                               staticClass: "dropdown-item",
                               attrs: { type: "button" }
                             },
-                            [_vm._v("Mis compras")]
+                            [
+                              _vm._v(
+                                "\n                            Mis compras\n                        "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c("div", { staticClass: "dropdown-divider" }),
@@ -53501,7 +53753,11 @@ var render = function() {
                               attrs: { type: "button" },
                               on: { click: _vm.cerrarSesion }
                             },
-                            [_vm._v("Cerrar sesion")]
+                            [
+                              _vm._v(
+                                "\n                            Cerrar sesion\n                        "
+                              )
+                            ]
                           )
                         ]
                       )
@@ -53770,25 +54026,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("img", {
+      staticClass: "img",
+      attrs: {
+        src: "../../../img/productos/" + _vm.imagen.imagen_color_producto,
+        alt: "Imagen del producto"
+      }
+    })
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("img", {
-        staticClass: "img",
-        attrs: {
-          src:
-            "https://burst.shopifycdn.com/photos/pretty-gold-necklace.jpg?width=925&format=pjpg&exif=1&iptc=1 1x, https://burst.shopifycdn.com/photos/pretty-gold-necklace.jpg?width=1850&format=pjpg&exif=1&iptc=1 2x",
-          alt: ""
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -54116,13 +54364,16 @@ var render = function() {
   return _c("div", { staticClass: "swiper-container h-100 mt-2 w-auto" }, [
     _c(
       "div",
-      { staticClass: "swiper-wrapper mb-5" },
+      {
+        key: _vm.foto.id,
+        staticClass: "swiper-wrapper mb-5",
+        attrs: { "v-for": _vm.foto in _vm.fotos }
+      },
       [
-        _c("foto-producto", { staticClass: "swiper-slide" }),
-        _vm._v(" "),
-        _c("foto-producto", { staticClass: "swiper-slide" }),
-        _vm._v(" "),
-        _c("foto-producto", { staticClass: "swiper-slide" })
+        _c("foto-producto", {
+          staticClass: "swiper-slide",
+          attrs: { foto: _vm.foto }
+        })
       ],
       1
     ),
@@ -54857,7 +55108,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("a", { attrs: { href: "" } }, [
+    _c("a", { attrs: { href: "/producto/" + _vm.producto.id } }, [
       _c("div", { staticClass: "card my-3" }, [
         _c("img", {
           staticClass: "card-img-top",

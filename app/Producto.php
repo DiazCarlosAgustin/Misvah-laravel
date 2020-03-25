@@ -21,7 +21,8 @@ class Producto extends Model
 
     public function color()
     {
-        return $this->hasMany(Color::class, 'id_producto', 'id');
+        return $this->hasMany(Color::class,'id_producto', 'id')
+                ->join('stock_colors', 'colors.id' , '=' , 'stock_colors.color_id');
     }
     public function carrito()
     {
@@ -33,7 +34,8 @@ class Producto extends Model
     }
     public function imagenColor()
     {
-        return $this->hasMany(imagenColor::class, 'id_producto', 'id');
+        return $this->hasMany(imagenColor::class, 'id_producto', 'id')
+            ->join('colors','imagen_colors.id_color','=','colors.id');
     }
 
 }

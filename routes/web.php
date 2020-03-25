@@ -38,23 +38,37 @@ Route::get('/registrarse',function(){
 });
 
 Route::get('/categoria/{id}',function($id){
+
+   // obtengo los productos de la categoria consultada
    $productos = App::call('App\Http\Controllers\ProductoController@tienda', ['id' => $id]);
+   // obtengo las categorias
    $categorias = App::call('App\Http\Controllers\CategoriaController@categoriaPaginate');
 
+   // retorna la vista junto a: productos y categorias
    return view('tienda')->with('productos',$productos)
                         ->with('categorias',$categorias);
 });
 Route::get('/carrito',function(){
    return view('carrito');
 });
-Route::get('/producto/{id}',function(){
-   return view('producto');
+Route::get('/producto/{id}',function($id){
+   // obtengo el producto consultado
+   $producto = App::call('App\Http\Controllers\ProductoController@ver',['id' => $id]);
+
+   // retorno la vista junto al producto y las relaciones 
+   return view('producto')->with('producto',$producto);
 });
 Route::get('/favoritos',function(){
    return view('UserFavorito');
 });
 
-//rutas de administrador
+/*
+|---------------------------------------------------|
+|                                                   |
+|              RUTAS DE ADMINISTRADOR               |
+|                                                   |
+|---------------------------------------------------|
+*/
 // Route::group(['middleware' => 'admin'], function () {
    Route::get('/admin/index',function(){
       return view('admin\adminIndex');
@@ -96,7 +110,7 @@ Route::get('/favoritos',function(){
       return view('admin\nuevaCategoria');
    });
    Route::get('/admin/productos',function(){
-      $productos = App::call('App\Http\Controllers\ProductoController@ver');
+      $productos = App::call('App\Http\Controllers\ProductoController@index');
       return view('/admin/productos')->with('productos',$productos)
                                     ->with('back',false);
    });
@@ -141,8 +155,12 @@ Route::get('/favoritos',function(){
       return view('admin/ofertas')->with('ofertas',$ofertas);
    });
    
-   Route::get('/admin/editar_producto/{id}','ProductoController@editar');
    Route::get('/admin/ver_producto/{id}','ProductoController@ver');
+   Route::get('/admin/editar_producto/{id}',function($id){
+      // obtengo el producto y sus relaciones
+      $producto = App::call('App\http\Controllers\ProductoController@editar',['id' => $id]);
+      return view('admin.editarProducto')->with('producto',$producto);
+   });
    
    Route::get('/admin/nuevo_producto',function(){
       return view('admin\nuevoProducto');

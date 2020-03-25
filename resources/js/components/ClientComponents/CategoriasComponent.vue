@@ -3,9 +3,10 @@
         <h3 class="text-center p-3">Categorias</h3>
         <div class="row d-flex justify-content-center">
             <div
-                v-for="categoria in categorias.data"
+                v-for="categoria in categorias"
                 :key="categoria.id"
-                class="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                class="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"
+            >
                 <categoria-component :categoria="categoria" />
             </div>
         </div>

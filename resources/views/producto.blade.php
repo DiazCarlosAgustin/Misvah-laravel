@@ -2,12 +2,9 @@
 
 @section('title', 'Producto')
 
-@section('style')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-@endsection
 
 @section('Container')
-    <web-producto></web-producto>
+    <web-producto :producto="{{json_encode($producto)}}"></web-producto>
 @endsection
 
 @section('script')

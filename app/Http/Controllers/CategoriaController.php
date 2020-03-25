@@ -16,7 +16,7 @@ class CategoriaController extends Controller
     public function index()
     {
         //
-        $categorias = Categoria::all();
+        $categorias = Categoria::with('producto')->get();
 
         return $categorias;
     }

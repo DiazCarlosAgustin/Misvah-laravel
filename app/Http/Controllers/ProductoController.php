@@ -19,7 +19,9 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        
+        $productos = Producto::with('categoria')->paginate(6);
+
+        return $productos;
     }
 
     public function tienda($id)
@@ -89,10 +91,14 @@ class ProductoController extends Controller
         return view('/admin/VerProducto')->with('productos',$prod);
     }
 
-    public function ver(Producto $producto)
+    public function ver($id)
     {
-        $productos = Producto::with('Categoria')->paginate(6);
-        return $productos;
+        $producto = Producto::with('Categoria')
+                            ->with('color')
+                            ->with('imagenColor')
+                            ->with('Oferta')
+                            ->where('id','=',$id)->get();
+        return $producto;
     }
 
     /**
@@ -130,12 +136,10 @@ class ProductoController extends Controller
     {   
         $prod = Producto::with('Categoria:id,nombre')
                     ->with('color')
-                    ->with('imagenColor')->get();
-        $prod = $prod->find($producto);
-
-        $color = Color::with('stockColor')->get();
-        // $color = json_encode($color);
-        return view('/admin/editarProducto',['producto' => $prod, 'color' => $color]);
+                    ->with('imagenColor')
+                    ->where('id','=',$producto)
+                    ->get();
+        return $prod;
     }
 
     /**

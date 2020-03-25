@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a href="">
+        <a :href="`/producto/${producto.id}`">
             <div class="card my-3">
                 <img
                     src="https:via.placeholder.com/250x250.png"

@@ -1,65 +1,76 @@
 <template>
     <div class="col-12 col-xs-12 col-md-12 col-lg-12  border-bottom pb-4">
         <h3 class="text-center text-muted mt-2">Agregar stock a un color</h3>
-        <form @submit.prevent="postStock" >
+        <form @submit.prevent="postStock">
             <div class="form-group">
                 <label for="cbColor">Color:</label>
-                    <lista-color v-for="color in colores" :color="color" 
-                        :id="stocks"
-                        :key="color.id" 
-                        @selectColor="selectColor"/>   
+                <lista-color
+                    v-for="color in colores"
+                    :color="color"
+                    :id="stocks"
+                    :key="color.id"
+                    @selectColor="selectColor"
+                />
             </div>
             <div class="form-group">
                 <label for="txtStock">Stock:</label>
-                <input type="number" name="txtStock" id="txtStock" class="form-control" v-model="stock" min="0">
+                <input
+                    type="number"
+                    name="txtStock"
+                    id="txtStock"
+                    class="form-control"
+                    v-model="stock"
+                    min="0"
+                />
             </div>
             <div class="text-center">
-                <button type="reset" class="btn btn-danger"><i class="fas fa-times"></i></button>
-                <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
+                <button type="reset" class="btn btn-danger">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-check"></i>
+                </button>
             </div>
         </form>
     </div>
 </template>
 <script>
 export default {
-    name:'stock-color',
-    props:['id', 'colores'],
-    data(){
-        return{
-            id_color:0,
-            stock:0,
-            stocks:[]
-        }
+    name: "stock-color",
+    props: ["id", "colores"],
+    data() {
+        return {
+            id_color: 0,
+            stock: 0,
+            stocks: []
+        };
     },
-    methods:{
-        selectColor:function($id){
-            this.id_color = $id
-            console.log($id)
+    methods: {
+        selectColor: function($id) {
+            this.id_color = $id;
         },
-        postStock:function(){
+        postStock: function() {
             const params = {
-                color_id:this.id_color,
-                stock:this.stock
-            }
-            console.log(params);
-            
-            axios.post('http://127.0.0.1:8000/api/stock',params)
-                .then(res=>{
+                color_id: this.id_color,
+                stock: this.stock
+            };
+            axios
+                .post("http://127.0.0.1:8000/api/stock", params)
+                .then(res => {
                     console.log(res.data);
                 })
-                .catch(err=>{
+                .catch(err => {
                     console.log(err);
-                })
+                });
         },
-        id_stock:function(){
-            const colors = this.colores
-            colors.forEach(c =>{
-                this.stocks.push(c.stock_color)
-            })
-            return this.stocks
+        id_stock: function() {
+            const colors = this.colores;
+            colors.forEach(c => {
+                this.stocks.push(c.stock_color);
+            });
+            return this.stocks;
         }
     },
-    computed:{
-    }
-}
+    computed: {}
+};
 </script>
