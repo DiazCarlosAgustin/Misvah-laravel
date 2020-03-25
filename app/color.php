@@ -8,11 +8,11 @@ class color extends Model
 {
     public function imagenesColor()
     {
-        return $this->hasMany(imagenesColor::class, 'id_color', 'id');
+        return $this->hasMany(imagenesColor::class, 'color_id', 'id');
     }
     public function producto()
     {
-        return $this->hasOne(Producto::class, 'id', 'id_producto');
+        return $this->hasOne(Producto::class, 'id', 'producto_id');
     }
     public function stockColor()
     {

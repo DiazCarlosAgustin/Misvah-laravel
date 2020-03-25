@@ -8,6 +8,6 @@ class Categoria extends Model
 {
     public function producto()
     {
-        return $this->hasMany(Producto::Class, 'id_categoria','id');
+        return $this->hasMany(Producto::Class, 'categoria_id','id');
     }
 }

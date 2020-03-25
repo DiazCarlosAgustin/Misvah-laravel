@@ -10,23 +10,26 @@ class Producto extends Model
     public function categoria()
     {
         // 1 producto - 1 categoria
-        return $this->hasOne( Categoria::class, 'id', 'id_categoria');
+        return $this->hasOne( Categoria::class, 'id', 'categoria_id');
     }
 
     // relacion producto - favorito
     public function favorito()
     {
-        return $this->hasOne( Favorito::class, 'id_producto', 'id');
+        return $this->hasOne( Favorito::class, 'producto_id', 'id');
     }
 
     public function color()
     {
-        return $this->hasMany(Color::class,'id_producto', 'id')
-                ->join('stock_colors', 'colors.id' , '=' , 'stock_colors.color_id');
+        return $this->hasMany(Color::class,'producto_id', 'id');
+    }   
+    public function stockColor()
+    {
+        return $this->hasManyThrough(stockColor::class,Color::class);
     }
     public function carrito()
     {
-        return $this->hasOne(Carrito::class, 'id_producto', 'id');
+        return $this->hasOne(Carrito::class, 'producto_id', 'id');
     }
     public function oferta()
     {
@@ -34,8 +37,8 @@ class Producto extends Model
     }
     public function imagenColor()
     {
-        return $this->hasMany(imagenColor::class, 'id_producto', 'id')
-            ->join('colors','imagen_colors.id_color','=','colors.id');
+        return $this->hasMany(imagenColor::class, 'producto_id', 'id')
+            ->join('colors','imagen_colors.color_id','=','colors.id');
     }
 
 }

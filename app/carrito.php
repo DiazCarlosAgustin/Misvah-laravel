@@ -14,11 +14,11 @@ class carrito extends Model
     
     public function producto()
     {
-        return $this->hasOne(Producto::class, 'id', 'id_producto');
+        return $this->hasOne(Producto::class, 'id', 'producto_id');
     }
 
     public function color()
     {
-        return $this->hasOne(color::class, 'id', 'id_color');
+        return $this->hasOne(color::class, 'id', 'color_id');
     }
 }

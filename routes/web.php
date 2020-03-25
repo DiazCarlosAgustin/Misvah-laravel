@@ -54,7 +54,7 @@ Route::get('/carrito',function(){
 Route::get('/producto/{id}',function($id){
    // obtengo el producto consultado
    $producto = App::call('App\Http\Controllers\ProductoController@ver',['id' => $id]);
-
+dd($producto);
    // retorno la vista junto al producto y las relaciones 
    return view('producto')->with('producto',$producto);
 });

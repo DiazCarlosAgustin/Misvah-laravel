@@ -95,6 +95,7 @@ class ProductoController extends Controller
     {
         $producto = Producto::with('Categoria')
                             ->with('color')
+                            ->with('stockColor')
                             ->with('imagenColor')
                             ->with('Oferta')
                             ->where('id','=',$id)->get();
@@ -139,6 +140,7 @@ class ProductoController extends Controller
                     ->with('imagenColor')
                     ->where('id','=',$producto)
                     ->get();
+            
         return $prod;
     }
 

@@ -16,7 +16,7 @@ class CreateProductosTable extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('codigo')->unique();
-            $table->unsignedBigInteger('id_categoria');
+            $table->unsignedBigInteger('categoria_id');
             $table->string('nombre');
             $table->float('precio',8,2)->nullable($value = false);
             $table->longText('descripcion')->nulleable();
@@ -25,7 +25,7 @@ class CreateProductosTable extends Migration
             $table->timestamps();
 
             // foreign key - user
-            $table->foreign('id_categoria')->references('id')->on('categorias');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
 
         });
     }
