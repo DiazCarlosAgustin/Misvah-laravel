@@ -38,8 +38,8 @@ class FavoritoController extends Controller
     {
         $favorito = new favorito;
 
-        $favorito->id_user = $request->user;
-        $favorito->id_producto = $request->producto;
+        $favorito->user_id = $request->user;
+        $favorito->producto_id = $request->producto;
 
         if($favorito->save()){
             $msg = "se guardo correctamente";

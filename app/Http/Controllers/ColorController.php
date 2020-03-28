@@ -53,13 +53,16 @@ class ColorController extends Controller
         
         $color = new color();
 
-        $color->id_producto = $request->id_producto;
+        $color->producto_id = $request->id_producto;
         $color->imagen_color = $fileName;
         $color->descripcion = $request->descripcion;
 
-        $color->save();
+        if ($color->save()){
+            $color = Color::where('id','=',$color->id)
+                            ->with('stockColor')->get();
 
-        return response()->json($color, 200);
+            return $color;
+        }
 
     }
 

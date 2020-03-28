@@ -54,9 +54,9 @@ class ImagenColorController extends Controller
         $img = new imagenColor();
 
     
-        $img->id_producto = $request->id_producto;
+        $img->producto_id = $request->id_producto;
         $img->imagen_color_producto = $fileName;
-        $img->id_color = $request->id_color;
+        $img->color_id = $request->id_color;
         if($img->save())
             return response()->json($img, 200);
         else

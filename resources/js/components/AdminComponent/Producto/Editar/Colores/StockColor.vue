@@ -5,11 +5,11 @@
             <div class="form-group">
                 <label for="cbColor">Color:</label>
                 <lista-color
-                    v-for="color in colores"
+                    v-for="(color,index) in colores"
                     :color="color"
                     :id="stocks"
                     :key="color.id"
-                    @selectColor="selectColor"
+                    @selectColor="selectColor(index,...arguments)"
                 />
             </div>
             <div class="form-group">
@@ -41,13 +41,15 @@ export default {
     data() {
         return {
             id_color: 0,
+            i:0,
             stock: 0,
             stocks: []
         };
     },
     methods: {
-        selectColor: function($id) {
+        selectColor: function($i,$id) {
             this.id_color = $id;
+            this.i = $i
         },
         postStock: function() {
             const params = {
@@ -58,6 +60,7 @@ export default {
                 .post("http://127.0.0.1:8000/api/stock", params)
                 .then(res => {
                     console.log(res.data);
+                    this.$emit("newStock",this.i,res.data.color)
                 })
                 .catch(err => {
                     console.log(err);

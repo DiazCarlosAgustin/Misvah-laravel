@@ -46,8 +46,8 @@ class ColorStockController extends Controller
             $stock->stock = $request->stock;
 
             $stock->save();
-
-            return response()->json($stock, 200);
+            $color = Color::where('id','=',$request->color_id)->with('stockColor')->get();
+            return response()->json(['stock' => $stock,'color' => $color]);
         }
         else{
             return response()->json(["error" => "El color ya posee stock."]);

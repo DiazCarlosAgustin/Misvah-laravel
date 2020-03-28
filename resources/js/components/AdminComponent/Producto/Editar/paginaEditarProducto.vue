@@ -6,8 +6,15 @@
             :imagenes="images"
         />
         <div class="col-12 col-xs-12 col-md-12 col-lg-4">
-            <nuevo-color :id_producto="producto.id" />
-            <stock-color :id="producto.id" :colores="colores" />
+            <nuevo-color
+                :id_producto="producto.id"
+                @newColor="newColor"
+            ></nuevo-color>
+            <stock-color
+                :id="producto.id"
+                :colores="colores"
+                @newStock="newStock()"
+            />
             <imagen-color
                 :colors="colores"
                 :id="producto.id"
@@ -35,6 +42,12 @@ export default {
         },
         updateProducto: function(producto) {
             this.producto = producto;
+        },
+        newStock: function($i, $color) {
+            this.producto.color[$i] = $color;
+        },
+        newColor: function($color){
+            this.colores.push($color)
         }
     },
     computed: {

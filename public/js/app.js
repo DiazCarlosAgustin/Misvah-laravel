@@ -2080,9 +2080,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ColorEditarProducto",
   props: ["color"],
-  mounted: function mounted() {
-    console.log(this.color);
-  },
   data: function data() {
     return {
       edit: false
@@ -2097,11 +2094,10 @@ __webpack_require__.r(__webpack_exports__);
 
       var id = this.color.stock_color.id;
       var params = {
-        id_color: this.color.id_color
+        color_id: this.color.id,
+        stock: this.color.stock_color.stock
       };
       axios.put("http://127.0.0.1:8000/api/stock/" + id, params).then(function (res) {
-        console.log(res.data);
-
         _this.$emit("updateStock", res.data.stock);
 
         _this.edit = !_this.edit;
@@ -2189,8 +2185,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
-
 //
 //
 //
@@ -2241,12 +2235,16 @@ function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only")
 
       this.color.id_producto = this.id_producto;
       axios.post('http://127.0.0.1:8000/api/color', this.color).then(function (res) {
+        console.log(res.data);
         var file = document.getElementById('fileColor');
 
         if (res) {
+          var color = res.data[0];
           _this2.color.descripcion = '';
-          _this2.color.imagen = '';
-          file = (_readOnlyError("file"), "");
+
+          _this2.$emit("newColor", color);
+
+          file.value = null;
         }
       })["catch"](function (err) {
         console.log(err);
@@ -2310,31 +2308,37 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       id_color: 0,
+      i: 0,
       stock: 0,
       stocks: []
     };
   },
   methods: {
-    selectColor: function selectColor($id) {
+    selectColor: function selectColor($i, $id) {
       this.id_color = $id;
+      this.i = $i;
     },
     postStock: function postStock() {
+      var _this = this;
+
       var params = {
         color_id: this.id_color,
         stock: this.stock
       };
       axios.post("http://127.0.0.1:8000/api/stock", params).then(function (res) {
         console.log(res.data);
+
+        _this.$emit("newStock", _this.i, res.data.color);
       })["catch"](function (err) {
         console.log(err);
       });
     },
     id_stock: function id_stock() {
-      var _this = this;
+      var _this2 = this;
 
       var colors = this.colores;
       colors.forEach(function (c) {
-        _this.stocks.push(c.stock_color);
+        _this2.stocks.push(c.stock_color);
       });
       return this.stocks;
     }
@@ -2940,6 +2944,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "pagina-editar-producto",
   props: ["pro"],
@@ -2956,6 +2967,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateProducto: function updateProducto(producto) {
       this.producto = producto;
+    },
+    newStock: function newStock($i, $color) {
+      this.producto.color[$i] = $color;
+    },
+    newColor: function newColor($color) {
+      this.colores.push($color);
     }
   },
   computed: {
@@ -49137,7 +49154,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.color.stock > 0
+  return _vm.color.stock_color
     ? _c("tr", [
         _c("td", { staticClass: "align-center align-middle text-center" }, [
           _c("img", {
@@ -49156,7 +49173,9 @@ var render = function() {
             !_vm.edit
               ? _c("p", { staticClass: " text-center align-middle m-0" }, [
                   _vm._v(
-                    "\n            " + _vm._s(_vm.color.stock) + "\n        "
+                    "\n            " +
+                      _vm._s(_vm.color.stock_color.stock) +
+                      "\n        "
                   )
                 ])
               : _vm._e(),
@@ -49167,19 +49186,23 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.color.stock,
-                      expression: "color.stock"
+                      value: _vm.color.stock_color.stock,
+                      expression: "color.stock_color.stock"
                     }
                   ],
                   staticClass: "w-auto form-control mx-auto",
                   attrs: { type: "number", name: "txtStock", id: "txtStock" },
-                  domProps: { value: _vm.color.stock },
+                  domProps: { value: _vm.color.stock_color.stock },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.color, "stock", $event.target.value)
+                      _vm.$set(
+                        _vm.color.stock_color,
+                        "stock",
+                        $event.target.value
+                      )
                     }
                   }
                 })
@@ -49491,11 +49514,21 @@ var render = function() {
             [
               _c("label", { attrs: { for: "cbColor" } }, [_vm._v("Color:")]),
               _vm._v(" "),
-              _vm._l(_vm.colores, function(color) {
+              _vm._l(_vm.colores, function(color, index) {
                 return _c("lista-color", {
                   key: color.id,
                   attrs: { color: color, id: _vm.stocks },
-                  on: { selectColor: _vm.selectColor }
+                  on: {
+                    selectColor: function($event) {
+                      var i = arguments.length,
+                        argsArray = Array(i)
+                      while (i--) argsArray[i] = arguments[i]
+                      return _vm.selectColor.apply(
+                        void 0,
+                        [index].concat(argsArray)
+                      )
+                    }
+                  }
                 })
               })
             ],
@@ -50641,10 +50674,18 @@ var render = function() {
         "div",
         { staticClass: "col-12 col-xs-12 col-md-12 col-lg-4" },
         [
-          _c("nuevo-color", { attrs: { id_producto: _vm.producto.id } }),
+          _c("nuevo-color", {
+            attrs: { id_producto: _vm.producto.id },
+            on: { newColor: _vm.newColor }
+          }),
           _vm._v(" "),
           _c("stock-color", {
-            attrs: { id: _vm.producto.id, colores: _vm.colores }
+            attrs: { id: _vm.producto.id, colores: _vm.colores },
+            on: {
+              newStock: function($event) {
+                return _vm.newStock()
+              }
+            }
           }),
           _vm._v(" "),
           _c("imagen-color", {

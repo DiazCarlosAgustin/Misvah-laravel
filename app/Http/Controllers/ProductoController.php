@@ -30,13 +30,13 @@ class ProductoController extends Controller
         $productos = Producto::with(['favorito' => function($q){
                                 $user = auth()->user();
                                 if($user){
-                                    $q->where('id_user','=',$user->id);
+                                    $q->where('user_id','=',$user->id);
                                 }
                                 else{
-                                    $q->where('id_user','=',0);
+                                    $q->where('user_id','=',0);
                                 }
                             }])
-                            ->where('id_categoria', '=' , $id)
+                            ->where('categoria_id', '=' , $id)
                             ->paginate(6);
 
         return $productos;
@@ -63,7 +63,7 @@ class ProductoController extends Controller
         $producto = new Producto;
 
         $producto->codigo = $request->cod;
-        $producto->id_categoria = $request->categoria;
+        $producto->categoria_id = $request->categoria;
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
         $producto->descripcion = $request->descripcion;
@@ -84,18 +84,18 @@ class ProductoController extends Controller
     {
         //retorna la vista con el producto
         $prod = Producto::with('Categoria')
-                ->with('color') 
-                ->with('imagenesColors')
-                ->with('Oferta')->get();
-        $prod = $prod->find($producto);
-        return view('/admin/VerProducto')->with('productos',$prod);
+                ->with('color')
+                ->with('imagenColor')
+                ->with('Oferta')
+                ->where('id','=',$producto)->get();
+        
+        return $prod;
     }
 
     public function ver($id)
     {
         $producto = Producto::with('Categoria')
                             ->with('color')
-                            ->with('stockColor')
                             ->with('imagenColor')
                             ->with('Oferta')
                             ->where('id','=',$id)->get();
@@ -160,7 +160,7 @@ class ProductoController extends Controller
             $prod = Producto::find($request->id);
             $prod->id  = $request->id;
             $prod->codigo  = $request->codigo;
-            $prod->id_categoria  = $request->categoria;
+            $prod->categoria_id  = $request->categoria;
             $prod->nombre  = $request->nombre;
             $prod->precio  = $request->precio;
             $prod->estado  = $request->estado;

@@ -21,11 +21,7 @@ class Producto extends Model
 
     public function color()
     {
-        return $this->hasMany(Color::class,'producto_id', 'id');
-    }   
-    public function stockColor()
-    {
-        return $this->hasManyThrough(stockColor::class,Color::class);
+        return $this->hasMany(Color::class,'producto_id', 'id')->with('stockColor');
     }
     public function carrito()
     {
