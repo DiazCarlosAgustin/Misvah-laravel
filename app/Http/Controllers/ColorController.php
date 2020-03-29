@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\color;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ColorController extends Controller
 {
@@ -111,6 +112,10 @@ class ColorController extends Controller
      */
     public function destroy(color $color)
     {
-        //
+        $color = Color::find($color->id);
+        Storage::delete($color->imagen_color);
+        $color->delete();
+
+        return $color;
     }
 }

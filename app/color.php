@@ -8,7 +8,7 @@ class color extends Model
 {
     public function imagenesColor()
     {
-        return $this->hasMany(imagenesColor::class, 'color_id', 'id');
+        return $this->hasOne(imagenesColor::class, 'color_id', 'id');
     }
     public function producto()
     {

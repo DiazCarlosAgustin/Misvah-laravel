@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\stockColor;
+use App\Color;
 use Illuminate\Http\Request;
 
 class ColorStockController extends Controller
@@ -46,8 +47,8 @@ class ColorStockController extends Controller
             $stock->stock = $request->stock;
 
             $stock->save();
-            $color = Color::where('id','=',$request->color_id)->with('stockColor')->get();
-            return response()->json(['stock' => $stock,'color' => $color]);
+            
+            return $stock;
         }
         else{
             return response()->json(["error" => "El color ya posee stock."]);

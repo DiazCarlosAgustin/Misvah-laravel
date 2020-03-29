@@ -93,6 +93,7 @@
                                 :key="index"
                                 :color="color"
                                 @updateStock="updateStock(index, ...arguments)"
+                                @deleteColor="deleteColor(index)"
                             />
                         </tbody>
                     </table>
@@ -221,6 +222,10 @@ export default {
                 .catch(err => {
                     console.log(err);
                 });
+        },
+        deleteColor: function($i){
+            this.colores.splice($i,1)
+            this.$emit("deleteColor",this.colores)
         }
     },
     computed: {

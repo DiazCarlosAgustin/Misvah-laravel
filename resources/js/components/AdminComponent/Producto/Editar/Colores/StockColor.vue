@@ -5,11 +5,11 @@
             <div class="form-group">
                 <label for="cbColor">Color:</label>
                 <lista-color
-                    v-for="(color,index) in colores"
+                    v-for="(color, index) in colores"
                     :color="color"
                     :id="stocks"
                     :key="color.id"
-                    @selectColor="selectColor(index,...arguments)"
+                    @selectColor="selectColor(index, ...arguments)"
                 />
             </div>
             <div class="form-group">
@@ -41,15 +41,15 @@ export default {
     data() {
         return {
             id_color: 0,
-            i:0,
+            i: 0,
             stock: 0,
             stocks: []
         };
     },
     methods: {
-        selectColor: function($i,$id) {
+        selectColor: function($i, $id) {
             this.id_color = $id;
-            this.i = $i
+            this.i = $i;
         },
         postStock: function() {
             const params = {
@@ -59,8 +59,8 @@ export default {
             axios
                 .post("http://127.0.0.1:8000/api/stock", params)
                 .then(res => {
-                    console.log(res.data);
-                    this.$emit("newStock",this.i,res.data.color)
+                    var stock = res.data
+                    this.$emit("newStock", this.i, stock);
                 })
                 .catch(err => {
                     console.log(err);

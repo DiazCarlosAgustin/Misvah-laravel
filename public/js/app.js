@@ -2077,6 +2077,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ColorEditarProducto",
   props: ["color"],
@@ -2101,6 +2105,15 @@ __webpack_require__.r(__webpack_exports__);
         _this.$emit("updateStock", res.data.stock);
 
         _this.edit = !_this.edit;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    deleteColor: function deleteColor() {
+      var _this2 = this;
+
+      axios["delete"]("http://127.0.0.1:8000/api/color/" + this.color.id).then(function (res) {
+        _this2.$emit("deleteColor");
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2235,7 +2248,6 @@ __webpack_require__.r(__webpack_exports__);
 
       this.color.id_producto = this.id_producto;
       axios.post('http://127.0.0.1:8000/api/color', this.color).then(function (res) {
-        console.log(res.data);
         var file = document.getElementById('fileColor');
 
         if (res) {
@@ -2326,9 +2338,9 @@ __webpack_require__.r(__webpack_exports__);
         stock: this.stock
       };
       axios.post("http://127.0.0.1:8000/api/stock", params).then(function (res) {
-        console.log(res.data);
+        var stock = res.data;
 
-        _this.$emit("newStock", _this.i, res.data.color);
+        _this.$emit("newStock", _this.i, stock);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2679,6 +2691,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "editar-producto",
   props: ["producto", "colores", "imagenes"],
@@ -2743,6 +2756,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    deleteColor: function deleteColor($i) {
+      this.colores.splice($i, 1);
+      this.$emit("deleteColor", this.colores);
     }
   },
   computed: {
@@ -2951,6 +2968,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "pagina-editar-producto",
   props: ["pro"],
@@ -2969,10 +2987,13 @@ __webpack_require__.r(__webpack_exports__);
       this.producto = producto;
     },
     newStock: function newStock($i, $color) {
-      this.producto.color[$i] = $color;
+      this.colores[$i].stock_color = $color;
     },
     newColor: function newColor($color) {
       this.colores.push($color);
+    },
+    deleteColor: function deleteColor($colores) {
+      this.colores = $colores;
     }
   },
   computed: {
@@ -49222,7 +49243,15 @@ var render = function() {
                 [_c("i", { staticClass: "fas fa-edit" })]
               ),
               _vm._v(" "),
-              _vm._m(0)
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger py-2 px-3 text-center",
+                  attrs: { type: "button" },
+                  on: { click: _vm.deleteColor }
+                },
+                [_c("i", { staticClass: "fas fa-trash" })]
+              )
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -49252,21 +49281,7 @@ var render = function() {
       ])
     : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-danger py-2 px-3 text-center",
-        attrs: { type: "button" }
-      },
-      [_c("i", { staticClass: "fas fa-trash" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -50134,6 +50149,9 @@ var render = function() {
                               void 0,
                               [index].concat(argsArray)
                             )
+                          },
+                          deleteColor: function($event) {
+                            return _vm.deleteColor(index)
                           }
                         }
                       })
@@ -50667,7 +50685,8 @@ var render = function() {
           producto: _vm.producto,
           colores: _vm.colores,
           imagenes: _vm.images
-        }
+        },
+        on: { deleteColor: _vm.deleteColor }
       }),
       _vm._v(" "),
       _c(
@@ -50681,11 +50700,7 @@ var render = function() {
           _vm._v(" "),
           _c("stock-color", {
             attrs: { id: _vm.producto.id, colores: _vm.colores },
-            on: {
-              newStock: function($event) {
-                return _vm.newStock()
-              }
-            }
+            on: { newStock: _vm.newStock }
           }),
           _vm._v(" "),
           _c("imagen-color", {

@@ -4,6 +4,7 @@
             :producto="producto"
             :colores="colores"
             :imagenes="images"
+            @deleteColor="deleteColor"
         />
         <div class="col-12 col-xs-12 col-md-12 col-lg-4">
             <nuevo-color
@@ -13,7 +14,7 @@
             <stock-color
                 :id="producto.id"
                 :colores="colores"
-                @newStock="newStock()"
+                @newStock="newStock"
             />
             <imagen-color
                 :colors="colores"
@@ -44,10 +45,13 @@ export default {
             this.producto = producto;
         },
         newStock: function($i, $color) {
-            this.producto.color[$i] = $color;
+            this.colores[$i].stock_color = $color;
         },
         newColor: function($color){
             this.colores.push($color)
+        },
+        deleteColor: function($colores){
+            this.colores = $colores
         }
     },
     computed: {

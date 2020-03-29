@@ -29,7 +29,11 @@
             >
                 <i class="fas fa-edit"></i>
             </button>
-            <button type="button" class="btn btn-danger py-2 px-3 text-center">
+            <button
+                type="button"
+                class="btn btn-danger py-2 px-3 text-center"
+                @click="deleteColor"
+            >
                 <i class="fas fa-trash"></i>
             </button>
         </td>
@@ -79,6 +83,18 @@ export default {
                 })
                 .catch(err => {
                     console.log(err);
+                });
+        },
+        deleteColor: function() {
+            axios
+                .delete(
+                    "http://127.0.0.1:8000/api/color/" + this.color.id
+                )
+                .then(res => {
+                    this.$emit("deleteColor")
+                })
+                .catch(err => {
+                    console.log(err)
                 });
         }
     }

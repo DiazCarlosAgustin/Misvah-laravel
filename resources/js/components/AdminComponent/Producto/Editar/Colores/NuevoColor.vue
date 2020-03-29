@@ -47,7 +47,6 @@ export default {
             
             axios.post('http://127.0.0.1:8000/api/color',this.color)
                 .then(res=>{
-                    console.log(res.data);
                     const file = document.getElementById('fileColor')
                     if (res) {
                         var color = res.data[0]
