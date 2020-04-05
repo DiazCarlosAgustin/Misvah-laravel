@@ -92,8 +92,8 @@
                                 v-for="(color, index) in colors"
                                 :key="index"
                                 :color="color"
-                                @updateStock="updateStock(index, ...arguments)"
-                                @deleteColor="deleteColor(index)"
+                                @updateStock="updateStock(index,...arguments)"
+                                @deleteColor="deleteColor(index,color.id)"
                             />
                         </tbody>
                     </table>
@@ -113,7 +113,7 @@
                         <tbody>
                             <imagen-editar-producto
                                 v-for="(imagen, index) in imagenes"
-                                :key="imagen.id"
+                                :key="index"
                                 :imagen="imagen"
                                 @deleteImagen="deleteImagen(index)"
                             />
@@ -223,9 +223,9 @@ export default {
                     console.log(err);
                 });
         },
-        deleteColor: function($i){
+        deleteColor: function($i,$id){
             this.colores.splice($i,1)
-            this.$emit("deleteColor",this.colores)
+            this.$emit("deleteColor",this.colores,$id)
         }
     },
     computed: {

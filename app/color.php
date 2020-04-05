@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class color extends Model
 {
-    public function imagenesColor()
+    public function imagenColor()
     {
-        return $this->hasOne(imagenesColor::class, 'color_id', 'id');
+        return $this->hasOne(imagenColor::class, 'color_id', 'id');
     }
     public function producto()
     {

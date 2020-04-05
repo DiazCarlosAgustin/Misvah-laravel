@@ -76,7 +76,7 @@ Route::get('/favoritos',function(){
    Route::get('/admin/categorias',function(){
       $categorias = App::call('App\Http\Controllers\CategoriaController@categoriaPaginate');
 
-      return view('admin\categoria')->with('categorias',$categorias)
+      return view('admin\categorias')->with('categorias',$categorias)
                                     ->with('back', false);
    });
 
@@ -105,7 +105,13 @@ Route::get('/favoritos',function(){
    });
 
 
-   Route::get('/admin/editar_categoria/{id}','CategoriaController@show');
+   Route::get('/admin/editar_categoria/{id}',function($id){
+      $categoria = App::call('App\Http\Controllers\CategoriaController@show',['id' => $id]);
+
+      return view('admin.editar_categoria')->with('categoria',$categoria);
+   });
+
+
    Route::get('/admin/nueva_categoria',function(){
       return view('admin\nuevaCategoria');
    });
@@ -156,9 +162,11 @@ Route::get('/favoritos',function(){
    });
    
    Route::get('/admin/ver_producto/{id}','ProductoController@ver');
+
    Route::get('/admin/editar_producto/{id}',function($id){
       // obtengo el producto y sus relaciones
       $producto = App::call('App\http\Controllers\ProductoController@editar',['id' => $id]);
+      
       return view('admin.editarProducto')->with('producto',$producto);
    });
    

@@ -12,7 +12,8 @@
               <a href="{{ url()->previous() }}" class="a-volver mx-2 my-2"><i class="fas fa-arrow-left pr-1"></i>Volver</a>
           </div>
         </div>
-        <pagina-editar-producto :pro="{{json_encode($producto)}}"/>
+        
+        <pagina-editar-producto :pro="{{$producto}}"/>
     </div>
 @endsection
 @section('script')

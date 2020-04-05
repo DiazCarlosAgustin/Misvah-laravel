@@ -34,30 +34,38 @@ export default {
         return {
             colores: this.pro[0].color,
             imagenes: this.pro[0].imagen_color,
-            producto: this.pro[0]
+            producto: this.pro[0],
         };
     },
     methods: {
-        updateImagen: function(imagen) {
-            this.imagenes.push(imagen);
+        updateImagen: function (imagen) {
+            this.imagenes = imagen;
         },
-        updateProducto: function(producto) {
+        updateProducto: function (producto) {
             this.producto = producto;
         },
-        newStock: function($i, $color) {
-            this.colores[$i].stock_color = $color;
+        newStock: function ($i, $color) {
+            this.colores = $color;
         },
-        newColor: function($color){
-            this.colores.push($color)
+        newColor: function ($color) {
+            this.colores.push($color);
         },
-        deleteColor: function($colores){
-            this.colores = $colores
-        }
+        deleteColor: function ($colores, $id) {
+            console.log($id);
+
+            this.colores = $colores;
+            this.imagenes.forEach((img, i) => {
+                if (img.color_id == $id) {
+                    this.imagenes[i] = null;
+                }
+            });
+            console.log(this.imagenes);
+        },
     },
     computed: {
         images() {
             return this.imagenes;
-        }
-    }
+        },
+    },
 };
 </script>

@@ -2140,7 +2140,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'lista-color',
-  props: ['color', 'id'],
+  props: ['color', 'id', 'disable'],
   data: function data() {
     return {
       val: false
@@ -2314,6 +2314,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "stock-color",
   props: ["id", "colores"],
@@ -2322,7 +2323,8 @@ __webpack_require__.r(__webpack_exports__);
       id_color: 0,
       i: 0,
       stock: 0,
-      stocks: []
+      stocks: [],
+      disable: false
     };
   },
   methods: {
@@ -2338,9 +2340,12 @@ __webpack_require__.r(__webpack_exports__);
         stock: this.stock
       };
       axios.post("http://127.0.0.1:8000/api/stock", params).then(function (res) {
-        var stock = res.data;
+        _this.colores[_this.i].stock_color = res.data;
 
-        _this.$emit("newStock", _this.i, stock);
+        _this.$emit("newStock", _this.i, _this.colores);
+
+        _this.stock = 0;
+        _this.disable = true;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2393,14 +2398,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'imagen-color',
-  props: ['colors', 'id'],
+  name: "imagen-color",
+  props: ["colors", "id"],
   data: function data() {
     return {
       color: 0,
       id_producto: this.id,
-      imagen: ''
+      imagen: ""
     };
   },
   methods: {
@@ -2422,14 +2438,16 @@ __webpack_require__.r(__webpack_exports__);
         id_producto: this.id_producto,
         imagen: this.imagen
       };
-      axios.post('http://127.0.0.1:8000/api/imagen', params).then(function (res) {
+      axios.post("http://127.0.0.1:8000/api/imagen", params).then(function (res) {
         _this2.updateImagen(res.data);
+
+        document.getElementById('txtimagen').value = "";
       })["catch"](function (err) {
         console.log(err);
       });
     },
     updateImagen: function updateImagen(imagen) {
-      this.$emit('updateImagen', imagen);
+      this.$emit("updateImagen", imagen);
     },
     getColorId: function getColorId($id) {
       this.color = $id;
@@ -2757,9 +2775,9 @@ __webpack_require__.r(__webpack_exports__);
         console.log(err);
       });
     },
-    deleteColor: function deleteColor($i) {
+    deleteColor: function deleteColor($i, $id) {
       this.colores.splice($i, 1);
-      this.$emit("deleteColor", this.colores);
+      this.$emit("deleteColor", this.colores, $id);
     }
   },
   computed: {
@@ -2814,6 +2832,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ["imagen"],
   data: function data() {
     return {};
+  },
+  mounted: function mounted() {
+    console.log(this.imagen);
   },
   methods: {
     deleteImagen: function deleteImagen() {
@@ -2981,19 +3002,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     updateImagen: function updateImagen(imagen) {
-      this.imagenes.push(imagen);
+      this.imagenes = imagen;
     },
     updateProducto: function updateProducto(producto) {
       this.producto = producto;
     },
     newStock: function newStock($i, $color) {
-      this.colores[$i].stock_color = $color;
+      this.colores = $color;
     },
     newColor: function newColor($color) {
       this.colores.push($color);
     },
-    deleteColor: function deleteColor($colores) {
+    deleteColor: function deleteColor($colores, $id) {
+      var _this = this;
+
+      console.log($id);
       this.colores = $colores;
+      this.imagenes.forEach(function (img, i) {
+        if (img.color_id == $id) {
+          _this.imagenes[i] = null;
+        }
+      });
+      console.log(this.imagenes);
     }
   },
   computed: {
@@ -3713,12 +3743,15 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       edit: false,
-      nombre: this.categoria[0].nombre,
-      id: this.categoria[0].id,
+      nombre: this.categoria.nombre,
+      id: this.categoria.id,
       imagen: '',
-      descripcion: this.categoria[0].descripcion,
+      descripcion: this.categoria.descripcion,
       file: ''
     };
+  },
+  mounted: function mounted() {
+    console.log(this.categoria);
   },
   methods: {
     cancelEdit: function cancelEdit() {
@@ -3744,7 +3777,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     editar: function editar() {
       if (this.imagen.length == 0) {
-        this.imagen = this.categoria[0].imagen_categoria;
+        this.imagen = this.categoria.imagen_categoria;
       }
 
       var param = {
@@ -49309,7 +49342,7 @@ var render = function() {
       attrs: {
         type: "radio",
         name: "color",
-        disabled: _vm.color.stock_color != null
+        disabled: _vm.color.stock_color || _vm.disable
       },
       on: { click: _vm.handleClick }
     }),
@@ -49506,7 +49539,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col-12 col-xs-12 col-md-12 col-lg-12  border-bottom pb-4" },
+    { staticClass: "col-12 col-xs-12 col-md-12 col-lg-12 border-bottom pb-4" },
     [
       _c("h3", { staticClass: "text-center text-muted mt-2" }, [
         _vm._v("Agregar stock a un color")
@@ -49532,7 +49565,7 @@ var render = function() {
               _vm._l(_vm.colores, function(color, index) {
                 return _c("lista-color", {
                   key: color.id,
-                  attrs: { color: color, id: _vm.stocks },
+                  attrs: { color: color, id: _vm.stocks, disable: _vm.disable },
                   on: {
                     selectColor: function($event) {
                       var i = arguments.length,
@@ -49567,7 +49600,7 @@ var render = function() {
                 type: "number",
                 name: "txtStock",
                 id: "txtStock",
-                min: "0"
+                min: "1"
               },
               domProps: { value: _vm.stock },
               on: {
@@ -50151,7 +50184,7 @@ var render = function() {
                             )
                           },
                           deleteColor: function($event) {
-                            return _vm.deleteColor(index)
+                            return _vm.deleteColor(index, color.id)
                           }
                         }
                       })
@@ -50179,7 +50212,7 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.imagenes, function(imagen, index) {
                       return _c("imagen-editar-producto", {
-                        key: imagen.id,
+                        key: index,
                         attrs: { imagen: imagen },
                         on: {
                           deleteImagen: function($event) {
@@ -50378,37 +50411,39 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", [
-    _c("td", { staticClass: "align-middle text-center" }, [
-      _c("img", {
-        staticClass: "m-1",
-        attrs: {
-          src: "../../../img/productos/" + _vm.imagen.imagen_color_producto,
-          alt: "Imagen color producto",
-          width: "70",
-          height: "70"
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "align-middle text-center" }, [
-      _vm._v(_vm._s(_vm.imagen.descripcion))
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "align-middle text-center" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger py-2 px-3 text-center align-middle",
-          attrs: { type: "button" },
-          on: { click: _vm.deleteImagen }
-        },
-        [_c("i", { staticClass: "fas fa-trash" })]
-      )
-    ])
-  ])
+  return _vm.imagen
+    ? _c("tr", [
+        _c("td", { staticClass: "align-middle text-center" }, [
+          _c("img", {
+            staticClass: "m-1",
+            attrs: {
+              src: "../../../img/productos/" + _vm.imagen.imagen_color_producto,
+              alt: "Imagen color producto",
+              width: "70",
+              height: "70"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "align-middle text-center" }, [
+          _vm._v(_vm._s(_vm.imagen.color.descripcion))
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "align-middle text-center" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger py-2 px-3 text-center align-middle",
+              attrs: { type: "button" },
+              on: { click: _vm.deleteImagen }
+            },
+            [_c("i", { staticClass: "fas fa-trash" })]
+          )
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -51737,8 +51772,7 @@ var render = function() {
                     ? _c("img", {
                         staticClass: "d-block mx-auto img-edit",
                         attrs: {
-                          src:
-                            "../../../img/" + _vm.categoria[0].imagen_categoria,
+                          src: "../../../img/" + _vm.categoria.imagen_categoria,
                           alt: ""
                         }
                       })

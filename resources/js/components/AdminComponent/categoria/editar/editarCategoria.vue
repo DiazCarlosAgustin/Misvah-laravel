@@ -18,7 +18,7 @@
                         <div class="form-group row d-flex justify-content-center">
                             <label for="txtNombreCategoria" class="">Imagen:</label>
                             <div class=" col-sm-12 d-block text-center">
-                                <img :src="`../../../img/${categoria[0].imagen_categoria}`" v-if="!file" alt="" class="d-block mx-auto img-edit">
+                                <img :src="`../../../img/${categoria.imagen_categoria}`" v-if="!file" alt="" class="d-block mx-auto img-edit">
                                 <img :src="imagen" v-else width="350" alt="imagen categoria" class="d-block mx-auto img-edit">
                                 <button v-show="!edit" class="btn btn-sm btn-success" @click.prevent="showEdit">Editar</button>
                             </div>
@@ -53,12 +53,16 @@ export default {
     data() {
         return {
             edit:false,
-            nombre: this.categoria[0].nombre,
-            id: this.categoria[0].id,
+            nombre: this.categoria.nombre,
+            id: this.categoria.id,
             imagen: '',
-            descripcion: this.categoria[0].descripcion,
+            descripcion: this.categoria.descripcion,
             file:'',
         }
+    },
+    mounted(){
+        console.log(this.categoria);
+        
     },
     methods: {
         cancelEdit: function(){
@@ -82,7 +86,7 @@ export default {
         },
         editar: function(){
             if (this.imagen.length == 0){
-                this.imagen =  this.categoria[0].imagen_categoria
+                this.imagen =  this.categoria.imagen_categoria
             }
             const param = {
                 nombre: this.nombre,

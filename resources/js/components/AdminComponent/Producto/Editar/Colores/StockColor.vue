@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12 col-xs-12 col-md-12 col-lg-12  border-bottom pb-4">
+    <div class="col-12 col-xs-12 col-md-12 col-lg-12 border-bottom pb-4">
         <h3 class="text-center text-muted mt-2">Agregar stock a un color</h3>
         <form @submit.prevent="postStock">
             <div class="form-group">
@@ -10,6 +10,7 @@
                     :id="stocks"
                     :key="color.id"
                     @selectColor="selectColor(index, ...arguments)"
+                    :disable="disable"
                 />
             </div>
             <div class="form-group">
@@ -20,7 +21,7 @@
                     id="txtStock"
                     class="form-control"
                     v-model="stock"
-                    min="0"
+                    min="1"
                 />
             </div>
             <div class="text-center">
@@ -43,37 +44,40 @@ export default {
             id_color: 0,
             i: 0,
             stock: 0,
-            stocks: []
+            stocks: [],
+            disable: false,
         };
     },
     methods: {
-        selectColor: function($i, $id) {
+        selectColor: function ($i, $id) {
             this.id_color = $id;
             this.i = $i;
         },
-        postStock: function() {
+        postStock: function () {
             const params = {
                 color_id: this.id_color,
-                stock: this.stock
+                stock: this.stock,
             };
             axios
                 .post("http://127.0.0.1:8000/api/stock", params)
-                .then(res => {
-                    var stock = res.data
-                    this.$emit("newStock", this.i, stock);
+                .then((res) => {
+                    this.colores[this.i].stock_color = res.data;
+                    this.$emit("newStock", this.i, this.colores);
+                    this.stock = 0;
+                    this.disable = true;
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err);
                 });
         },
-        id_stock: function() {
+        id_stock: function () {
             const colors = this.colores;
-            colors.forEach(c => {
+            colors.forEach((c) => {
                 this.stocks.push(c.stock_color);
             });
             return this.stocks;
-        }
+        },
     },
-    computed: {}
+    computed: {},
 };
 </script>

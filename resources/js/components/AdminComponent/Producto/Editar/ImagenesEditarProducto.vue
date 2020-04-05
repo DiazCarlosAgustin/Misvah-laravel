@@ -1,5 +1,5 @@
 <template>
-    <tr>
+    <tr v-if="imagen">
         <td class="align-middle text-center">
             <img
                 :src="`../../../img/productos/${imagen.imagen_color_producto}`"
@@ -9,7 +9,7 @@
                 height="70"
             />
         </td>
-        <td class="align-middle text-center">{{ imagen.descripcion }}</td>
+        <td class="align-middle text-center">{{ imagen.color.descripcion }}</td>
         <td class="align-middle text-center">
             <button
                 type="button"
@@ -34,6 +34,7 @@ export default {
     data() {
         return {};
     },
+    mounted(){console.log(this.imagen)},
     methods: {
         deleteImagen: function() {
             axios

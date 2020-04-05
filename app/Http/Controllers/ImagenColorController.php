@@ -57,12 +57,14 @@ class ImagenColorController extends Controller
         $img->producto_id = $request->id_producto;
         $img->imagen_color_producto = $fileName;
         $img->color_id = $request->id_color;
-        if($img->save())
+        if($img->save()){
+            $img = $img::with('color')->get();
             return response()->json($img, 200);
-        else
+        }else{
             return response()->json([
                 'Error' => 'No se puedo guardar la imagen, intente nuevamente.'
             ]);
+        }
     }
 
     /**
