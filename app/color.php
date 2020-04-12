@@ -18,4 +18,8 @@ class color extends Model
     {
         return $this->hasOne(stockColor::class, 'color_id', 'id');
     }
+    public function imagenes()
+    {
+        return $this->hasOne(imagenColor::class, 'color_id', 'id');
+    }
 }

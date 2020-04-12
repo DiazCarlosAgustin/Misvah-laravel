@@ -23,8 +23,9 @@
         "webpack": "^4.41.3"
     },
     "dependencies": {
-        "mdbootstrap": "^4.10.1",
         "jquery": "^3.4.1",
-        "swiper": "^5.2.1"
+        "mdbootstrap": "^4.10.1",
+        "swiper": "^5.2.1",
+        "vue-carousel": "^0.18.0"
     }
 }

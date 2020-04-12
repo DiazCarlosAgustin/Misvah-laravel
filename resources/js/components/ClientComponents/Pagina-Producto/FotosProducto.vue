@@ -1,15 +1,17 @@
 <template>
-    <div>
+    <div class="carousel-item">
         <img
             class="img"
-            :src="`../../../img/productos/${imagen.imagen_color_producto}`"
-            alt="Imagen del producto"
+            :src="`../../../img/productos/${foto.imagen_color_producto}`"
+            :alt="'foto'"
         />
     </div>
 </template>
 <script>
 export default {
-    props: ["foto"]
+    props: ["foto"],
+    mounted() {},
+    updated() {}
 };
 </script>
 <style scoped>

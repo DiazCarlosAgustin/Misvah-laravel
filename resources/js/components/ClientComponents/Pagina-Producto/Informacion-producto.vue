@@ -5,15 +5,17 @@
         </div>
         <div class="body-info text-center">
             <p class="text-muted">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque quod dicta, ratione quasi veniam at repudiandae beatae autem? Ab vero mollitia odio reprehenderit voluptatum modi soluta aut odit accusantium non.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa alias voluptates velit vitae, perferendis labore obcaecati quibusdam impedit et dolore nihil enim, ea explicabo consequatur consequuntur quaerat distinctio error dolores?
+               {{info}}
             </p> 
         </div>
     </div>
 </template>
 <script>
 export default {
-    
+    props:['info'],
+    data(){
+        return{}
+    }
 }
 </script>
 <style scoped>

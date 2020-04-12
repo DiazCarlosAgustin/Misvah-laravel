@@ -16,7 +16,7 @@
                 :categorias="{{ json_encode($categorias) }}"/>
        </div>
         <div class="row d-flex justify-content-center text-center">
-            <div class="col-12 my-3">
+            <div class="col-12 my-3 text-center">
                 {{ $productos->links() }}
             </div>
         </div>

@@ -37,7 +37,8 @@ class ProductoController extends Controller
                                 }
                             }])
                             ->where('categoria_id', '=' , $id)
-                            ->paginate(6);
+                            ->with('imagenColor')
+                            ->paginate(8);
 
         return $productos;
     }
@@ -87,6 +88,7 @@ class ProductoController extends Controller
                 ->with('color')
                 ->with('imagenColor')
                 ->with('Oferta')
+                ->with('favorito')
                 ->where('id','=',$producto)->get();
         
         return $prod;
@@ -94,12 +96,23 @@ class ProductoController extends Controller
 
     public function ver($id)
     {
-        $producto = Producto::with('Categoria')
+        if(auth()->user()){
+            $producto = Producto::with('Categoria')
                             ->with('color')
                             ->with('imagenColor')
                             ->with('Oferta')
+                            ->with('favorito')
                             ->where('id','=',$id)->get();
-        return $producto;
+        }
+        else{
+            $producto = Producto::with('Categoria')
+                            ->with('color')
+                            ->with('imagenColor')
+                            ->with('Oferta')
+                            ->with('favorito')
+                            ->where('id','=',$id)->get();
+        }
+        return $producto[0];
     }
 
     /**

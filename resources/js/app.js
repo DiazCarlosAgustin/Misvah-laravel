@@ -143,6 +143,9 @@ Vue.component('modal', require('./components/modal.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import VueCarousel from 'vue-carousel';
+Vue.use(VueCarousel)
+
 const app = new Vue({
     el: '#app'
 });

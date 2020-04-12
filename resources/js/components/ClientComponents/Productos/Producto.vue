@@ -3,7 +3,9 @@
         <a :href="`/producto/${producto.id}`">
             <div class="card my-3">
                 <img
-                    src="https:via.placeholder.com/250x250.png"
+                    :src="
+                        `../../../img/productos/${producto.imagen_color[0].imagen_color_producto}`
+                    "
                     alt=""
                     class="card-img-top"
                 />
@@ -58,7 +60,7 @@
 <script scoped>
 import auth from "../../../mix/auth";
 export default {
-    name: "destacado",
+    name: "producto",
     props: ["producto"],
     mixins: [auth],
     data() {

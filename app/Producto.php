@@ -22,7 +22,8 @@ class Producto extends Model
     public function color()
     {
         return $this->hasMany(Color::class,'producto_id', 'id')
-                            ->with('stockColor');
+                            ->with('stockColor')
+                            ->with('imagenes');
     }
     public function carrito()
     {
@@ -36,5 +37,4 @@ class Producto extends Model
     {
         return $this->hasMany(imagenColor::class, 'producto_id', 'id')->with('color');
     }
-
 }

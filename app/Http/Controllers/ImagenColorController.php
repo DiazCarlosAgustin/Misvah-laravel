@@ -58,7 +58,7 @@ class ImagenColorController extends Controller
         $img->imagen_color_producto = $fileName;
         $img->color_id = $request->id_color;
         if($img->save()){
-            $img = $img::with('color')->get();
+            $img = $img::with('color')->where('producto_id','=',$img->producto_id)->get();
             return response()->json($img, 200);
         }else{
             return response()->json([
