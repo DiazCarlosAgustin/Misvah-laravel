@@ -86,6 +86,7 @@
             </div>
             <div class="col-12 col-xs-12 col-lg-8 my-1">
                 <button
+                    @click="addCart"
                     class="btn btn-block"
                     :style="{ background: colorButtons, color: textButtons }"
                 >
@@ -97,18 +98,20 @@
 </template>
 <script>
 import auth from "../../../mix/auth";
+import cart from "../../../mix/cart";
 export default {
     name: "info-producto",
     props: ["producto"],
-    mixins: [auth],
+    mixins: [auth, cart],
     data() {
         return {
-            cantidad: 0,
+            cantidad: 1,
             max: 0,
             imagenes: [],
             colorButtons: "#FF637D",
             textButtons: "white",
-            favorito: this.producto.favorito
+            favorito: this.producto.favorito,
+            color: 0
         };
     },
     mounted() {},
@@ -128,6 +131,7 @@ export default {
         handlerColor: function($i) {
             this.max = this.producto.color[$i].stock_color.stock;
             var id = this.producto.color[$i].id;
+            this.color = id;
 
             this.cantidad = 0;
             this.imagenes.splice(0);
@@ -137,7 +141,7 @@ export default {
                     this.imagenes.push(this.producto.imagen_color[index]);
                 }
             });
-            
+
             this.$emit("imagenColor", this.imagenes);
         },
         fav: function() {
@@ -155,7 +159,7 @@ export default {
                         .then(res => {
                             this.favorito = res.data.favorito;
                             console.log(res.data.favorito);
-                            
+
                             this.$emit("productoFavorito", res.data.favorito);
 
                             this.producto.favorito;
@@ -180,6 +184,32 @@ export default {
                             console.log(err);
                         });
                 }
+            }
+        },
+        addCart: function() {
+            if (this.cantidad == 0) {
+                this.cantidad = 1;
+            }
+            if (this.user) {
+                const param = {
+                    user_id: this.user.id,
+                    producto_id: this.producto.id,
+                    color_id: this.color,
+                    cantidad: this.cantidad
+                };
+                axios
+                    .post("http://127.0.0.1:8000/api/carrito", param)
+                    .then(res => {
+                        this.cart = res.data;
+                        console.log(this.cart);
+
+                        this.addItemCart(this.cart.id);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            } else {
+                window.location.href = "/acceder";
             }
         }
     }

@@ -91,7 +91,10 @@
 
                 <div class="nav-item">
                     <div>
-                        <span class="s-carrito bg-danger ml-4 mt-1"></span>
+                        <span
+                            class="s-carrito bg-danger ml-4 mt-1"
+                            v-show="itemCart.length > 0"
+                        ></span>
                         <i
                             class="material-icons nav-item nav-link "
                             id="i-lg-carrito"
@@ -162,7 +165,7 @@
             </form>
         </div>
         <div
-            v-if="pantalla > 991 && categorias.length > 0"
+            v-if="pantalla > 991 && categorias"
             :class="claseMenu"
             class="menu-categoria-lg"
             @mouseleave="hoverMouse"
@@ -177,9 +180,9 @@
                 />
             </div>
             <div class="productos">
-                <div v-if="productosCategoria.length > 0">
+                <div v-if="productos.length > 0">
                     <menu-item-categoria
-                        v-for="producto in productosCategoria"
+                        v-for="producto in productos"
                         :key="producto.id"
                         :producto="producto"
                         class="text-center"
@@ -222,9 +225,9 @@
                         Volver
                     </span>
                 </div>
-                <div v-if="productosCategoria.length > 0">
+                <div v-if="productos.length > 0">
                     <menu-item-categoria
-                        v-for="producto in productosCategoria"
+                        v-for="producto in productos"
                         :key="producto.id"
                         :producto="producto"
                         class="text-center"
@@ -240,10 +243,11 @@
 </template>
 <script>
 import auth from "../../../mix/auth";
+import cart from "../../../mix/cart";
 export default {
     props: [],
     name: "navbar",
-    mixins: [auth],
+    mixins: [auth, cart],
     data() {
         return {
             idCategoriaHover: 0,
@@ -261,7 +265,8 @@ export default {
             show: false
         };
     },
-    beforeMount() {
+    beforeMount() {},
+    mounted() {
         this.traerCategorias();
     },
     methods: {
@@ -273,7 +278,6 @@ export default {
                 .get("http://127.0.0.1:8000/api/categoria")
                 .then(res => {
                     this.categorias = res.data;
-                    this.getProductos();
                 })
                 .catch(err => {
                     console.log(err);
@@ -318,8 +322,9 @@ export default {
                 this.pantalla = window.innerWidth;
             }
         },
-        CategoriaHover: function(id) {
-            this.idCategoriaHover = id;
+        CategoriaHover: function($categoria) {
+            console.log($categoria);
+            this.productos = $categoria.producto
         },
         tapVolverMenu: function() {
             this.claseMenuXs = "d-none";
@@ -344,18 +349,6 @@ export default {
             this.classCat = "d-grid";
             this.claseVolver = "d-grid";
             this.claseVolverProducto = "d-none";
-        },
-        getProductos: function() {
-            for (let index = 0; index < this.categorias.length ; index++) {
-                for (
-                    let x = 0;
-                    x < this.categorias[index].producto.length;
-                    x++
-                ) {
-                    this.productos.push(this.categorias[index].producto[x]);
-                }
-            }
-            return this.productos;
         }
     },
     created() {
@@ -366,15 +359,7 @@ export default {
         window.addEventListener("resize", this.hoverMenu);
     },
 
-    computed: {
-        productosCategoria: function() {
-            return this.productos.filter(producto => {
-                return String(producto.id_categoria).match(
-                    String(this.idCategoriaHover)
-                );
-            });
-        }
-    }
+    computed: {}
 };
 </script>
 <style scoped>

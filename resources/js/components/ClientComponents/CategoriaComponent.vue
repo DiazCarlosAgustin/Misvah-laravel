@@ -4,7 +4,7 @@
             <div class="view view-cascade overlay">
                 <img
                     class="card-img-top"
-                    :src="`../../../img/${categoria.imagen_categoria}`"
+                    :src="`../../../img/categorias/${categoria.imagen_categoria}`"
                     alt="Card image cap"
                 />
                 <a :href="`categoria/${categoria.id}`">

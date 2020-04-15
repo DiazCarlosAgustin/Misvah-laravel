@@ -6,7 +6,7 @@
 
 {{--le paso la imagen de fondo y lo que contiene la imagen al centro--}}
     @section('fondo')
-        <fondo-component></fondo-component>
+        <fondo-component :fondo="{{json_encode($fondo)}}"></fondo-component>
     @endsection
 {{--contenido de la pagina--}}
     @section('Container')
@@ -15,7 +15,7 @@
                 <categorias-component :categorias="{{ json_encode($categorias) }}"></categorias-component>
             </div>
             <div class="d-destacados container">
-                <destacados-component></destacados-component>   
+                {{-- <destacados-component></destacados-component>    --}}
             </div>
         </div>
         @endsection

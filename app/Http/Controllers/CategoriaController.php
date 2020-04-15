@@ -55,7 +55,7 @@ class CategoriaController extends Controller
             $extension = 'png';
 
         $fileName = str_random().'.'.$extension;
-        $path = public_path().'/img/'.$fileName;
+        $path = public_path().'/img/categorias/'.$fileName;
         file_put_contents($path, $decode);
 
         //agregar una nueva categoria 
@@ -129,7 +129,7 @@ class CategoriaController extends Controller
                 $extension = 'png';
 
             $fileName = str_random().'.'.$extension;
-            $path = public_path().'/img/'.$fileName;
+            $path = public_path().'/img/categorias/'.$fileName;
             file_put_contents($path, $decode);
             Storage::delete($cat->imagen_categoria);
         }

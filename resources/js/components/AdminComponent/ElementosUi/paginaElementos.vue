@@ -27,59 +27,7 @@
             <tabla-menu />
         </div>
         <hr>
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 text-center">
-                <div class="h5">Imagen de fondo</div>
-            </div>
-            <div class="col-12 col-sm-12 co-md-8 col-lg-6">
-                <form action="">
-                    <div class="form-group">
-                        <label for="ImagenFondo">Imagen de fondo:</label>
-                        <input type="file" name="ImagenFondo" id="ImagenFondo" class="form-control">
-                    </div>
-                    <div class="form-group d-flex">
-                        <button type="submit" class="btn btn-primary ml-auto">Aceptar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <div class="col-12">
-                <div class="h5">
-                    Historial de cambios
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="table-responsive">
-                    <table class="table table-striped table-md">
-                        <thead>
-                            <tr>
-                                <th>Imagen</th>
-                                <th>Nombre</th>
-                                <th>Fecha</th>
-                                <th>Estado</th>
-                                <th>Accion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="align-middle">
-                                    <img src="https://via.placeholder.com/75x75.png" alt="">
-                                </td>
-                                <td class="align-middle">
-                                    Fondo_1
-                                </td>
-                                <td class="align-middle">
-                                    <p>08/01/2019 10:45:00</p>
-                                </td>
-                                <td class="align-middle">Habilitado</td>
-                                <td class="align-middle"><button class="btn btn-danger">desabilitar</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <fondo-componente />
         <hr>
         <div class="row d-flex justify-content-center">
             <div class="col-12">

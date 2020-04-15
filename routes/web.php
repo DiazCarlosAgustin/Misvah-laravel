@@ -22,7 +22,11 @@ Route::prefix('auth')->group(function (){
 
 Route::get('/', function () {
    $categorias = App::call('App\Http\Controllers\CategoriaController@index');
-    return view('index')->with('categorias',$categorias);
+   $fondo = App::call('App\Http\Controllers\fondoController@fondo');
+
+   return view('index')
+         ->with('categorias',$categorias)
+         ->with('fondo',$fondo);
 });
 
 Route::get('/contacto',function(){
@@ -31,11 +35,11 @@ Route::get('/contacto',function(){
 
 Route::get('/acceder',function(){
    return view('auth.login');
-});
+})->middleware('guest');
 
 Route::get('/registrarse',function(){
    return view('auth.register');
-});
+})->middleware('guest');
 
 Route::get('/categoria/{id}',function($id){
 
@@ -193,6 +197,7 @@ Route::get('/favoritos',function(){
 
 Route::resource('api/menu','MenuController');
 Route::post('api/newMenu','MenuController@store');
-Auth::routes();
 
 Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

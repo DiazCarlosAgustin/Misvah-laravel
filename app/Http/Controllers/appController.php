@@ -52,5 +52,4 @@ class appController extends Controller
     public function logout(){
         Auth::logout();
     }
-
 }

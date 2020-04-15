@@ -10,7 +10,7 @@ export default {
     },
     methods:{
         categoriaHover: function(){
-            this.$emit('categoriaHover',this.categoria.id)
+            this.$emit('categoriaHover',this.categoria)
         },
     }
 }

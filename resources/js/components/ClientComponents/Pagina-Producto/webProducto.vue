@@ -57,8 +57,7 @@ export default {
             imagens: []
         };
     },
-    mounted() {console.log(this.producto);
-    },
+    mounted() {},
     components: {
         Carousel,
         Slide
@@ -68,13 +67,13 @@ export default {
             this.imagens = $imagenes;
             return this.imagens;
         },
-        prodFavorito:function($favorito){
+        prodFavorito: function($favorito) {
             console.log($favorito);
-            
-            this.producto.favorito = $favorito
+
+            this.producto.favorito = $favorito;
         },
-        deleteFavorito: function(){
-            this.producto.favorito = null
+        deleteFavorito: function() {
+            this.producto.favorito = null;
         }
     },
     computed: {

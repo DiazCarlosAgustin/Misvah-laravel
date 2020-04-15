@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 
 // Categoria
 Route::resource('/categoria', 'CategoriaController');
@@ -33,4 +34,8 @@ Route::resource('/cupon', 'CuponController');
 Route::resource('/oferta', 'OfertaController');
 
 Route::resource('/favoritos', 'FavoritoController');
+
+Route::resource('/carrito', 'carritoController');
+
+Route::resource('/fondo', 'fondoController');
 
