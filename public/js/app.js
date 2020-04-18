@@ -5074,74 +5074,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'destacados',
+  props: ['destacados'],
   data: function data() {
-    return {
-      productos: [{
-        id: 1,
-        nombre: "Producto 1",
-        id_categoria: "1",
-        precio: 233,
-        favorito: true
-      }, {
-        id: 2,
-        nombre: "Producto 2",
-        id_categoria: "1",
-        precio: 2343,
-        favorito: false
-      }, {
-        id: 3,
-        nombre: "Producto 3",
-        id_categoria: "1",
-        precio: 213,
-        favorito: false
-      }, {
-        id: 4,
-        nombre: "Producto 4",
-        id_categoria: "1",
-        precio: 2323,
-        favorito: false
-      }, {
-        id: 5,
-        nombre: "Producto 5",
-        id_categoria: "1",
-        precio: 263,
-        favorito: false
-      }, {
-        id: 6,
-        nombre: "Producto 6",
-        id_categoria: "1",
-        precio: 253,
-        favorito: false
-      }, {
-        id: 7,
-        nombre: "Producto 7",
-        id_categoria: "1",
-        precio: 223,
-        favorito: true
-      }, {
-        id: 8,
-        nombre: "Producto 8",
-        id_categoria: "1",
-        precio: 863,
-        favorito: false
-      }, {
-        id: 9,
-        nombre: "Producto 9",
-        id_categoria: "1",
-        precio: 293,
-        favorito: false
-      }, {
-        id: 10,
-        nombre: "Producto 10",
-        id_categoria: "1",
-        precio: 313,
-        favorito: false
-      }]
-    };
+    return {};
   },
   methods: {
     favorito: function favorito($id, $favorito) {
-      this.productos[$id].favorito = $favorito;
+      this.destacados[$id].favorito = $favorito;
     }
   }
 });
@@ -11881,7 +11820,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*estilo de swiper.js*/\n.swiper-container[data-v-7790b6af] {\r\n        width: auto ;\r\n        height: auto;\n}\n.swiper-slide[data-v-7790b6af] {\r\n        font-size: 18px;\r\n        /* Center slide text vertically */\r\n        display: -webkit-box;\r\n        display: flex;\r\n        -webkit-box-pack: center;\r\n        justify-content: center;\r\n        -webkit-box-align: center;\r\n        align-items: center;\n}\n.d-destacados[data-v-7790b6af]{\r\n        position: relative;\r\n        height: 100%;\n}\n.Titulo-destacados[data-v-7790b6af]{\r\n        font-size: 45px;\r\n        text-align: center;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*estilo de swiper.js*/\n.swiper-container[data-v-7790b6af] {\r\n        width: auto ;\r\n        height: auto;\n}\n.swiper-slide[data-v-7790b6af] {\r\n        font-size: 18px;\r\n        /* Center slide text vertically */\r\n        display: -webkit-box;\r\n        display: flex;\r\n        -webkit-box-pack: center;\r\n        justify-content: center;\r\n        -webkit-box-align: center;\r\n        align-items: center;\n}\n.d-destacados[data-v-7790b6af]{\r\n        position: relative;\r\n        height: 100%;\n}\n.Titulo-destacados[data-v-7790b6af]{\r\n        font-size: 45px;\r\n        text-align: center;\n}\r\n", ""]);
 
 // exports
 
@@ -53637,7 +53576,7 @@ var render = function() {
           ? _c(
               "div",
               { staticClass: "d-flex justify-content-center text-center" },
-              [_c("p", [_vm._v("No hay elementos en el cart.")])]
+              [_c("p", [_vm._v("No hay elementos en el carrito.")])]
             )
           : _vm._e()
       ]),
@@ -54186,7 +54125,7 @@ var render = function() {
         _c(
           "div",
           { staticClass: "swiper-wrapper" },
-          _vm._l(_vm.productos, function(producto, index) {
+          _vm._l(_vm.destacados, function(producto, index) {
             return _c(
               "div",
               { key: producto.id, staticClass: "swiper-slide" },

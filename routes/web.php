@@ -23,10 +23,12 @@ Route::prefix('auth')->group(function (){
 Route::get('/', function () {
    $categorias = App::call('App\Http\Controllers\CategoriaController@index');
    $fondo = App::call('App\Http\Controllers\fondoController@fondo');
+   $destacados = App::call('App\Http\Controllers\ProductoController@destacados');
 
    return view('index')
          ->with('categorias',$categorias)
-         ->with('fondo',$fondo);
+         ->with('fondo',$fondo)
+         ->with('destacados',$destacados);
 });
 
 Route::get('/contacto',function(){

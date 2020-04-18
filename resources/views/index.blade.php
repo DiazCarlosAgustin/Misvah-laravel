@@ -15,7 +15,7 @@
                 <categorias-component :categorias="{{ json_encode($categorias) }}"></categorias-component>
             </div>
             <div class="d-destacados container">
-                {{-- <destacados-component></destacados-component>    --}}
+                <destacados-component :destacados="{{ json_encode($destacados) }}"></destacados-component>   
             </div>
         </div>
         @endsection

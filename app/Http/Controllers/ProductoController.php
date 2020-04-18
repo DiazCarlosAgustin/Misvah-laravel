@@ -9,6 +9,7 @@ use App\color;
 use App\imagenColor;
 use App\Oferta;
 use App\Cupon;
+use Auth;
 
 class ProductoController extends Controller
 {
@@ -50,6 +51,39 @@ class ProductoController extends Controller
     public function create()
     {
         //
+    }
+    public function destacados()
+    {
+        if(Auth::check()){
+            $productos = Producto::with(['favorito' => function($q){
+                            $user = auth()->user();
+                            if($user){
+                                $q->where('user_id','=',$user->id);
+                            }
+                            else{
+                                $q->where('user_id','=',0);
+                            }
+                        }])
+                        ->with('imagenColor')
+                        ->with('oferta')
+                        ->take(5)
+                        ->get();
+        }
+        else{
+            $productos = Producto::with(['favorito' => function($q){
+                            $user = auth()->user();
+                            if($user){
+                                $q->where('user_id','=',$user->id);
+                            }
+                            else{
+                                $q->where('user_id','=',0);
+                            }
+                        }])
+                        ->with('imagenColor')
+                        ->take(5)
+                        ->get();
+        }
+        return $productos;
     }
 
     /**
@@ -96,22 +130,22 @@ class ProductoController extends Controller
 
     public function ver($id)
     {
-        if(auth()->user()){
-            $producto = Producto::with('Categoria')
-                            ->with('color')
-                            ->with('imagenColor')
-                            ->with('Oferta')
-                            ->with('favorito')
-                            ->where('id','=',$id)->get();
-        }
-        else{
-            $producto = Producto::with('Categoria')
-                            ->with('color')
-                            ->with('imagenColor')
-                            ->with('Oferta')
-                            ->with('favorito')
-                            ->where('id','=',$id)->get();
-        }
+        $producto = Producto::with('Categoria')
+                        ->with('color')
+                        ->with('imagenColor')
+                        ->with('Oferta')
+                        ->with(['favorito' => function($q){
+                            $user = auth()->user();
+                            if($user){
+                                $q->where('user_id','=',$user->id);
+                            }
+                            else{
+                                $q->where('user_id','=',0);
+                            }
+                        }])
+                        ->where('id','=',$id)
+                        ->get();
+        
         return $producto[0];
     }
 

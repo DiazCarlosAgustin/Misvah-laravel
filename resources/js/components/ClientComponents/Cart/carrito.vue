@@ -22,7 +22,7 @@
                     class="d-flex justify-content-center text-center"
                     v-if="itemCart.length <= 0"
                 >
-                    <p>No hay elementos en el cart.</p>
+                    <p>No hay elementos en el carrito.</p>
                 </div>
             </div>
             <div class="card-fother p-0 mb-0" v-if="itemCart.length > 0">
