@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="producto.estado == 1 && producto.imagen_color.length > 0">
         <a :href="`/producto/${producto.id}`">
             <div class="card my-3">
                 <img
@@ -61,7 +61,12 @@
 import auth from "../../../mix/auth";
 export default {
     name: "producto",
-    props: ["producto"],
+    props: {
+        producto: {
+            type: Object,
+            default: []
+        }
+    },
     mixins: [auth],
     data() {
         return {
@@ -70,7 +75,6 @@ export default {
             favorito: this.producto.favorito
         };
     },
-    mounted() {},
     methods: {
         fav: function() {
             if (this.user == null) {
@@ -103,7 +107,6 @@ export default {
                     axios
                         .delete("http://127.0.0.1:8000/api/favoritos/" + id)
                         .then(res => {
-                            console.log(res);
                             this.favorito = null;
                             this.$emit("deleteFavorito");
                         })

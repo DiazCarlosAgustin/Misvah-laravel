@@ -57,6 +57,7 @@ class CarritoController extends Controller
             $carrito->cantidad = $request->cantidad;
             
             if($carrito->save()){
+                $carrito = $carrito->with('color')->with('producto')->get();
                 return $carrito;
             }
         }
@@ -113,8 +114,13 @@ class CarritoController extends Controller
      * @param  \App\carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function destroy(carrito $carrito)
+    public function destroy($id)
     {
         //
+        $carrito = carrito::find($id);
+
+        if($carrito->delete()){
+            return $carrito;
+        }
     }
 }

@@ -11,21 +11,21 @@
                 <div class="list-group  text-dark list-group-flush">
                     <item-carrito
                         class="item-cart"
-                        v-for="(producto, index) in itemCart"
+                        v-for="(producto, index) in cart"
                         :key="producto.id"
                         :producto="producto"
                         @Cantidad="cantidad(index, ...arguments)"
-                        @Eliminar="eliminar(index)"
+                        @Eliminar="eliminar(producto.id, index)"
                     />
                 </div>
                 <div
                     class="d-flex justify-content-center text-center"
-                    v-if="itemCart.length <= 0"
+                    v-if="cart.length <= 0"
                 >
-                    <p>No hay elementos en el carrito.</p>
+                    <p>No hay elementos en el cart.</p>
                 </div>
             </div>
-            <div class="card-fother p-0 mb-0" v-if="itemCart.length > 0">
+            <div class="card-fother p-0 mb-0" v-if="cart.length > 0">
                 <a href="/cart" class="btn btn-block col">Detalles</a>
                 <a
                     href=""
@@ -38,25 +38,60 @@
     </div>
 </template>
 <script>
-import cart from "../../../mix/cart";
+import bus from "../../../bus";
 export default {
     name: "carrito",
-    mixins: [cart],
     data() {
         return {
             bgColor: "#e91e63",
-            color: "white"
+            color: "white",
+            cart: []
         };
     },
-    mounted() {},
+    mounted() {
+        this.getCart();
+    },
+    created() {
+        bus.$on("addCart", $cart => {
+            this.cart = $cart;
+            this.$emit("cartSize", true);
+        });
+    },
     methods: {
-        cantidad: function($id, $cantidad) {
-            this.itemCart[$id].cantidad = $cantidad;
-            this.itemCart[$id].subtotal =
-                this.itemCart[$id].precio * this.itemCart[$id].cantidad;
+        getCart() {
+            axios
+                .get("http://127.0.0.1:8000/api/carrito")
+                .then(res => {
+                    this.cart = res.data;
+                    if (this.cart.length > 0) {
+                        this.$emit("cartSize", true);
+                    } else {
+                        this.$emit("cartSize", false);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         },
-        eliminar: function($id) {
-            this.itemCart.splice($id, 1);
+        cantidad: function($id, $cantidad) {
+            this.cart[$id].cantidad = $cantidad;
+            this.cart[$id].subtotal =
+                this.cart[$id].precio * this.cart[$id].cantidad;
+        },
+        eliminar: function($id, $i) {
+            axios
+                .delete("http://127.0.0.1:8000/api/carrito/" + $id)
+                .then(res => {
+                    this.cart.splice($i, 1);
+                    if (this.cart.length > 0) {
+                        this.$emit("cartSize", true);
+                    } else {
+                        this.$emit("cartSize", false);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     }
 };

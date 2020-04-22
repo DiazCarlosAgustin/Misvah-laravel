@@ -1,5 +1,4 @@
 <template>
-    <!-- <img src="https://via.placeholder.com/75x75.png" alt=""> -->
     <div class="container-producto">
         <div class="img-producto my-auto">
             <img
@@ -60,6 +59,7 @@
     </div>
 </template>
 <script>
+import {EventBus} from '../../../bus'
 export default {
     name: "item-carrito",
     props: ["producto"],
@@ -68,11 +68,7 @@ export default {
             subtotal: this.producto.producto.precio * this.producto.cantidad
         };
     },
-    mounted() {
-        console.log("====================================");
-        console.log(this.producto);
-        console.log("====================================");
-    },
+    mounted() {},
     methods: {
         sumarizar: function() {
             this.subtotal =

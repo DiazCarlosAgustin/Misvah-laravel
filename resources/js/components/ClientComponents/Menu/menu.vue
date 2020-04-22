@@ -11,9 +11,9 @@
             >
             <!-- {{-- menu xs que se vera solo en tablets o celulares--}} -->
             <div class=" d-xs-flex d-lg-none ml-auto">
-                <i class="material-icons" id="i-xs-buscar">search</i>
+                <i class="material-icons" id="i-xs-buscar" >search</i>
                 <a href="/carrito">
-                    <span class="s-carrito bg-danger"></span>
+                    <span class="s-carrito bg-danger" v-show="cart"></span>
                     <i class="material-icons" id="i-xs-carrito"
                         >shopping_cart</i
                     >
@@ -93,15 +93,16 @@
                     <div>
                         <span
                             class="s-carrito bg-danger ml-4 mt-1"
-                            v-show="itemCart.length > 0"
+                            v-show="cart"
                         ></span>
                         <i
                             class="material-icons nav-item nav-link "
                             id="i-lg-carrito"
-                            >shopping_cart</i
                         >
+                            shopping_cart
+                        </i>
                     </div>
-                    <carrito></carrito>
+                    <carrito @cartSize="cartSize"/>
                 </div>
                 <div v-if="!logeado">
                     <a href="/acceder" class="nav-item nav-link xs-link "
@@ -243,11 +244,11 @@
 </template>
 <script>
 import auth from "../../../mix/auth";
-import cart from "../../../mix/cart";
+import Vue from "vue";
 export default {
     props: [],
     name: "navbar",
-    mixins: [auth, cart],
+    mixins: [auth],
     data() {
         return {
             idCategoriaHover: 0,
@@ -262,14 +263,21 @@ export default {
             claseVolverProducto: "d-none",
             categorias: [],
             productos: [],
-            show: false
+            show: false,
+            sizeCart: 0,
+            cart: false
         };
     },
-    beforeMount() {},
+    created() {
+        console.log("menu");
+    },
     mounted() {
         this.traerCategorias();
     },
     methods: {
+        cartSize($estado){
+            this.cart = $estado
+        },
         showMenu: function() {
             this.show = !this.show;
         },
@@ -323,8 +331,7 @@ export default {
             }
         },
         CategoriaHover: function($categoria) {
-            console.log($categoria);
-            this.productos = $categoria.producto
+            this.productos = $categoria.producto;
         },
         tapVolverMenu: function() {
             this.claseMenuXs = "d-none";
@@ -358,7 +365,6 @@ export default {
     destroyed() {
         window.addEventListener("resize", this.hoverMenu);
     },
-
     computed: {}
 };
 </script>

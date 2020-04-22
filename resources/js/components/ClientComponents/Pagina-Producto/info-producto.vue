@@ -98,11 +98,12 @@
 </template>
 <script>
 import auth from "../../../mix/auth";
-import cart from "../../../mix/cart";
+import bus from "../../../bus";
+import Vue from "vue";
 export default {
     name: "info-producto",
     props: ["producto"],
-    mixins: [auth, cart],
+    mixins: [auth],
     data() {
         return {
             cantidad: 1,
@@ -114,6 +115,7 @@ export default {
             color: 0
         };
     },
+    created() {},
     mounted() {},
     methods: {
         aumentar: function() {
@@ -200,10 +202,7 @@ export default {
                 axios
                     .post("http://127.0.0.1:8000/api/carrito", param)
                     .then(res => {
-                        this.cart = res.data;
-                        console.log(this.cart);
-
-                        this.addItemCart(this.cart.id);
+                        bus.$emit("addCart", res.data);
                     })
                     .catch(err => {
                         console.log(err);
