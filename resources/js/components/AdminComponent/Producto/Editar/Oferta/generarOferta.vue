@@ -2,17 +2,35 @@
     <div class="col-12 col-xs-12 col-md-12 col-lg-12 my-4 ">
         <h3 class="text-muted text-center">Generar Oferta</h3>
         <div class="w-100 my-2">
-            <div class="alert alert-danger alert-dismissible fade show" role="alert"  
-                v-if="err" >
-                <strong>{{err}} </strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <div
+                class="alert alert-danger alert-dismissible fade show"
+                role="alert"
+                v-if="err"
+            >
+                <p>{{ err }}</p>
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                    @click="err = ''"
+                >
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="alert alert-success alert-dismissible fade show" role="alert"  
-                v-if="ok">
-                <strong>{{ok}} </strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <div
+                class="alert alert-success alert-dismissible fade show"
+                role="alert"
+                v-if="ok"
+            >
+                <p>{{ ok }}</p>
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                    @click="err = ''"
+                >
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -20,78 +38,130 @@
         <form action="" @submit.prevent="newOferta">
             <div class="form-group">
                 <label for="txtCuponDescuento">% en descuento: </label>
-                <input type="text" name="txtCuponDescuento" id="txtCuponDescuento" 
-                    class="form-control" placeholder="%"
-                    v-model="porcentaje">
+                <input
+                    type="text"
+                    name="txtCuponDescuento"
+                    id="txtCuponDescuento"
+                    class="form-control"
+                    placeholder="%"
+                    v-model="porcentaje"
+                />
             </div>
             <div class="form-group">
-                <label for="txtCuponDescuento">Desde: </label>
-                <input type="date" name="dtDesdeDescuanto" id="dtDesdeDescuanto"
-                    class="form-control " v-model="desde" >
+                <div class="d-block">
+                    <label for="txtCuponDescuento" class="demonstration d-block"
+                        >Desde:</label
+                    >
+                    <el-date-picker
+                        class="w-100"
+                        v-model="desde"
+                        format="dd/MM/yyyy"
+                        type="date"
+                        placeholder="Desde"
+                        :picker-options="pickerOptions"
+                    >
+                    </el-date-picker>
+                </div>
             </div>
             <div class="form-group">
-                <label for="ctDescuentoHasta">Hasta: </label>
-                <input type="date" name="ctDescuentoHasta" id="ctDescuentoHasta" 
-                v-model="hasta" class="form-control">
+                <div class="d-block">
+                    <label for="txtCuponDescuento" class="demonstration d-block"
+                        >Hasta:</label
+                    >
+                    <el-date-picker
+                        class="w-100"
+                        format="dd/MM/yyyy"
+                        v-model="hasta"
+                        type="date"
+                        :picker-options="pickerOptions"
+                        placeholder="Hasta"
+                    >
+                    </el-date-picker>
+                </div>
             </div>
             <div class="form-group text-center">
-                    <button type="reset" class="btn btn-danger"><i class="fas fa-times"></i></button>
-                <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
+                <button type="reset" class="btn btn-danger">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-check"></i>
+                </button>
             </div>
         </form>
     </div>
 </template>
 <script>
+import moment from "moment";
+moment.locale("es");
 export default {
-    name:'generar-oferta',
-    props:['id'],
-    data(){
-        return{
-            desde:'',
-            hasta:'',
-            porcentaje:0,
-            err:'',
-            ok:''
-        }
-    },
-    methods:{
-        newOferta:function(){
-            this.ok = ''
-            this.err = ''
-            const hasta = new Date(this.hasta)
-            const desde = new Date(this.desde)
-
-            const tiempo =  hasta.getTime()- desde.getTime()
-
-            let dias = Math.round( (1000*60*60*24) / tiempo)            
-            
-            console.log(dias);
-            
-            if(dias >= 0){
-                this.err = "La fecha Hasta debe ser mayor a la fecha Desde."
-            }
-            else{
-                if(this.porcentaje <= 0){
-                    this.err = "El porcentaje debe de ser mayor a 0."
+    name: "generar-oferta",
+    props: ["id"],
+    data() {
+        return {
+            desde: moment(),
+            hasta: moment(),
+            porcentaje: 0,
+            err: "",
+            ok: "",
+            pickerOptions: {
+                disabledDate(time) {
+                    return time.getTime() < Date.now();
                 }
-                else{
-                    const params = {
-                        producto_id : this.id,
-                        porcentaje : this.porcentaje,
-                        desde : this.desde,
-                        hasta : this.hasta
+            }
+        };
+    },
+    methods: {
+        newOferta: function() {
+            this.ok = "";
+            this.err = "";
+            var hoy = moment().format("YYYY-MM-DD");
+            var desde = moment(this.desde).format("YYYY-MM-DD");
+            var hasta = moment(this.hasta).format("YYYY-MM-DD");
+
+            if (hoy <= desde) {
+                if (desde != hasta) {
+                    if (this.porcentaje <= 0) {
+                        this.err = "El porcentaje debe de ser mayor a 0.";
+                    } else {
+                        const params = {
+                            producto_id: this.id,
+                            porcentaje: this.porcentaje,
+                            desde: desde,
+                            hasta: hasta
+                        };
+                        axios
+                            .post("http://127.0.0.1:8000/api/oferta", params)
+                            .then(res => {
+                                this.ok = res.data.success;
+                                this.err = res.data.err;
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            });
                     }
-                    axios.post('http://127.0.0.1:8000/api/oferta',params)
-                        .then(res =>{
-                            this.ok = res.data.success
-                            this.err = res.data.err
-                        })
-                        .catch(err =>{
-                            console.log(err);
-                        })
+                } else {
+                    this.err =
+                        "La fecha Desde y Hasta no deben de ser iguales.";
                 }
+            } else {
+                this.err =
+                    "La fecha desde debe ser mayor o igual a la fecha de hoy.";
             }
-        },
-    },
-}
+            // else{
+            //     if(this.porcentaje <= 0){
+            //         this.err = "El porcentaje debe de ser mayor a 0."
+            //     }
+            //     else{
+            //         const params = {
+            //             producto_id : this.id,
+            //             porcentaje : this.porcentaje,
+            //             desde : this.desde,
+            //             hasta : this.hasta
+            //         }
+
+            //     }
+            // }
+        }
+    }
+};
 </script>
