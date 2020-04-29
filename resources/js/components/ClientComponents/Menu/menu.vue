@@ -1,24 +1,39 @@
 <template>
     <nav
-        class="navbar navbar-expand-lg navbar-light sticky-top bg-navbar"
+        class="navbar navbar-expand-lg  sticky-top bg-navbar"
+        :style="{ backgroundColor: background, color: color }"
         id="menu"
     >
         <div class="d-flex d-lg-none w-100">
             <a
                 href="/"
                 class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde nav-item"
+                :style="{ color: color }"
                 >MISVHA</a
             >
             <!-- {{-- menu xs que se vera solo en tablets o celulares--}} -->
             <div class=" d-xs-flex d-lg-none ml-auto">
-                <i class="material-icons" id="i-xs-buscar" >search</i>
-                <a href="/carrito">
-                    <span class="s-carrito bg-danger" v-show="cart"></span>
-                    <i class="material-icons" id="i-xs-carrito"
+                <i
+                    class="material-icons"
+                    id="i-xs-buscar"
+                    :style="{ color: color }"
+                    >search</i
+                >
+                <a @click="actionCart">
+                    <span class="s-carrito bg-danger ml-4" v-show="cart"></span>
+                    <i
+                        class="material-icons"
+                        id="i-xs-carrito"
+                        :style="{ color: color }"
                         >shopping_cart</i
                     >
                 </a>
-                <button class="navbar-toggler" type="button" @click="showMenu">
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    @click="showMenu"
+                    :style="{ color: color }"
+                >
                     <span class="align-middle">
                         <i class="fas fa-bars fa-1x" v-if="!show"></i>
                         <i class="fas fa-times fa-1x" v-if="show"></i>
@@ -32,20 +47,29 @@
             id="navbarMenu"
         >
             <div class="navbar-nav mr-auto text-center">
-                <a href="/" class="nav-item nav-link">INICIO</a>
+                <a href="/" class="nav-item nav-link" :style="{ color: color }"
+                    >INICIO</a
+                >
                 <a
                     class="nav-item nav-link"
                     id="display-categorias"
                     @click:native="clickMouse"
                     @click="clickMouse"
+                    :style="{ color: color }"
                 >
                     CATEGORIAS
                 </a>
-                <a href="/contacto" class="nav-item nav-link">CONTACTO</a>
+                <a
+                    href="/contacto"
+                    class="nav-item nav-link"
+                    :style="{ color: color }"
+                    >CONTACTO</a
+                >
                 <div v-if="!logeado">
                     <a
                         href="/acceder"
                         class="nav-item  nav-link xs-link d-xs-block d-lg-none"
+                        :style="{ color: color }"
                         >ACCEDER</a
                     >
                 </div>
@@ -53,25 +77,38 @@
                     <a
                         class=" nav-item  nav-link xs-link text-uppercase d-xs-block d-lg-none"
                         @click="clickUserXs"
+                        :style="{ color: color }"
                     >
                         {{ user.name }}
                     </a>
-                    <div class="drop d-lg-none d-xs-block nav-item" v-show="dw">
+                    <div
+                        class="drop d-lg-none d-xs-block nav-item"
+                        v-show="dw"
+                        :style="{ backgroundColor: background }"
+                    >
                         <div
                             class="volver text-left"
                             :class="claseVolver"
                             @click="tapVolverMenu"
+                            :style="{ color: color }"
                         >
                             <span class="my-auto w-100 ml-3">
                                 <i class="fas fa-arrow-left"></i>
                                 Volver
                             </span>
                         </div>
-                        <a class="nav-item nav-link">Mi Perfil</a>
-                        <a class="nav-item nav-link" href="/favoritos"
+                        <a class="nav-item nav-link" :style="{ color: color }"
+                            >Mi Perfil</a
+                        >
+                        <a
+                            class="nav-item nav-link"
+                            href="/favoritos"
+                            :style="{ color: color }"
                             >Mis Favoritos</a
                         >
-                        <a class="nav-item nav-link">Mis compras</a>
+                        <a class="nav-item nav-link" :style="{ color: color }"
+                            >Mis compras</a
+                        >
                         <div class="dropdown-divider"></div>
                         <a class="nav-link" @click="cerrarSesion"
                             >Cerrar sesion</a
@@ -80,12 +117,18 @@
                 </div>
             </div>
             <div class="navbar-nav mx-auto text-center d-lg-flex d-none">
-                <a href="/" class="navbar-brand mx-auto my-auto">MISVAH</a>
+                <a
+                    href="/"
+                    class="navbar-brand mx-auto my-auto"
+                    :style="{ color: color }"
+                    >MISVAH</a
+                >
             </div>
-            <div class="nav navbar-nav ml-auto d-lg-flex d-none ">
+            <div class="nav navbar-nav ml-auto d-lg-flex d-none mt-1">
                 <i
                     class="material-icons nav-item nav-link xs-link "
                     id="i-buscar"
+                    :style="{ color: color }"
                     >search</i
                 >
 
@@ -98,14 +141,18 @@
                         <i
                             class="material-icons nav-item nav-link "
                             id="i-lg-carrito"
+                            :style="{ color: color }"
                         >
                             shopping_cart
                         </i>
                     </div>
-                    <carrito @cartSize="cartSize"/>
+                    <carrito @cartSize="cartSize" />
                 </div>
                 <div v-if="!logeado">
-                    <a href="/acceder" class="nav-item nav-link xs-link "
+                    <a
+                        href="/acceder"
+                        class="nav-item nav-link xs-link "
+                        :style="{ color: color }"
                         >ACCEDER</a
                     >
                 </div>
@@ -240,6 +287,9 @@
                 </div>
             </div>
         </div>
+        <div class="carrito-xs d-none" id="carrito-xs">
+            <carrito @cartSize="cartSize" />
+        </div>
     </nav>
 </template>
 <script>
@@ -251,6 +301,8 @@ export default {
     mixins: [auth],
     data() {
         return {
+            color: "#000",
+            background: "#FFF",
             idCategoriaHover: 0,
             pantalla: 0,
             dw: false,
@@ -268,15 +320,38 @@ export default {
             cart: false
         };
     },
-    created() {
-        console.log("menu");
-    },
+    created() {},
     mounted() {
         this.traerCategorias();
+        this.getMenu();
     },
     methods: {
-        cartSize($estado){
-            this.cart = $estado
+        actionCart() {
+            if ($("#carrito-xs").hasClass("d-none")) {
+                $("#carrito-xs").addClass("d-block");
+                $("#carrito-xs").removeClass("d-none");
+                $("#i-xs-carrito").text("clear");
+                $(".s-carrito").addClass("d-none");
+            } else {
+                $("#carrito-xs").addClass("d-none");
+                $("#carrito-xs").removeClass("d-block");
+                $("#i-xs-carrito").text("shopping_cart");
+                $(".s-carrito").removeClass("d-none");
+            }
+        },
+        getMenu() {
+            axios
+                .get("http://127.0.0.1:8000/api/menuCliente")
+                .then(res => {
+                    this.color = res.data.color_letra;
+                    this.background = res.data.color;
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        },
+        cartSize($estado) {
+            this.cart = $estado;
         },
         showMenu: function() {
             this.show = !this.show;
@@ -369,9 +444,13 @@ export default {
 };
 </script>
 <style scoped>
+nav {
+    z-index: 1000;
+}
 .categorias {
     height: auto;
     overflow: auto;
+    top: 0;
 }
 .categorias::-webkit-scrollbar {
     width: 8px; /* Tamaño del scroll en vertical */
@@ -394,14 +473,9 @@ export default {
     height: 100vh !important;
     left: 0;
     position: absolute;
-    top: 65px;
-    background-color: white;
+    top: 60px;
     color: inherit;
     display: block;
-}
-/*estilo de los links del menu*/
-.nav .material-icons {
-    color: #707070 !important;
 }
 .s-carrito {
     height: 10px;
@@ -419,26 +493,21 @@ export default {
     color: black !important;
     transition-delay: 0.2s;
 }
-.bg-navbar {
-    background-color: white !important;
-}
 /*estilo del navbar brand logo*/
 #navbarMenu .navbar-brand {
     font-family: Impact, Charcoal, sans-serif !important;
-    color: #707070 !important;
     padding-left: 7px;
     padding-right: 7px;
     letter-spacing: 2px;
     margin-left: -50px !important;
-    border: 2px solid #707070;
+    border: 2px solid inherit;
 }
 .navbar-brand-xs {
     font-family: Impact, Charcoal, sans-serif !important;
-    color: #707070 !important;
     padding-left: 7px;
     padding-right: 7px;
     letter-spacing: 2px;
-    border: 2px solid #707070;
+    border: 2px solid inherit;
 }
 /* items del menu xs */
 #i-xs-buscar,
@@ -446,7 +515,6 @@ export default {
     position: relative;
     top: 7px;
     padding: 0px 7px;
-    color: #707070;
     cursor: pointer;
 }
 .d-buscar {
@@ -478,10 +546,19 @@ export default {
         width: 100%;
         height: 100vh;
         position: absolute;
-        top: 65px;
+        top: 60px;
         left: 0;
         grid-template-rows: 10vh 100%;
         grid-template-columns: 1vw;
+        background-color: inherit;
+        color: inherit;
+    }
+    .carrito-xs {
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        top: 55.5px;
+        left: 0;
         background-color: inherit;
         color: inherit;
     }

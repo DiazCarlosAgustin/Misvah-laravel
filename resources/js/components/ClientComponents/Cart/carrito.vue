@@ -1,39 +1,37 @@
 <template>
     <div class="cart mt-2">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex text-dark card-title w-100">
-                    <h4>Mi cart</h4>
-                    <div class="ml-auto">
-                        <i class="fas fa-times fa-2"></i>
-                    </div>
-                </div>
-                <div class="list-group  text-dark list-group-flush">
-                    <item-carrito
-                        class="item-cart"
-                        v-for="(producto, index) in cart"
-                        :key="producto.id"
-                        :producto="producto"
-                        @Cantidad="cantidad(index, ...arguments)"
-                        @Eliminar="eliminar(producto.id, index)"
-                    />
-                </div>
-                <div
-                    class="d-flex justify-content-center text-center"
-                    v-if="cart.length <= 0"
-                >
-                    <p>No hay elementos en el cart.</p>
+        <div class="card-body">
+            <div class="d-flex text-dark card-title w-100">
+                <h4>Mi cart</h4>
+                <div class="ml-auto carrito-close">
+                    <i class="fas fa-times fa-2"></i>
                 </div>
             </div>
-            <div class="card-fother p-0 mb-0" v-if="cart.length > 0">
-                <a href="/cart" class="btn btn-block col">Detalles</a>
-                <a
-                    href=""
-                    class="btn btn-block col"
-                    :style="{ backgroundColor: bgColor, color: color }"
-                    >Comprar</a
-                >
+            <div class="list-group  text-dark list-group-flush">
+                <item-carrito
+                    class="item-cart"
+                    v-for="(producto, index) in cart"
+                    :key="producto.id"
+                    :producto="producto"
+                    @Cantidad="cantidad(index, ...arguments)"
+                    @Eliminar="eliminar(producto.id, index)"
+                />
             </div>
+            <div
+                class="d-flex justify-content-center text-center"
+                v-if="cart.length <= 0"
+            >
+                <p>No hay elementos en el cart.</p>
+            </div>
+        </div>
+        <div class="card-fother p-0 mb-0" v-if="cart.length > 0">
+            <a href="/cart" class="btn btn-block col">Detalles</a>
+            <a
+                href=""
+                class="btn btn-block col"
+                :style="{ backgroundColor: bgColor, color: color }"
+                >Comprar</a
+            >
         </div>
     </div>
 </template>
@@ -104,12 +102,10 @@ $(document).ready(function() {
 <style scoped>
 .cart {
     position: absolute;
-    min-width: 450px;
-    max-width: 500px;
     width: 100%;
-    right: 100%;
+    height: 100%;
     z-index: 10000;
-    display: none;
+    background-color: white;
 }
 .cart-active {
     position: absolute;
@@ -144,5 +140,28 @@ $(document).ready(function() {
 .list-group::-webkit-scrollbar-track:hover,
 .list-group::-webkit-scrollbar-track:active {
     background: #d4d4d4;
+}
+
+@media (max-width: 991px) {
+    .cart {
+        background-color: white;
+        display: block;
+    }
+    .carrito-close{
+        display: none;
+    }
+}
+@media (min-width: 992px) {
+    .cart {
+        min-width: 450px;
+        max-width: 500px;
+        right: 100%;
+        -webkit-box-shadow: 10px 14px 33px -13px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 10px 14px 33px -13px rgba(0, 0, 0, 0.75);
+        box-shadow: 10px 14px 33px -13px rgba(0, 0, 0, 0.75);
+    }
+    .carrito-close{
+        display: block;
+    }
 }
 </style>

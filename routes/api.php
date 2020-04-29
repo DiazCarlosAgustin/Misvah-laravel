@@ -39,3 +39,8 @@ Route::resource('/carrito', 'carritoController');
 
 Route::resource('/fondo', 'fondoController');
 
+
+Route::resource('/menu', 'MenuController');
+
+Route::get('/menuCliente', 'MenuController@menuCliente');
+

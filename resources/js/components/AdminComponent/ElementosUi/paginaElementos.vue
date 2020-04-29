@@ -18,13 +18,13 @@
             </div>
         </div>
         <div class="row d-flex  justify-content-center mt-3">
-            <menu-form />
+            <menu-form @newStyleMenu="newStyleMenu"/>
         </div>
         <div class="row">
             <div class="col-12">
                     <div class="h5">Historial de cambios</div>
             </div>
-            <tabla-menu />
+            <tabla-menu :menus="menus" :load="load"/>
         </div>
         <hr>
         <fondo-componente />
@@ -146,3 +146,31 @@
         <hr>
     </div>
 </template>
+<script>
+export default {
+    data() {
+        return {
+            menus:[],
+            load:true
+        }
+    },
+    mounted(){
+        this.getMenus()
+    },
+    methods: {
+        newStyleMenu($data){
+            this.menus.push($data)
+        },
+        getMenus(){
+            axios.get('http://127.0.0.1:8000/api/menu')
+            .then(response =>{
+                this.menus = response.data
+                this.load= !this.load 
+            })
+            .catch(err =>{
+                console.log(err)
+            })
+        }
+    },
+}
+</script>
