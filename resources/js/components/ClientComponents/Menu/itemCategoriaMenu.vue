@@ -27,6 +27,7 @@ export default {
         width: 50%;
         padding: 10px 0;
         color: inherit;
+        height: 45px !important;
     }
 }
 span {

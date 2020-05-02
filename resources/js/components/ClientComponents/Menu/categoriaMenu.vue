@@ -21,6 +21,7 @@ export default {
         width: 100%;
         padding: 10px 0;
         text-align: center;
+        margin: 0;
     }
     span:hover{
         cursor: pointer;

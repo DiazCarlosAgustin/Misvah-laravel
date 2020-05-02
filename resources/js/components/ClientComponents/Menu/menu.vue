@@ -35,7 +35,7 @@
                     :style="{ color: color }"
                 >
                     <span class="align-middle">
-                        <i class="fas fa-bars fa-1x" ></i>
+                        <i class="fas fa-bars fa-1x"></i>
                     </span>
                 </button>
             </div>
@@ -204,7 +204,7 @@
                 </div>
             </form>
         </div>
-        <div class="menu-categoria d-none">
+        <div class="menu-categoria d-none" @mouseleave="hideMenu">
             <div class="categorias">
                 <div class="volverMenu d-none" @click="showCategoria">
                     <span class="my-auto w-100 ml-3">
@@ -299,8 +299,8 @@ export default {
                     console.log(err);
                 });
         },
-        clickUserXs(){
-            $(".drop").toggleClass("d-none")
+        clickUserXs() {
+            $(".drop").toggleClass("d-none");
         },
         getMenu() {
             axios
@@ -313,17 +313,33 @@ export default {
                     console.log(err);
                 });
         },
+        hideMenu() {
+            $(".productos").removeClass("d-grid");
+            $(".productos").addClass("d-none");
+            $(".menu-categoria").removeClass("d-grid");
+            $(".menu-categoria").addClass("d-none");
+        },
         showCategoria() {
-            $(".menu-categoria").toggleClass("d-none");
-            $(".volverMenu").toggleClass("d-none");
+            if (window.innerWidth < 991) {
+                $(".menu-categoria").toggleClass("d-none");
+                $(".volverMenu").toggleClass("d-none");
+            } else {
+                $(".menu-categoria").addClass("d-grid");
+                $(".menu-categoria").removeClass("d-none");
+            }
         },
         showMenu() {
             $("#navbarMenu").toggleClass("show");
         },
         showProductos() {
-            $(".productos").toggleClass("d-none");
-            $(".volverProducto").toggleClass("d-none");
-            $(".categorias").toggleClass("d-none");
+            if (window.innerWidth < 991) {
+                $(".volverProducto").toggleClass("d-none");
+                $(".productos").toggleClass("d-none");
+                $(".categorias").toggleClass("d-none");
+            } else {
+                $(".productos").addClass("d-grid");
+                $(".productos").removeClass("d-none");
+            }
         },
         traerCategorias: function() {
             axios
@@ -465,7 +481,8 @@ nav {
         background-color: inherit;
         color: inherit;
     }
-    .volverMenu,.volverProducto {
+    .volverMenu,
+    .volverProducto {
         grid-row: 1/2;
         grid-column: 1;
         padding: 5px 0;
@@ -488,14 +505,15 @@ nav {
         position: absolute;
         background-color: inherit;
         height: 50vh;
-        top: 60px;
+        top: 65px;
     }
     .categorias {
+        min-width: calc(70% - 40%);
         grid-column: 1/2;
         grid-row: 1;
     }
     .productos {
-        grid-column: 2/2;
+        grid-column: 2/3;
         grid-row: 1;
     }
 }
