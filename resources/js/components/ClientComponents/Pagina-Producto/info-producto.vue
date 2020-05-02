@@ -10,9 +10,10 @@
             <p class="px-2 text-muted" v-if="!producto.oferta">
                 ${{ producto.precio }}
             </p>
-            <span v-else>
-                <strike class="text-danger pr-2">$223</strike> -
-                <p class="px-2 text-muted">${{ producto.precio }}</p>
+            <span class="d-flex" v-else>
+                <strike class="text-danger pr-2">${{ producto.precio }}</strike>
+                -
+                <p class="px-2 text-muted">${{ precioOferta }}</p>
             </span>
         </div>
         <div class="colores">
@@ -112,7 +113,10 @@ export default {
             colorButtons: "#FF637D",
             textButtons: "white",
             favorito: this.producto.favorito,
-            color: 0
+            color: 0,
+            precioOferta:
+                this.producto.precio -
+                (this.producto.precio * this.producto.oferta.porcentaje) / 100
         };
     },
     created() {},

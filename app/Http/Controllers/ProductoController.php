@@ -38,6 +38,7 @@ class ProductoController extends Controller
                                 }
                             }])
                             ->where('categoria_id', '=' , $id)
+                            ->with('Oferta')
                             ->with('imagenColor')
                             ->paginate(8);
 
@@ -54,35 +55,20 @@ class ProductoController extends Controller
     }
     public function destacados()
     {
-        if(Auth::check()){
-            $productos = Producto::with(['favorito' => function($q){
-                            $user = auth()->user();
-                            if($user){
-                                $q->where('user_id','=',$user->id);
-                            }
-                            else{
-                                $q->where('user_id','=',0);
-                            }
-                        }])
-                        ->with('imagenColor')
-                        ->with('oferta')
-                        ->take(5)
-                        ->get();
-        }
-        else{
-            $productos = Producto::with(['favorito' => function($q){
-                            $user = auth()->user();
-                            if($user){
-                                $q->where('user_id','=',$user->id);
-                            }
-                            else{
-                                $q->where('user_id','=',0);
-                            }
-                        }])
-                        ->with('imagenColor')
-                        ->take(5)
-                        ->get();
-        }
+        $productos = Producto::with(['favorito' => function($q){
+                        $user = auth()->user();
+                        if($user){
+                            $q->where('user_id','=',$user->id);
+                        }
+                        else{
+                            $q->where('user_id','=',0);
+                        }
+                    }])
+                    ->with('imagenColor')
+                    ->with('Oferta')
+                    ->take(5)
+                    ->get();
+        
         return $productos;
     }
 

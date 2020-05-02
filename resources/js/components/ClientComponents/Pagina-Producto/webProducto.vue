@@ -68,8 +68,6 @@ export default {
             return this.imagens;
         },
         prodFavorito: function($favorito) {
-            console.log($favorito);
-
             this.producto.favorito = $favorito;
         },
         deleteFavorito: function() {

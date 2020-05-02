@@ -147,20 +147,6 @@ export default {
                 this.err =
                     "La fecha desde debe ser mayor o igual a la fecha de hoy.";
             }
-            // else{
-            //     if(this.porcentaje <= 0){
-            //         this.err = "El porcentaje debe de ser mayor a 0."
-            //     }
-            //     else{
-            //         const params = {
-            //             producto_id : this.id,
-            //             porcentaje : this.porcentaje,
-            //             desde : this.desde,
-            //             hasta : this.hasta
-            //         }
-
-            //     }
-            // }
         }
     }
 };

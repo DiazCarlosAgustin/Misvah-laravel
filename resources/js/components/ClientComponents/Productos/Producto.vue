@@ -9,12 +9,9 @@
                     alt=""
                     class="card-img-top"
                 />
-                <div class="tags text-center d-none">
+                <div class="tags text-center" v-if="producto.oferta">
                     <span class="text-center tag-off">
-                        <p>20% OFF</p>
-                    </span>
-                    <span class="text-center tag-out">
-                        <p>Sin Stock</p>
+                        <p>{{ producto.oferta.porcentaje }}% OFF</p>
                     </span>
                 </div>
                 <div class="card-body row">
@@ -22,8 +19,18 @@
                         <div class="row h-100">
                             <div class="col-9">
                                 <div class="row">
-                                    <p class="col-12 h4 text-muted">
+                                    <p
+                                        class="col-12 h4 text-muted"
+                                        v-if="!producto.oferta"
+                                    >
                                         ${{ producto.precio }}
+                                    </p>
+                                    <p class="col-12 h6 text-muted" v-else>
+                                        <s class="text-danger"
+                                            >${{ producto.precio }}
+                                        </s>
+                                        - 
+                                        ${{ precioOferta }}
                                     </p>
                                     <h6 class="col-12 ">
                                         {{ producto.nombre }}
@@ -34,7 +41,7 @@
                                 <i
                                     class="material-icons fav-xs mt-0 align-middle mx-auto text-dark"
                                     style="font-size: 2em"
-                                    v-if="favorito == null"
+                                    v-if="producto.favorito == null"
                                     @click.prevent="fav()"
                                     >favorite_border
                                 </i>
@@ -42,7 +49,7 @@
                                 <i
                                     class="material-icons fav-xs mt-0 align-middle mx-auto text-danger"
                                     style="font-size: 2em"
-                                    v-show="favorito"
+                                    v-show="producto.favorito"
                                     @click.prevent="fav()"
                                     >favorite
                                 </i>
@@ -72,8 +79,14 @@ export default {
         return {
             favorite: false,
             tipo: "favorito",
-            favorito: this.producto.favorito
+            favorito: this.producto.favorito,
+            precioOferta: 0
         };
+    },
+    mounted() {
+        if(this.producto.oferta != null){
+            this.precioOferta = this.producto.precio - (this.producto.precio * this.producto.oferta.porcentaje / 100)
+        }
     },
     methods: {
         fav: function() {
@@ -102,12 +115,9 @@ export default {
                         });
                 } else {
                     var id = this.producto.favorito.id;
-                    console.log(id);
-
                     axios
                         .delete("http://127.0.0.1:8000/api/favoritos/" + id)
                         .then(res => {
-                            this.favorito = null;
                             this.$emit("deleteFavorito");
                         })
                         .catch(err => {
@@ -144,6 +154,7 @@ a {
 .tags {
     position: absolute;
     top: 0;
+    z-index: 1000;
     width: 100%;
 }
 .tag-off {

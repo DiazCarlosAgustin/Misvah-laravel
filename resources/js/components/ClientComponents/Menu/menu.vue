@@ -35,17 +35,12 @@
                     :style="{ color: color }"
                 >
                     <span class="align-middle">
-                        <i class="fas fa-bars fa-1x" v-if="!show"></i>
-                        <i class="fas fa-times fa-1x" v-if="show"></i>
+                        <i class="fas fa-bars fa-1x" ></i>
                     </span>
                 </button>
             </div>
         </div>
-        <div
-            class="navbar-collapse collapse"
-            :class="[show ? 'show' : '']"
-            id="navbarMenu"
-        >
+        <div class="navbar-collapse collapse " id="navbarMenu">
             <div class="navbar-nav mr-auto text-center">
                 <a href="/" class="nav-item nav-link" :style="{ color: color }"
                     >INICIO</a
@@ -53,8 +48,7 @@
                 <a
                     class="nav-item nav-link"
                     id="display-categorias"
-                    @click:native="clickMouse"
-                    @click="clickMouse"
+                    @click="showCategoria"
                     :style="{ color: color }"
                 >
                     CATEGORIAS
@@ -82,14 +76,12 @@
                         {{ user.name }}
                     </a>
                     <div
-                        class="drop d-lg-none d-xs-block nav-item"
-                        v-show="dw"
+                        class="drop d-lg-none d-none nav-item"
                         :style="{ backgroundColor: background }"
                     >
                         <div
                             class="volver text-left"
-                            :class="claseVolver"
-                            @click="tapVolverMenu"
+                            @click="clickUserXs"
                             :style="{ color: color }"
                         >
                             <span class="my-auto w-100 ml-3">
@@ -212,44 +204,9 @@
                 </div>
             </form>
         </div>
-        <div
-            v-if="pantalla > 991 && categorias"
-            :class="claseMenu"
-            class="menu-categoria-lg"
-            @mouseleave="hoverMouse"
-        >
+        <div class="menu-categoria d-none">
             <div class="categorias">
-                <menu-categoria
-                    v-for="categoria in categorias"
-                    :key="categoria.id"
-                    :categoria="categoria"
-                    @categoriaHover="CategoriaHover"
-                    @click.native="tapCategoria"
-                />
-            </div>
-            <div class="productos">
-                <div v-if="productos.length > 0">
-                    <menu-item-categoria
-                        v-for="producto in productos"
-                        :key="producto.id"
-                        :producto="producto"
-                        class="text-center"
-                        :class="claseProducto"
-                    />
-                </div>
-                <div v-else class="text-center my-3" :class="claseProducto">
-                    <p>No se encontraron productos</p>
-                </div>
-            </div>
-        </div>
-        <div
-            v-else
-            :class="claseMenuXs"
-            class="menu-categoria-xs"
-            @mouseleave="hoverMouse"
-        >
-            <div class="categorias" :class="classCat">
-                <div class="volver" :class="claseVolver" @click="tapVolverMenu">
+                <div class="volverMenu d-none" @click="showCategoria">
                     <span class="my-auto w-100 ml-3">
                         <i class="fas fa-arrow-left"></i>
                         Volver
@@ -259,16 +216,13 @@
                     v-for="categoria in categorias"
                     :key="categoria.id"
                     :categoria="categoria"
-                    @categoriaHover="CategoriaHover"
-                    @click.native="tapCategoria"
+                    @click="showProductos"
+                    @categoriaSelect="categoriaSelect"
                 />
             </div>
-            <div class="productos">
-                <div class="volverProducto" :class="claseVolverProducto">
-                    <span
-                        class="my-auto w-100 ml-3"
-                        @click="tapVolverCategoria"
-                    >
+            <div class="productos d-none">
+                <div class="volverProducto d-none">
+                    <span class="my-auto w-100 ml-3" @click="showProductos">
                         <i class="fas fa-arrow-left"></i>
                         Volver
                     </span>
@@ -279,10 +233,9 @@
                         :key="producto.id"
                         :producto="producto"
                         class="text-center"
-                        :class="claseProducto"
                     />
                 </div>
-                <div v-else class="text-center" :class="claseProducto">
+                <div v-else class="text-center d-none">
                     <p>No se encontraron productos</p>
                 </div>
             </div>
@@ -304,18 +257,8 @@ export default {
             color: "#000",
             background: "#FFF",
             idCategoriaHover: 0,
-            pantalla: 0,
-            dw: false,
-            hover: false,
-            claseMenu: "d-none",
-            claseMenuXs: "d-none",
-            claseProducto: "d-none",
-            classCat: "d-grid",
-            claseVolver: "d-grid",
-            claseVolverProducto: "d-none",
             categorias: [],
             productos: [],
-            show: false,
             sizeCart: 0,
             cart: false
         };
@@ -339,32 +282,12 @@ export default {
                 $(".s-carrito").removeClass("d-none");
             }
         },
-        getMenu() {
-            axios
-                .get("http://127.0.0.1:8000/api/menuCliente")
-                .then(res => {
-                    this.color = res.data.color_letra;
-                    this.background = res.data.color;
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+        categoriaSelect: function($categoria) {
+            this.productos = $categoria.producto;
+            this.showProductos();
         },
         cartSize($estado) {
             this.cart = $estado;
-        },
-        showMenu: function() {
-            this.show = !this.show;
-        },
-        traerCategorias: function() {
-            axios
-                .get("http://127.0.0.1:8000/api/categoria")
-                .then(res => {
-                    this.categorias = res.data;
-                })
-                .catch(err => {
-                    console.log(err);
-                });
         },
         cerrarSesion: function() {
             axios
@@ -376,69 +299,49 @@ export default {
                     console.log(err);
                 });
         },
-        clickUserXs: function() {
-            this.dw = !this.dw;
+        clickUserXs(){
+            $(".drop").toggleClass("d-none")
         },
-        hoverMouse: function() {
-            this.hover = !this.hover;
-            this.pantalla = window.innerWidth;
-            this.claseProducto = "d-none";
-            this.hoverMenu();
+        getMenu() {
+            axios
+                .get("http://127.0.0.1:8000/api/menuCliente")
+                .then(res => {
+                    this.color = res.data.color_letra;
+                    this.background = res.data.color;
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         },
-        hoverMenu: function() {
-            if (window.innerWidth > 991) {
-                if (this.hover) {
-                    this.claseMenu = "d-grid";
-                    this.claseProducto = "d-grid";
-                } else {
-                    this.claseMenu = "d-none";
-                    this.claseProducto = "d-none";
-                }
-            }
+        showCategoria() {
+            $(".menu-categoria").toggleClass("d-none");
+            $(".volverMenu").toggleClass("d-none");
         },
-        clickMouse: function() {
-            if (window.innerWidth <= 991) {
-                this.claseMenuXs = "d-grid";
-            } else {
-                this.claseMenu = "d-grid";
-                this.hover = !this.hover;
-                this.pantalla = window.innerWidth;
-            }
+        showMenu() {
+            $("#navbarMenu").toggleClass("show");
         },
-        CategoriaHover: function($categoria) {
-            this.productos = $categoria.producto;
+        showProductos() {
+            $(".productos").toggleClass("d-none");
+            $(".volverProducto").toggleClass("d-none");
+            $(".categorias").toggleClass("d-none");
         },
-        tapVolverMenu: function() {
-            this.claseMenuXs = "d-none";
-            this.claseProducto = "d-none";
-            this.classCat = "d-grid";
-            this.claseVolver = "d-grid";
-            this.claseVolverProducto = "d-none";
-            this.dw = false;
-        },
-        tapCategoria: function() {
-            if (window.innerWidth <= 991) {
-                this.claseProducto = "d-grid";
-                this.claseVolver = "d-none";
-                this.classCat = "d-none";
-                this.claseVolverProducto = "d-grid";
-            } else {
-                this.claseProducto = "d-grid";
-            }
-        },
-        tapVolverCategoria: function() {
-            this.claseProducto = "d-none";
-            this.classCat = "d-grid";
-            this.claseVolver = "d-grid";
-            this.claseVolverProducto = "d-none";
+        traerCategorias: function() {
+            axios
+                .get("http://127.0.0.1:8000/api/categoria")
+                .then(res => {
+                    this.categorias = res.data;
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     },
     created() {
-        window.addEventListener("resize", this.hoverMenu);
-        this.hoverMenu();
+        // window.addEventListener("resize", this.hoverMenu);
+        // this.hoverMenu();
     },
     destroyed() {
-        window.addEventListener("resize", this.hoverMenu);
+        // window.addEventListener("resize", this.hoverMenu);
     },
     computed: {}
 };
@@ -542,11 +445,11 @@ nav {
 
 /* menu categoria xs */
 @media (max-width: 991px) {
-    .menu-categoria-xs {
+    .menu-categoria {
         width: 100%;
         height: 100vh;
         position: absolute;
-        top: 60px;
+        top: 55px;
         left: 0;
         grid-template-rows: 10vh 100%;
         grid-template-columns: 1vw;
@@ -562,9 +465,10 @@ nav {
         background-color: inherit;
         color: inherit;
     }
-    .volver {
+    .volverMenu,.volverProducto {
         grid-row: 1/2;
         grid-column: 1;
+        padding: 5px 0;
     }
     .categorias {
         grid-row: 2/2;
@@ -576,7 +480,7 @@ nav {
 }
 /* menu categoria lg*/
 @media (min-width: 992px) {
-    .menu-categoria-lg {
+    .menu-categoria {
         width: 70%;
         display: grid;
         grid-template-columns: 40% 60%;
