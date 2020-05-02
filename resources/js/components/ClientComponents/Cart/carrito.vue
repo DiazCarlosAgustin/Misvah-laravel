@@ -107,9 +107,11 @@ $(document).ready(function() {
     z-index: 10000;
     background-color: white;
 }
+.card-body, .card-fother{
+    background-color: white;
+}
 .cart-active {
     position: absolute;
-    right: 0;
     transition: ease-in-out 1.5s;
     transition-duration: 1s;
     margin-right: 30px;
@@ -153,15 +155,19 @@ $(document).ready(function() {
 }
 @media (min-width: 992px) {
     .cart {
+        position: absolute;
+        z-index: 100;
         min-width: 450px;
         max-width: 500px;
-        right: 100%;
         -webkit-box-shadow: 10px 14px 33px -13px rgba(0, 0, 0, 0.75);
         -moz-box-shadow: 10px 14px 33px -13px rgba(0, 0, 0, 0.75);
         box-shadow: 10px 14px 33px -13px rgba(0, 0, 0, 0.75);
     }
     .carrito-close{
         display: block;
+    }
+    .cart-active{
+            right: 0;
     }
 }
 </style>

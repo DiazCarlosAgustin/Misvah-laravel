@@ -124,7 +124,7 @@
                     >search</i
                 >
 
-                <div class="nav-item">
+                <div class="nav-item" @click="actionCart">
                     <div>
                         <span
                             class="s-carrito bg-danger ml-4 mt-1"
@@ -138,7 +138,7 @@
                             shopping_cart
                         </i>
                     </div>
-                    <carrito @cartSize="cartSize" />
+                    <carrito class="carrito d-none" @cartSize="cartSize" />
                 </div>
                 <div v-if="!logeado">
                     <a
@@ -270,16 +270,23 @@ export default {
     },
     methods: {
         actionCart() {
-            if ($("#carrito-xs").hasClass("d-none")) {
-                $("#carrito-xs").addClass("d-block");
-                $("#carrito-xs").removeClass("d-none");
-                $("#i-xs-carrito").text("clear");
-                $(".s-carrito").addClass("d-none");
-            } else {
-                $("#carrito-xs").addClass("d-none");
-                $("#carrito-xs").removeClass("d-block");
-                $("#i-xs-carrito").text("shopping_cart");
-                $(".s-carrito").removeClass("d-none");
+            if(window.innerWidth < 991){
+                if ($("#carrito-xs").hasClass("d-none")) {
+                    $("#carrito-xs").addClass("d-block");
+                    $("#carrito-xs").removeClass("d-none");
+                    $("#i-xs-carrito").text("clear");
+                    $(".s-carrito").addClass("d-none");
+                } else {
+                    $("#carrito-xs").addClass("d-none");
+                    $("#carrito-xs").removeClass("d-block");
+                    $("#i-xs-carrito").text("shopping_cart");
+                    $(".s-carrito").removeClass("d-none");
+                }
+            }
+            else{
+                console.log("golas");
+                
+                $(".carrito").toggleClass("d-none")
             }
         },
         categoriaSelect: function($categoria) {
@@ -448,7 +455,7 @@ nav {
 }
 .d-buscar-active {
     display: block;
-    top: 57px;
+    top: 55px;
     transition: 1.5s;
     transition-duration: 1s;
 }
