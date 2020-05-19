@@ -10,7 +10,7 @@ export default {
     },
     methods:{
         categoriaHover: function(){
-            this.$emit('categoriaHover',this.categoria.id)
+            this.$emit('categoriaSelect',this.categoria)
         },
     }
 }
@@ -21,6 +21,7 @@ export default {
         width: 100%;
         padding: 10px 0;
         text-align: center;
+        margin: 0;
     }
     span:hover{
         cursor: pointer;

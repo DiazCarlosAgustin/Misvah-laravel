@@ -10,4 +10,8 @@ class favorito extends Model
     {
         return $this->hasOne(Producto::class, 'id', 'producto_id');
     }
+    public function user()
+    {
+        return $this->hasOne(user::class, 'id', 'user_id');
+    }
 }

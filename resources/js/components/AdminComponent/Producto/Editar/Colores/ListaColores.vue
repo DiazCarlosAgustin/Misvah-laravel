@@ -1,13 +1,13 @@
 <template>
     <label class="m-1">
-        <input type="radio" name="color" class="form-check-input" @click="handleClick" :disabled="color.stock_color != null">
+        <input type="radio" name="color" class="form-check-input" @click="handleClick" :disabled="color.stock_color || disable">
         <img :src="`../../../img/colores/${color.imagen_color}`" :alt="color.description" width="45" height="35">
     </label>
 </template>
 <script>
 export default {
     name:'lista-color',
-    props:['color','id'],
+    props:['color','id', 'disable'],
     data(){
         return{
             val:false

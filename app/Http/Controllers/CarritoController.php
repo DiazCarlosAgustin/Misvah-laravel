@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\carrito;
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class CarritoController extends Controller
 {
@@ -15,6 +17,16 @@ class CarritoController extends Controller
     public function index()
     {
         //
+        if (Auth::check()) {
+            $user = Auth::user()->id;
+
+            $carrito = carrito::with('producto')
+            ->with('color')
+            ->where('user_id','=',$user)
+            ->get();
+
+            return $carrito;
+        }
     }
 
     /**
@@ -36,6 +48,22 @@ class CarritoController extends Controller
     public function store(Request $request)
     {
         //
+        if (Auth::check()) {
+            $carrito = new carrito;
+
+            $carrito->user_id = $request->user_id;
+            $carrito->producto_id = $request->producto_id;
+            $carrito->color_id = $request->color_id;
+            $carrito->cantidad = $request->cantidad;
+            
+            if($carrito->save()){
+                $carrito = $carrito->with('color')->with('producto')->get();
+                return $carrito;
+            }
+        }
+        else{
+            return redirect('/acceder');
+        }
     }
 
     /**
@@ -44,9 +72,17 @@ class CarritoController extends Controller
      * @param  \App\carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function show(carrito $carrito)
+    public function show($cart)
     {
-        //
+        if (Auth::check()) {
+            $user = Auth::user()->id;
+            $carrito = carrito::with('producto')
+                                ->with('color')
+                                ->where('user_id','=',$user)
+                                ->get();
+    
+            return $carrito;
+        }
     }
 
     /**
@@ -78,8 +114,13 @@ class CarritoController extends Controller
      * @param  \App\carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function destroy(carrito $carrito)
+    public function destroy($id)
     {
         //
+        $carrito = carrito::find($id);
+
+        if($carrito->delete()){
+            return $carrito;
+        }
     }
 }

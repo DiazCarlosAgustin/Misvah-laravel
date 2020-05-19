@@ -4,6 +4,7 @@ module.exports = {
     computed: {
         user(){
             if(user.content != ""){
+                
                 return JSON.parse(user.content)      
             }
         },

@@ -14,8 +14,10 @@ class CuponController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $cupones = Cupon::paginate(2);
+
+        return $cupones;
+    }   
 
     /**
      * Show the form for creating a new resource.
@@ -96,8 +98,8 @@ class CuponController extends Controller
      * @param  \App\cupon  $cupon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cupon $cupon)
+    public function destroy(Request $request)
     {
-        //
+
     }
 }

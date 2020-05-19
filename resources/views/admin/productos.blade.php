@@ -4,7 +4,7 @@
     
 @section('container')
     @csrf
-    <div class="container-fluid mt-5">
+    <div class="container-fluid">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-xs-12 col-md-10 mt-4">
                 <div class="text-center">
@@ -12,9 +12,27 @@
                 </div>
             </div>
         </div>
-        <lista-productos></lista-productos>
-        <lista-productos-oferta></lista-productos-oferta>
-        <lista-productos-cupones></lista-productos-cupones>
+        <div class="col-12 my-3">
+            @if(!empty($error))
+                <div class="my-3">
+                    <a href="{{ url()->previous() }}" class="a-volver mx-2 my-2"><i class="fas fa-arrow-left pr-1"></i>Volver</a>
+                </div>
+                <div class="alert alert-danger" role="alert">
+                    {{$error}}
+                </div>
+            @endif
+            @if(!empty($productos))
+                @if($back)
+                    <div class="my-3">
+                        <a href="/admin/productos" class="a-volver mx-2 my-2"><i class="fas fa-arrow-left pr-1"></i>Volver</a>
+                    </div>
+                @endif
+                <lista-productos :productos="{{JSON_ENCODE($productos)}}"> </lista-productos>
+                <div class="d-flex justify-content-center">
+                    {!! $productos->render() !!}
+                </div>
+            @endif
+        </div>
     </div>
 @endsection
 

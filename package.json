@@ -9,6 +9,7 @@
     },
     "devDependencies": {
         "axios": "^0.18.1",
+        "babel-plugin-component": "^1.1.1",
         "bootstrap": "^4.4.1",
         "cross-env": "^5.2.1",
         "jquery": "^3.2",
@@ -23,8 +24,11 @@
         "webpack": "^4.41.3"
     },
     "dependencies": {
-        "mdbootstrap": "^4.10.1",
+        "element-ui": "^2.13.1",
         "jquery": "^3.4.1",
-        "swiper": "^5.2.1"
+        "mdbootstrap": "^4.10.1",
+        "moment": "^2.24.0",
+        "swiper": "^5.2.1",
+        "vue-carousel": "^0.18.0"
     }
 }

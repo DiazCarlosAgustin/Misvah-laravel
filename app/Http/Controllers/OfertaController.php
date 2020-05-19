@@ -14,9 +14,9 @@ class OfertaController extends Controller
      */
     public function index()
     {
-        $oferta = Oferta::with('producto')->get();
+        $ofertas = Oferta::with('producto')->paginate(6);
 
-        return response()->json($oferta, 200);
+       return $ofertas;
     }
 
     /**

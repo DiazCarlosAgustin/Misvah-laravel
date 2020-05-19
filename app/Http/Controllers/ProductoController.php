@@ -6,8 +6,10 @@ use App\Producto;
 use Illuminate\Http\Request;
 use App\Categoria;
 use App\color;
+use App\imagenColor;
 use App\Oferta;
 use App\Cupon;
+use Auth;
 
 class ProductoController extends Controller
 {
@@ -18,24 +20,30 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        $pro = Producto::with('Categoria:id,nombre')
-            ->with('color')
-            ->with('imagenesColor')
-            ->orderBy('id','DESC')
-            ->paginate(6);
-       return [
-           'pagination' => [
-                'total'         => $pro->total(), 
-                'current_page'  => $pro->currentPage(), 
-                'per_page'      => $pro->perPage(), 
-                'last_page'     => $pro->lastPage(), 
-                'from'          => $pro->firstItem(), 
-                'to'            => $pro->lastPage()
-           ],
-           'productos' => $pro
-       ];
+        $productos = Producto::with('categoria')->paginate(6);
+
+        return $productos;
     }
 
+    public function tienda($id)
+    {
+        //busca una categoria
+        $productos = Producto::with(['favorito' => function($q){
+                                $user = auth()->user();
+                                if($user){
+                                    $q->where('user_id','=',$user->id);
+                                }
+                                else{
+                                    $q->where('user_id','=',0);
+                                }
+                            }])
+                            ->where('categoria_id', '=' , $id)
+                            ->with('Oferta')
+                            ->with('imagenColor')
+                            ->paginate(8);
+
+        return $productos;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -44,6 +52,24 @@ class ProductoController extends Controller
     public function create()
     {
         //
+    }
+    public function destacados()
+    {
+        $productos = Producto::with(['favorito' => function($q){
+                        $user = auth()->user();
+                        if($user){
+                            $q->where('user_id','=',$user->id);
+                        }
+                        else{
+                            $q->where('user_id','=',0);
+                        }
+                    }])
+                    ->with('imagenColor')
+                    ->with('Oferta')
+                    ->take(5)
+                    ->get();
+        
+        return $productos;
     }
 
     /**
@@ -58,7 +84,7 @@ class ProductoController extends Controller
         $producto = new Producto;
 
         $producto->codigo = $request->cod;
-        $producto->id_categoria = $request->categoria;
+        $producto->categoria_id = $request->categoria;
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
         $producto->descripcion = $request->descripcion;
@@ -79,25 +105,34 @@ class ProductoController extends Controller
     {
         //retorna la vista con el producto
         $prod = Producto::with('Categoria')
-                ->with('color') 
-                ->with('imagenesColor')
-                ->with('Oferta')->get();
-        $prod = $prod->find($producto);
-        return view('/admin/VerProducto')->with('productos',$producto);
+                ->with('color')
+                ->with('imagenColor')
+                ->with('Oferta')
+                ->with('favorito')
+                ->where('id','=',$producto)->get();
+        
+        return $prod;
     }
 
-    public function ver(Producto $producto)
+    public function ver($id)
     {
-        $prod = Producto::with('Categoria')
-                ->with('color')
-                ->with('imagenesColor')
-                ->with('Oferta')->get();
-        $cupon = Cupon::paginate(6);
-        $off = Oferta::paginate(6);
-
-        return view('/admin/productos')->with('productos',$prod)
-                                        ->with('cupon',$cupon)
-                                        ->with('off',$off);
+        $producto = Producto::with('Categoria')
+                        ->with('color')
+                        ->with('imagenColor')
+                        ->with('Oferta')
+                        ->with(['favorito' => function($q){
+                            $user = auth()->user();
+                            if($user){
+                                $q->where('user_id','=',$user->id);
+                            }
+                            else{
+                                $q->where('user_id','=',0);
+                            }
+                        }])
+                        ->where('id','=',$id)
+                        ->get();
+        
+        return $producto[0];
     }
 
     /**
@@ -112,16 +147,34 @@ class ProductoController extends Controller
         
     }
 
+    public function buscar(Request $request)
+    {
+        $busqueda = $request->input('buscar');
+
+        $productos = Producto::with('Categoria')
+                            ->where('nombre','LIKE','%'.$busqueda.'%')
+                            ->orWhere('codigo','LIKE','%'.$busqueda.'%')
+                            ->paginate(6);
+        if (count($productos) > 0){
+            return $productos;
+        }
+        else{
+            $error = 'No se encontraron resultados para '.$busqueda. '.';
+
+            return $error;
+        }
+
+    }
+
     public function editar($producto)
     {   
         $prod = Producto::with('Categoria:id,nombre')
                     ->with('color')
-                    ->with('imagenesColor')->get();
-        $prod = $prod->find($producto);
-
-        $color = Color::with('stockColor')->get();
-        // $color = json_encode($color);
-        return view('/admin/editarProducto',['producto' => $prod, 'color' => $color]);
+                    ->with('imagenColor')
+                    ->where('id','=',$producto)
+                    ->get();
+            
+        return $prod;
     }
 
     /**
@@ -136,13 +189,14 @@ class ProductoController extends Controller
         //actualizo el producto
         $cod = Producto::where('codigo', $request->codigo)
                         ->where('id','<>',$request->id)->get();
-        if (!$cod){
+        if (count($cod) == 0){
             $prod = Producto::find($request->id);
             $prod->id  = $request->id;
             $prod->codigo  = $request->codigo;
-            $prod->id_categoria  = $request->categoria;
+            $prod->categoria_id  = $request->categoria;
             $prod->nombre  = $request->nombre;
             $prod->precio  = $request->precio;
+            $prod->estado  = $request->estado;
             $prod->descripcion  = $request->descripcion;
             $prod->infomacion  = $request->infomacion;
             if  ( $prod->save() )
@@ -171,8 +225,13 @@ class ProductoController extends Controller
     {
         //eliminar producto
         $pro = Producto::find($producto->id);
-        $pro->delete();
+        $pro->estado = false;
 
-        return response()->json($pro, 200);
+        if($pro->save()){
+            return response()->json([
+                        "success" => "Se actualizo el estado del producto ". $pro->nombre
+                    ]);
+        }
+        
     }
 }

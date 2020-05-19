@@ -14,9 +14,6 @@ i{
     cursor: pointer;
 }
 
-
-
-/*footer*/
-
-/*barra de busqueda*/
-
+.a-volver{
+    color: black !important;
+}

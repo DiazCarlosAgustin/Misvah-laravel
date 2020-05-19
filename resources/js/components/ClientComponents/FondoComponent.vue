@@ -1,5 +1,5 @@
 <template>
-    <div id="fondo" :style="{backgroundImage:'url(' + img + ')' }" class="view">
+    <div id="fondo" :style="{backgroundImage:'url(/img/fondos/' + fondo.imagen + ')' }" class="view">
         <div :class="align">
             <div class="Titulo" :style="{color:colorTitulo}">
                 Misvah
@@ -17,9 +17,9 @@
 <script>
 export default {
     name:'fondo',
+    props:['fondo'],
     data(){
         return{
-            img: '/img/Fondo-3.jpg',
             align: 'd-center',
             colorTitulo:'white',
             colorSubtitulo:'white',

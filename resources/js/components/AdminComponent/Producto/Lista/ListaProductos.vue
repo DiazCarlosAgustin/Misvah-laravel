@@ -1,8 +1,27 @@
 <template>
      <div class="row d-flex justify-content-center mt-4">
+        <div class="col-12 col-md-8 col-lg-6">
+            <form action="productos/buscar" role="search" method="get">
+                <div class="input-group">
+                    <input type="search" name="buscar" id="txtSearch"
+                        placeholder="Buscar producto"
+                        class="form-control my-auto" required>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-info">
+                            Buscar
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <modal :mensaje="mensaje"
+            v-show="active"
+            @event="eliminar" 
+            @close="closeModal"
+        />
         <div class="col-12 col-xs-12 col-md-12">
-            <div class="table-responsive mt-3" v-if="productos.length > 0 && active">
-                <table class="table table-striped" id="tablaProductos">
+            <div class="table-responsive mt-3">
+                <table class="table" id="tablaProductos">
                     <thead>
                         <tr class="text-center">
                             <th scope="col">Codigo</th>
@@ -17,69 +36,57 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <producto-lista v-for="(producto,index) in productos" 
+                        <producto-lista v-for="(producto,index) in productos.data" 
                             :key="producto.codigo" 
                             :producto="producto" 
-                            @eliminar="eliminarProducto(index)"/>
+                            @show="modal(index,...arguments)"/>
                     </tbody>
                 </table>
             </div>
-            <div v-show="productos" class="text-center my-3">
-                <btn-paginacion :pagination="pagination" @changePage="changePage"/>
-            </div>
-            <loader :active="!active"/>
         </div>
     </div>
 </template>
 <script>
 export default {
     name: 'Lista-productos',
+    props:['productos'],
     data(){
-        return{
-            cod:'',
-            productos: {},
-            pagination:{
-                total:0,
-                current_page:0, 
-                per_page:0, 
-                last_page:0, 
-                from:0, 
-                to:0
-            },
-            http:'http://127.0.0.1:8000/api/producto?page=',
-            active:false
+       return{
+            mensaje:'El producto no se eliminara, quedara inactivo',
+            active:false,
+            prod:{
+                id:0,
+                index:0
+            }
+       }
+    },
+    mounted(){
+    },
+    methods:{
+        closeModal:function(){
+            this.active = false
+        },
+        modal:function(index,id){
+            this.active = true
+            this.prod.id = id
+            this.prod.index = index
+
+            console.log(this.prod);
+            
+        },
+        eliminar: function(status){
+            if(status){
+                axios.delete('http://127.0.0.1:8000/api/producto/'+this.prod.id)
+                .then(res => {
+                    location.reload()
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
         }
     },
-    async beforeMount() {
-        this.getProductos()
-    },
-    methods: {
-        getProductos:function(page) {
-            axios.get(this.http + page)
-            .then(res => {
-                this.productos = res.data.productos.data
-                this.pagination = res.data.pagination
-                this.active = true
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        },
-        eliminarProducto:function($i){
-            this.productos.splice($i,1)
-        },
-        changePage:function(page){
-            this.pagination.current_page = page
-            this.getProductos(page)
-        }
-    },
-    computed: {
-        listProduct:function(){
-            return this.productos
-        },
-    },
-    mounted(){ 
-        
+    computed:{
     }
 }
 </script>

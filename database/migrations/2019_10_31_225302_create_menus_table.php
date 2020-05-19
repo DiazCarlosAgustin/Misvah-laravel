@@ -17,8 +17,7 @@ class CreateMenusTable extends Migration
             $table->bigIncrements('id');
             $table->String('color');
             $table->String('color_letra');
-            $table->String('logo');
-            $table->integer('estado');
+            $table->boolean('estado')->default(false);
             $table->timestamps();
         });
     }

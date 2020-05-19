@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 // Categoria
 Route::resource('/categoria', 'CategoriaController');
 // producto
@@ -31,3 +32,15 @@ Route::resource('/imagen', 'imagenColorController');
 Route::resource('/cupon', 'CuponController');
 // cupon
 Route::resource('/oferta', 'OfertaController');
+
+Route::resource('/favoritos', 'FavoritoController');
+
+Route::resource('/carrito', 'carritoController');
+
+Route::resource('/fondo', 'fondoController');
+
+
+Route::resource('/menu', 'MenuController');
+
+Route::get('/menuCliente', 'MenuController@menuCliente');
+

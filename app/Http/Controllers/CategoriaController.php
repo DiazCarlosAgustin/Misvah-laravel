@@ -16,11 +16,18 @@ class CategoriaController extends Controller
     public function index()
     {
         //
-        $categoria = Categoria::with('Producto:id_categoria,id,nombre')->get();
+        $categorias = Categoria::with('producto')->get();
 
-        return response()->json($categoria, 200);
+        return $categorias;
     }
 
+
+    public function categoriaPaginate()
+    {
+        $categorias = Categoria::paginate(6);
+
+        return $categorias;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -48,7 +55,7 @@ class CategoriaController extends Controller
             $extension = 'png';
 
         $fileName = str_random().'.'.$extension;
-        $path = public_path().'/img/'.$fileName;
+        $path = public_path().'/img/categorias/'.$fileName;
         file_put_contents($path, $decode);
 
         //agregar una nueva categoria 
@@ -69,11 +76,12 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $id)
-    {
-        //busca una categoria
-        $cat = Categoria::find($id);
-        return view('admin\editar_categoria')->with('categoria', $cat);
+    public function show($id)
+    {   
+        $categoria = Categoria::find($id);
+
+        return $categoria;
+
     }
 
     /**
@@ -84,6 +92,19 @@ class CategoriaController extends Controller
      */
     public function edit($id,Categoria $categoria)
     {
+    }
+    public function buscar(Request $request){
+        $buscar = $request->input('buscar');
+
+        $categorias = Categoria::where('nombre','LIKE','%'.$buscar.'%')
+                                    ->paginate(6);
+
+        if (count($categorias) > 0){
+            return $categorias;
+        }else{
+            $error = 'No se encontraron resultados para ' .$buscar. '.';
+            return $error;
+        }
     }
 
     /**
@@ -108,7 +129,7 @@ class CategoriaController extends Controller
                 $extension = 'png';
 
             $fileName = str_random().'.'.$extension;
-            $path = public_path().'/img/'.$fileName;
+            $path = public_path().'/img/categorias/'.$fileName;
             file_put_contents($path, $decode);
             Storage::delete($cat->imagen_categoria);
         }

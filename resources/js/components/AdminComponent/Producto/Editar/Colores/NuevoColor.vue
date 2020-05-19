@@ -49,9 +49,11 @@ export default {
                 .then(res=>{
                     const file = document.getElementById('fileColor')
                     if (res) {
+                        var color = res.data[0]
                         this.color.descripcion = ''
-                        this.color.imagen = ''
-                        file = ""
+                        
+                        this.$emit("newColor", color)
+                        file.value = null
                     }   
                 })
                 .catch(err=>{

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\color;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\imagenColor;
 
 class ColorController extends Controller
 {
@@ -53,13 +55,16 @@ class ColorController extends Controller
         
         $color = new color();
 
-        $color->id_producto = $request->id_producto;
+        $color->producto_id = $request->id_producto;
         $color->imagen_color = $fileName;
         $color->descripcion = $request->descripcion;
 
-        $color->save();
+        if ($color->save()){
+            $color = Color::where('id','=',$color->id)
+                            ->with('stockColor')->get();
 
-        return response()->json($color, 200);
+            return $color;
+        }
 
     }
 
@@ -108,6 +113,10 @@ class ColorController extends Controller
      */
     public function destroy(color $color)
     {
-        //
+        $color = Color::find($color->id);
+        Storage::delete($color->imagen_color);
+        $color->delete();
+
+        return $color;
     }
 }

@@ -17,6 +17,7 @@ class appController extends Controller
     public function login(Request $request){
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = User::where('email','=',$request->email)->first();
+            Auth::login($user);
             return response()->json($user, 200);
         }
         else{
@@ -51,5 +52,4 @@ class appController extends Controller
     public function logout(){
         Auth::logout();
     }
-
 }

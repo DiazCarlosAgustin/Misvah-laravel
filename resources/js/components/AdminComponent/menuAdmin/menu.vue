@@ -37,6 +37,8 @@
                             <a class="dropdown-item" href="/admin/categorias">Listar</a>
                         </div>
                     </div>
+                    <a href="/admin/cupones" class="nav-link nav-item">Cupones</a>
+                    <a href="/admin/ofertas" class="nav-link nav-item">Ofertas</a>
                     <a href="/admin/elementos" class="nav-link nav-item">Elementos del UI</a>
                     <a href="" class="nav-link nav-item">Pedidos</a>
                     <a href="" class="nav-link nav-item">Ventas</a>
