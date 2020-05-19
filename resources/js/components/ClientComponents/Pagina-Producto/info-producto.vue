@@ -114,9 +114,7 @@ export default {
             textButtons: "white",
             favorito: this.producto.favorito,
             color: 0,
-            precioOferta:
-                this.producto.precio -
-                (this.producto.precio * this.producto.oferta.porcentaje) / 100
+               
         };
     },
     created() {},
@@ -214,6 +212,12 @@ export default {
             } else {
                 window.location.href = "/acceder";
             }
+        }
+    },
+    computed:{
+        precioOferta(){
+            return this.producto.precio -
+                (this.producto.precio * this.producto.oferta.porcentaje) / 100
         }
     }
 };
