@@ -124,7 +124,7 @@
                     >search</i
                 >
 
-                <div class="nav-item" @click="actionCart">
+                <div class="nav-item">
                     <div>
                         <span
                             class="s-carrito bg-danger ml-4 mt-1"
@@ -134,11 +134,12 @@
                             class="material-icons nav-item nav-link "
                             id="i-lg-carrito"
                             :style="{ color: color }"
+                            @click="actionCart"
                         >
                             shopping_cart
                         </i>
                     </div>
-                    <carrito class="carrito d-none" @cartSize="cartSize" />
+                    <carrito class="carrito d-none" @cartSize="cartSize" @closeCart="actionCart"/>
                 </div>
                 <div v-if="!logeado">
                     <a
@@ -270,7 +271,7 @@ export default {
     },
     methods: {
         actionCart() {
-            if(window.innerWidth < 991){
+            if(window.innerWidth < 991){ 
                 if ($("#carrito-xs").hasClass("d-none")) {
                     $("#carrito-xs").addClass("d-block");
                     $("#carrito-xs").removeClass("d-none");

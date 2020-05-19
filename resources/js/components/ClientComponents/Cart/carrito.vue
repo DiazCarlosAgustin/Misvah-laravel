@@ -4,7 +4,7 @@
             <div class="d-flex text-dark card-title w-100">
                 <h4>Mi cart</h4>
                 <div class="ml-auto carrito-close">
-                    <i class="fas fa-times fa-2"></i>
+                    <i class="fas fa-times fa-2" @click="closeCart"></i>
                 </div>
             </div>
             <div class="list-group  text-dark list-group-flush">
@@ -56,6 +56,9 @@ export default {
         });
     },
     methods: {
+        closeCart(){
+            this.$emit('closeCart');
+        },
         getCart() {
             axios
                 .get("http://127.0.0.1:8000/api/carrito")
@@ -93,11 +96,6 @@ export default {
         }
     }
 };
-$(document).ready(function() {
-    $(".fa-times").click(function() {
-        $(".cart").toggleClass("cart-active");
-    });
-});
 </script>
 <style scoped>
 .cart {
@@ -109,13 +107,6 @@ $(document).ready(function() {
 }
 .card-body, .card-fother{
     background-color: white;
-}
-.cart-active {
-    position: absolute;
-    transition: ease-in-out 1.5s;
-    transition-duration: 1s;
-    margin-right: 30px;
-    display: block;
 }
 .item-cart {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -157,6 +148,7 @@ $(document).ready(function() {
     .cart {
         position: absolute;
         z-index: 100;
+        right: 35px;
         min-width: 450px;
         max-width: 500px;
         -webkit-box-shadow: 10px 14px 33px -13px rgba(0, 0, 0, 0.75);
@@ -165,9 +157,6 @@ $(document).ready(function() {
     }
     .carrito-close{
         display: block;
-    }
-    .cart-active{
-            right: 0;
     }
 }
 </style>
