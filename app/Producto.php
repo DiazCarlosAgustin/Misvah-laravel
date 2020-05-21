@@ -31,7 +31,7 @@ class Producto extends Model
     }
     public function oferta()
     {
-        return $this->hasOne(Oferta::class, 'producto_id', 'id');
+        return $this->hasOne(Oferta::class, 'producto_id', 'id')->where('estado','=',0);
     }
     public function imagenColor()
     {

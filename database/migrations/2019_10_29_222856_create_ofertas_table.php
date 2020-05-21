@@ -19,6 +19,7 @@ class CreateOfertasTable extends Migration
             $table->integer('porcentaje')->unsigned();
             $table->date('fecha_desde')->nullable();
             $table->date('fecha_hasta')->nullable();
+            $table->boolean('estado')->nullable()->default(false);
             $table->timestamps();
 
             // relations

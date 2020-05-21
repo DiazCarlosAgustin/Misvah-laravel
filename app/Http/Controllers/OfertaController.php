@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\oferta;
 use Illuminate\Http\Request;
+use App\Jobs\deleteOffers;
 
 class OfertaController extends Controller
 {
@@ -58,6 +59,7 @@ class OfertaController extends Controller
                 $oferta->porcentaje = $request->porcentaje;
                 $oferta->fecha_desde = $request->desde;
                 $oferta->fecha_hasta = $request->hasta;
+                $oferta->estado = false;
 
                 if($oferta->save()){
                     return response()->json([
