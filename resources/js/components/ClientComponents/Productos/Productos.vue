@@ -20,7 +20,7 @@ export default {
             col: "col-12"
         };
     },
-    mounted() {},
+    mounted() {console.log(this.productos)},
     methods: {
         cambiarClase: function() {
             if (window.innerWidth > 375 && window.innerWidth < 575) {
@@ -30,18 +30,16 @@ export default {
             }
         },
         favorito: function($id, $favorito) {
-            
             this.productos[$id].favorito = $favorito;
         },
-        deleteFavorito:function($id){
-            this.productos[$id].favorito = null
+        deleteFavorito: function($id) {
+            this.productos[$id].favorito = null;
             console.log(this.productos[$id]);
-            
         }
     },
-    computed:{
-        listProductos:function(){
-            return this.productos
+    computed: {
+        listProductos: function() {
+            return this.productos;
         }
     },
     created() {

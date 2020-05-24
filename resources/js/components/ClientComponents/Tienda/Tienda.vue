@@ -1,6 +1,10 @@
 <template>
     <div class="col-12">
-        <ajustes class="my-2" :categorias="categorias.data" />
+        <ajustes
+            class="my-2"
+            :categorias="categorias"
+            :productos="productos.data"
+        />
         <productos :productos="productos.data" />
     </div>
 </template>
@@ -10,7 +14,11 @@ export default {
     data() {
         return {};
     },
-    mounted() {},
+    mounted() {
+        console.log('====================================');
+        console.log(this.categorias);
+        console.log('====================================');
+    },
     methods: {},
     computed: {}
 };

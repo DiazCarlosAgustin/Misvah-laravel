@@ -7,17 +7,17 @@
         <div class="row text-center  d-flex justify-content-center">
             <div class="col-12">
                 <div class=" text-center my-4">
-                    <h2>Tienda</h2> 
-                </div>      
+                    <h2>Tienda</h2>
+                </div>
             </div>
         </div>
        <div class="row">
-            <tienda :productos="{{ json_encode($productos) }}" 
+            <tienda :productos="{{ json_encode($productos) }}"
                 :categorias="{{ json_encode($categorias) }}"/>
        </div>
         <div class="row d-flex justify-content-center text-center">
             <div class="col-12 my-3 text-center">
-                {{ $productos->links() }}
+                {{ $productos->appends($_GET)->render() }}
             </div>
         </div>
     </div>

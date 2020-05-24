@@ -1,7 +1,7 @@
 <template>
    <div class="justify-content-center">
        <label for="CbCategoria">Categorias:</label>
-       <select id="CbCategoria" class="browser-default custom-select" v-model="cat">
+       <select id="CbCategoria" class="browser-default custom-select" v-model="cat" @change="newCat">
             <option value="0" selected>Seleccione una categoria</option>
             <option v-for="categoria in categorias" :key="categoria.id"
                 :value="categoria.id">{{categoria.nombre}}</option>
@@ -10,12 +10,24 @@
 </template>
 <script>
 export default {
-    props:['categorias'],
-    data() {
-        return {
-            cat: 0
+    props:{
+        categorias:{
+            type:Array,
+        },
+        id:{
+            type:Number
         }
     },
+    data() {
+        return {
+            cat: this.id
+        }
+    },
+    methods:{
+        newCat(){
+            this.$emit("changeCategoria",this.cat)
+        }
+    }
 }
 </script>
 <style scoped>

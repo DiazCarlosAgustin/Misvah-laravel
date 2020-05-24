@@ -25,24 +25,64 @@ class ProductoController extends Controller
         return $productos;
     }
 
-    public function tienda($id)
+    public function tienda($id, Request $request)
     {
+        $min = $request->input("min");
+        $max = $request->input("max");
+        $orden = $request->input("orden");
         //busca una categoria
         $productos = Producto::with(['favorito' => function($q){
-                                $user = auth()->user();
-                                if($user){
-                                    $q->where('user_id','=',$user->id);
-                                }
-                                else{
-                                    $q->where('user_id','=',0);
-                                }
-                            }])
-                            ->where('categoria_id', '=' , $id)
-                            ->with('Oferta')
-                            ->with('imagenColor')
-                            ->paginate(8);
+                                        $user = auth()->user();
+                                        if($user){
+                                            $q->where('user_id','=',$user->id);
+                                        }
+                                        else{
+                                            $q->where('user_id','=',0);
+                                        }
+                                    }])
+                                    ->with('Oferta')
+                                    ->with('imagenColor')
+                                    ->Has('imagenColor')
+                                    ->where('categoria_id','=',$id);
+        if($min != null or $min > 0){
+            if ($max > 0 or $max != null) {
+                $productos = $productos->where('precio', '>=', $min);
+                $productos = $productos->where('precio', '<=', $max);
+            }elseif($max == null or $max == 0){
+                dd("h");
+                $productos = $productos->where('precio','>=',$min);
+            }
+        }
+        elseif($min == null or $min == 0){
+            if ($max > 0 or $max != null) {
+                $productos = $productos->where('precio', '<=', $max);
+            }
+        }
+        switch ($orden) {
+            case 1:
+                $productos = $productos->orderBy('precio','asc');
+                break;
+            case 2:
+                $productos = $productos->orderBy('precio','desc');
+                break;
+            case 3:
+                $productos = $productos->orderBy('created_at','desc');
+                break;
+            case 4:
+                $productos = $productos->orderBy('nombre','asc');
+                break;
+            case 5:
+                $productos = $productos->orderBy('nombre','desc');
+                break;
+            default:
+                $productos = $productos->orderBy('created_at','desc');
+                break;
+        }
+        $productos = $productos->paginate(1);
+        $categorias = Categoria::all();
 
-        return $productos;
+        $arr = [$productos,$categorias];
+        return $arr;
     }
     /**
      * Show the form for creating a new resource.
@@ -110,7 +150,7 @@ class ProductoController extends Controller
                 ->with('Oferta')
                 ->with('favorito')
                 ->where('id','=',$producto)->get();
-        
+
         return $prod;
     }
 
@@ -131,7 +171,7 @@ class ProductoController extends Controller
                         }])
                         ->where('id','=',$id)
                         ->get();
-        
+
         return $producto[0];
     }
 
@@ -144,7 +184,7 @@ class ProductoController extends Controller
     public function edit(Request $request)
     {
 
-        
+
     }
 
     public function buscar(Request $request)
@@ -167,13 +207,13 @@ class ProductoController extends Controller
     }
 
     public function editar($producto)
-    {   
+    {
         $prod = Producto::with('Categoria:id,nombre')
                     ->with('color')
                     ->with('imagenColor')
                     ->where('id','=',$producto)
                     ->get();
-            
+
         return $prod;
     }
 

@@ -4,7 +4,7 @@
             <div class="card my-3">
                 <img
                     :src="
-                        `../../../img/productos/${producto.imagen_color[0].imagen_color_producto}`
+                        `http://127.0.0.1:8000/img/productos/${producto.imagen_color[0].imagen_color_producto}`
                     "
                     alt=""
                     class="card-img-top"
@@ -29,8 +29,7 @@
                                         <s class="text-danger"
                                             >${{ producto.precio }}
                                         </s>
-                                        - 
-                                        ${{ precioOferta }}
+                                        - ${{ precioOferta }}
                                     </p>
                                     <h6 class="col-12 ">
                                         {{ producto.nombre }}
@@ -80,13 +79,13 @@ export default {
             favorite: false,
             tipo: "favorito",
             favorito: this.producto.favorito,
-            precioOferta: 0
         };
     },
     mounted() {
         if(this.producto.oferta != null){
             this.precioOferta = this.producto.precio - (this.producto.precio * this.producto.oferta.porcentaje / 100)
         }
+        console.log(this.producto)
     },
     methods: {
         fav: function() {
@@ -128,6 +127,12 @@ export default {
         },
         ocultar: function($estado) {
             this.favorite = $estado;
+        }
+    },
+    computed:{
+        precioOferta(){
+            return this.producto.precio -
+                (this.producto.precio * this.producto.oferta.porcentaje) / 100
         }
     }
 };

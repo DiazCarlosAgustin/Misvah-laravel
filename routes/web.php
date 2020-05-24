@@ -47,12 +47,9 @@ Route::get('/categoria/{id}',function($id){
 
    // obtengo los productos de la categoria consultada
    $productos = App::call('App\Http\Controllers\ProductoController@tienda', ['id' => $id]);
-   // obtengo las categorias
-   $categorias = App::call('App\Http\Controllers\CategoriaController@categoriaPaginate');
-
    // retorna la vista junto a: productos y categorias
-   return view('tienda')->with('productos',$productos)
-                        ->with('categorias',$categorias);
+   return view('tienda')->with('productos',$productos[0])
+                        ->with('categorias',$productos[1]);
 });
 Route::get('/carrito',function(){
    return view('carrito');
@@ -88,11 +85,11 @@ Route::get('/favoritos',function(){
    Route::get('/admin/categorias/buscar',function(){
       // Obtengo los resultados de la busqueda en categorias
       $categorias = App::call('App\Http\Controllers\CategoriaController@buscar');
-      
+
       if (is_object($categorias)){
          // En caso de que $categorias sea un objeto retorna la vista con categorias
-         
-         // si back es TRUE se hablita la vuelta atras de URL 
+
+         // si back es TRUE se hablita la vuelta atras de URL
          return view('/admin/categorias')->with('categorias',$categorias)
                                        ->with('back',true);
       }
@@ -102,11 +99,11 @@ Route::get('/favoritos',function(){
          $error = $categorias;
 
          //  retorno la vista de categorias con el error al buscar
-         // si back es TRUE se hablita la vuelta atras de URL 
+         // si back es TRUE se hablita la vuelta atras de URL
          return view('/admin/categorias')->with('error',$error)
                                        ->with('back',true);
       }
-      
+
    });
 
 
@@ -128,10 +125,10 @@ Route::get('/favoritos',function(){
    Route::get('/admin/productos/buscar',function(){
       // Obtengo los resultados de la busqueda en productos
       $productos = App::call('App\Http\Controllers\ProductoController@buscar');
-      
+
       if (is_object($productos)){
          // En caso de que $productos sea un objeto retorna la vista con productos
-         
+
          // si back es TRUE se hablita la vuelta atras de URL 
          return view('/admin/productos')->with('productos',$productos)
                                        ->with('back',true);
@@ -142,11 +139,10 @@ Route::get('/favoritos',function(){
          $error = $productos;
 
          //  retorno la vista de productos con el error al buscar
-         // si back es TRUE se hablita la vuelta atras de URL 
+         // si back es TRUE se hablita la vuelta atras de URL
          return view('/admin/productos')->with('error',$error)
                                        ->with('back',true);
       }
-      
    });
 
    Route::get('/admin/cupones',function(){
@@ -156,7 +152,7 @@ Route::get('/favoritos',function(){
       return view('admin.cupones')->with('cupones',$cupones);
    });
 
-   // Pagina de ofertas 
+   // Pagina de ofertas
    Route::get('/admin/ofertas',function(){
 
       // obtengo todas las ofertas -con paginacion-
@@ -165,16 +161,16 @@ Route::get('/favoritos',function(){
       // retorno la vista con las ofertas
       return view('admin/ofertas')->with('ofertas',$ofertas);
    });
-   
+
    Route::get('/admin/ver_producto/{id}','ProductoController@ver');
 
    Route::get('/admin/editar_producto/{id}',function($id){
       // obtengo el producto y sus relaciones
       $producto = App::call('App\http\Controllers\ProductoController@editar',['id' => $id]);
-      
+
       return view('admin.editarProducto')->with('producto',$producto);
    });
-   
+
    Route::get('/admin/nuevo_producto',function(){
       return view('admin\nuevoProducto');
    });
@@ -187,7 +183,7 @@ Route::get('/favoritos',function(){
    Route::get('/admin/ventas',function(){
       return view('admin.ventas');
    });
-   
+
    Route::get('/admin/elementos',function(){
       return view('admin.ElementsUI');
    });
