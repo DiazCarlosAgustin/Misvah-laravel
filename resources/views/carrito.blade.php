@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('title','Carrito')
-    
+
 @section('Container')
-    <web-carrito></web-carrito>
+
+    <web-carrito :productos="{{json_encode($productos)}}"/>
 @endsection
 
 @section('script')

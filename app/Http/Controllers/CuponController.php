@@ -14,7 +14,13 @@ class CuponController extends Controller
      */
     public function index()
     {
-        $cupones = Cupon::paginate(2);
+        $cupones = Cupon::all();
+
+        return $cupones;
+    }   
+    public function paginateCupones()
+    {
+        $cupones = Cupon::paginate(10);
 
         return $cupones;
     }   
@@ -67,6 +73,7 @@ class CuponController extends Controller
     public function show(cupon $cupon)
     {
         //
+        dd($request->input("cupon"));
     }
 
     /**
@@ -75,9 +82,21 @@ class CuponController extends Controller
      * @param  \App\cupon  $cupon
      * @return \Illuminate\Http\Response
      */
-    public function edit(cupon $cupon)
+    public function edit( Request $request)
     {
-        //
+        dd($request->cupon);
+    }
+    public function consultar(Request $request)
+    {
+        $cupon= cupon::where('codigo','=',$request->cupon)->where('estado','=',0)->get();
+        if(count($cupon) > 0){
+            $respuesta = 'OK';
+            return response()->json(['cupon' =>$cupon[0],'respuesta' => $respuesta], 200);
+        }
+        else{
+            $respuesta = 'FALSE';
+            return response()->json(['respuesta' => $respuesta]);
+        }
     }
 
     /**

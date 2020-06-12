@@ -30,6 +30,7 @@ Route::resource('/stock', 'colorStockController');
 Route::resource('/imagen', 'imagenColorController');
 // cupon
 Route::resource('/cupon', 'CuponController');
+Route::post('/cupones', 'CuponController@consultar');
 // cupon
 Route::resource('/oferta', 'OfertaController');
 

@@ -27,6 +27,9 @@ class CarritoController extends Controller
 
             return $carrito;
         }
+        else {
+           redirect("/acceder");
+        }
     }
 
     /**
@@ -55,7 +58,7 @@ class CarritoController extends Controller
             $carrito->producto_id = $request->producto_id;
             $carrito->color_id = $request->color_id;
             $carrito->cantidad = $request->cantidad;
-            
+
             if($carrito->save()){
                 $carrito = $carrito->with('color')->with('producto')->get();
                 return $carrito;
@@ -80,8 +83,10 @@ class CarritoController extends Controller
                                 ->with('color')
                                 ->where('user_id','=',$user)
                                 ->get();
-    
             return $carrito;
+        }
+        else{
+            return response("/acceder");
         }
     }
 
@@ -103,9 +108,20 @@ class CarritoController extends Controller
      * @param  \App\carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, carrito $carrito)
+    public function update(Request $request,$id)
     {
-        //
+        $carrito = carrito::find($id);
+
+        $carrito->cantidad = $request->cantidad;
+
+        if ($carrito->save()) {
+            $codigo = 200;
+            return response()->json($codigo);
+        }
+        else{
+            $codigo = 400;
+            return response()->json($codigo);
+        }
     }
 
     /**
@@ -118,7 +134,6 @@ class CarritoController extends Controller
     {
         //
         $carrito = carrito::find($id);
-
         if($carrito->delete()){
             return $carrito;
         }

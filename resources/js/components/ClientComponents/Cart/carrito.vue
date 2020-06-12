@@ -7,7 +7,10 @@
                     <i class="fas fa-times fa-2" @click="closeCart"></i>
                 </div>
             </div>
-            <div class="list-group  text-dark list-group-flush">
+            <div
+                class="list-group  text-dark list-group-flush"
+                v-if="cart.length > 0"
+            >
                 <item-carrito
                     class="item-cart"
                     v-for="(producto, index) in cart"
@@ -25,7 +28,7 @@
             </div>
         </div>
         <div class="card-fother p-0 mb-0" v-if="cart.length > 0">
-            <a href="/cart" class="btn btn-block col">Detalles</a>
+            <a href="/carrito" class="btn btn-block col">Detalles</a>
             <a
                 href=""
                 class="btn btn-block col"
@@ -54,10 +57,18 @@ export default {
             this.cart = $cart;
             this.$emit("cartSize", true);
         });
+        bus.$on("elementCartCant", ($cant, $i) => {
+            this.cart[$i].cantidad = $cant;
+        });
+        bus.$on("deleteItem", $cart => {
+            this.cart = $cart;
+            var estado = this.sizeCart();
+            this.$emit("cartSize", estado);
+        });
     },
     methods: {
-        closeCart(){
-            this.$emit('closeCart');
+        closeCart() {
+            this.$emit("closeCart");
         },
         getCart() {
             axios
@@ -78,21 +89,25 @@ export default {
             this.cart[$id].cantidad = $cantidad;
             this.cart[$id].subtotal =
                 this.cart[$id].precio * this.cart[$id].cantidad;
+            bus.$emit("cart", this.cart);
         },
         eliminar: function($id, $i) {
             axios
                 .delete("http://127.0.0.1:8000/api/carrito/" + $id)
                 .then(res => {
                     this.cart.splice($i, 1);
-                    if (this.cart.length > 0) {
-                        this.$emit("cartSize", true);
-                    } else {
-                        this.$emit("cartSize", false);
-                    }
+                    bus.$emit("cart", this.cart);
+                    var estado = this.sizeCart;
+                    this.$emit("cartSize", estado);
                 })
                 .catch(err => {
                     console.log(err);
                 });
+        }
+    },
+    computed: {
+        sizeCart() {
+            return this.cart.length > 0 ? true : false;
         }
     }
 };
@@ -105,7 +120,8 @@ export default {
     z-index: 10000;
     background-color: white;
 }
-.card-body, .card-fother{
+.card-body,
+.card-fother {
     background-color: white;
 }
 .item-cart {
@@ -140,7 +156,7 @@ export default {
         background-color: white;
         display: block;
     }
-    .carrito-close{
+    .carrito-close {
         display: none;
     }
 }
@@ -155,7 +171,7 @@ export default {
         -moz-box-shadow: 10px 14px 33px -13px rgba(0, 0, 0, 0.75);
         box-shadow: 10px 14px 33px -13px rgba(0, 0, 0, 0.75);
     }
-    .carrito-close{
+    .carrito-close {
         display: block;
     }
 }

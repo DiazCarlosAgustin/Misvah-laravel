@@ -3,14 +3,14 @@
         <div class="img-producto my-auto">
             <img
                 :src="
-                    `../../../img/productos/${producto.color.imagenes.imagen_color_producto}`
+                    `http://127.0.0.1:8000/img/productos/${producto.color.imagenes.imagen_color_producto}`
                 "
                 width="75"
                 height="75"
             />
         </div>
         <div class="des-producto">
-            <div class="r-1">
+            <div class="r-1 mt-2">
                 <div
                     class="eliminar-producto my-auto text-center"
                     @click="eliminar"
@@ -27,7 +27,7 @@
                     <span>
                         <img
                             :src="
-                                `../../../img/colores/${producto.color.imagen_color}`
+                                `http://127.0.0.1:8000/img/colores/${producto.color.imagen_color}`
                             "
                             width="35"
                             height="35"
@@ -39,16 +39,14 @@
                 <div class="cantidad-producto d-flex align-middle">
                     <h6 class="text-muted ">
                         Cantidad:
-                        <span
-                            ><input
-                                @change="emitCantidad()"
-                                type="number"
-                                name="txtCantidad"
-                                id="txtCantidad"
-                                class="numCantidad text-right"
-                                min="1"
+                        <span>
+                            <el-input-number
                                 v-model="producto.cantidad"
-                        /></span>
+                                @change="emitCantidad()"
+                                :min="1"
+                                :size="'small'"
+                            ></el-input-number>
+                        </span>
                     </h6>
                 </div>
                 <div class="subtotal text-right pr-2">
@@ -59,19 +57,20 @@
     </div>
 </template>
 <script>
-import {EventBus} from '../../../bus'
 export default {
     name: "item-carrito",
     props: ["producto"],
     data() {
         return {
-            subtotal: this.producto.producto.precio * this.producto.cantidad
+            sub: 0
         };
+    },
+    created() {
     },
     mounted() {},
     methods: {
         sumarizar: function() {
-            this.subtotal =
+            this.sub =
                 this.producto.producto.precio * this.producto.cantidad;
         },
         emitCantidad: function() {
@@ -79,7 +78,18 @@ export default {
             this.$emit("Cantidad", this.producto.cantidad);
         },
         eliminar: function() {
-            this.$emit("Eliminar");
+            this.$emit("Eliminar", this.producto.id);
+        }
+    },
+    computed: {
+        subtotal() {
+            this.sub = this.producto.producto.precio * this.producto.cantidad;
+            return this.sub
+        }
+    },
+    watch: {
+        subtotal: function($new,$old) {
+            this.sub = $new;
         }
     }
 };

@@ -52,7 +52,8 @@ Route::get('/categoria/{id}',function($id){
                         ->with('categorias',$productos[1]);
 });
 Route::get('/carrito',function(){
-   return view('carrito');
+   $productos = App::call('App\Http\Controllers\CarritoController@index');
+   return view('carrito')->with('productos',$productos);
 });
 Route::get('/producto/{id}',function($id){
    // obtengo el producto consultado

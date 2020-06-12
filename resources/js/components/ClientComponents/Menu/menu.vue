@@ -285,8 +285,6 @@ export default {
                 }
             }
             else{
-                console.log("golas");
-                
                 $(".carrito").toggleClass("d-none")
             }
         },

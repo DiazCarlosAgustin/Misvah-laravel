@@ -20,7 +20,7 @@ export default {
             col: "col-12"
         };
     },
-    mounted() {console.log(this.productos)},
+    mounted() {},
     methods: {
         cambiarClase: function() {
             if (window.innerWidth > 375 && window.innerWidth < 575) {
