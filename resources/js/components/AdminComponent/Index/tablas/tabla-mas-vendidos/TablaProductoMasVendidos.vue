@@ -23,3 +23,13 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    components: {
+        SfButton
+    }
+};
+</script>
+<style scoped>
+
+</style>
