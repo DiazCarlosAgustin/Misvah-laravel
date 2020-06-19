@@ -24,8 +24,7 @@
 <script>
 export default {
     props: ["categoria"],
-    
-    mounted(){console.log(this.categoria)},
+    mounted(){},
 };
 </script>
 <style scoped></style>

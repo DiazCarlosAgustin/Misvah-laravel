@@ -14,7 +14,7 @@
                 <div class="w-100 my-0 col-12 col-xs-12 col-md-6 col-lg-4 p-a">
                     <filtro-ordenado></filtro-ordenado>
                 </div>
-                <hr>
+                <button></button>
            </div>
         </div>
     </div>

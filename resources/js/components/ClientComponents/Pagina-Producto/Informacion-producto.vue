@@ -3,10 +3,10 @@
         <div class="head-info text-center">
            <h4>Información</h4>
         </div>
-        <div class="body-info text-center">
+        <div class="body-info text-left mt-2">
             <p class="text-muted">
                {{info}}
-            </p> 
+            </p>
         </div>
     </div>
 </template>
