@@ -14,11 +14,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/es'
 import "@storefront-ui/vue/styles.scss";
-import vueRouter from 'vue-router';
+
 
 
 Vue.use(VueCarousel)
-Vue.use(vueRouter)
 Vue.use(ElementUI, { locale })
 
 /**
