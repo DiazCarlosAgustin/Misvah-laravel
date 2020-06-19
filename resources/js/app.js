@@ -13,9 +13,10 @@ import VueCarousel from 'vue-carousel';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/es'
+import "@storefront-ui/vue/styles.scss";
 
 Vue.use(VueCarousel)
-Vue.use(ElementUI, {locale})
+Vue.use(ElementUI, { locale })
 
 /**
  * The following block of code may be used to automatically register your
