@@ -15,8 +15,6 @@ import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/es'
 import "@storefront-ui/vue/styles.scss";
 
-
-
 Vue.use(VueCarousel)
 Vue.use(ElementUI, { locale })
 

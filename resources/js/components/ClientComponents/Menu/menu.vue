@@ -9,24 +9,27 @@
                 href="/"
                 class="navbar-brand d-xs-flex d-lg-none navbar-brand-xs borde nav-item"
                 :style="{ color: color }"
-                >MISVHA</a
             >
+                MISVHA
+            </a>
             <!-- {{-- menu xs que se vera solo en tablets o celulares--}} -->
             <div class=" d-xs-flex d-lg-none ml-auto">
                 <i
                     class="material-icons"
                     id="i-xs-buscar"
                     :style="{ color: color }"
-                    >search</i
                 >
+                    search
+                </i>
                 <a @click="actionCart">
                     <span class="s-carrito bg-danger ml-4" v-show="cart"></span>
                     <i
                         class="material-icons"
                         id="i-xs-carrito"
                         :style="{ color: color }"
-                        >shopping_cart</i
                     >
+                        shopping_cart
+                    </i>
                 </a>
                 <button
                     class="navbar-toggler"
@@ -42,9 +45,9 @@
         </div>
         <div class="navbar-collapse collapse " id="navbarMenu">
             <div class="navbar-nav mr-auto text-center">
-                <a href="/" class="nav-item nav-link" :style="{ color: color }"
-                    >INICIO</a
-                >
+                <a href="/" class="nav-item nav-link" :style="{ color: color }">
+                    INICIO
+                </a>
                 <a
                     class="nav-item nav-link"
                     id="display-categorias"
@@ -57,15 +60,17 @@
                     href="/contacto"
                     class="nav-item nav-link"
                     :style="{ color: color }"
-                    >CONTACTO</a
                 >
+                    CONTACTO
+                </a>
                 <div v-if="!logeado">
                     <a
                         href="/acceder"
                         class="nav-item  nav-link xs-link d-xs-block d-lg-none"
                         :style="{ color: color }"
-                        >ACCEDER</a
                     >
+                        ACCEDER
+                    </a>
                 </div>
                 <div v-if="logeado">
                     <a
@@ -89,22 +94,23 @@
                                 Volver
                             </span>
                         </div>
-                        <a class="nav-item nav-link" :style="{ color: color }"
-                            >Mi Perfil</a
-                        >
+                        <a class="nav-item nav-link" :style="{ color: color }">
+                            Mi Perfil
+                        </a>
                         <a
                             class="nav-item nav-link"
                             href="/favoritos"
                             :style="{ color: color }"
-                            >Mis Favoritos</a
                         >
-                        <a class="nav-item nav-link" :style="{ color: color }"
-                            >Mis compras</a
-                        >
+                            Mis Favoritos
+                        </a>
+                        <a class="nav-item nav-link" :style="{ color: color }">
+                            Mis compras
+                        </a>
                         <div class="dropdown-divider"></div>
-                        <a class="nav-link" @click="cerrarSesion"
-                            >Cerrar sesion</a
-                        >
+                        <a class="nav-link" @click="cerrarSesion">
+                            Cerrar sesion
+                        </a>
                     </div>
                 </div>
             </div>
@@ -113,23 +119,26 @@
                     href="/"
                     class="navbar-brand mx-auto my-auto"
                     :style="{ color: color }"
-                    >MISVAH</a
                 >
+                    MISVAH
+                </a>
             </div>
             <div class="nav navbar-nav ml-auto d-lg-flex d-none mt-1">
                 <i
                     class="material-icons nav-item nav-link xs-link "
                     id="i-buscar"
                     :style="{ color: color }"
-                    >search</i
                 >
+                    search
+                </i>
 
                 <div class="nav-item">
                     <div>
                         <span
                             class="s-carrito bg-danger ml-4 mt-1"
                             v-show="cart"
-                        ></span>
+                        >
+                        </span>
                         <i
                             class="material-icons nav-item nav-link "
                             id="i-lg-carrito"
@@ -139,15 +148,20 @@
                             shopping_cart
                         </i>
                     </div>
-                    <carrito class="carrito d-none" @cartSize="cartSize" @closeCart="actionCart"/>
+                    <carrito
+                        class="carrito d-none"
+                        @cartSize="cartSize"
+                        @closeCart="actionCart"
+                    />
                 </div>
                 <div v-if="!logeado">
                     <a
                         href="/acceder"
                         class="nav-item nav-link xs-link "
                         :style="{ color: color }"
-                        >ACCEDER</a
                     >
+                        ACCEDER
+                    </a>
                 </div>
                 <div v-if="logeado">
                     <div class="dropdown">
@@ -271,7 +285,7 @@ export default {
     },
     methods: {
         actionCart() {
-            if(window.innerWidth < 991){ 
+            if (window.innerWidth < 991) {
                 if ($("#carrito-xs").hasClass("d-none")) {
                     $("#carrito-xs").addClass("d-block");
                     $("#carrito-xs").removeClass("d-none");
@@ -283,11 +297,10 @@ export default {
                     $("#i-xs-carrito").text("shopping_cart");
                     $(".s-carrito").removeClass("d-none");
                 }
-            }
-            else{
+            } else {
                 console.log("golas");
-                
-                $(".carrito").toggleClass("d-none")
+
+                $(".carrito").toggleClass("d-none");
             }
         },
         categoriaSelect: function($categoria) {
