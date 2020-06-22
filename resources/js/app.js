@@ -80,6 +80,7 @@ Vue.component('web-acceder', require('./components/ClientComponents/Pagina-acced
 Vue.component('web-registrarse', require('./components/ClientComponents/Pagina-registrarse/web-registrarse.vue').default);
 //Pagina registrarse
 Vue.component('page-favoritos', require('./components/ClientComponents/favoritos/pageFavoritos.vue').default);
+Vue.component('pagina-perfil', require('./components/ClientComponents/perfil/paginaPerfil.vue').default);
 
 
 // Admin

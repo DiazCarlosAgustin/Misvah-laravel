@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('title','Mis favoritos')
-    
+
 @section('Container')
-    <page-favoritos />
+    <page-favoritos :favoritos="{{json_encode($favoritos)}}"/>
 @endsection
 
 @section('script')

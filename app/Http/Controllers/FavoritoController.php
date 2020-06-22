@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\favorito;
+use App\Producto;
 use Illuminate\Http\Request;
 
 class FavoritoController extends Controller
@@ -53,7 +54,18 @@ class FavoritoController extends Controller
             return response()->json($msg);
         }
     }
+    public function getFavoritos($user){
+        $u = $user;
+        $favoritos = Producto::with('favorito')
+                            ->with('imagenColor')
+                            ->with('Oferta')
+                            ->whereHas('favorito', function($q)use( $user){
+                                $q->where('user_id','=',$user);
+                            })
+                            ->get();
 
+        return $favoritos;
+    }
     /**
      * Display the specified resource.
      *
@@ -97,7 +109,6 @@ class FavoritoController extends Controller
     public function destroy($fav)
     {
         $favorito = favorito::findOrFail($fav);
-       
         $favorito->delete();
 
         return $favorito;

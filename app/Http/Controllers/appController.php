@@ -46,10 +46,40 @@ class appController extends Controller
         $user->save();
 
         Auth::login($user);
-        
+
         return response()->json($user, 200);
     }
     public function logout(){
         Auth::logout();
+    }
+    public function editPerfil(Request $request){
+        $user = User::find($request->id);
+
+        if ($user) {
+            $user->name = $request->nombre;
+            $user->email = $request->email;
+            $user->telefono = $request->telefono;
+            if($user->save()){
+                return response()->json(["Ok" => "Se actualizo correctamente"]);
+            }
+            else{
+                return response()->json(["fail" => "No se pudo actualizar intentar nuevamente"]);
+            }
+        }
+    }
+    public function changePassword(Request $request){
+        $user = User::find($request->id);
+        if(Auth::attempt(['email' => $user->email, 'password' => $request->actual])){
+            $user->password = bcrypt($request->nueva);
+            if($user->save()){
+                return response()->json(["Ok" => "Se actualizo correctamente."]);
+            }
+            else{
+                return response()->json(["error" => "No se pudo actualizar intentar nuevamente."]);
+            }
+        }
+        else{
+            return response()->json(["fail" => "La contraseña actual no coincide."]);
+        }
     }
 }

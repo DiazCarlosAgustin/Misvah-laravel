@@ -18,6 +18,8 @@ Route::prefix('auth')->group(function (){
    Route::post('login','appController@login');
    Route::post('register','appController@register');
    Route::post('logout','appController@logout');
+   Route::post('changePassword', 'appController@changePassword');
+   Route::post('editPerfil', 'appController@editPerfil');
 });
 
 Route::get('/', function () {
@@ -58,11 +60,17 @@ Route::get('/carrito',function(){
 Route::get('/producto/{id}',function($id){
    // obtengo el producto consultado
    $producto = App::call('App\Http\Controllers\ProductoController@ver',['id' => $id]);
-   // retorno la vista junto al producto y las relaciones 
+   // retorno la vista junto al producto y las relacionesE
    return view('producto')->with('producto',$producto);
 });
 Route::get('/favoritos',function(){
-   return view('UserFavorito');
+   $favoritos = App::call('App\http\Controllers\favoritoController@getFavoritos', ['id' => Auth::user()->id]);
+   return view('UserFavorito')->with('favoritos',$favoritos);
+})->middleware('auth');
+
+Route::get('/perfil', function () {
+   $user = Auth::user();
+   return view('perfil')->with('user',$user);
 });
 
 /*

@@ -78,7 +78,7 @@ class ProductoController extends Controller
                 $productos = $productos->orderBy('created_at','desc');
                 break;
         }
-        $productos = $productos->paginate(1);
+        $productos = $productos->paginate(9);
         $categorias = Categoria::all();
 
         $arr = [$productos,$categorias];
@@ -108,7 +108,7 @@ class ProductoController extends Controller
                     ->with('Oferta')
                     ->take(5)
                     ->get();
-        
+
         return $productos;
     }
 

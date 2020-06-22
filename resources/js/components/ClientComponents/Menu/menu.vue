@@ -89,7 +89,7 @@
                                 Volver
                             </span>
                         </div>
-                        <a class="nav-item nav-link" :style="{ color: color }"
+                        <a class="nav-item nav-link" href="/perfil" :style="{ color: color }"
                             >Mi Perfil</a
                         >
                         <a
@@ -139,7 +139,11 @@
                             shopping_cart
                         </i>
                     </div>
-                    <carrito class="carrito d-none" @cartSize="cartSize" @closeCart="actionCart"/>
+                    <carrito
+                        class="carrito d-none"
+                        @cartSize="cartSize"
+                        @closeCart="actionCart"
+                    />
                 </div>
                 <div v-if="!logeado">
                     <a
@@ -166,13 +170,19 @@
                             aria-labelledby="dropdownMenu2"
                         >
                             <button class="dropdown-item" type="button">
-                                Mi Perfil
+                                <a href="/perfil" class="m-0 p-0">
+                                    Mi Perfil
+                                </a>
                             </button>
                             <button class="dropdown-item" type="button">
-                                Mis Favoritos
+                                <a href="/favoritos" class="p-0 m-0">
+                                    Mis Favoritos
+                                </a>
                             </button>
                             <button class="dropdown-item" type="button">
-                                Mis compras
+                                <a href="/compras" class="m-0 p-0">
+                                    Mis compras
+                                </a>
                             </button>
                             <div class="dropdown-divider"></div>
                             <button
@@ -271,7 +281,7 @@ export default {
     },
     methods: {
         actionCart() {
-            if(window.innerWidth < 991){ 
+            if (window.innerWidth < 991) {
                 if ($("#carrito-xs").hasClass("d-none")) {
                     $("#carrito-xs").addClass("d-block");
                     $("#carrito-xs").removeClass("d-none");
@@ -283,9 +293,8 @@ export default {
                     $("#i-xs-carrito").text("shopping_cart");
                     $(".s-carrito").removeClass("d-none");
                 }
-            }
-            else{
-                $(".carrito").toggleClass("d-none")
+            } else {
+                $(".carrito").toggleClass("d-none");
             }
         },
         categoriaSelect: function($categoria) {
@@ -297,7 +306,7 @@ export default {
         },
         cerrarSesion: function() {
             axios
-                .post("http://127.0.0.1:8000/auth/logout")
+                .post("auth/logout")
                 .then(res => {
                     window.location.href = "/";
                 })

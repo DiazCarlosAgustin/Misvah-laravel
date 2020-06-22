@@ -6,11 +6,11 @@
             </div>
         </div>
         <div class="row mt-4 d-flex justify-content-center">
-            <div class="text-center mb-5 col-12" v-if="productos.length == 0">
+            <div class="text-center mb-5 col-12" v-if="favoritos.length == 0">
                 <h5>No hay productos en favoritos</h5>
             </div>
             <div class="d-flex row" v-else>
-                <div :class="col" class="col-xs-6 col-md-4 col-lg-3" v-for="(producto,index) in productos" :key="producto.id">
+                <div :class="col" class="col-xs-6 col-md-4 col-lg-3" v-for="(producto,index) in favoritos" :key="producto.id">
                     <producto :producto="producto"
                         @productoFavorito="favorito(index,...arguments)"
                     />
@@ -22,33 +22,17 @@
 <script>
 export default {
     name:'page-favoritos',
+    props:{
+        favoritos:{
+            type: Array,
+        }
+    },
     data(){
         return{
-            col:'col-12',
-            productos:[
-                {
-                    id:1,
-                    nombre:"Producto 1",
-                    id_categoria:"1",
-                    precio:233,
-                    favorito:true
-                },
-                {
-                    id:2,
-                    nombre:"Producto 2",
-                    id_categoria:"2",
-                    precio:233,
-                    favorito:true
-                },
-                {
-                    id:3,
-                    nombre:"Producto 3",
-                    id_categoria:"3",
-                    precio:233,
-                    favorito:true
-                },
-            ]
+            col:'col-12'
         }
+    },
+    mounted() {
     },
     methods: {
         cambiarClase:function(){
@@ -64,7 +48,7 @@ export default {
                 this.productos.splice($id,1)
             }
             else{
-                this.productos[$id].favorito = $favorito      
+                this.productos[$id].favorito = $favorito
             }
         }
     },
