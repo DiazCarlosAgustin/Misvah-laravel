@@ -28,7 +28,7 @@
         "element-ui": "^2.13.2",
         "mdbootstrap": "^4.18.0",
         "moment": "^2.25.3",
-        "swiper": "^5.4.0",
+        "swiper": "^6.5.1",
         "vue-carousel": "^0.18.0"
     }
 }
